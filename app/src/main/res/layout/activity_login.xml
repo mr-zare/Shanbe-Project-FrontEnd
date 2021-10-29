@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_nine"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <TextView
+
+        android:id="@+id/gosignup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/indie_flower"
+        android:text="i don't have an account"
+        android:textColor="@color/teal_200"
+        android:textSize="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/forgetpass" />
+
+    <TextView
+        android:id="@+id/forgetpass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/indie_flower"
+        android:text="forget password"
+        android:textColor="@color/teal_200"
+        android:textSize="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardViewlogin" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/logoid"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_marginStart="145dp"
+        android:layout_marginTop="33dp"
+        android:layout_marginEnd="145dp"
+        android:layout_marginBottom="553dp"
+        app:cardCornerRadius="160dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <androidx.cardview.widget.CardView
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_gravity="center"
+            app:cardCornerRadius="250dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/logo_third" />
+
+        </androidx.cardview.widget.CardView>
+    </androidx.cardview.widget.CardView>
+
+
+
+    <EditText
+        android:id="@+id/nameidlog"
+        android:layout_width="280dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="328dp"
+        android:background="@drawable/border"
+        android:drawableLeft="@drawable/ic_action_name"
+        android:ems="10"
+        android:fontFamily="@font/indie_flower"
+        android:hint="name"
+        android:inputType="textPersonName"
+        android:onClick="colorFilterLogin"
+        android:textColor="@color/teal_200"
+        android:textColorHint="@color/hintColor"
+        android:textSize="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/passidlog"
+        android:onClick="colorFilterLogin"
+        android:textColorHint="@color/hintColor"
+        android:layout_width="280dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="48dp"
+        android:background="@drawable/border"
+        android:drawableLeft="@drawable/ic_action_pass"
+        android:ems="10"
+        android:fontFamily="@font/indie_flower"
+        android:hint="password"
+        android:textColor="@color/teal_200"
+        android:inputType="textPassword"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nameidlog" />
+
+    <androidx.cardview.widget.CardView
+        android:foregroundGravity="center_vertical"
+        android:padding="5dp"
+        android:id="@+id/cardViewlogin"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="48dp"
+        app:cardBackgroundColor="#07F4DE"
+        app:cardCornerRadius="25dp"
+        app:cardElevation="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passidlog"
+        app:layout_constraintVertical_bias="0.0">
+
+        <RelativeLayout
+            android:gravity="center"
+            android:id="@+id/relativeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/indie_flower"
+                android:gravity="center"
+                android:text="Login"
+                android:textSize="34dp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
