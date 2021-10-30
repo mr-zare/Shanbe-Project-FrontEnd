@@ -12,8 +12,8 @@
         <entry key="..\:/AndroidProjects/Tahlil_application/android(sprint1) - Copy/app/src/main/res/drawable/circle_place.xml" value="0.2703125" />
         <entry key="..\:/AndroidProjects/Tahlil_application/android(sprint1) - Copy/app/src/main/res/drawable/img.xml" value="0.2703125" />
         <entry key="..\:/AndroidProjects/Tahlil_application/android(sprint1) - Copy/app/src/main/res/layout/activity_forget_pass_email.xml" value="0.264" />
-        <entry key="..\:/AndroidProjects/Tahlil_application/android(sprint1) - Copy/app/src/main/res/layout/activity_forgotpass.xml" value="0.264" />
-        <entry key="..\:/AndroidProjects/Tahlil_application/android(sprint1) - Copy/app/src/main/res/layout/activity_login.xml" value="0.264" />
+        <entry key="..\:/AndroidProjects/Tahlil_application/android(sprint1) - Copy/app/src/main/res/layout/activity_forgotpass.xml" value="0.152" />
+        <entry key="..\:/AndroidProjects/Tahlil_application/android(sprint1) - Copy/app/src/main/res/layout/activity_login.xml" value="0.176" />
         <entry key="..\:/AndroidProjects/Tahlil_application/android(sprint1) - Copy/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/AndroidProjects/Tahlil_application/android(sprint1) - Copy/app/src/main/res/layout/activity_signup.xml" value="0.264" />
         <entry key="..\:/AndroidProjects/Tahlil_application/android(sprint1) - Copy/app/src/main/res/layout/activity_welcome.xml" value="0.1864754098360656" />
@@ -24,8 +24,6 @@
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/MyApplication/app/src/main/res/layout/activity_login.xml" value="0.264" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/MyApplication/app/src/main/res/layout/activity_main.xml" value="0.176" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/MyApplication/app/src/main/res/layout/activity_welcome.xml" value="0.1793478260869565" />
-        <entry key="..\:/Users/bamir/Desktop/FrontEnd/app/src/main/res/layout/activity_main.xml" value="0.16176470588235295" />
-        <entry key="..\:/Users/bamir/Desktop/FrontEnd/app/src/main/res/layout/calendar_layout.xml" value="0.1793478260869565" />
       </map>
     </option>
   </component>
