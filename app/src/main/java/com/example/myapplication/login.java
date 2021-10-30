@@ -68,6 +68,8 @@ public class login extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                enamelog.setBackgroundResource(R.drawable.border);
+                epasslog.setBackgroundResource(R.drawable.border);
                 enamelog.setBackgroundResource(R.drawable.border_selected);
             }
 
@@ -84,6 +86,9 @@ public class login extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                enamelog.setBackgroundResource(R.drawable.border);
+                epasslog.setBackgroundResource(R.drawable.border);
                 epasslog.setBackgroundResource(R.drawable.border_selected);
             }
 

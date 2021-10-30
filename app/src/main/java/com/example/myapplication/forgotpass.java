@@ -70,6 +70,9 @@ public class forgotpass extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                passf.setBackgroundResource(R.drawable.border);
+                confirmf.setBackgroundResource(R.drawable.border);
+                codeToken.setBackgroundResource(R.drawable.border);
                 passf.setBackgroundResource(R.drawable.border_selected);
             }
 
@@ -87,7 +90,11 @@ public class forgotpass extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                passf.setBackgroundResource(R.drawable.border);
+                confirmf.setBackgroundResource(R.drawable.border);
+                codeToken.setBackgroundResource(R.drawable.border);
                 confirmf.setBackgroundResource(R.drawable.border_selected);
+
             }
 
             @Override
@@ -105,6 +112,9 @@ public class forgotpass extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                passf.setBackgroundResource(R.drawable.border);
+                confirmf.setBackgroundResource(R.drawable.border);
+                codeToken.setBackgroundResource(R.drawable.border);
                 codeToken.setBackgroundResource(R.drawable.border_selected);
             }
 
