@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_nine"
+    android:background="@drawable/bacground_eight"
     tools:context="forgotpass">
 
     <androidx.cardview.widget.CardView
@@ -79,7 +79,7 @@
         android:id="@+id/confirmpassfg"
         android:layout_width="280dp"
         android:layout_height="48dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="28dp"
         android:background="@drawable/border"
         android:drawableLeft="@drawable/ic_action_pass"
         android:ems="10"
@@ -97,7 +97,7 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardViewfg"
-        android:layout_width="250dp"
+        android:layout_width="260dp"
         android:layout_height="60dp"
         android:layout_marginStart="56dp"
         android:layout_marginTop="60dp"
@@ -113,8 +113,10 @@
         app:layout_constraintVertical_bias="0.483">
 
         <RelativeLayout
+            android:padding="5dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_gravity="center">
 
             <TextView
                 android:id="@+id/resetpass"
@@ -123,14 +125,14 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
-                android:layout_marginStart="33dp"
+                android:layout_marginStart="68dp"
                 android:layout_marginTop="0dp"
-                android:layout_marginEnd="28dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginEnd="73dp"
+                android:layout_marginBottom="9dp"
                 android:fontFamily="@font/indie_flower"
                 android:gravity="center"
-                android:text="Reset password"
-                android:textSize="25sp"
+                android:text="RESET"
+                android:textSize="22dp"
                 android:textStyle="bold" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>

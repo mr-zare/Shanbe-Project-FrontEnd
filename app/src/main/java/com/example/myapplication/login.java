@@ -8,6 +8,8 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -53,6 +55,40 @@ public class login extends AppCompatActivity {
         userAPI =LoginRetrofit.create(UserAPI.class);
 
 
+        //added
+        enamelog.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                enamelog.setBackgroundResource(R.drawable.border_selected);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+            }
+        });
+
+        epasslog.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                epasslog.setBackgroundResource(R.drawable.border_selected);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+            }
+        });
+
+
         logincv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,6 +101,9 @@ public class login extends AppCompatActivity {
                 enamelog.setBackgroundResource(R.drawable.border);
                 epasslog.setBackgroundResource(R.drawable.border);
 
+                Animation animation1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.blink_anim);
+                logincv.startAnimation(animation1);
+
                 User user = new User(namel,passl);
                 Call<UserSession> userSessionCall = userAPI.UserLogin("application/json",user);
                 userSessionCall.enqueue(new Callback<UserSession>() {
@@ -74,6 +113,7 @@ public class login extends AppCompatActivity {
                         {
                             Toast.makeText(login.this, "username or password is not correct!", Toast.LENGTH_SHORT).show();
                             v.setEnabled(true);
+                            v.clearAnimation();
                             enamelog.setBackgroundResource(R.drawable.border_red);
                             epasslog.setBackgroundResource(R.drawable.border_red);
                         }
@@ -83,13 +123,13 @@ public class login extends AppCompatActivity {
                             userSession.setUsername(namel);
                             String token = userSession.getToken();
                             Toast.makeText(login.this, code+"   "+namel , Toast.LENGTH_SHORT).show();
-                            Animation animation1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.blink_anim);
-                            logincv.startAnimation(animation1);
-                            SystemClock.sleep(200);
+
+                            //SystemClock.sleep(200);
                             Intent output=new Intent(login.this,welcome.class);
                             output.putExtra("token",token);
                             output.putExtra("username",namel);
                             startActivity(output);
+                            v.clearAnimation();
                             v.setEnabled(true);
                         }
                     }
@@ -150,6 +190,7 @@ public class login extends AppCompatActivity {
         enamelog.getBackground().setColorFilter(null);
         epasslog.setBackgroundResource(R.drawable.border);
         enamelog.setBackgroundResource(R.drawable.border);
-        view.getBackground().setColorFilter(Color.BLACK,PorterDuff.Mode.SRC_ATOP);
+        //view.getBackground().setColorFilter(Color.BLACK,PorterDuff.Mode.SRC_ATOP);
+        view.setBackgroundResource(R.drawable.border_selected);
     }
 }

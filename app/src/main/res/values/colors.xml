@@ -15,4 +15,5 @@
     <color name="day_text_blue">#1AD4E0</color>
     <color name="recycler_background">#FFA7DD</color>
     <color name="recycler_item_background">#A55488</color>
+    <color name="text_color">#B3E8E3</color>
 </resources>

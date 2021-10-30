@@ -6,15 +6,16 @@
         <entry key="..\:/AndroidProjects/Tahlil_application/android(sprint1) - Copy/app/src/main/res/drawable/border.xml" value="0.21354166666666666" />
         <entry key="..\:/AndroidProjects/Tahlil_application/android(sprint1) - Copy/app/src/main/res/drawable/border2.xml" value="0.202734375" />
         <entry key="..\:/AndroidProjects/Tahlil_application/android(sprint1) - Copy/app/src/main/res/drawable/border_red.xml" value="0.22179487179487178" />
+        <entry key="..\:/AndroidProjects/Tahlil_application/android(sprint1) - Copy/app/src/main/res/drawable/border_selected.xml" value="0.202734375" />
         <entry key="..\:/AndroidProjects/Tahlil_application/android(sprint1) - Copy/app/src/main/res/drawable/circle.xml" value="0.2703125" />
         <entry key="..\:/AndroidProjects/Tahlil_application/android(sprint1) - Copy/app/src/main/res/drawable/circle_img.xml" value="0.2703125" />
         <entry key="..\:/AndroidProjects/Tahlil_application/android(sprint1) - Copy/app/src/main/res/drawable/circle_place.xml" value="0.2703125" />
         <entry key="..\:/AndroidProjects/Tahlil_application/android(sprint1) - Copy/app/src/main/res/drawable/img.xml" value="0.2703125" />
-        <entry key="..\:/AndroidProjects/Tahlil_application/android(sprint1) - Copy/app/src/main/res/layout/activity_forget_pass_email.xml" value="0.2" />
-        <entry key="..\:/AndroidProjects/Tahlil_application/android(sprint1) - Copy/app/src/main/res/layout/activity_forgotpass.xml" value="0.2" />
+        <entry key="..\:/AndroidProjects/Tahlil_application/android(sprint1) - Copy/app/src/main/res/layout/activity_forget_pass_email.xml" value="0.264" />
+        <entry key="..\:/AndroidProjects/Tahlil_application/android(sprint1) - Copy/app/src/main/res/layout/activity_forgotpass.xml" value="0.264" />
         <entry key="..\:/AndroidProjects/Tahlil_application/android(sprint1) - Copy/app/src/main/res/layout/activity_login.xml" value="0.264" />
         <entry key="..\:/AndroidProjects/Tahlil_application/android(sprint1) - Copy/app/src/main/res/layout/activity_main.xml" value="0.264" />
-        <entry key="..\:/AndroidProjects/Tahlil_application/android(sprint1) - Copy/app/src/main/res/layout/activity_signup.xml" value="0.2" />
+        <entry key="..\:/AndroidProjects/Tahlil_application/android(sprint1) - Copy/app/src/main/res/layout/activity_signup.xml" value="0.264" />
         <entry key="..\:/AndroidProjects/Tahlil_application/android(sprint1) - Copy/app/src/main/res/layout/activity_welcome.xml" value="0.1864754098360656" />
         <entry key="..\:/AndroidProjects/Tahlil_application/android(sprint1) - Copy/app/src/main/res/layout/calendar_layout.xml" value="0.190625" />
         <entry key="..\:/AndroidProjects/Tahlil_application/android(sprint1) - Copy/app/src/main/res/layout/recycler_view_item.xml" value="0.190625" />

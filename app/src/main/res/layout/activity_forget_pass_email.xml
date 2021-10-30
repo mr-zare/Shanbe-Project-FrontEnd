@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_nine"
+    android:background="@drawable/bacground_eight"
     tools:context=".forgetPass_email">
 
     <androidx.cardview.widget.CardView
@@ -72,7 +72,8 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            >
 
             <TextView
                 android:id="@+id/resetpass"
@@ -81,18 +82,17 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
-                android:layout_marginStart="35dp"
+                android:layout_marginStart="66dp"
                 android:layout_marginTop="0dp"
-                android:layout_marginEnd="26dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="69dp"
+                android:layout_marginBottom="15dp"
                 android:fontFamily="@font/indie_flower"
                 android:gravity="center"
                 android:text="Send email"
-                android:textSize="25sp"
+                android:textSize="22sp"
                 android:textStyle="bold" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
-
     <TextView
         android:onClick="goNextPage"
         android:id="@+id/wrongWay"
@@ -104,4 +104,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:textColor="@color/teal_200"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

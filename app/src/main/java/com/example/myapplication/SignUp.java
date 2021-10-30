@@ -10,7 +10,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.SystemClock;
+import android.text.Editable;
 import android.text.InputFilter;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -58,6 +60,112 @@ public class SignUp extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         userAPI =SignUpRefrofit.create(UserAPI.class);
+
+        ename.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                ename.setBackgroundResource(R.drawable.border);
+                eemail.setBackgroundResource(R.drawable.border);
+                epass.setBackgroundResource(R.drawable.border);
+                econfpass.setBackgroundResource(R.drawable.border);
+                if(ename.getText().toString().length()<6)
+                {
+                    ename.setBackgroundResource(R.drawable.border_red);
+                }
+                else{
+                    ename.setBackgroundResource(R.drawable.border_selected);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        eemail.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                ename.setBackgroundResource(R.drawable.border);
+                eemail.setBackgroundResource(R.drawable.border);
+                epass.setBackgroundResource(R.drawable.border);
+                econfpass.setBackgroundResource(R.drawable.border);
+                if(!isEmailValid(eemail.getText().toString()))
+                {
+                    eemail.setBackgroundResource(R.drawable.border_red);
+                }
+                else{
+                    eemail.setBackgroundResource(R.drawable.border_selected);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        epass.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                ename.setBackgroundResource(R.drawable.border);
+                eemail.setBackgroundResource(R.drawable.border);
+                epass.setBackgroundResource(R.drawable.border);
+                econfpass.setBackgroundResource(R.drawable.border);
+                epass.setBackgroundResource(R.drawable.border_selected);
+                if(epass.getText().toString().length()<8 || !checkString(epass.getText().toString())|| !containsDigit(epass.getText().toString()))
+                {
+                    epass.setBackgroundResource(R.drawable.border_red);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        econfpass.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                ename.setBackgroundResource(R.drawable.border);
+                eemail.setBackgroundResource(R.drawable.border);
+                epass.setBackgroundResource(R.drawable.border);
+                econfpass.setBackgroundResource(R.drawable.border);
+                if(!econfpass.getText().toString().equals(epass.getText().toString()))
+                {
+                    econfpass.setBackgroundResource(R.drawable.border_red);
+                }
+                else {
+                    econfpass.setBackgroundResource(R.drawable.border_selected);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
 
         cardviewsup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,6 +228,7 @@ public class SignUp extends AppCompatActivity {
                             {
                                 Toast.makeText(SignUp.this, "this user has already exists!", Toast.LENGTH_LONG).show();
                                 v.setEnabled(true);
+                                v.clearAnimation();
                             }
                             else{
                                 String code = Integer.toString(response.code());
@@ -264,15 +373,16 @@ public class SignUp extends AppCompatActivity {
         return containsDigit;
     }
 //EditText ename,eemail,epass,econfpass;
-    public void colorFilter(View view) {
-        ename.getBackground().setColorFilter(null);
-        eemail.getBackground().setColorFilter(null);
-        epass.getBackground().setColorFilter(null);
-        econfpass.getBackground().setColorFilter(null);
-        ename.setBackgroundResource(R.drawable.border);
-        eemail.setBackgroundResource(R.drawable.border);
-        epass.setBackgroundResource(R.drawable.border);
-        econfpass.setBackgroundResource(R.drawable.border);
-        view.getBackground().setColorFilter(Color.BLACK,PorterDuff.Mode.SRC_ATOP);
-    }
+//    public void colorFilter(View view) {
+//        ename.getBackground().setColorFilter(null);
+//        eemail.getBackground().setColorFilter(null);
+//        epass.getBackground().setColorFilter(null);
+//        econfpass.getBackground().setColorFilter(null);
+//        ename.setBackgroundResource(R.drawable.border);
+//        eemail.setBackgroundResource(R.drawable.border);
+//        epass.setBackgroundResource(R.drawable.border);
+//        econfpass.setBackgroundResource(R.drawable.border);
+//        view.getBackground().setColorFilter(Color.BLACK,PorterDuff.Mode.SRC_ATOP);
+//        view.setBackgroundResource(R.drawable.border_selected);
+//    }
 }

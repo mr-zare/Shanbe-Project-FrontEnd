@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -52,6 +54,23 @@ public class forgetPass_email extends AppCompatActivity {
                 .build();
         userAPI =SignUpRefrofit.create(UserAPI.class);
 
+        eemail.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                eemail.setBackgroundResource(R.drawable.border_selected);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
         sendEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,13 +100,15 @@ public class forgetPass_email extends AppCompatActivity {
                             {
                                 Toast.makeText(forgetPass_email.this, "error is:"+response.message(), Toast.LENGTH_LONG).show();
                                 view.setEnabled(true);
+                                view.clearAnimation();
                             }
                             else{
                                 String code = Integer.toString(response.code());
-                                Toast.makeText(forgetPass_email.this, "code:"+code, Toast.LENGTH_LONG).show();
+                                Toast.makeText(forgetPass_email.this, "check your email for code", Toast.LENGTH_LONG).show();
                                 Intent intent = new Intent(forgetPass_email.this,forgotpass.class);
                                 startActivity(intent);
                                 view.setEnabled(true);
+                                view.clearAnimation();
                             }
                         }
 
@@ -125,7 +146,7 @@ public class forgetPass_email extends AppCompatActivity {
     public void ColorFilterEmailForget(View view) {
         eemail.getBackground().setColorFilter(null);
         eemail.setBackgroundResource(R.drawable.border);
-        view.getBackground().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_ATOP);
+        //view.setBackgroundResource(R.drawable.border_selected);
     }
 
     public void goNextPage(View view) {

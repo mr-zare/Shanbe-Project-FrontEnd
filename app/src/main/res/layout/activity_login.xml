@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_nine"
+    android:background="@drawable/bacground_eight"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <TextView
@@ -15,7 +15,7 @@
         android:layout_marginTop="12dp"
         android:fontFamily="@font/indie_flower"
         android:text="i don't have an account"
-        android:textColor="@color/teal_200"
+        android:textColor="@color/text_color"
         android:textSize="18dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,7 +28,7 @@
         android:layout_marginTop="20dp"
         android:fontFamily="@font/indie_flower"
         android:text="forget password"
-        android:textColor="@color/teal_200"
+        android:textColor="@color/text_color"
         android:textSize="18dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
@@ -136,7 +136,7 @@
                 android:fontFamily="@font/indie_flower"
                 android:gravity="center"
                 android:text="Login"
-                android:textSize="34dp"
+                android:textSize="30dp"
                 android:textStyle="bold" />
 
         </RelativeLayout>

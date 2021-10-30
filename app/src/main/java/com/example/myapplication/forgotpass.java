@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -55,6 +57,59 @@ public class forgotpass extends AppCompatActivity {
         reset =(CardView) findViewById(R.id.cardViewfg);
         codeToken = findViewById(R.id.etoken);
 
+        passf.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                passf.setBackgroundResource(R.drawable.border_selected);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        confirmf.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                confirmf.setBackgroundResource(R.drawable.border_selected);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+
+        codeToken.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                codeToken.setBackgroundResource(R.drawable.border_selected);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+
 
         reset.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,6 +126,8 @@ public class forgotpass extends AppCompatActivity {
                 if(isPassValid(pass,confirm)==true)
                 {
                     //Toast.makeText(forgotpass.this,Codetoken,Toast.LENGTH_LONG);
+                    Animation animation3 = AnimationUtils.loadAnimation(forgotpass.this, R.anim.blink_anim);
+                    reset.startAnimation(animation3);
                     User user = new User();
                     user.setCodeToken(Codetoken);
                     user.setPassword(pass);
@@ -83,18 +140,19 @@ public class forgotpass extends AppCompatActivity {
                                 Toast.makeText(forgotpass.this, "please enter your code again", Toast.LENGTH_LONG).show();
                                 codeToken.setBackgroundResource(R.drawable.border_red);
                                 v.setEnabled(true);
+                                v.clearAnimation();
                             }
                             else{
                                 String code = Integer.toString(response.code());
                                 UserSession responseSession = response.body();
                                 String token = responseSession.getToken();
                                 Toast.makeText(forgotpass.this, code +"\n"+token, Toast.LENGTH_LONG).show();
-                                Animation animation3 = AnimationUtils.loadAnimation(forgotpass.this, R.anim.blink_anim);
-                                reset.startAnimation(animation3);
+
                                 Intent output=new Intent(forgotpass.this,login.class);
                                 //output.putExtra("token",token);
                                 startActivity(output);
                                 v.setEnabled(true);
+                                v.clearAnimation();
                             }
                         }
 
@@ -161,9 +219,11 @@ public class forgotpass extends AppCompatActivity {
     public void ColorFilterForget(View view) {
         passf.getBackground().setColorFilter(null);
         confirmf.getBackground().setColorFilter(null);
+        codeToken.getBackground().setColorFilter(null);
         passf.setBackgroundResource(R.drawable.border);
         confirmf.setBackgroundResource(R.drawable.border);
-        view.getBackground().setColorFilter(Color.BLACK,PorterDuff.Mode.SRC_ATOP);
+        codeToken.setBackgroundResource(R.drawable.border);
+        //view.setBackgroundResource(R.drawable.border_selected);
     }
 
 
