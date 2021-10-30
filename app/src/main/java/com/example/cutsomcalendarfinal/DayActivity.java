@@ -14,6 +14,7 @@ public class DayActivity extends AppCompatActivity {
     TextView pageTitle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // day activity
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -22,6 +23,5 @@ public class DayActivity extends AppCompatActivity {
         extras = getIntent().getExtras();
         pageTitle = findViewById(R.id.day_activity_title_id);
         pageTitle.setText(extras.getString("Date"));
-
     }
 }
