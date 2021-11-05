@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="profile">Profile</string>
+    <string name="support">Support</string>
+    <string name="about">About</string>
+    <string name="others">Others</string>
+    <string name="sign_out">Sign out</string>
+    <string name="john_doe">John Doe</string>
+    <string name="verified">Verified</string>
 </resources>

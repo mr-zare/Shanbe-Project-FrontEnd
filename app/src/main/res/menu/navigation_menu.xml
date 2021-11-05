@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/menuItemProfile"
+        android:icon="@mipmap/ic_profile"
+        android:title="@string/profile"/>
+    <item android:id="@+id/supportItemProfile"
+        android:icon="@mipmap/ic_support"
+        android:title="@string/support"/>
+    <item android:id="@+id/aboutItemProfile"
+        android:icon="@mipmap/ic_about"
+        android:title="@string/about"/>
+    <item android:title="@string/others">
+        <menu>
+            <item android:id="@+id/signoutItemProfile"
+                android:icon="@mipmap/ic_signout"
+                android:title="@string/sign_out"/>
+        </menu>
+    </item>
+</menu>
