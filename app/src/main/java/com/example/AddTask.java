@@ -118,13 +118,15 @@ public class AddTask extends AppCompatActivity {
         String descStr = desc.getText().toString();
         if(titleStr.equals(""))
         {
-            Toast.makeText(this, "fill the title field", Toast.LENGTH_SHORT).show();
+            CustomeAlertDialog titleError = new CustomeAlertDialog(this,"Error","fill the title field");
+            //Toast.makeText(this, "fill the title field", Toast.LENGTH_SHORT).show();
             title.setBackgroundResource(R.drawable.border_red_task_error);
         }
         if(descStr.equals(""))
         {
             desc.setBackgroundResource(R.drawable.border_red_task_error);
-            Toast.makeText(this, "fill the description field", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "fill the description field", Toast.LENGTH_SHORT).show();
+            CustomeAlertDialog messageError = new CustomeAlertDialog(this,"Error","fill the description field");
         }
 
         if(checkDate(year,month,day,hour,min) && !titleStr.equals("") && !descStr.equals(""))
@@ -178,7 +180,8 @@ public class AddTask extends AppCompatActivity {
         {
             return true;
         }
-        Toast.makeText(this, "you can set a task for past", Toast.LENGTH_SHORT).show();
+        CustomeAlertDialog dateAlert = new CustomeAlertDialog(this,"error","you can set a task for past");
+        //Toast.makeText(this, "you can set a task for past", Toast.LENGTH_SHORT).show();
         return false;
 
     }
