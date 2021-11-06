@@ -1,11 +1,10 @@
-package com.example.cutsomcalendarfinal;
+package com.example;
 
 
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -37,14 +36,14 @@ public class CustomCalendarView extends LinearLayout {
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM yyyy",Locale.ENGLISH);
     SimpleDateFormat monthFormat = new SimpleDateFormat("MMMM",Locale.ENGLISH);
     SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy",Locale.ENGLISH);
-    com.example.cutsomcalendarfinal.MyGridAdapter myGridAdapter;
+    MyGridAdapter myGridAdapter;
     AlertDialog alertDialog;
     List<Date> dates = new ArrayList<>();
-    List<com.example.cutsomcalendarfinal.Events> eventsList = new ArrayList<>();
+    List<Events> eventsList = new ArrayList<>();
     RecyclerView recyclerView;
     LinearLayoutManager linearLayoutManager;
-    List<com.example.cutsomcalendarfinal.RecyclerModelClass> recyclerEventList;
-    com.example.cutsomcalendarfinal.RecyclerAdapter recyclerAdapter;
+    List<RecyclerModelClass> recyclerEventList;
+    RecyclerAdapter recyclerAdapter;
 
     public CustomCalendarView(Context context) {
         super(context);
@@ -80,7 +79,7 @@ public class CustomCalendarView extends LinearLayout {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String transferDate = gridView.getItemAtPosition(position).toString();
-                Intent i = new Intent(context, com.example.cutsomcalendarfinal.DayActivity.class);
+                Intent i = new Intent(context, DayActivity.class);
                 i.putExtra("Date",transferDate);
                 context.startActivity(i);
             }
@@ -89,10 +88,10 @@ public class CustomCalendarView extends LinearLayout {
 
     private void InitializeData() {
         recyclerEventList = new ArrayList<>();
-        recyclerEventList.add(new com.example.cutsomcalendarfinal.RecyclerModelClass("Wake Up","08:00 AM"));
-        recyclerEventList.add(new com.example.cutsomcalendarfinal.RecyclerModelClass("Breakfast","09:00 AM"));
-        recyclerEventList.add(new com.example.cutsomcalendarfinal.RecyclerModelClass("Study","10:00 AM"));
-        recyclerEventList.add(new com.example.cutsomcalendarfinal.RecyclerModelClass("Lunch","01:30 PM"));
+        recyclerEventList.add(new RecyclerModelClass("Wake Up","08:00 AM"));
+        recyclerEventList.add(new RecyclerModelClass("Breakfast","09:00 AM"));
+        recyclerEventList.add(new RecyclerModelClass("Study","10:00 AM"));
+        recyclerEventList.add(new RecyclerModelClass("Lunch","01:30 PM"));
     }
 
     private void InitializeRecycler() {
@@ -100,7 +99,7 @@ public class CustomCalendarView extends LinearLayout {
         linearLayoutManager = new LinearLayoutManager(context);
         linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerAdapter = new com.example.cutsomcalendarfinal.RecyclerAdapter(recyclerEventList);
+        recyclerAdapter = new RecyclerAdapter(recyclerEventList);
         recyclerView.setAdapter(recyclerAdapter);
         recyclerAdapter.notifyDataSetChanged();
     }
@@ -126,7 +125,7 @@ public class CustomCalendarView extends LinearLayout {
             dates.add(monthCalendar.getTime());
             monthCalendar.add(Calendar.DAY_OF_MONTH,1);
         }
-        myGridAdapter = new com.example.cutsomcalendarfinal.MyGridAdapter(context,dates,calendar,eventsList);
+        myGridAdapter = new MyGridAdapter(context,dates,calendar,eventsList);
         gridView.setAdapter(myGridAdapter);
     }
 }

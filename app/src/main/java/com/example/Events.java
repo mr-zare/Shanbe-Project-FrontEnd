@@ -1,4 +1,4 @@
-package com.example.cutsomcalendarfinal;
+package com.example;
 
 public class Events {
     String EVENT,TIME,DATE,MONTH,YEAR;

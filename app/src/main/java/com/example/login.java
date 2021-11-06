@@ -1,13 +1,11 @@
-package com.example.myapplication;
+package com.example;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -19,9 +17,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.myapplication.entity.User;
-import com.example.myapplication.webService.UserAPI;
-import com.example.myapplication.webService.UserSession;
+import com.example.entity.User;
+import com.example.myapplication.R;
+import com.example.webService.UserAPI;
+import com.example.webService.UserSession;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -137,6 +136,10 @@ public class login extends AppCompatActivity {
                             Intent output=new Intent(login.this,welcome.class);
                             output.putExtra("token",token);
                             output.putExtra("username",namel);
+                            SharedPreferences.Editor editor = ((ShanbehApp)getApplication()).sharedPreferences.edit();
+                            editor.putString("token",token);
+                            editor.putString("username",namel);
+                            editor.apply();
                             startActivity(output);
                             v.clearAnimation();
                             v.setEnabled(true);
@@ -160,7 +163,7 @@ public class login extends AppCompatActivity {
 //                }
 //                else
 //                {
-//                    Toast.makeText(com.example.myapplication.login.this, "username or pass is in correct", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(com.example.login.this, "username or pass is in correct", Toast.LENGTH_SHORT).show();
 //                }
             }
         });
@@ -169,7 +172,7 @@ public class login extends AppCompatActivity {
             public void onClick(View v) {
                Animation animation2= AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fadein);
                forgetpass.startAnimation(animation2);
-                Intent fp=new Intent(com.example.myapplication.login.this,forgetPass_email.class);
+                Intent fp=new Intent(login.this,forgetPass_email.class);
                 startActivity(fp);
             }
         });
@@ -178,7 +181,7 @@ public class login extends AppCompatActivity {
             public void onClick(View v) {
                 Animation animation3= AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fadein);
                 gosignup.startAnimation(animation3);
-                Intent sup=new Intent(com.example.myapplication.login.this, SignUp.class);
+                Intent sup=new Intent(login.this, SignUp.class);
                 startActivity(sup);
                 finish();
             }

@@ -1,17 +1,12 @@
-package com.example.myapplication;
+package com.example;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.SystemClock;
 import android.text.Editable;
-import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.Window;
@@ -22,18 +17,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.myapplication.entity.User;
-import com.example.myapplication.webService.UserAPI;
-import com.example.myapplication.webService.UserSession;
+import com.example.entity.User;
+import com.example.myapplication.R;
+import com.example.webService.UserAPI;
+import com.example.webService.UserSession;
 
-import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import okhttp3.OkHttpClient;
-import okhttp3.Request;
 import okhttp3.logging.HttpLoggingInterceptor;
-import okio.Timeout;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -249,6 +242,10 @@ public class SignUp extends AppCompatActivity {
                                 Intent gosignup=new Intent(SignUp.this,welcome.class);
                                 gosignup.putExtra("token",token);
                                 gosignup.putExtra("username",username);
+                                SharedPreferences.Editor editor = ((ShanbehApp)getApplication()).sharedPreferences.edit();
+                                editor.putString("token",token);
+                                editor.putString("username",username);
+                                editor.apply();
                                 startActivity(gosignup);
                                 finish();
 

@@ -1,12 +1,11 @@
-package com.example.myapplication.webService;
+package com.example.webService;
 
-import com.example.myapplication.entity.User;
+import com.example.entity.User;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
-import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 
 public interface UserAPI {

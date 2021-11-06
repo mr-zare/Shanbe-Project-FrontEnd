@@ -1,6 +1,6 @@
-package com.example.myapplication.webService;
+package com.example.webService;
 
-import com.example.myapplication.entity.User;
+import com.example.entity.User;
 
 public class UserSession {
 

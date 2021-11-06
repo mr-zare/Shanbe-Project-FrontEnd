@@ -1,4 +1,4 @@
-package com.example.cutsomcalendarfinal;
+package com.example;
 
 import androidx.appcompat.app.AppCompatActivity;
 

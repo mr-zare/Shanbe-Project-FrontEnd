@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,8 @@ import android.os.SystemClock;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+
+import com.example.myapplication.R;
 
 public class welcome extends AppCompatActivity {
 
@@ -26,7 +28,7 @@ public class welcome extends AppCompatActivity {
         logo.startAnimation(animation);
         SystemClock.sleep(200);
 
-        Intent out = new Intent(welcome.this, com.example.cutsomcalendarfinal.MainActivity.class);
+        Intent out = new Intent(welcome.this, MainActivity.class);
         out.putExtra("token",token);
         out.putExtra("username",username);
         startActivity(out);
