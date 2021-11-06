@@ -151,7 +151,7 @@ public class AddTask extends AppCompatActivity {
         int currentMonth = c.get(Calendar.MONTH);
         int currentYear = c.get(Calendar.YEAR);
 
-        
+
         Time now = new Time();
         now.setToNow();
 
