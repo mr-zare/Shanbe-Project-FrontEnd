@@ -7,4 +7,10 @@
     <string name="sign_out">Sign out</string>
     <string name="john_doe">John Doe</string>
     <string name="verified">Verified</string>
+    <string-array name="category">
+        <item>Athletic</item>
+        <item>Study</item>
+        <item>Meeting</item>
+        <item>Work</item>
+    </string-array>
 </resources>
