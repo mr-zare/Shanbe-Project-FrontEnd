@@ -3,16 +3,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    app:startDestination="@id/menuItemProfile">
+    app:startDestination="@id/menuItemCalendar">
 
     <fragment
-        android:id="@+id/menuItemProfile"
+        android:id="@+id/menuItemCalendar"
         android:name="com.example.cutsomcalendarfinal.mainFragment"
         android:label="Calendar"
         tools:layout="@layout/fragment_main" />
     <fragment
-        android:id="@+id/supportItemProfile"
+        android:id="@+id/menuItemProfile"
         android:name="com.example.cutsomcalendarfinal.profileFragment"
         android:label="Profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/menuItemAbout"
+        android:name="com.example.cutsomcalendarfinal.aboutFragment"
+        android:label="fragment_about"
+        tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/menuItemSupport"
+        android:name="com.example.cutsomcalendarfinal.supportFragment"
+        android:label="fragment_support"
+        tools:layout="@layout/fragment_support" />
 </navigation>

@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.TextView;
 
 import com.example.myapplication.R;
 import com.google.android.material.navigation.NavigationView;
@@ -19,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
     CustomCalendarView customCalendarView;
     DrawerLayout drawerLayout;
     NavigationView monthNavigationView;
+    TextView userNameTextView;
+    Bundle extras ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,11 +36,15 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 drawerLayout.openDrawer(GravityCompat.START);
+                extras = getIntent().getExtras();
+                userNameTextView = findViewById(R.id.headerUsernameTextView);
+                userNameTextView.setText(extras.getString("username"));
             }
         });
         monthNavigationView = findViewById(R.id.navigationView);
         monthNavigationView.setItemIconTintList(null);
         NavController navController = Navigation.findNavController(this,R.id.navHostFragment);
         NavigationUI.setupWithNavController(monthNavigationView,navController);
+
     }
 }

@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/menuItemCalendar"
+        android:icon="@mipmap/ic_profile"
+        android:title="@string/calendar"/>
     <item android:id="@+id/menuItemProfile"
         android:icon="@mipmap/ic_profile"
         android:title="@string/profile"/>
-    <item android:id="@+id/supportItemProfile"
+    <item android:id="@+id/menuItemSupport"
         android:icon="@mipmap/ic_support"
         android:title="@string/support"/>
-    <item android:id="@+id/aboutItemProfile"
+    <item android:id="@+id/menuItemAbout"
         android:icon="@mipmap/ic_about"
         android:title="@string/about"/>
     <item android:title="@string/others">
