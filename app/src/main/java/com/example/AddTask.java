@@ -15,12 +15,22 @@ import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.example.entity.Task;
 import com.example.entity.User;
 import com.example.myapplication.R;
+import com.example.webService.TaskAPI;
 
 
 import java.util.Calendar;
 import java.util.Date;
+
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class AddTask extends AppCompatActivity {
 
@@ -31,6 +41,7 @@ public class AddTask extends AppCompatActivity {
     EditText desc;
     String userToken;
     String username;
+    TaskAPI taskAPI;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +49,18 @@ public class AddTask extends AppCompatActivity {
         setContentView(R.layout.activity_add_task);
 
         init();
+
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
+
+        Retrofit createTask = new Retrofit.Builder()
+                .baseUrl(TaskAPI.BASE_URL)
+                .client(client)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        taskAPI = createTask.create(TaskAPI.class);
+
 
         desc.setBackgroundResource(R.drawable.border_red_task_error);
         title.setBackgroundResource(R.drawable.border_red_task_error);
@@ -114,6 +137,8 @@ public class AddTask extends AppCompatActivity {
         int hour = timePicker.getCurrentHour();
         int min = timePicker.getCurrentMinute();
 
+        String categoryStr =  category.getSelectedItem().toString();
+
         String titleStr = title.getText().toString();
         String descStr = desc.getText().toString();
         if(titleStr.equals(""))
@@ -132,13 +157,34 @@ public class AddTask extends AppCompatActivity {
         if(checkDate(year,month,day,hour,min) && !titleStr.equals("") && !descStr.equals(""))
         {
             Toast.makeText(this,"task saved",Toast.LENGTH_SHORT).show();
-            //todo
-            //have to send this information to backEnd...
-            //
-            //
-            //
-            //
+            String datetime = Integer.toString(year)+"-"+Integer.toString(month)+"-"+Integer.toString(day)+" "+Integer.toString(hour)+":"+Integer.toString(min);
+            Task newTask = new Task(titleStr,descStr, datetime, categoryStr, "time for "+categoryStr, userToken);
+            Call<Task> callBack =taskAPI.createTask("application/json",newTask);
+            callBack.enqueue(new Callback<Task>() {
+                @Override
+                public void onResponse(Call<Task> call, Response<Task> response) {
+                    if(!response.isSuccessful())
+                    {
+                        CustomeAlertDialog errorConnecting = new CustomeAlertDialog(AddTask.this,"error","there is a problem connecting to server");
+                    }
+                    else{
+                        String code = Integer.toString(response.code());
+                        Task savedTask = response.body();
+                        String task_token = savedTask.getTaskToken();
+                        String title = savedTask.getTitle();
+                        String dateTime = savedTask.getDateTime();
+                        Toast.makeText(AddTask.this, task_token+"   "+title+"    "+dateTime, Toast.LENGTH_SHORT).show();
 
+                        //Todo
+                        //saving the fields in db
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Task> call, Throwable t) {
+
+                }
+            });
         }
     }
 

@@ -1,14 +1,30 @@
 package com.example.entity;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Task {
+    @SerializedName("title")
     private String title;
+
+    @SerializedName("description")
     private String desc;
+
+    @SerializedName("alarm_check")
     private String dateTime;
+
+    @SerializedName("category")
     private String category;
+
+    @SerializedName("push_notification")
     private String notification;
+
     private String callBackTime;
     private String taskToken;
+
+    @SerializedName("user_token")
     private String userToken;
+
+
     private int id;
 
     public Task(String title, String desc, String dateTime, String category, String notification, String userToken) {
