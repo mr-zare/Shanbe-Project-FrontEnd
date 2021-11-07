@@ -3,17 +3,33 @@ package com.example.entity;
 public class Task {
     private String title;
     private String desc;
-    private String time;
-    private String date;
+    private String dateTime;
     private String category;
-    private String token;
+    private String notification;
+    private String callBackTime;
+    private String taskToken;
+    private String userToken;
+    private int id;
 
-    public Task(String title, String desc, String time, String date, String category) {
+    public Task(String title, String desc, String dateTime, String category, String notification, String userToken) {
         this.title = title;
         this.desc = desc;
-        this.time = time;
-        this.date = date;
+        this.dateTime = dateTime;
         this.category = category;
+        this.notification = notification;
+        this.userToken = userToken;
+    }
+
+    public Task(String title, String desc, String dateTime, String category, String notification, String callBackTime, String taskToken, String userToken, int id) {
+        this.title = title;
+        this.desc = desc;
+        this.dateTime = dateTime;
+        this.category = category;
+        this.notification = notification;
+        this.callBackTime = callBackTime;
+        this.taskToken = taskToken;
+        this.userToken = userToken;
+        this.id = id;
     }
 
     public String getTitle() {
@@ -32,20 +48,12 @@ public class Task {
         this.desc = desc;
     }
 
-    public String getTime() {
-        return time;
+    public String getDateTime() {
+        return dateTime;
     }
 
-    public void setTime(String time) {
-        this.time = time;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
+    public void setDateTime(String dateTime) {
+        this.dateTime = dateTime;
     }
 
     public String getCategory() {
@@ -56,11 +64,43 @@ public class Task {
         this.category = category;
     }
 
-    public String getToken() {
-        return token;
+    public String getNotification() {
+        return notification;
     }
 
-    public void setToken(String token) {
-        this.token = token;
+    public void setNotification(String notification) {
+        this.notification = notification;
+    }
+
+    public String getCallBackTime() {
+        return callBackTime;
+    }
+
+    public void setCallBackTime(String callBackTime) {
+        this.callBackTime = callBackTime;
+    }
+
+    public String getTaskToken() {
+        return taskToken;
+    }
+
+    public void setTaskToken(String taskToken) {
+        this.taskToken = taskToken;
+    }
+
+    public String getUserToken() {
+        return userToken;
+    }
+
+    public void setUserToken(String userToken) {
+        this.userToken = userToken;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
