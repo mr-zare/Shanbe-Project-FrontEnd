@@ -12,138 +12,177 @@
         android:layout_height="match_parent"
         tools:context="com.example.AddTask">
 
-        <TextView
-            android:id="@+id/titleTv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="50dp"
-            android:text="Title:"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="356dp"
+            android:layout_height="143dp"
+            android:layout_marginTop="36dp"
+            android:background="@drawable/border_task"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintHorizontal_bias="0.492"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.004" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <EditText
-            android:drawableLeft="@drawable/title"
-            android:id="@+id/titleEt"
-            android:layout_width="315dp"
-            android:layout_height="53dp"
-            android:layout_marginTop="12dp"
-            android:gravity="center"
+            <TextView
+                android:id="@+id/titleTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:height="53dp"
+                android:text="Title:"
+                android:textSize="22sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/titleEt"
+                android:layout_width="315dp"
+                android:layout_height="53dp"
+                android:layout_marginTop="8dp"
+                android:drawableLeft="@drawable/title"
+                android:gravity="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.609"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/titleTv">
+
+            </EditText>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout2"
+            android:layout_width="355dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/border_task"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/titleTv"></EditText>
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
+            <TextView
+                android:id="@+id/categoryTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Category:"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/categoryTv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="72dp"
-            android:text="Category:"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/titleEt" />
+            </TextView>
 
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="20dp"
+                android:background="@drawable/category"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.7">
 
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="28dp"
-            android:background="@drawable/category"
-            app:layout_constraintEnd_toStartOf="@+id/Spinner_category"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/categoryTv"></ImageView>
+            </ImageView>
 
-        <Spinner
+            <Spinner
+                android:id="@+id/Spinner_category"
+                android:layout_width="280dp"
+                android:layout_height="53dp"
+                android:layout_marginTop="8dp"
+                android:entries="@array/category"
+                android:gravity="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.753"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/categoryTv">
 
-            android:id="@+id/Spinner_category"
-            android:layout_width="265dp"
-            android:layout_height="53dp"
-            android:layout_marginTop="16dp"
-            android:entries="@array/category"
-            android:gravity="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.647"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/categoryTv"></Spinner>
+            </Spinner>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         <TextView
             android:id="@+id/DateTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="48dp"
+            android:layout_marginTop="64dp"
             android:text="Date:"
             android:textSize="22sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.494"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/descriptionEt" />
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />
+
 
         <DatePicker
             android:id="@+id/DateTimeDatePicker"
             android:layout_width="339dp"
             android:layout_height="428dp"
-            android:layout_marginTop="12dp"
             android:calendarViewShown="true"
             android:spinnersShown="false"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.506"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/DateTv"></DatePicker>
-
 
         <TextView
             android:id="@+id/timeTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
+            android:layout_marginTop="52dp"
             android:text="Time:"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Spinner_category" />
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
 
         <TimePicker
             android:id="@+id/time_picker"
             android:layout_width="315dp"
             android:layout_height="340dp"
-            android:layout_marginTop="24dp"
             android:layout_weight="4"
 
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/timeTv" />
 
-        <TextView
-            android:id="@+id/descriptionTv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
-            android:text="Description:"
-            android:textSize="20sp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout3"
+            android:layout_width="355dp"
+            android:layout_height="160dp"
+            android:layout_marginTop="60dp"
+            android:background="@drawable/border_task"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/time_picker" />
+            app:layout_constraintTop_toBottomOf="@+id/time_picker">
 
-        <EditText
-            android:id="@+id/descriptionEt"
-            android:layout_width="315dp"
-            android:maxLength="200"
-            android:layout_height="115dp"
-            android:layout_marginTop="24dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.515"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/descriptionTv"></EditText>
+            <TextView
+                android:id="@+id/descriptionTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Description:"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/descriptionEt"
+                android:layout_width="315dp"
+                android:layout_height="115dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/descriptionTv">
+                android:maxLength="200"
+            </EditText>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         <Button
             android:id="@+id/addBtn"
@@ -152,11 +191,9 @@
             android:layout_marginTop="28dp"
             android:onClick="addTask"
             android:text="ADD"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.507"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/descriptionEt"
-            app:layout_constraintVertical_bias="0.886" />
+            app:layout_constraintTop_toBottomOf="@+id/DateTimeDatePicker" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
