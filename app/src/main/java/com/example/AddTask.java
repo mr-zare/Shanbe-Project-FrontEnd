@@ -139,6 +139,11 @@ public class AddTask extends AppCompatActivity {
 
         String categoryStr =  category.getSelectedItem().toString();
 
+        if(categoryStr.equals(""))
+        {
+            CustomeAlertDialog categortyEmpyt = new CustomeAlertDialog(this,"error","please fill the category field");
+        }
+
         String titleStr = title.getText().toString();
         String descStr = desc.getText().toString();
         if(titleStr.equals(""))
@@ -154,7 +159,7 @@ public class AddTask extends AppCompatActivity {
             CustomeAlertDialog messageError = new CustomeAlertDialog(this,"Error","fill the description field");
         }
 
-        if(checkDate(year,month,day,hour,min) && !titleStr.equals("") && !descStr.equals(""))
+        if(checkDate(year,month,day,hour,min) && !titleStr.equals("") && !descStr.equals("")&& !categoryStr.equals(""))
         {
             Toast.makeText(this,"task saved",Toast.LENGTH_SHORT).show();
             String datetime = Integer.toString(year)+"-"+Integer.toString(month)+"-"+Integer.toString(day)+" "+Integer.toString(hour)+":"+Integer.toString(min);
@@ -173,7 +178,7 @@ public class AddTask extends AppCompatActivity {
                         String task_token = savedTask.getTaskToken();
                         String title = savedTask.getTitle();
                         String dateTime = savedTask.getDateTime();
-                        Toast.makeText(AddTask.this, task_token+"   "+title+"    "+dateTime, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddTask.this, code, Toast.LENGTH_SHORT).show();
 
                         //Todo
                         //saving the fields in db
