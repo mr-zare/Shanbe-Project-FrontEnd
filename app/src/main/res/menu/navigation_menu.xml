@@ -16,6 +16,7 @@
         <menu>
             <item android:id="@+id/signoutItemProfile"
                 android:icon="@mipmap/ic_signout"
+                android:onClick="LogoutClicked"
                 android:title="@string/sign_out"/>
         </menu>
     </item>

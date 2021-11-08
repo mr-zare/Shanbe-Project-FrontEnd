@@ -7,7 +7,9 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -22,6 +24,10 @@ public class MainActivity extends AppCompatActivity {
     NavigationView monthNavigationView;
     TextView userNameTextView;
     Bundle extras ;
+    public void LogoutClicked(MenuItem button){
+        Intent logOut = new Intent(MainActivity.this,com.example.myapplication.login.class);
+        startActivity(logOut);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,4 +53,5 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(monthNavigationView,navController);
 
     }
+    
 }
