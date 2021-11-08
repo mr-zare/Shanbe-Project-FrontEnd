@@ -1,6 +1,8 @@
 package com.example.cutsomcalendarfinal;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
@@ -8,7 +10,9 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -25,9 +29,36 @@ public class MainActivity extends AppCompatActivity {
     TextView userNameTextView;
     Bundle extras ;
     public void LogoutClicked(MenuItem button){
-        Intent logOut = new Intent(MainActivity.this,com.example.myapplication.login.class);
-        startActivity(logOut);
+        showWarningDialog();
     }
+
+    private void showWarningDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this,R.style.AlertDialogTheme);
+        View view = LayoutInflater.from(MainActivity.this).inflate(
+                R.layout.layout_warning_dialog,
+                (ConstraintLayout) findViewById(R.id.layoutDialogContainer)
+        );
+        builder.setView(view);
+        final AlertDialog alertDialog = builder.create();
+        view.findViewById(R.id.buttonYes).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent logOut = new Intent(MainActivity.this,com.example.myapplication.login.class);
+                startActivity(logOut);
+            }
+        });
+        view.findViewById(R.id.buttonNo).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
+        if(alertDialog.getWindow() != null){
+            alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+        }
+        alertDialog.show();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,5 +84,5 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(monthNavigationView,navController);
 
     }
-    
+
 }
