@@ -23,7 +23,12 @@
         <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/drawable/button_neutral_background.xml" value="0.1" />
         <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/drawable/button_warning_background.xml" value="0.1425925925925926" />
         <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/drawable/dialog_background.xml" value="0.2703125" />
+        <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/drawable/gradientbackground.xml" value="0.2703125" />
         <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/drawable/ic_about_background.xml" value="0.14537037037037037" />
+        <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/drawable/ic_menu.xml" value="0.24479166666666666" />
+        <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/drawable/ic_profile_background.xml" value="0.24479166666666666" />
+        <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/drawable/ic_signout_background.xml" value="0.24479166666666666" />
+        <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/drawable/ic_support_background.xml" value="0.24479166666666666" />
         <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/drawable/ic_warning.xml" value="0.1" />
         <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/drawable/title_warning_background.xml" value="0.13148148148148148" />
         <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/layout/activity_day.xml" value="0.1" />
