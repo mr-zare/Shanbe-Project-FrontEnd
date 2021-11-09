@@ -1,6 +1,7 @@
 package com.example;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -42,6 +43,8 @@ public class AddTask extends AppCompatActivity {
     String userToken;
     String username;
     TaskAPI taskAPI;
+    ConstraintLayout titleCons;
+    ConstraintLayout descCons;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,8 +66,8 @@ public class AddTask extends AppCompatActivity {
         taskAPI = createTask.create(TaskAPI.class);
 
 
-        desc.setBackgroundResource(R.drawable.border_red_task_error);
-        title.setBackgroundResource(R.drawable.border_red_task_error);
+        descCons.setBackgroundResource(R.drawable.border_red_task_error);
+        titleCons.setBackgroundResource(R.drawable.border_red_task_error);
         title.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -75,11 +78,11 @@ public class AddTask extends AppCompatActivity {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if(title.getText().toString()!="")
                 {
-                    title.setBackgroundResource(R.drawable.border_task);
+                    titleCons.setBackgroundResource(R.drawable.border_task);
                 }
                 else
                 {
-                    title.setBackgroundResource(R.drawable.border_red_task_error);
+                    titleCons.setBackgroundResource(R.drawable.border_red_task_error);
                 }
             }
 
@@ -87,7 +90,7 @@ public class AddTask extends AppCompatActivity {
             public void afterTextChanged(Editable editable) {
                 if(title.getText().toString()=="")
                 {
-                    title.setBackgroundResource(R.drawable.border_red_task_error);
+                    titleCons.setBackgroundResource(R.drawable.border_red_task_error);
                 }
             }
         });
@@ -102,10 +105,10 @@ public class AddTask extends AppCompatActivity {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if(desc.getText().toString()!="")
                 {
-                    desc.setBackgroundResource(R.drawable.border_task);
+                    descCons.setBackgroundResource(R.drawable.border_task);
                 }
                 else{
-                    desc.setBackgroundResource(R.drawable.border_red_task_error);
+                    descCons.setBackgroundResource(R.drawable.border_red_task_error);
                 }
             }
 
@@ -113,7 +116,7 @@ public class AddTask extends AppCompatActivity {
             public void afterTextChanged(Editable editable) {
                 if(desc.getText().toString()=="")
                 {
-                    desc.setBackgroundResource(R.drawable.border_red_task_error);
+                    descCons.setBackgroundResource(R.drawable.border_red_task_error);
                 }
             }
         });
@@ -126,6 +129,8 @@ public class AddTask extends AppCompatActivity {
         title = findViewById(R.id.titleEt);
         category = findViewById(R.id.Spinner_category);
         desc = findViewById(R.id.descriptionEt);
+        descCons = findViewById(R.id.descCons);
+        titleCons = findViewById(R.id.titleCons);
         SharedPreferences sharedPreferences = getSharedPreferences("authentication", MODE_PRIVATE);
         userToken = sharedPreferences.getString("token", "");
         username = sharedPreferences.getString("username","");
@@ -151,11 +156,11 @@ public class AddTask extends AppCompatActivity {
         {
             CustomeAlertDialog titleError = new CustomeAlertDialog(this,"Error","fill the title field");
             //Toast.makeText(this, "fill the title field", Toast.LENGTH_SHORT).show();
-            title.setBackgroundResource(R.drawable.border_red_task_error);
+            titleCons.setBackgroundResource(R.drawable.border_red_task_error);
         }
         if(descStr.equals(""))
         {
-            desc.setBackgroundResource(R.drawable.border_red_task_error);
+            descCons.setBackgroundResource(R.drawable.border_red_task_error);
             //Toast.makeText(this, "fill the description field", Toast.LENGTH_SHORT).show();
             CustomeAlertDialog messageError = new CustomeAlertDialog(this,"Error","fill the description field");
         }
