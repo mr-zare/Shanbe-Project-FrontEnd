@@ -13,6 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
+
         <activity
             android:name="com.example.EditTask"
             android:exported="true">
@@ -52,9 +53,12 @@
             android:name="com.example.MainActivity"
             android:exported="true" />
 
+        <service android:name="com.example.BroadCast.notificationService" android:enabled="true" android:exported="false"></service>
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
     </application>
 
 </manifest>

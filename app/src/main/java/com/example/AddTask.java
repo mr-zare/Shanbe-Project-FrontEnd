@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
@@ -17,6 +18,7 @@ import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.example.BroadCast.notificationService;
 import com.example.DataBase.tasksDB;
 import com.example.entity.Task;
 import com.example.entity.User;
@@ -51,6 +53,12 @@ public class AddTask extends AppCompatActivity {
     TaskAPI taskAPI;
     ConstraintLayout titleCons;
     ConstraintLayout descCons;
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        startService( new Intent( this, notificationService. class )) ;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
