@@ -9,7 +9,7 @@
     <string name="verified">Verified</string>
     <string-array name="category">
         <item></item>
-        <item>Athletic</item>
+        <item>Sport</item>
         <item>Study</item>
         <item>Meeting</item>
         <item>Work</item>

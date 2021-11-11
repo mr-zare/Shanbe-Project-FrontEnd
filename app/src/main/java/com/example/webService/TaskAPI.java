@@ -21,5 +21,4 @@ public interface TaskAPI {
     @POST("task-create/")
     Call<TaskSession> createTask(@Header("User_token") String user_token, @Body Task task);
 
-
 }
