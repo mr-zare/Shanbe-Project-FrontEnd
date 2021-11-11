@@ -27,7 +27,7 @@ public class Task {
 
     private int id;
 
-    public Task(String title, String desc, String dateTime, String category, String notification, String userToken) {
+    public Task(String title, String desc, String dateTime, String category, String notification,String userToken) {
         this.title = title;
         this.desc = desc;
         this.dateTime = dateTime;
@@ -46,6 +46,12 @@ public class Task {
         this.taskToken = taskToken;
         this.userToken = userToken;
         this.id = id;
+    }
+
+    public Task(String title, String dateTime, String taskToken) {
+        this.title = title;
+        this.dateTime = dateTime;
+        this.taskToken = taskToken;
     }
 
     public String getTitle() {

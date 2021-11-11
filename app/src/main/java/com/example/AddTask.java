@@ -1,5 +1,6 @@
 package com.example;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -16,16 +17,21 @@ import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.example.DataBase.tasksDB;
 import com.example.entity.Task;
 import com.example.entity.User;
 import com.example.myapplication.R;
 import com.example.webService.TaskAPI;
+import com.example.webService.TaskSession;
 
 
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
 
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -57,6 +63,22 @@ public class AddTask extends AppCompatActivity {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
+        OkHttpClient.Builder builder = new OkHttpClient.Builder();
+        builder.addInterceptor(new Interceptor() {
+            @NonNull
+            @Override
+            public okhttp3.Response intercept(@NonNull Chain chain) throws IOException {
+                Request original = chain.request();
+
+                Request request = original.newBuilder()
+                        .header("User_token", userToken)
+                        .method(original.method(), original.body())
+                        .build();
+
+                return chain.proceed(request);
+            }
+        });
+
 
         Retrofit createTask = new Retrofit.Builder()
                 .baseUrl(TaskAPI.BASE_URL)
@@ -168,31 +190,46 @@ public class AddTask extends AppCompatActivity {
         if(checkDate(year,month,day,hour,min) && !titleStr.equals("") && !descStr.equals("")&& !categoryStr.equals(""))
         {
             Toast.makeText(this,"task saved",Toast.LENGTH_SHORT).show();
-            String datetime = Integer.toString(year)+"-"+Integer.toString(month)+"-"+Integer.toString(day)+" "+Integer.toString(hour)+":"+Integer.toString(min);
-            Task newTask = new Task(titleStr,descStr, datetime, categoryStr, "time for "+categoryStr, userToken);
-            Call<Task> callBack =taskAPI.createTask("application/json",newTask);
-            callBack.enqueue(new Callback<Task>() {
+            String hours = Integer.toString(hour);
+            if(hours.length()==1)
+            {
+                hours = "0"+hours;
+            }
+            String mins = Integer.toString(min);
+            if(mins.length()==1)
+            {
+                mins = "0"+mins;
+            }
+            String datetime = Integer.toString(year)+"-"+Integer.toString(month)+"-"+Integer.toString(day)+"_"+hours+":"+mins;
+            Task newTask = new Task(titleStr,descStr, datetime, categoryStr, "time for "+categoryStr,userToken);
+            Call<TaskSession> callBack =taskAPI.createTask(userToken,newTask);
+            callBack.enqueue(new Callback<TaskSession>() {
                 @Override
-                public void onResponse(Call<Task> call, Response<Task> response) {
+                public void onResponse(Call<TaskSession> call, Response<TaskSession> response) {
                     if(!response.isSuccessful())
                     {
                         CustomeAlertDialog errorConnecting = new CustomeAlertDialog(AddTask.this,"error","there is a problem connecting to server");
                     }
                     else{
                         String code = Integer.toString(response.code());
-                        Task savedTask = response.body();
+                        TaskSession savedTaskSession = response.body();
+                        Task savedTask = savedTaskSession.getTask();
                         String task_token = savedTask.getTaskToken();
                         String title = savedTask.getTitle();
                         String dateTime = savedTask.getDateTime();
+                        String [] infos = dateTime.split("_");
+                        String date = infos[0];
+                        String time = infos[1];
                         Toast.makeText(AddTask.this, code, Toast.LENGTH_SHORT).show();
 
-                        //Todo
-                        //saving the fields in db
+                        tasksDB tasksdb = new tasksDB(AddTask.this);
+                        long res = tasksdb.insert(task_token,title,date,time);
+                        Toast.makeText(AddTask.this,Long.toString(res), Toast.LENGTH_SHORT).show();
                     }
                 }
 
                 @Override
-                public void onFailure(Call<Task> call, Throwable t) {
+                public void onFailure(Call<TaskSession> call, Throwable t) {
 
                 }
             });
