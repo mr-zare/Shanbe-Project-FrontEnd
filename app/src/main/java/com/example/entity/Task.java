@@ -19,6 +19,8 @@ public class Task {
     private String notification;
 
     private String callBackTime;
+
+    @SerializedName("task_token")
     private String taskToken;
 
     @SerializedName("user_token")

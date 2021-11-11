@@ -31,10 +31,10 @@ public class tasksDB extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         String query = "CREATE TABLE "+TABLE_NAME+" ("
-                +TOKEN_COL+" TEXT PRIMARY KEY,"
-                +TITLE_COL+" TEXT,"
-                +DATE_COL+ "TEXT,"
-                +TIME_COL+" TEXT)";
+                +TOKEN_COL+" varchar(60) PRIMARY KEY , "
+                +TITLE_COL+" varchar(40) , "
+                +DATE_COL+ " varchar(20) , "
+                +TIME_COL+" varchar(20) )";
         sqLiteDatabase.execSQL(query);
     }
 
@@ -49,7 +49,7 @@ public class tasksDB extends SQLiteOpenHelper {
         values.put(TIME_COL,time);
 
         long result = db.insert(TABLE_NAME,null,values);
-        db.close();
+        //db.close();
         return result;
     }
 

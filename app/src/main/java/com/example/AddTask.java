@@ -224,7 +224,7 @@ public class AddTask extends AppCompatActivity {
 
                         tasksDB tasksdb = new tasksDB(AddTask.this);
                         long res = tasksdb.insert(task_token,title,date,time);
-                        Toast.makeText(AddTask.this,Long.toString(res), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddTask.this,task_token, Toast.LENGTH_SHORT).show();
                     }
                 }
 
