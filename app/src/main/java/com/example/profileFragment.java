@@ -1,4 +1,4 @@
-package com.example.cutsomcalendarfinal;
+package com.example;
 
 import android.os.Bundle;
 
@@ -12,10 +12,10 @@ import com.example.myapplication.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link mainFragment#newInstance} factory method to
+ * Use the {@link profileFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class mainFragment extends Fragment {
+public class profileFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,7 +26,7 @@ public class mainFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public mainFragment() {
+    public profileFragment() {
         // Required empty public constructor
     }
 
@@ -36,17 +36,19 @@ public class mainFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment mainFragment.
+     * @return A new instance of fragment profileFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static mainFragment newInstance(String param1, String param2) {
-        mainFragment fragment = new mainFragment();
+    public static profileFragment newInstance(String param1, String param2) {
+        profileFragment fragment = new profileFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -61,6 +63,6 @@ public class mainFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_main, container, false);
+        return inflater.inflate(R.layout.fragment_profile, container, false);
     }
 }

@@ -1,11 +1,9 @@
-package com.example.myapplication;
+package com.example;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -14,12 +12,12 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.myapplication.entity.User;
-import com.example.myapplication.webService.UserAPI;
+import com.example.entity.User;
+import com.example.myapplication.R;
+import com.example.webService.UserAPI;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

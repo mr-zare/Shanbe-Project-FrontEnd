@@ -12,20 +12,23 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
-            android:name="com.example.cutsomcalendarfinal.DayActivity"
+            android:name="com.example.EditProfile"
             android:exported="false" />
         <activity
-            android:name=".forgetPass_email"
+            android:name="com.example.DayActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.example.forgetPass_email"
             android:exported="true" />
         <activity
-            android:name=".welcome"
+            android:name="com.example.welcome"
             android:exported="false" />
         <activity
-            android:name=".forgotpass"
+            android:name="com.example.forgotpass"
             android:exported="false" />
         <activity
-            android:name=".login"
-            android:exported="true" >
+            android:name="com.example.login"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -33,18 +36,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SignUp"
-            android:exported="true">
-        </activity>
+            android:name="com.example.SignUp"
+            android:exported="true"></activity>
         <activity
-            android:name="com.example.cutsomcalendarfinal.MainActivity"
-            android:exported="true">
+            android:name="com.example.MainActivity"
+            android:exported="true"></activity>
 
-        </activity>
         <meta-data
             android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts"
-            />
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

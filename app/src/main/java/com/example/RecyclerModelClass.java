@@ -1,4 +1,4 @@
-package com.example.cutsomcalendarfinal;
+package com.example;
 
 public class RecyclerModelClass {
     private String itemTitle;

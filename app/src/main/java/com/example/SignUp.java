@@ -1,17 +1,11 @@
-package com.example.myapplication;
+package com.example;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.SystemClock;
 import android.text.Editable;
-import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.Window;
@@ -22,18 +16,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.myapplication.entity.User;
-import com.example.myapplication.webService.UserAPI;
-import com.example.myapplication.webService.UserSession;
+import com.example.entity.User;
+import com.example.myapplication.R;
+import com.example.webService.UserAPI;
+import com.example.webService.UserSession;
 
-import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import okhttp3.OkHttpClient;
-import okhttp3.Request;
 import okhttp3.logging.HttpLoggingInterceptor;
-import okio.Timeout;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -217,8 +209,8 @@ public class SignUp extends AppCompatActivity {
                     }
                 }
                 if(isEmailValid(email)==true && isPassValid(pass, confpass) == true && isEmpty(name,email,pass,confpass)==false && name.length()>=4) {
-                    String first_name = name;
-                    String last_name = name;
+                    String first_name = "";
+                    String last_name = "";
 
                     Animation animation = AnimationUtils.loadAnimation(SignUp.this, R.anim.blink_anim);
                     cardviewsup.startAnimation(animation);

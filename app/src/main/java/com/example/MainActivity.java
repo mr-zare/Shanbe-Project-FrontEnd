@@ -1,4 +1,4 @@
-package com.example.cutsomcalendarfinal;
+package com.example;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,15 +12,28 @@ import androidx.navigation.ui.NavigationUI;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.entity.User;
 import com.example.myapplication.R;
+import com.example.webService.UserAPI;
+import com.example.webService.UserSession;
 import com.google.android.material.navigation.NavigationView;
+
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
     CustomCalendarView customCalendarView;
@@ -28,6 +41,11 @@ public class MainActivity extends AppCompatActivity {
     NavigationView monthNavigationView;
     TextView userNameTextView;
     Bundle extras ;
+    UserAPI userAPI;
+    public  void GoToEditProfile(View view){
+        Intent logOut = new Intent(MainActivity.this, EditProfile.class);
+        startActivity(logOut);
+    }
     public void LogoutClicked(MenuItem button){
         showWarningDialog();
     }
@@ -43,8 +61,26 @@ public class MainActivity extends AppCompatActivity {
         view.findViewById(R.id.buttonYes).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent logOut = new Intent(MainActivity.this,com.example.myapplication.login.class);
-                startActivity(logOut);
+                User user = new User("","");
+                Call<UserSession> userSessionCall = userAPI.logOut("token "+ extras.getString("token"));
+                userSessionCall.enqueue(new Callback<UserSession>() {
+                    @Override
+                    public void onResponse(Call<UserSession> call, Response<UserSession> response) {
+                        if(!response.isSuccessful())
+                        {
+                            Toast.makeText(MainActivity.this, "username or password is not correct!", Toast.LENGTH_SHORT).show();
+                        }
+                        else{
+                            Intent logOut = new Intent(MainActivity.this, login.class);
+                            startActivity(logOut);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<UserSession> call, Throwable t) {
+                        Toast.makeText(MainActivity.this, "error is :"+t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
         view.findViewById(R.id.buttonNo).setOnClickListener(new View.OnClickListener() {
@@ -82,6 +118,16 @@ public class MainActivity extends AppCompatActivity {
         monthNavigationView.setItemIconTintList(null);
         NavController navController = Navigation.findNavController(this,R.id.navHostFragment);
         NavigationUI.setupWithNavController(monthNavigationView,navController);
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
+
+        Retrofit LoginRetrofit = new Retrofit.Builder()
+                .baseUrl(UserAPI.BASE_URL)
+                .client(client)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        userAPI =LoginRetrofit.create(UserAPI.class);
 
     }
 

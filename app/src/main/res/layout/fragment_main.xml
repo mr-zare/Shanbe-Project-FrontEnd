@@ -2,11 +2,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.cutsomcalendarfinal.mainFragment">
+    tools:context="com.example.mainFragment">
 
-    <com.example.cutsomcalendarfinal.CustomCalendarView
+    <com.example.CustomCalendarView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/custom_calendar_view"></com.example.cutsomcalendarfinal.CustomCalendarView>
+        android:id="@+id/custom_calendar_view"></com.example.CustomCalendarView>
 
 </FrameLayout>

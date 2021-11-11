@@ -1,4 +1,4 @@
-package com.example.myapplication.entity;
+package com.example.entity;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -27,6 +27,9 @@ public class User {
     @SerializedName("token")
     private String CodeToken;
 
+    @SerializedName("phone_number")
+    private String phone_number;
+
     public User(String email) {
         this.email = email;
     }
@@ -42,6 +45,15 @@ public class User {
     }
 
     public User(String username, String email, String password, String password2, String first_name, String last_name) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.password2 = password2;
+        this.first_name = first_name;
+        this.last_name = last_name;
+    }
+    public User(String username, String email, String password, String password2, String first_name, String last_name , String phone_number) {
+        this.phone_number=phone_number;
         this.username = username;
         this.email = email;
         this.password = password;

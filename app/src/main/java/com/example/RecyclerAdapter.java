@@ -1,4 +1,4 @@
-package com.example.cutsomcalendarfinal;
+package com.example;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,8 +13,8 @@ import com.example.myapplication.R;
 import java.util.List;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
-    private List<com.example.cutsomcalendarfinal.RecyclerModelClass> eventList;
-    public RecyclerAdapter(List<com.example.cutsomcalendarfinal.RecyclerModelClass> eventListCons){
+    private List<RecyclerModelClass> eventList;
+    public RecyclerAdapter(List<RecyclerModelClass> eventListCons){
         this.eventList = eventListCons;
     }
 

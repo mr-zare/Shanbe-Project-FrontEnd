@@ -1,7 +1,6 @@
-package com.example.cutsomcalendarfinal;
+package com.example;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,14 +9,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
-import androidx.core.graphics.drawable.DrawableCompat;
-import androidx.core.view.ViewCompat;
 
 import com.example.myapplication.R;
-import com.google.android.material.shape.CornerFamily;
-import com.google.android.material.shape.MaterialShapeDrawable;
-import com.google.android.material.shape.ShapeAppearanceModel;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -26,10 +19,10 @@ import java.util.List;
 public class MyGridAdapter extends ArrayAdapter {
     List<Date> dates;
     Calendar currentDate;
-    List<com.example.cutsomcalendarfinal.Events> events;
+    List<Events> events;
     LayoutInflater inflater;
 
-    public MyGridAdapter(@NonNull Context context,List<Date> dates,Calendar currentDate,List<com.example.cutsomcalendarfinal.Events> events) {
+    public MyGridAdapter(@NonNull Context context,List<Date> dates,Calendar currentDate,List<Events> events) {
         super(context, R.layout.single_cell_layout);
         this.dates=dates;
         this.currentDate=currentDate;

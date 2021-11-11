@@ -1,4 +1,4 @@
-package com.example.cutsomcalendarfinal;
+package com.example;
 
 public class DBstructure {
     public static final String DB_NAME = "EVENTS_DB";

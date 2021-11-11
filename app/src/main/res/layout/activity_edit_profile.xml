@@ -7,38 +7,9 @@
     android:background="@drawable/bacground_eight"
     tools:context="com.example.SignUp">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/logo1"
-        android:layout_width="121dp"
-        android:layout_height="121dp"
-        android:layout_marginStart="145dp"
-        android:layout_marginTop="33dp"
-        android:layout_marginEnd="145dp"
-        android:layout_marginBottom="553dp"
-        app:cardCornerRadius="121dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="121dp"
-            android:layout_height="121dp"
-            android:layout_gravity="center"
-            app:cardCornerRadius="250dp">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:src="@drawable/logo_third" />
-
-        </androidx.cardview.widget.CardView>
-    </androidx.cardview.widget.CardView>
-
 
     <EditText
-        android:id="@+id/nameid"
+        android:id="@+id/firstNameId"
         android:layout_width="280dp"
         android:layout_height="48dp"
         android:layout_marginTop="244dp"
@@ -46,7 +17,7 @@
         android:drawableLeft="@drawable/ic_action_name"
         android:ems="10"
         android:fontFamily="@font/indie_flower"
-        android:hint=" Username"
+        android:hint="First Name"
         android:inputType="textPersonName"
 
         android:textColor="@color/teal_200"
@@ -58,8 +29,27 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:textColorHint="@color/hintColor"
+        android:id="@+id/lastNameId"
+        android:layout_width="280dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="36dp"
+        android:background="@drawable/border"
+        android:drawableLeft="@drawable/ic_action_name"
+        android:ems="10"
+        android:fontFamily="@font/indie_flower"
+        android:hint="First Name"
+        android:inputType="textPersonName"
 
+        android:textColor="@color/teal_200"
+        android:textColorHint="@color/hintColor"
+        android:textSize="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/firstNameId"  />
+
+    <EditText
+        android:textColorHint="@color/hintColor"
         android:id="@+id/emailid"
         android:layout_width="280dp"
         android:layout_height="48dp"
@@ -76,32 +66,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameid" />
+        app:layout_constraintTop_toBottomOf="@+id/lastNameId" />
 
     <EditText
         android:textColorHint="@color/hintColor"
 
-        android:id="@+id/passid"
-        android:layout_width="280dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/border"
-        android:drawableLeft="@drawable/ic_action_pass"
-        android:ems="10"
-        android:fontFamily="@font/indie_flower"
-        android:hint=" Password"
-        android:inputType="textPassword"
-        android:minHeight="48dp"
-        android:textColor="@color/teal_200"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailid" />
-
-    <EditText
-        android:textColorHint="@color/hintColor"
-
-        android:id="@+id/confpassid"
+        android:id="@+id/phoneNumberId"
         android:layout_width="280dp"
         android:layout_height="48dp"
         android:layout_marginTop="36dp"
@@ -116,10 +86,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passid" />
+        app:layout_constraintTop_toBottomOf="@+id/emailid" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardViewsignup"
+        android:id="@+id/cardViewEditProfile"
         android:layout_width="250dp"
         android:layout_height="48dp"
         android:layout_marginTop="52dp"
@@ -130,7 +100,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/confpassid">
+        app:layout_constraintTop_toBottomOf="@+id/phoneNumberId">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -143,27 +113,13 @@
                 android:layout_centerInParent="true"
                 android:fontFamily="@font/indie_flower"
                 android:padding="5dp"
-                android:text="Sign Up"
+                android:text="Edit"
                 android:textSize="25dp"
                 android:textStyle="bold" />
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
 
-    <TextView
 
-        android:id="@+id/loginclick"
-        android:layout_width="264dp"
-        android:layout_height="36dp"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/indie_flower"
-        android:gravity="center_horizontal"
-        android:text="Do you have an account?"
-        android:textColor="@color/light_blue_background"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardViewsignup" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
