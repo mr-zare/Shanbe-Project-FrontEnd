@@ -21,6 +21,7 @@
             android:layout_height="160dp"
             android:layout_marginTop="50dp"
             app:cardCornerRadius="160dp"
+
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.04"
             app:layout_constraintStart_toStartOf="parent"
@@ -33,10 +34,10 @@
                 app:cardCornerRadius="250dp">
 
                 <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="160dp"
+                    android:layout_height="160dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/logo_third" />
+                    android:src="@drawable/meeting1" />
 
             </androidx.cardview.widget.CardView>
         </androidx.cardview.widget.CardView>

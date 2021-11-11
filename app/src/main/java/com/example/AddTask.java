@@ -71,7 +71,7 @@ public class AddTask extends AppCompatActivity {
                 Request original = chain.request();
 
                 Request request = original.newBuilder()
-                        .header("User_token", userToken)
+                        .header("Authorization", "token "+userToken)
                         .method(original.method(), original.body())
                         .build();
 
@@ -202,7 +202,7 @@ public class AddTask extends AppCompatActivity {
             }
             String datetime = Integer.toString(year)+"-"+Integer.toString(month)+"-"+Integer.toString(day)+"_"+hours+":"+mins;
             Task newTask = new Task(titleStr,descStr, datetime, categoryStr, "time for "+categoryStr,userToken);
-            Call<TaskSession> callBack =taskAPI.createTask(userToken,newTask);
+            Call<TaskSession> callBack =taskAPI.createTask("token "+userToken,newTask);
             callBack.enqueue(new Callback<TaskSession>() {
                 @Override
                 public void onResponse(Call<TaskSession> call, Response<TaskSession> response) {
