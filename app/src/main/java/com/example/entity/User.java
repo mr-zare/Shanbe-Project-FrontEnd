@@ -33,6 +33,14 @@ public class User {
     @SerializedName("avatar")
     private String avatar;
 
+    public String getPhone_number() {
+        return phone_number;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
     public User(String email) {
         this.email = email;
     }

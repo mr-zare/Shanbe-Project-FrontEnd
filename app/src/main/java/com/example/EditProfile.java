@@ -26,6 +26,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class EditProfile extends AppCompatActivity {
     EditText emailEditText;
+    EditText firstNameEditText;
+    EditText lastNameEditText;
+    EditText phoneNumberEditText;
     UserAPI userAPI;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +38,9 @@ public class EditProfile extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_edit_profile);
         emailEditText = findViewById(R.id.eemailid);
+        firstNameEditText = findViewById(R.id.firstNameId);
+        lastNameEditText = findViewById(R.id.lastNameId);
+        phoneNumberEditText = findViewById(R.id.phoneNumberId);
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
@@ -59,9 +65,11 @@ public class EditProfile extends AppCompatActivity {
                 else{
                     String code = Integer.toString(response.code());
                     User user = response.body();
-                    Log.i("SALAM",user.toString());
                     String email = user.getEmail();
-                    Toast.makeText(EditProfile.this, email , Toast.LENGTH_SHORT).show();
+                    emailEditText.setHint(user.getEmail());
+                    firstNameEditText.setHint(user.getFirst_name());
+                    lastNameEditText.setHint(user.getLast_name());
+                    phoneNumberEditText.setHint(user.getPhone_number());
                 }
             }
 
