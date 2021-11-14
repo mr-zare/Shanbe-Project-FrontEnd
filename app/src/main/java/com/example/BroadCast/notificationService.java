@@ -18,6 +18,8 @@ import com.example.entity.Task;
 import com.example.myapplication.R;
 import android.os.Handler ;
 import android.os.IBinder ;
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -40,6 +42,7 @@ public class notificationService extends Service {
                 new java.util.TimerTask() {
                     @Override
                     public void run() {
+                        Log.e("notification_TAG","in service");
                         tasksDB tasksdb = new tasksDB(notificationService.this);
                         ArrayList<Task> currentTasks = tasksdb.select();
 
@@ -55,13 +58,28 @@ public class notificationService extends Service {
                         int currentHour = now.hour;
                         int currentMinuate = now.minute;
 
-                        String currentTimeStr = Integer.toString(currentYear)+"-"+Integer.toString(currentMonth)+"-"+Integer.toString(currentMinuate)+"_"+Integer.toString(currentHour)+":"+Integer.toString(currentMinuate);
+                        String currentHourStr = Integer.toString(currentHour);
+                        if(currentHourStr.length()==1)
+                        {
+                            currentHourStr = "0"+ currentHourStr;
+                        }
 
+                        String currentMinStr = Integer.toString(currentMinuate);
+                        if(currentMinStr.length()==1)
+                        {
+                            currentMinStr = "0"+currentMinStr;
+                        }
+
+                        String currentTimeStr = Integer.toString(currentYear)+"-"+Integer.toString(currentMonth)+"-"+Integer.toString(currentDay)+"_"+currentHourStr+":"+currentMinStr;
+
+                        Log.e("notification_TAG","currentTime: "+currentTimeStr);
                         boolean taskTime = false;
                         for(Task task : currentTasks )
                         {
+                            Log.e("notification_TAG","time"+task.getDateTime().toString());
                             if(currentTimeStr == task.getDateTime().toString())
                             {
+                                Log.e("notification_TAG","in the notification");
                                 NotificationManager notificationManager = (NotificationManager) getSystemService(Service.NOTIFICATION_SERVICE);
 
                                 String channelId = "channelId";
