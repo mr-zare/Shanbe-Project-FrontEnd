@@ -77,7 +77,7 @@ public class notificationService extends Service {
                         for(Task task : currentTasks )
                         {
                             Log.e("notification_TAG","time"+task.getDateTime().toString());
-                            if(currentTimeStr == task.getDateTime().toString())
+                            if(currentTimeStr.equals(task.getDateTime().toString()))
                             {
                                 Log.e("notification_TAG","in the notification");
                                 NotificationManager notificationManager = (NotificationManager) getSystemService(Service.NOTIFICATION_SERVICE);
