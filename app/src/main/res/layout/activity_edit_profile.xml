@@ -73,7 +73,7 @@
         android:layout_height="48dp"
         android:layout_marginTop="32dp"
         android:background="@drawable/border"
-        android:drawableLeft="@drawable/ic_action_pass"
+        android:drawableLeft="@drawable/ic_baseline_local_phone_24"
         android:ems="10"
         android:fontFamily="@font/indie_flower"
         android:hint=" Phone Number"

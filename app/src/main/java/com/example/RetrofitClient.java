@@ -22,7 +22,7 @@ public class RetrofitClient {
         return mInstance;
     }
 
-    public API getAPI() {
-        return retrofit.create(API.class);
-    }
+//    public API getAPI() {
+//        return retrofit.create(API.class);
+//    }
 }

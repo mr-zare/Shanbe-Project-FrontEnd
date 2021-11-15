@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/menuItemCalendar"
-        android:icon="@mipmap/ic_profile"
+        android:icon="@mipmap/calendar"
         android:title="@string/calendar"/>
     <item android:id="@+id/menuItemProfile"
         android:icon="@mipmap/ic_profile"
