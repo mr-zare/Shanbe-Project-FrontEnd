@@ -9,7 +9,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.text.format.DateFormat;
 import android.text.format.Time;
 import android.view.View;
 import android.widget.DatePicker;
@@ -18,10 +17,9 @@ import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.example.BroadCast.notificationService;
+import com.example.BroadCast.NotificationServ;
 import com.example.DataBase.tasksDB;
 import com.example.entity.Task;
-import com.example.entity.User;
 import com.example.myapplication.R;
 import com.example.webService.TaskAPI;
 import com.example.webService.TaskSession;
@@ -29,7 +27,6 @@ import com.example.webService.TaskSession;
 
 import java.io.IOException;
 import java.util.Calendar;
-import java.util.Date;
 
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -56,20 +53,21 @@ public class AddTask extends AppCompatActivity {
 
     @Override
     protected void onStop() {
-        startService( new Intent( this, notificationService. class )) ;
         super.onStop();
+        startService( new Intent( this, NotificationServ. class )) ;
     }
 
     @Override
     protected void onDestroy() {
-        startService( new Intent( this, notificationService. class )) ;
+
         super.onDestroy();
+        startService( new Intent( this, NotificationServ.class )) ;
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        startService( new Intent( this, notificationService. class ));
+        startService( new Intent( this, NotificationServ.class ));
         setContentView(R.layout.activity_add_task);
         getSupportActionBar().hide();
 
@@ -216,8 +214,10 @@ public class AddTask extends AppCompatActivity {
                 mins = "0"+mins;
             }
             String datetime = Integer.toString(year)+"-"+Integer.toString(month)+"-"+Integer.toString(day)+"_"+hours+":"+mins;
+            String status = "pending";
             Toast.makeText(this, datetime, Toast.LENGTH_SHORT).show();
-            Task newTask = new Task(titleStr,descStr, datetime, categoryStr, "time for "+categoryStr,userToken);
+            Task newTask = new Task(titleStr,descStr, datetime, categoryStr, "time for "+categoryStr,userToken,status);
+
             Call<TaskSession> callBack =taskAPI.createTask("token "+userToken,newTask);
             callBack.enqueue(new Callback<TaskSession>() {
                 @Override
@@ -246,6 +246,7 @@ public class AddTask extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<TaskSession> call, Throwable t) {
+                    CustomeAlertDialog errorConnecting = new CustomeAlertDialog(AddTask.this,"error","there is a problem connecting to server");
 
                 }
             });

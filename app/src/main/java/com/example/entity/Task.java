@@ -26,16 +26,22 @@ public class Task {
     @SerializedName("user_token")
     private String userToken;
 
+    @SerializedName("status")
+    private String status;
+
 
     private int id;
 
-    public Task(String title, String desc, String dateTime, String category, String notification,String userToken) {
+
+
+    public Task(String title, String desc, String dateTime, String category, String notification, String userToken,String status) {
         this.title = title;
         this.desc = desc;
         this.dateTime = dateTime;
         this.category = category;
         this.notification = notification;
         this.userToken = userToken;
+        this.status = status;
     }
 
     public Task(String title, String desc, String dateTime, String category, String notification, String callBackTime, String taskToken, String userToken, int id) {
@@ -126,5 +132,13 @@ public class Task {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
