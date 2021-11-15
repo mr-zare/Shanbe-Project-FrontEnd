@@ -4,18 +4,18 @@
         android:icon="@mipmap/calendar"
         android:title="@string/calendar"/>
     <item android:id="@+id/menuItemProfile"
-        android:icon="@mipmap/ic_profile"
+        android:icon="@mipmap/profile"
         android:title="@string/profile"/>
     <item android:id="@+id/menuItemSupport"
-        android:icon="@mipmap/ic_support"
+        android:icon="@mipmap/support"
         android:title="@string/support"/>
     <item android:id="@+id/menuItemAbout"
-        android:icon="@mipmap/ic_about"
+        android:icon="@mipmap/about"
         android:title="@string/about"/>
     <item android:title="@string/others">
         <menu>
             <item android:id="@+id/signoutItemProfile"
-                android:icon="@mipmap/ic_signout"
+                android:icon="@mipmap/logout"
                 android:onClick="LogoutClicked"
                 android:title="@string/sign_out"/>
         </menu>
