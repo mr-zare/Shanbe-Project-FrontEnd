@@ -5,31 +5,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_black2"
-    tools:context=".MainActivity">
+    tools:context="com.example.MainActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
         android:text="Image Upload Menu"
-        android:textSize="100px"
         android:textColor="#d3d8e3"
-        android:layout_alignParentTop = "true"
-        android:layout_centerHorizontal = "true"
-        android:layout_marginTop="50dp" />
+        android:textSize="100px" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="GET IMAGES"
-        android:layout_marginRight="40dp"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="550dp"
-        android:elevation="10dp"
-        android:textColor="@color/element_white"
-        android:textSize="20dp"
+        android:layout_marginRight="40dp"
         android:background="@drawable/round_button"
+        android:elevation="10dp"
+        android:gravity="center"
         android:onClick="GetAll"
-        android:gravity="center"/>
+        android:text="GET IMAGES"
+        android:textColor="@color/element_white"
+        android:textSize="20dp" />
 
     <Button
         android:layout_width="match_parent"

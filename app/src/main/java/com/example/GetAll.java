@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication.R;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -60,7 +62,7 @@ public class GetAll extends AppCompatActivity {
                         ImageView img1 = new ImageView(GetAll.this);                            // Create ImageView object
                         TableRow.LayoutParams imgParams = new TableRow.LayoutParams(500, 500);   // Set layout parameters for ImageView
                         if (images.get(j).getUrl() == null) {
-                            img1.setBackgroundResource(R.drawable.no_image);                            // If no image is available, set a default image
+                            img1.setBackgroundResource(R.drawable.no_image_l);                            // If no image is available, set a default image
                         } else {
                             img1.setBackgroundResource(R.drawable.image_border);
                             img1.setImageBitmap(getBitmapFromURL(images.get(j).getUrl()));              // Set the image for the ImageView that we get from the response
@@ -69,7 +71,7 @@ public class GetAll extends AppCompatActivity {
                         try {
                             ImageView img2 = new ImageView(GetAll.this);
                             if (images.get(j+1).getUrl() == null) {
-                                img2.setBackgroundResource(R.drawable.no_image);
+                                img2.setBackgroundResource(R.drawable.no_image_l);
                             } else {
                                 img2.setBackgroundResource(R.drawable.image_border);
                                 img2.setImageBitmap(getBitmapFromURL(images.get(j+1).getUrl()));

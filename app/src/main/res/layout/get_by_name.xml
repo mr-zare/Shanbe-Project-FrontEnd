@@ -4,7 +4,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@color/bg_black2"
-    tools:context=".GetByName">
+    tools:context="com.example.GetByName">
 
     <TextView
         android:layout_width="wrap_content"
@@ -30,7 +30,7 @@
         android:layout_height="250dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="150dp"
-        android:src="@drawable/no_image" />
+        android:src="@drawable/no_image_l" />
 
     <LinearLayout
         android:layout_width="match_parent"

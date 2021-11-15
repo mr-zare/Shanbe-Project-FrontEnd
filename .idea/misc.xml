@@ -48,10 +48,16 @@
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/MyApplication/app/src/main/res/layout/activity_login.xml" value="0.264" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/MyApplication/app/src/main/res/layout/activity_main.xml" value="0.176" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/MyApplication/app/src/main/res/layout/activity_welcome.xml" value="0.1793478260869565" />
+        <entry key="..\:/project/p/FrontEnd/app/src/main/res/layout/Image_activity.xml" value="0.13020833333333334" />
+        <entry key="..\:/project/p/FrontEnd/app/src/main/res/layout/activity_edit_profile.xml" value="0.13020833333333334" />
+        <entry key="..\:/project/p/FrontEnd/app/src/main/res/layout/fragment_profile.xml" value="0.13020833333333334" />
+        <entry key="..\:/project/p/FrontEnd/app/src/main/res/layout/get_by_name.xml" value="0.13020833333333334" />
+        <entry key="..\:/project/p/FrontEnd/app/src/main/res/layout/image_activity.xml" value="0.13020833333333334" />
+        <entry key="..\:/project/p/FrontEnd/app/src/main/res/layout/upload.xml" value="0.13020833333333334" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

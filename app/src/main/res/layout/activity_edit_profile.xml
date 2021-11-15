@@ -4,10 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bacground_eight"
+    android:background="@drawable/gradientbackground"
     tools:context="com.example.SignUp">
 
-
+    <Button
+        android:id="@+id/go_to_imageId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="GoToImage"
+        android:text="Uplod Image"/>
     <EditText
         android:id="@+id/firstNameId"
         android:layout_width="280dp"
@@ -107,7 +112,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/signup"
+                android:id="@+id/editInformation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"

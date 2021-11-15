@@ -51,6 +51,11 @@ public class MainActivity extends AppCompatActivity {
         Intent editProfile = new Intent(MainActivity.this, EditProfile.class);
         startActivity(editProfile);
     }
+
+    public void GoToImage(View v){
+        startActivity(new Intent(MainActivity.this, GoToImage.class));
+    }
+
     public void LogoutClicked(MenuItem button){
         showWarningDialog();
     }
@@ -133,7 +138,6 @@ public class MainActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         userAPI =LoginRetrofit.create(UserAPI.class);
-
     }
     public void GetAll(View v) {
         startActivity(new Intent(MainActivity.this, GetAll.class));                     // Start the activity to get all images
