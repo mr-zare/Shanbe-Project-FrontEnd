@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -235,9 +236,9 @@ public class SignUp extends AppCompatActivity {
                                 String token = responseSession.getToken();
                                 //this toast have to be deleted
                                 //just for showing that connect is alive and correct...
-
-                                Toast.makeText(SignUp.this, code + "   "+ username +"   "+email+"  "+Integer.toString(id), Toast.LENGTH_LONG).show();
-                                Intent gosignup=new Intent(SignUp.this,welcome.class);
+                                if (token == null)
+                                Log.i("THISSSSSSSSSSSSSS",email);
+                                Intent gosignup=new Intent(SignUp.this,login.class);
                                 gosignup.putExtra("token",token);
                                 gosignup.putExtra("username",username);
                                 startActivity(gosignup);

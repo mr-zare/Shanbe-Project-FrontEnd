@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
@@ -30,6 +31,9 @@ public class EditProfile extends AppCompatActivity {
     EditText lastNameEditText;
     EditText phoneNumberEditText;
     UserAPI userAPI;
+    /*public void GoToImage(View v){
+        startActivity(new Intent(EditProfile.this, GoToImage.class));
+    }*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,10 +70,26 @@ public class EditProfile extends AppCompatActivity {
                     String code = Integer.toString(response.code());
                     User user = response.body();
                     String email = user.getEmail();
-                    emailEditText.setHint(user.getEmail());
-                    firstNameEditText.setHint(user.getFirst_name());
-                    lastNameEditText.setHint(user.getLast_name());
-                    phoneNumberEditText.setHint(user.getPhone_number());
+                    if(!user.getEmail().equals("")){
+                    emailEditText.setText(user.getEmail());}
+                    else{
+                        emailEditText.setHint(R.string.empty);
+                    }
+                    if(!user.getFirst_name().equals("")){
+                        firstNameEditText.setText(user.getFirst_name());}
+                    else{
+                        firstNameEditText.setHint(R.string.empty);
+                    }
+                    if(!user.getLast_name().equals("")){
+                        lastNameEditText.setText(user.getLast_name());}
+                    else{
+                        lastNameEditText.setHint(R.string.empty);
+                    }
+                    if(!(user.getPhone_number() == null)){
+                        phoneNumberEditText.setText(user.getPhone_number());}
+                    else{
+                        phoneNumberEditText.setHint(R.string.empty);
+                    }
                 }
             }
 

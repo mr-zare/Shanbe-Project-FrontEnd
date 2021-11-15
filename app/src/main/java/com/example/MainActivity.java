@@ -52,9 +52,6 @@ public class MainActivity extends AppCompatActivity {
         startActivity(editProfile);
     }
 
-    public void GoToImage(View v){
-        startActivity(new Intent(MainActivity.this, GoToImage.class));
-    }
 
     public void LogoutClicked(MenuItem button){
         showWarningDialog();

@@ -6,13 +6,6 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradientbackground"
     tools:context="com.example.SignUp">
-
-    <Button
-        android:id="@+id/go_to_imageId"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="GoToImage"
-        android:text="Uplod Image"/>
     <EditText
         android:id="@+id/firstNameId"
         android:layout_width="280dp"
@@ -74,22 +67,22 @@
         app:layout_constraintTop_toBottomOf="@+id/lastNameId" />
 
     <EditText
-        android:textColorHint="@color/hintColor"
-
         android:id="@+id/phoneNumberId"
+
         android:layout_width="280dp"
         android:layout_height="48dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/border"
         android:drawableLeft="@drawable/ic_action_pass"
         android:ems="10"
         android:fontFamily="@font/indie_flower"
         android:hint=" Phone Number"
-        android:inputType="textPassword"
+        android:inputType="textPersonName"
         android:minHeight="48dp"
         android:textColor="@color/teal_200"
+        android:textColorHint="@color/hintColor"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/eemailid" />
 
