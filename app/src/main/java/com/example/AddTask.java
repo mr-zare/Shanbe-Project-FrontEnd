@@ -73,6 +73,15 @@ public class AddTask extends AppCompatActivity {
 
         init();
 
+        String date = getIntent().getStringExtra("date");
+        String [] dateInfo = date.split("-");
+
+        int year = Integer.parseInt(dateInfo[0]);
+        int month = Integer.parseInt(dateInfo[1]);
+        int day = Integer.parseInt(dateInfo[2]);
+
+        datePicker.init(year,month,day,null);
+
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
@@ -241,6 +250,9 @@ public class AddTask extends AppCompatActivity {
                         tasksDB tasksdb = new tasksDB(AddTask.this);
                         long res = tasksdb.insert(task_token,title,date,time);
                         Toast.makeText(AddTask.this,task_token, Toast.LENGTH_SHORT).show();
+
+                        CustomeAlertDialog errorConnecting = new CustomeAlertDialog(AddTask.this,"Successful","task saved");
+
                     }
                 }
 

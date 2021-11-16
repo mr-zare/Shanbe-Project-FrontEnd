@@ -34,7 +34,19 @@ public class Task {
 
 
 
-    public Task(String title, String desc, String dateTime, String category, String notification, String userToken,String status) {
+    public Task(String title, String desc, String dateTime, String category, String notification, String callBackTime, String taskToken, String status, int id) {
+        this.title = title;
+        this.desc = desc;
+        this.dateTime = dateTime;
+        this.category = category;
+        this.notification = notification;
+        this.callBackTime = callBackTime;
+        this.taskToken = taskToken;
+        this.status = status;
+        this.id = id;
+    }
+
+    public Task(String title, String desc, String dateTime, String category, String notification, String userToken, String status) {
         this.title = title;
         this.desc = desc;
         this.dateTime = dateTime;
@@ -44,7 +56,16 @@ public class Task {
         this.status = status;
     }
 
-    public Task(String title, String desc, String dateTime, String category, String notification, String callBackTime, String taskToken, String userToken, int id) {
+    public Task(String title, String desc, String dateTime, String category, String notification, String taskToken) {
+        this.title = title;
+        this.desc = desc;
+        this.dateTime = dateTime;
+        this.category = category;
+        this.notification = notification;
+        this.taskToken = taskToken;
+    }
+
+    public Task(String title, String desc, String dateTime, String category, String notification, String callBackTime, String taskToken, String userToken, int id,String status) {
         this.title = title;
         this.desc = desc;
         this.dateTime = dateTime;
@@ -54,6 +75,7 @@ public class Task {
         this.taskToken = taskToken;
         this.userToken = userToken;
         this.id = id;
+        this.status= status;
     }
 
     public Task(String title, String dateTime, String taskToken) {

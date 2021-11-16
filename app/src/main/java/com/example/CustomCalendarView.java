@@ -79,7 +79,7 @@ public class CustomCalendarView extends LinearLayout {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String transferDate = gridView.getItemAtPosition(position).toString();
-                Intent i = new Intent(context, DayActivity.class);
+                Intent i = new Intent(context, day_task_activity.class);
                 i.putExtra("Date",transferDate);
                 context.startActivity(i);
             }

@@ -6,8 +6,8 @@
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="376dp"
-        android:layout_height="243dp"
+        android:layout_width="380dp"
+        android:layout_height="250dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/border_item_task"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,9 +36,7 @@
                 <ImageView
                     android:id="@+id/categoryImageItem"
                     android:layout_width="160dp"
-                    android:layout_height="160dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/meeting1" />
+                    android:layout_height="160dp" />
 
             </androidx.cardview.widget.CardView>
         </androidx.cardview.widget.CardView>
@@ -51,6 +49,7 @@
             android:gravity="center"
             android:text="text"
             android:textSize="22sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.555"
             app:layout_constraintStart_toStartOf="parent"
@@ -58,11 +57,13 @@
 
         <TextView
             android:id="@+id/dateTimeTv"
-            android:layout_width="150dp"
+            android:layout_width="170dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="52dp"
+            android:layout_marginTop="64dp"
             android:text="2021-05-04_10:30am"
+            android:textSize="17sp"
+
             app:layout_constraintStart_toEndOf="@+id/logoid"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -71,7 +72,7 @@
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="20dp"
             android:maxLength="60"
             android:text="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
             android:textSize="18sp"
@@ -86,8 +87,8 @@
             android:layout_marginBottom="4dp"
             android:backgroundTint="#06A1A1"
             android:text="Edit"
-            android:textStyle="bold"
             android:textColor="#043530"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
@@ -105,6 +106,7 @@
             app:layout_constraintEnd_toStartOf="@+id/editBtn" />
 
         <CheckBox
+            android:buttonTint="#06A1A1"
             android:id="@+id/statusCheckBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

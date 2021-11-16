@@ -3,6 +3,7 @@ package com.example;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
@@ -15,13 +16,19 @@ import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.example.DataBase.tasksDB;
+import com.example.entity.Task;
 import com.example.myapplication.R;
 import com.example.webService.TaskAPI;
+import com.google.gson.JsonObject;
 
 import java.util.Calendar;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -37,6 +44,8 @@ public class EditTask extends AppCompatActivity {
     ConstraintLayout editTitleCons;
     ConstraintLayout editDescCons;
     TaskAPI taskAPI;
+    String status;
+    String task_token;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +54,54 @@ public class EditTask extends AppCompatActivity {
         getSupportActionBar().hide();
 
         init();
+
+        String title = getIntent().getStringExtra("title");
+        String category = getIntent().getStringExtra("category");
+        String desc = getIntent().getStringExtra("desc");
+        String dateTime = getIntent().getStringExtra("dateTime");
+        status = getIntent().getStringExtra("status");
+        task_token = getIntent().getStringExtra("taskToken");
+
+        editTitle.setText(title);
+        if(category.equals("Sport"))
+        {
+            editCategory.setSelection(1);
+        }
+        else if(category.equals("Study"))
+        {
+            editCategory.setSelection(2);
+        }
+        else if(category.equals("Meeting"))
+        {
+            editCategory.setSelection(3);
+        }
+        else if(category.equals("Work"))
+        {
+            editCategory.setSelection(4);
+        }
+        else if(category.equals("hang out"))
+        {
+            editCategory.setSelection(5);
+        }
+
+        editdesc.setText(desc);
+
+        String [] dateTimeInfo = dateTime.split("_");
+        String [] dateInfo = dateTimeInfo[0].split("-");
+        String [] timeInfo = dateTimeInfo[1].split(":");
+
+        int hour = Integer.parseInt(timeInfo[0]);
+        int min = Integer.parseInt(timeInfo[1]);
+
+        int year = Integer.parseInt(dateInfo[0]);
+        int month = Integer.parseInt(dateInfo[1]);
+        int day = Integer.parseInt(dateInfo[2]);
+
+        editTimePicker.setCurrentHour(hour);
+        editTimePicker.setCurrentMinute(min);
+        editDatePicker.init(year,month,day,null);
+
+
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
@@ -204,6 +261,51 @@ public class EditTask extends AppCompatActivity {
         if(checkDate(year,month,day,hour,min) && !titleStr.equals("") && !descStr.equals("")&& !categoryStr.equals(""))
         {
             Toast.makeText(this,"task saved",Toast.LENGTH_SHORT).show();
+            String hours = Integer.toString(hour);
+            if(hours.length()==1)
+            {
+                hours = "0"+hours;
+            }
+            String mins = Integer.toString(min);
+            if(mins.length()==1)
+            {
+                mins = "0"+mins;
+            }
+            String datetime = Integer.toString(year)+"-"+Integer.toString(month)+"-"+Integer.toString(day)+"_"+hours+":"+mins;
+            Toast.makeText(this, datetime, Toast.LENGTH_SHORT).show();
+            Task newTask = new Task(titleStr,descStr, datetime, categoryStr, "time for "+categoryStr,task_token);
+
+            Call<JsonObject> callback = taskAPI.editTask("token "+userToken,newTask);
+            callback.enqueue(new Callback<JsonObject>() {
+                @Override
+                public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                    if(!response.isSuccessful())
+                    {
+                        CustomeAlertDialog errorConnecting = new CustomeAlertDialog(EditTask.this,"error","there is a problem with your internet connection");
+                    }
+                    else{
+                        String code = Integer.toString(response.code());
+                        Toast.makeText(EditTask.this, code, Toast.LENGTH_SHORT).show();
+                        String task_token = newTask.getTaskToken();
+                        String title = newTask.getTitle();
+                        String dateTime = newTask.getDateTime();
+                        String [] infos = dateTime.split("_");
+                        String date = infos[0];
+                        String time = infos[1];
+                        tasksDB tasksdb = new tasksDB(EditTask.this);
+                        tasksdb.updateTask(task_token,title,date,time);
+                        Toast.makeText(EditTask.this,task_token, Toast.LENGTH_SHORT).show();
+                        CustomeAlertDialog errorConnecting = new CustomeAlertDialog(EditTask.this,"Successful","task updated");
+
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<JsonObject> call, Throwable t) {
+                    CustomeAlertDialog errorConnecting = new CustomeAlertDialog(EditTask.this,"error","there is a problem connecting to server");
+
+                }
+            });
         }
     }
 }
