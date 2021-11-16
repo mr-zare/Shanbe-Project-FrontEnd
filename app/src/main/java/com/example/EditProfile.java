@@ -43,6 +43,7 @@ public class EditProfile extends AppCompatActivity {
                 if(!response.isSuccessful())
                 {
                     Toast.makeText(EditProfile.this, "Some Field Wrong", Toast.LENGTH_SHORT).show();
+                    Log.i("MOSHKEL",response.message());
                 }
                 else{
                     String code = Integer.toString(response.code());
