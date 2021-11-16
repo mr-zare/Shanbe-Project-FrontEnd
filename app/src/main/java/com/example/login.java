@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -129,8 +131,62 @@ public class login extends AppCompatActivity {
                             UserSession userSession = response.body();
                             userSession.setUsername(namel);
                             String token = userSession.getToken();
+                            final String[] userEmail = new String[1];
+                            final String[] userFirstName = new String[1];
+                            final String[] userLastName = new String[1];
+                            final String[] userPhoneNumber = new String[1];
                             Toast.makeText(login.this, code+"   "+namel , Toast.LENGTH_SHORT).show();
+                            Call<User> userSessionCall = userAPI.showProfile("token "+ token);
+                            userSessionCall.enqueue(new Callback<User>() {
+                                @Override
+                                public void onResponse(Call<User> call, Response<User> response) {
+                                    if(!response.isSuccessful())
+                                    {
+                                        Toast.makeText(login.this, "Some Field Wrong", Toast.LENGTH_SHORT).show();
+                                    }
+                                    else{
+                                        String code = Integer.toString(response.code());
+                                        User user = response.body();
+                                        if(!(user.getEmail()==null)){
+                                            userEmail[0] = user.getEmail();
+                                            }
+                                        else{
+                                            userEmail[0] = "";
+                                        }
+                                        if(!(user.getFirst_name()==null)){
+                                            userFirstName[0] = user.getFirst_name();                                            }
+                                        else{
+                                            userFirstName[0] = "";
+                                        }
+                                        if(!(user.getLast_name()==null)){
+                                            userLastName[0] = user.getLast_name();
+                                            }
+                                        else{
+                                            userLastName[0] = "";
+                                        }
+                                        if(!(user.getPhone_number() == null)){
+                                            userPhoneNumber[0] = user.getPhone_number();
+                                            }
+                                        else{
+                                            userPhoneNumber[0] = "";
+                                        }
+                                        SharedPreferences UI = getSharedPreferences("userInformation",MODE_PRIVATE);
+                                        SharedPreferences.Editor myEdit = UI.edit();
+                                        myEdit.putString("token", token);
+                                        myEdit.putString("username",namel);
+                                        myEdit.putString("firstname",userFirstName[0]);
+                                        myEdit.putString("lastname",userLastName[0]);
+                                        myEdit.putString("email",userEmail[0]);
+                                        myEdit.putString("phonenumber",userPhoneNumber[0]);
+                                        myEdit.apply();
+                                    }
+                                }
 
+                                @Override
+                                public void onFailure(Call<User> call, Throwable t) {
+                                    Toast.makeText(login.this, "error is :"+t.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            });
                             //SystemClock.sleep(200);
                             Intent output=new Intent(login.this,welcome.class);
                             output.putExtra("token",token);

@@ -1,6 +1,8 @@
 package com.example;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -31,34 +33,10 @@ public class EditProfile extends AppCompatActivity {
     EditText lastNameEditText;
     EditText phoneNumberEditText;
     UserAPI userAPI;
-    /*public void GoToImage(View v){
-        startActivity(new Intent(EditProfile.this, GoToImage.class));
-    }*/
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        getSupportActionBar().hide();
-        setContentView(R.layout.activity_edit_profile);
-        emailEditText = findViewById(R.id.eemailid);
-        firstNameEditText = findViewById(R.id.firstNameId);
-        lastNameEditText = findViewById(R.id.lastNameId);
-        phoneNumberEditText = findViewById(R.id.phoneNumberId);
-        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
-
-        Retrofit LoginRetrofit = new Retrofit.Builder()
-                .baseUrl(UserAPI.BASE_URL)
-                .client(client)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        userAPI =LoginRetrofit.create(UserAPI.class);
-        SharedPreferences shP = getSharedPreferences("sideBarSharedPreferences", MODE_PRIVATE);
-        String token = shP.getString("token", "");
-        Toast.makeText(this, token, Toast.LENGTH_SHORT).show();
-        Call<User> userSessionCall = userAPI.showProfile("token "+ token);
+    String token;
+    public void EditButtonClicked(View view){
+        User user = new User(firstNameEditText.getText().toString(),lastNameEditText.getText().toString(),emailEditText.getText().toString(),phoneNumberEditText.getText().toString());
+        Call<User> userSessionCall = userAPI.editProfile("token "+ token, user);
         userSessionCall.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
@@ -69,27 +47,16 @@ public class EditProfile extends AppCompatActivity {
                 else{
                     String code = Integer.toString(response.code());
                     User user = response.body();
-                    String email = user.getEmail();
-                    if(!user.getEmail().equals("")){
-                    emailEditText.setText(user.getEmail());}
-                    else{
-                        emailEditText.setHint(R.string.empty);
-                    }
-                    if(!user.getFirst_name().equals("")){
-                        firstNameEditText.setText(user.getFirst_name());}
-                    else{
-                        firstNameEditText.setHint(R.string.empty);
-                    }
-                    if(!user.getLast_name().equals("")){
-                        lastNameEditText.setText(user.getLast_name());}
-                    else{
-                        lastNameEditText.setHint(R.string.empty);
-                    }
-                    if(!(user.getPhone_number() == null)){
-                        phoneNumberEditText.setText(user.getPhone_number());}
-                    else{
-                        phoneNumberEditText.setHint(R.string.empty);
-                    }
+                    Toast.makeText(EditProfile.this, "OKAYYYYYY", Toast.LENGTH_SHORT).show();
+                    SharedPreferences shP = getSharedPreferences("userInformation", MODE_PRIVATE);
+                    SharedPreferences.Editor myEdit = shP.edit();
+                    myEdit.putString("firstname",firstNameEditText.getText().toString());
+                    myEdit.putString("lastname",lastNameEditText.getText().toString());
+                    myEdit.putString("email",emailEditText.getText().toString());
+                    myEdit.putString("phonenumber",phoneNumberEditText.getText().toString());
+                    myEdit.apply();
+                    Intent intent = new Intent(EditProfile.this,MainActivity.class);
+                    startActivity(intent);
                 }
             }
 
@@ -98,5 +65,59 @@ public class EditProfile extends AppCompatActivity {
                 Toast.makeText(EditProfile.this, "error is :"+t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+
+
+    }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getSupportActionBar().hide();
+        setContentView(R.layout.activity_edit_profile);
+        emailEditText = findViewById(R.id.eemailid);
+        firstNameEditText = findViewById(R.id.firstNameIde);
+        lastNameEditText = findViewById(R.id.lastNameIde);
+        phoneNumberEditText = findViewById(R.id.phoneNumberIde);
+        SharedPreferences shP = getSharedPreferences("userInformation", MODE_PRIVATE);
+        token = shP.getString("token", "");
+        String firstName = shP.getString("firstname","");
+        String lastName = shP.getString("lastname","");
+        String email = shP.getString("email","");
+        String phoneNumber = shP.getString("phonenumber","");
+        if(!firstName.equals("")){
+            firstNameEditText.setText(firstName);
+        }
+        else{
+            firstNameEditText.setHint(R.string.empty);
+        }
+        if(!lastName.equals("")){
+            lastNameEditText.setText(lastName);
+        }
+        else{
+            lastNameEditText.setHint(" " +R.string.empty);
+        }
+        if(!email.equals("")){
+            emailEditText.setText(email);
+        }
+        else{
+            emailEditText.setHint(R.string.empty);
+        }
+        if(!phoneNumber.equals("")){
+            phoneNumberEditText.setText(phoneNumber);
+        }
+        else{
+            phoneNumberEditText.setHint(R.string.empty);
+        }
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
+
+        Retrofit LoginRetrofit = new Retrofit.Builder()
+                .baseUrl(UserAPI.BASE_URL)
+                .client(client)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        userAPI =LoginRetrofit.create(UserAPI.class);
     }
 }

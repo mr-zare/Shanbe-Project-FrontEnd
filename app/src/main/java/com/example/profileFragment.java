@@ -1,14 +1,20 @@
 package com.example;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.myapplication.R;
+
+import java.util.Locale;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -57,12 +63,46 @@ public class profileFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_profile, container, false);
+        TextView firstNameLastNameProfileFragment;
+        TextView userNameProfileFragment;
+        TextView emailProfileFragment;
+        TextView phoneProfileFragment;
+        firstNameLastNameProfileFragment = rootView.findViewById(R.id.firstNameLastNameTextView);
+        userNameProfileFragment = rootView.findViewById(R.id.userNameTextViewProfileFragment);
+        emailProfileFragment = rootView.findViewById(R.id.emailTextViewProfileFragment);
+        phoneProfileFragment = rootView.findViewById(R.id.phoneNumberProfileFragment);
+        SharedPreferences shP = getActivity().getSharedPreferences("userInformation", Context.MODE_PRIVATE);
+        String userName = shP.getString("username","");
+        String firstName = shP.getString("firstname","");
+        String lastName = shP.getString("lastname","");
+        String email = shP.getString("email","");
+        String phoneNumber = shP.getString("phonenumber","");
+        firstNameLastNameProfileFragment.setText(new StringBuilder().append(firstName).append(" ").append(lastName).toString());
+        if(!userName.equals("")){
+            userNameProfileFragment.setText(userName);
+        }
+        else{
+            userNameProfileFragment.setText("NO USERNAME");
+        }
+        if(!email.equals("")){
+            emailProfileFragment.setText(email);
+        }
+        else{
+            emailProfileFragment.setText("NO EMAIL");
+        }
+        if(!phoneNumber.equals("")){
+            phoneProfileFragment.setText(phoneNumber);
+        }
+        else{
+            phoneProfileFragment.setText("NO PHONE");
+        }
+        return rootView;
     }
 }

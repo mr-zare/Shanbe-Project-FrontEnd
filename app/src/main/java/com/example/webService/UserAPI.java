@@ -7,6 +7,7 @@ import retrofit2.http.Body;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 
 public interface UserAPI {
     public static final String BASE_URL="https://shanbe-back.herokuapp.com/";
@@ -31,4 +32,7 @@ public interface UserAPI {
 
     @POST("user/")
     Call<User> showProfile(@Header("Authorization") String user_token);
+
+    @PUT("edit-profile/")
+    Call<User> editProfile(@Header("Authorization") String user_token , @Body User user);
 }

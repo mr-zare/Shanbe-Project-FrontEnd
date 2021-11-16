@@ -37,6 +37,14 @@ public class User {
         return phone_number;
     }
 
+    public void setPhone_number(String phone_number) {
+        this.phone_number = phone_number;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
     public String getAvatar() {
         return avatar;
     }
@@ -82,6 +90,12 @@ public class User {
     public User(String username, String password) {
         this.username = username;
         this.password = password;
+    }
+    public User(String first_name,String last_name,String email,String phone_number){
+        this.phone_number=phone_number;
+        this.email = email;
+        this.first_name = first_name;
+        this.last_name = last_name;
     }
 
     public String getCodeToken() {

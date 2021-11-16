@@ -29,6 +29,7 @@
                     android:src="@drawable/acount_circle" />
 
                 <TextView
+                    android:id="@+id/firstNameLastNameTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
@@ -60,6 +61,7 @@
                     android:src="@drawable/username"/>
 
                 <TextView
+                    android:id="@+id/userNameTextViewProfileFragment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -80,6 +82,7 @@
                     android:src="@drawable/ic_baseline_email_24" />
 
                 <TextView
+                    android:id="@+id/emailTextViewProfileFragment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -100,6 +103,7 @@
                     android:src="@drawable/ic_baseline_phone_android_24"/>
 
                 <TextView
+                    android:id="@+id/phoneNumberProfileFragment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"

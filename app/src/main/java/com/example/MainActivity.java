@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
@@ -28,6 +30,8 @@ import com.example.webService.UserAPI;
 import com.example.webService.UserSession;
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.List;
+
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
@@ -41,13 +45,21 @@ public class MainActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     NavigationView monthNavigationView;
     TextView userNameTextView;
+
     Bundle extras ;
     UserAPI userAPI;
+    public Fragment getVisibleFragment(){
+        FragmentManager fragmentManager = MainActivity.this.getSupportFragmentManager();
+        List<Fragment> fragments = fragmentManager.getFragments();
+        if(fragments != null){
+            for(Fragment fragment : fragments){
+                if(fragment != null && fragment.isVisible())
+                    return fragment;
+            }
+        }
+        return null;
+    }
     public  void GoToEditProfile(View view){
-        SharedPreferences sideBarSharedPreferences = getSharedPreferences("sideBarSharedPreferences",MODE_PRIVATE);
-        SharedPreferences.Editor myEdit = sideBarSharedPreferences.edit();
-        myEdit.putString("token", extras.getString("token"));
-        myEdit.commit();
         Intent editProfile = new Intent(MainActivity.this, EditProfile.class);
         startActivity(editProfile);
     }
@@ -117,8 +129,10 @@ public class MainActivity extends AppCompatActivity {
 
                 drawerLayout.openDrawer(GravityCompat.START);
                 extras = getIntent().getExtras();
+                SharedPreferences shP = getSharedPreferences("userInformation", MODE_PRIVATE);
+                String userName = shP.getString("username", "");
                 userNameTextView = findViewById(R.id.headerUsernameTextView);
-                userNameTextView.setText(extras.getString("username"));
+                userNameTextView.setText(userName);
             }
         });
         monthNavigationView = findViewById(R.id.navigationView);
@@ -128,7 +142,6 @@ public class MainActivity extends AppCompatActivity {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
-
         Retrofit LoginRetrofit = new Retrofit.Builder()
                 .baseUrl(UserAPI.BASE_URL)
                 .client(client)
