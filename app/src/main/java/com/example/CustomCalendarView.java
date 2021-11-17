@@ -116,6 +116,9 @@ public class CustomCalendarView extends LinearLayout {
                 e.printStackTrace();
             }
         }
+        if(tasksRecycler.size() == 0){
+            recyclerEventList.add(new RecyclerModelClass("NO TASK","--:--"));
+        }
     }
 
     private void InitializeRecycler() {
