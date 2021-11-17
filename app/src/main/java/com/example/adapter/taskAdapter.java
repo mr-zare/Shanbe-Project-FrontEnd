@@ -20,11 +20,13 @@ import android.widget.Toast;
 
 import androidx.core.widget.CompoundButtonCompat;
 
+import com.example.ConfirmationAlertDialog;
 import com.example.CustomeAlertDialog;
 import com.example.DataBase.tasksDB;
 import com.example.EditTask;
 import com.example.entity.Task;
 import com.example.myapplication.R;
+import com.example.myapplication.databinding.ConfirmationAlertDialogBinding;
 import com.example.webService.TaskAPI;
 import com.google.gson.JsonObject;
 
@@ -213,27 +215,41 @@ public class taskAdapter extends BaseAdapter implements Filterable {
         deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                JsonObject jsonObject = new JsonObject();
-                jsonObject.addProperty("task_token", currentTask.getTaskToken());
-                Call<JsonObject> request = taskAPI.deleteTask("token "+userToken,jsonObject);
-                request.enqueue(new Callback<JsonObject>() {
+                ConfirmationAlertDialog confirmCancel = new ConfirmationAlertDialog(context,"Confirmation","Do you want to delete this task("+currentTask.getTitle().toString()+")?");
+                confirmCancel.btnOk.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                        if(!response.isSuccessful())
-                        {
-                            CustomeAlertDialog errorConnecting = new CustomeAlertDialog(context,"error","there is a problem with your internet connection");
+                    public void onClick(View view) {
+                        confirmCancel.alertDialog.dismiss();
+                        JsonObject jsonObject = new JsonObject();
+                        jsonObject.addProperty("task_token", currentTask.getTaskToken());
+                        Call<JsonObject> request = taskAPI.deleteTask("token "+userToken,jsonObject);
+                        request.enqueue(new Callback<JsonObject>() {
+                            @Override
+                            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                                if(!response.isSuccessful())
+                                {
+                                    CustomeAlertDialog errorConnecting = new CustomeAlertDialog(context,"error","there is a problem with your internet connection");
 
-                        }
-                        else{
-                            String code = Integer.toString(response.code());
-                            Toast.makeText(context, code, Toast.LENGTH_SHORT).show();
-                            remove(i);
-                        }
+                                }
+                                else{
+                                    String code = Integer.toString(response.code());
+                                    Toast.makeText(context, code, Toast.LENGTH_SHORT).show();
+                                    remove(i);
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<JsonObject> call, Throwable t) {
+                                CustomeAlertDialog errorConnecting = new CustomeAlertDialog(context,"error","there is a problem with your internet connection");
+                            }
+                        });
                     }
+                });
 
+                confirmCancel.cancelBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onFailure(Call<JsonObject> call, Throwable t) {
-                        CustomeAlertDialog errorConnecting = new CustomeAlertDialog(context,"error","there is a problem with your internet connection");
+                    public void onClick(View view) {
+                        confirmCancel.alertDialog.dismiss();
                     }
                 });
             }
