@@ -272,7 +272,7 @@ public class EditTask extends AppCompatActivity {
                 mins = "0"+mins;
             }
             String datetime = Integer.toString(year)+"-"+Integer.toString(month)+"-"+Integer.toString(day)+"_"+hours+":"+mins;
-            Toast.makeText(this, datetime, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, datetime, Toast.LENGTH_SHORT).show();
             Task newTask = new Task(titleStr,descStr, datetime, categoryStr, "time for "+categoryStr,task_token);
 
             Call<JsonObject> callback = taskAPI.editTask("token "+userToken,newTask);
@@ -285,7 +285,7 @@ public class EditTask extends AppCompatActivity {
                     }
                     else{
                         String code = Integer.toString(response.code());
-                        Toast.makeText(EditTask.this, code, Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(EditTask.this, code, Toast.LENGTH_SHORT).show();
                         String task_token = newTask.getTaskToken();
                         String title = newTask.getTitle();
                         String dateTime = newTask.getDateTime();
@@ -294,7 +294,7 @@ public class EditTask extends AppCompatActivity {
                         String time = infos[1];
                         tasksDB tasksdb = new tasksDB(EditTask.this);
                         tasksdb.updateTask(task_token,title,date,time);
-                        Toast.makeText(EditTask.this,task_token, Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(EditTask.this,task_token, Toast.LENGTH_SHORT).show();
                         CustomeAlertDialog saved = new CustomeAlertDialog(EditTask.this,"Successful","task updated");
                         saved.btnOk.setOnClickListener(new View.OnClickListener() {
                             @Override

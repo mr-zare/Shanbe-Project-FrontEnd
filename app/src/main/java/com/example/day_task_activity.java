@@ -185,7 +185,7 @@ public class day_task_activity extends AppCompatActivity {
                 }
                 else{
                     int responseCode = response.code();
-                    Toast.makeText(day_task_activity.this, Integer.toString(responseCode), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(day_task_activity.this, Integer.toString(responseCode), Toast.LENGTH_SHORT).show();
                     List<Task> listOfTasks = response.body();
                     tasksAdap = new taskAdapter(day_task_activity.this,listOfTasks);
                     list.setAdapter(tasksAdap);
