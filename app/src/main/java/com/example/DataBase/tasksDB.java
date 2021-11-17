@@ -96,6 +96,29 @@ public class tasksDB extends SQLiteOpenHelper {
 
         return tasks;
     }
+
+    //get tasks for specific(current) day....
+    public ArrayList<Task> select(String date)
+    {
+        ArrayList<Task> tasks = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(TABLE_NAME,new String[]{TOKEN_COL,TITLE_COL,TIME_COL,DATE_COL},DATE_COL+" =?",new String[]{date},null,null,null);
+        if(cursor.getCount()>0)
+        {
+            while(cursor.moveToNext())
+            {
+                String token = cursor.getString(0);
+                String title = cursor.getString(1);
+                String time = cursor.getString(2);
+                String Date = cursor.getString(3);
+                String datetime = date+"_"+time;
+                Task newTask = new Task(title,datetime,token);
+                tasks.add(newTask);
+            }
+        }
+        return tasks;
+    }
+
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 

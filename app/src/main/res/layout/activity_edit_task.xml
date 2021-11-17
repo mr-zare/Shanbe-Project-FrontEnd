@@ -141,7 +141,7 @@
             android:layout_marginTop="4dp"
             android:backgroundTint="#32A399"
             android:onClick="EditTask"
-            android:text="ADD"
+            android:text="SAVE"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editDescCons" />

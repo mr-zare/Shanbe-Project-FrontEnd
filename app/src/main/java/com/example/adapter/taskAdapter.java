@@ -83,6 +83,9 @@ public class taskAdapter extends BaseAdapter implements Filterable {
 
         Task currentTask = list.get(i);
 
+        String dateTime = currentTask.getDateTime().toString();
+        String [] dateTimeInfo = dateTime.split("_");
+        String time = dateTimeInfo[1];
         TextView textViewTitle = view.findViewById(R.id.titleTv);
         TextView textViewdateTime = view.findViewById(R.id.dateTimeTv);
         TextView textViewDescTv = view.findViewById(R.id.descTv);
@@ -93,7 +96,7 @@ public class taskAdapter extends BaseAdapter implements Filterable {
 
         textViewTitle.setText(currentTask.getTitle());
         textViewDescTv.setText(currentTask.getDesc());
-        textViewdateTime.setText(currentTask.getDateTime());
+        textViewdateTime.setText(time);
         String category = currentTask.getCategory().toString();
 
 
@@ -224,6 +227,7 @@ public class taskAdapter extends BaseAdapter implements Filterable {
                         else{
                             String code = Integer.toString(response.code());
                             Toast.makeText(context, code, Toast.LENGTH_SHORT).show();
+                            remove(i);
                         }
                     }
 
