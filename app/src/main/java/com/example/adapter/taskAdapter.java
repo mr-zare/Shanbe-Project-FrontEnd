@@ -172,7 +172,7 @@ public class taskAdapter extends BaseAdapter implements Filterable {
                             }
                             else{
                                 String code = Integer.toString(response.code());
-                                Toast.makeText(context, code, Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(context, code, Toast.LENGTH_SHORT).show();
                             }
                         }
 
@@ -197,7 +197,7 @@ public class taskAdapter extends BaseAdapter implements Filterable {
                             }
                             else{
                                 String code = Integer.toString(response.code());
-                                Toast.makeText(context, code, Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(context, code, Toast.LENGTH_SHORT).show();
                             }
                         }
 
@@ -233,7 +233,7 @@ public class taskAdapter extends BaseAdapter implements Filterable {
                                 }
                                 else{
                                     String code = Integer.toString(response.code());
-                                    Toast.makeText(context, code, Toast.LENGTH_SHORT).show();
+                                    //Toast.makeText(context, code, Toast.LENGTH_SHORT).show();
                                     remove(i);
                                 }
                             }

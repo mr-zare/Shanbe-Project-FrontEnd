@@ -224,7 +224,7 @@ public class AddTask extends AppCompatActivity {
             }
             String datetime = Integer.toString(year)+"-"+Integer.toString(month)+"-"+Integer.toString(day)+"_"+hours+":"+mins;
             String status = "pending";
-            Toast.makeText(this, datetime, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, datetime, Toast.LENGTH_SHORT).show();
             Task newTask = new Task(titleStr,descStr, datetime, categoryStr, "time for "+categoryStr,userToken,status);
 
             Call<TaskSession> callBack =taskAPI.createTask("token "+userToken,newTask);
@@ -245,11 +245,11 @@ public class AddTask extends AppCompatActivity {
                         String [] infos = dateTime.split("_");
                         String date = infos[0];
                         String time = infos[1];
-                        Toast.makeText(AddTask.this, code, Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(AddTask.this, code, Toast.LENGTH_SHORT).show();
 
                         tasksDB tasksdb = new tasksDB(AddTask.this);
                         long res = tasksdb.insert(task_token,title,date,time);
-                        Toast.makeText(AddTask.this,task_token, Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(AddTask.this,task_token, Toast.LENGTH_SHORT).show();
 
                         CustomeAlertDialog saved = new CustomeAlertDialog(AddTask.this,"Successful","task saved");
                         saved.btnOk.setOnClickListener(new View.OnClickListener() {
