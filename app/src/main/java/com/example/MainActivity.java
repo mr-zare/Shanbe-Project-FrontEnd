@@ -81,7 +81,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 User user = new User("","");
-                Call<UserSession> userSessionCall = userAPI.logOut("token "+ extras.getString("token"));
+                SharedPreferences shP = getSharedPreferences("userInformation", MODE_PRIVATE);
+                String token = shP.getString("token", "");
+                Call<UserSession> userSessionCall = userAPI.logOut("token "+ token);
                 userSessionCall.enqueue(new Callback<UserSession>() {
                     @Override
                     public void onResponse(Call<UserSession> call, Response<UserSession> response) {
