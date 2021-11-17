@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -17,8 +18,11 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.DataBase.tasksDB;
+import com.example.entity.Task;
 import com.example.myapplication.R;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -86,13 +90,32 @@ public class CustomCalendarView extends LinearLayout {
             }
         });
     }
-
+    String convertTo12Hours(String militaryTime) throws ParseException {
+        //in => "14:00:00"
+        //out => "02:00 PM"
+        SimpleDateFormat inputFormat = new SimpleDateFormat("hh:mm:ss", Locale.getDefault());
+        SimpleDateFormat outputFormat = new SimpleDateFormat("hh:mm aa", Locale.getDefault());
+        Date date = inputFormat.parse(militaryTime);
+        return outputFormat.format(date);
+    }
     private void InitializeData() {
+        tasksDB tasksdb = new tasksDB(context);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        Calendar c = Calendar.getInstance();
+        c.setTime(date);
+        c.add(Calendar.MONTH, -1);
+        Date currentDateMinusOne = c.getTime();
+        String dates = dateFormat.format(currentDateMinusOne);
+        ArrayList<Task> tasksRecycler = tasksdb.select(dates);
         recyclerEventList = new ArrayList<>();
-        recyclerEventList.add(new RecyclerModelClass("Wake Up","08:00 AM"));
-        recyclerEventList.add(new RecyclerModelClass("Breakfast","09:00 AM"));
-        recyclerEventList.add(new RecyclerModelClass("Study","10:00 AM"));
-        recyclerEventList.add(new RecyclerModelClass("Lunch","01:30 PM"));
+        for(int i = 0 ; i < tasksRecycler.size();i++){
+            try {
+                recyclerEventList.add(new RecyclerModelClass(tasksRecycler.get(i).getTitle(), convertTo12Hours(tasksRecycler.get(i).getDateTime().split("_")[1]+":00")));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private void InitializeRecycler() {
