@@ -245,7 +245,7 @@ public class taskAdapter extends BaseAdapter implements Filterable {
             public void onClick(View view) {
                 Intent intent = new Intent(context,EditTask.class);
                 intent.putExtra("title",textViewTitle.getText().toString());
-                intent.putExtra("dateTime",textViewdateTime.getText().toString());
+                intent.putExtra("dateTime",currentTask.getDateTime().toString());
                 intent.putExtra("desc",textViewDescTv.getText().toString());
                 intent.putExtra("category",category);
                 intent.putExtra("status",statusStr);

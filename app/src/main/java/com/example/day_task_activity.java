@@ -42,6 +42,13 @@ public class day_task_activity extends AppCompatActivity {
     taskAdapter tasksAdap;
     TaskAPI taskAPI;
     String FinalDate;
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        fillList();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -110,7 +117,47 @@ public class day_task_activity extends AppCompatActivity {
 
         FinalDate = year + "-"+ monthNum +"-"+day;
         //Toast.makeText(this, FinalDate, Toast.LENGTH_SHORT).show();
+        fillList();
 
+
+
+        searchEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                tasksAdap.getFilter().filter(charSequence);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+    }
+
+
+    void init()
+    {
+        searchEditText = findViewById(R.id.searchEditText);
+        list = findViewById(R.id.tasksLists);
+        SharedPreferences sharedPreferences = getSharedPreferences("authentication", MODE_PRIVATE);
+        userToken = sharedPreferences.getString("token", "");
+        username = sharedPreferences.getString("username","");
+    }
+
+    public void addTaskBtn(View view) {
+        Intent intent = new Intent(day_task_activity.this,AddTask.class);
+        intent.putExtra("date",FinalDate);
+        startActivity(intent);
+    }
+
+
+    public void fillList()
+    {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
@@ -151,39 +198,5 @@ public class day_task_activity extends AppCompatActivity {
                 CustomeAlertDialog getTasksDayError = new CustomeAlertDialog(day_task_activity.this,"Error","there is a problem with your internet connection");
             }
         });
-
-
-        searchEditText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                tasksAdap.getFilter().filter(charSequence);
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-    }
-
-
-    void init()
-    {
-        searchEditText = findViewById(R.id.searchEditText);
-        list = findViewById(R.id.tasksLists);
-        SharedPreferences sharedPreferences = getSharedPreferences("authentication", MODE_PRIVATE);
-        userToken = sharedPreferences.getString("token", "");
-        username = sharedPreferences.getString("username","");
-    }
-
-    public void addTaskBtn(View view) {
-        Intent intent = new Intent(day_task_activity.this,AddTask.class);
-        intent.putExtra("date",FinalDate);
-        startActivity(intent);
     }
 }

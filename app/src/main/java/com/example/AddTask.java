@@ -251,8 +251,13 @@ public class AddTask extends AppCompatActivity {
                         long res = tasksdb.insert(task_token,title,date,time);
                         Toast.makeText(AddTask.this,task_token, Toast.LENGTH_SHORT).show();
 
-                        CustomeAlertDialog errorConnecting = new CustomeAlertDialog(AddTask.this,"Successful","task saved");
-
+                        CustomeAlertDialog saved = new CustomeAlertDialog(AddTask.this,"Successful","task saved");
+                        saved.btnOk.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                finish();
+                            }
+                        });
                     }
                 }
 

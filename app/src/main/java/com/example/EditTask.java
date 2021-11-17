@@ -295,8 +295,13 @@ public class EditTask extends AppCompatActivity {
                         tasksDB tasksdb = new tasksDB(EditTask.this);
                         tasksdb.updateTask(task_token,title,date,time);
                         Toast.makeText(EditTask.this,task_token, Toast.LENGTH_SHORT).show();
-                        CustomeAlertDialog errorConnecting = new CustomeAlertDialog(EditTask.this,"Successful","task updated");
-
+                        CustomeAlertDialog saved = new CustomeAlertDialog(EditTask.this,"Successful","task updated");
+                        saved.btnOk.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                finish();
+                            }
+                        });
                     }
                 }
 
