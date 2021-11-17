@@ -1,6 +1,7 @@
 package com.example;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
@@ -11,6 +12,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -34,9 +37,15 @@ public class EditProfile extends AppCompatActivity {
     EditText phoneNumberEditText;
     UserAPI userAPI;
     String token;
+    CardView editbutton;
     public void EditButtonClicked(View view){
+        editbutton = (CardView) findViewById(R.id.cardViewEditProfile);
+        Animation animation10 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.blink_anim);
+        editbutton.startAnimation(animation10);
+
         User user = new User(firstNameEditText.getText().toString(),lastNameEditText.getText().toString(),emailEditText.getText().toString(),phoneNumberEditText.getText().toString());
         Call<User> userSessionCall = userAPI.editProfile("token "+ token, user);
+
         userSessionCall.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
@@ -48,7 +57,7 @@ public class EditProfile extends AppCompatActivity {
                 else{
                     String code = Integer.toString(response.code());
                     User user = response.body();
-                    Toast.makeText(EditProfile.this, "OKAYYYYYY", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EditProfile.this, "Profile Edited!", Toast.LENGTH_SHORT).show();
                     SharedPreferences shP = getSharedPreferences("userInformation", MODE_PRIVATE);
                     SharedPreferences.Editor myEdit = shP.edit();
                     myEdit.putString("firstname",firstNameEditText.getText().toString());
@@ -76,10 +85,12 @@ public class EditProfile extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_edit_profile);
+
         emailEditText = findViewById(R.id.eemailid);
         firstNameEditText = findViewById(R.id.firstNameIde);
         lastNameEditText = findViewById(R.id.lastNameIde);
         phoneNumberEditText = findViewById(R.id.phoneNumberIde);
+
         SharedPreferences shP = getSharedPreferences("userInformation", MODE_PRIVATE);
         token = shP.getString("token", "");
         String firstName = shP.getString("firstname","");
@@ -120,5 +131,6 @@ public class EditProfile extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         userAPI =LoginRetrofit.create(UserAPI.class);
+
     }
 }

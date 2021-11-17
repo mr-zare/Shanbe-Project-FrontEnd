@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="20dp">
+    android:padding="20dp"
+    android:background="@color/side_bar_background">
     <com.makeramen.roundedimageview.RoundedImageView
         android:id="@+id/imageProfile"
         android:layout_width="70dp"

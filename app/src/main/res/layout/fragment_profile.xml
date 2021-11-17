@@ -117,7 +117,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:onClick="GoToEditProfile"
-                android:text="Edit Profile" />
+                android:text="Edit Profile"
+                android:backgroundTint="@color/start_blue"
+                />
 
 
 
