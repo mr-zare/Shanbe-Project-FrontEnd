@@ -152,4 +152,8 @@ public class MainActivity extends AppCompatActivity {
         userAPI =LoginRetrofit.create(UserAPI.class);
     }
 
+    public void EventClicked(MenuItem item) {
+        Intent event = new Intent(MainActivity.this, event_activity.class);
+        startActivity(event);
+    }
 }
