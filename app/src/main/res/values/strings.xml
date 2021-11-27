@@ -19,6 +19,50 @@
         <item>Work</item>
         <item>hang out</item>
     </string-array>
+
+    <string-array name="privacy">
+        <item></item>
+        <item>Public</item>
+        <item>Private</item>
+    </string-array>
+    <string-array name="location">
+        <item></item>
+        <item>azarbayjan sharqi</item>
+        <item>azarbayjan gharbi</item>
+        <item>Ardabil</item>
+        <item>Esfahan</item>
+        <item>Alborz</item>
+        <item>Ilam</item>
+        <item>Bushehr</item>
+        <item>Tehran</item>
+        <item>Chaharmahal va Bakhtiari</item>
+        <item>Khorasan jonoobi</item>
+        <item>Khorasan Razavi</item>
+        <item>Khorasan shomali</item>
+        <item>Khuzestan</item>
+        <item>Zanjan</item>
+        <item>Sistan va Baluchestan</item>
+        <item>Qom</item>
+        <item>Kerman</item>
+        <item>Kermanshah</item>
+        <item>Golestan</item>
+        <item>Mazandaran</item>
+        <item>Hormozgan</item>
+        <item>Hamedan</item>
+        <item>Yazd</item>
+        <item>Markazi</item>
+        <item>Semnan</item>
+        <item>Fars</item>
+        <item>Qazvin</item>
+        <item>Kurdestan</item>
+        <item>Gilan</item>
+        <item>Lorestan</item>
+        <item>Kohgiloyeh va Boyerahmad</item>
+    </string-array>
+
+
+
+
     <string name="title_activity_day_task">day_task_activity</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>

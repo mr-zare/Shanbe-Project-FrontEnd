@@ -1,6 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fillViewport="true">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/titleborder"
+        android:layout_width="370dp"
+        android:layout_height="106dp"
+        android:layout_margin="20dp"
+        android:background="@drawable/border_task"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/title"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.887"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.039"></ImageView>
+
+        <EditText
+            android:id="@+id/titleevent"
+            android:layout_width="290dp"
+            android:layout_height="47dp"
+            android:layout_marginStart="29dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="29dp"
+            android:drawable="@drawable/border_event"
+            android:hint=" Title:"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></EditText>
+
+        <Spinner
+            android:id="@+id/spinner_privacy"
+            android:layout_width="221dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="272dp"
+            android:entries="@array/privacy"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.697"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></Spinner>
+
+        <EditText
+            android:id="@+id/descript"
+            android:layout_width="229dp"
+            android:layout_height="178dp"
+            android:layout_marginStart="88dp"
+            android:layout_marginEnd="37dp"
+            android:hint="description"
+            android:maxLength="240"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.736"></EditText>
+
+        <Spinner
+            android:id="@+id/Spinner_categoryevent"
+            android:layout_width="280dp"
+            android:layout_height="53dp"
+            android:layout_marginTop="88dp"
+            android:entries="@array/category"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.611"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="DuplicateClickableBoundsCheck"></Spinner>
+
+        <Spinner
+            android:id="@+id/Spinner_location"
+            android:layout_width="280dp"
+            android:layout_height="53dp"
+            android:layout_marginTop="180dp"
+            android:entries="@array/location"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.588"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></Spinner>
+
+        <Button
+            android:id="@+id/addEventButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="147dp"
+            android:layout_marginEnd="147dp"
+            android:layout_marginBottom="32dp"
+            android:text="ADD"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+        </Button>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
+
+

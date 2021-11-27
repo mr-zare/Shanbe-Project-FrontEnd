@@ -1,6 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fillViewport="true">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="375dp"
+        android:layout_height="400dp"
+        android:layout_margin="15dp"
+        android:background="@drawable/border_task"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Spinner
+            android:id="@+id/categoryfilter"
+            android:layout_width="272dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="40dp"
+            android:entries="@array/category"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.65"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></Spinner>
+
+        <Spinner
+            android:id="@+id/privacyfilter"
+            android:layout_width="266dp"
+            android:layout_height="53dp"
+            android:layout_marginTop="176dp"
+            android:entries="@array/privacy"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.666"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></Spinner>
+
+        <Spinner
+            android:id="@+id/locationfilter"
+            android:layout_width="268dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="112dp"
+            android:entries="@array/location"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.659"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></Spinner>
+
+        <DatePicker
+            android:id="@+id/datefilter"
+            android:layout_width="339dp"
+            android:layout_height="428dp"
+            android:layout_marginBottom="10dp"
+            android:calendarViewShown="true"
+            android:spinnersShown="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"></DatePicker>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</ScrollView>
