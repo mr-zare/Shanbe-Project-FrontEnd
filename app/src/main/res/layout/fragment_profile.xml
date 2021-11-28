@@ -118,12 +118,16 @@
                 android:layout_marginTop="20dp"
                 android:onClick="GoToEditProfile"
                 android:text="Edit Profile"
-                android:backgroundTint="@color/start_blue"
+                android:backgroundTint="#9F88D6"
                 />
 
 
-
         </LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
+
+        </RelativeLayout>
     </LinearLayout>
 </FrameLayout>
