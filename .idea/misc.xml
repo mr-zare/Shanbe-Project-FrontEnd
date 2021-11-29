@@ -57,11 +57,11 @@
         <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/layout/activity_event.xml" value="0.264" />
         <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/layout/alert_dialog_layout.xml" value="0.25416666666666665" />
-        <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/layout/calendar_layout.xml" value="0.25416666666666665" />
+        <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/layout/calendar_layout.xml" value="0.136" />
         <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/layout/confirmation_alert_dialog.xml" value="0.25416666666666665" />
         <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/layout/event_view.xml" value="0.264" />
         <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/layout/filters_evant.xml" value="0.223731884057971" />
-        <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/layout/fragment_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/layout/fragment_main.xml" value="0.12" />
         <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/layout/fragment_profile.xml" value="0.1" />
         <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/layout/layout_navigation_header.xml" value="0.1875" />
         <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/layout/layout_warning_dialog.xml" value="0.2" />
@@ -80,12 +80,15 @@
         <entry key="..\:/project tahlil/FrontEnd/FrontEnd/app/src/main/res/drawable/border_event.xml" value="0.14635416666666667" />
         <entry key="..\:/project tahlil/FrontEnd/FrontEnd/app/src/main/res/drawable/border_gradient.xml" value="0.24642857142857144" />
         <entry key="..\:/project tahlil/FrontEnd/FrontEnd/app/src/main/res/drawable/border_task.xml" value="0.14635416666666667" />
-        <entry key="..\:/project tahlil/FrontEnd/FrontEnd/app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.1" />
         <entry key="..\:/project tahlil/FrontEnd/FrontEnd/app/src/main/res/layout/activity_add_event.xml" value="0.2" />
-        <entry key="..\:/project tahlil/FrontEnd/FrontEnd/app/src/main/res/layout/activity_add_task.xml" value="0.2" />
+        <entry key="..\:/project tahlil/FrontEnd/FrontEnd/app/src/main/res/layout/activity_add_task.xml" value="0.1" />
         <entry key="..\:/project tahlil/FrontEnd/FrontEnd/app/src/main/res/layout/activity_event.xml" value="0.1793478260869565" />
+<<<<<<< Updated upstream
         <entry key="..\:/project tahlil/FrontEnd/FrontEnd/app/src/main/res/layout/filters_evant.xml" value="0.264" />
         <entry key="..\:/project tahlil/FrontEnd/FrontEnd/app/src/main/res/layout/fragment_profile.xml" value="0.13858695652173914" />
+=======
+        <entry key="..\:/project tahlil/FrontEnd/FrontEnd/app/src/main/res/layout/filters_evant.xml" value="0.19117647058823528" />
+>>>>>>> Stashed changes
       </map>
     </option>
   </component>

@@ -59,6 +59,8 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.2.0-rc03'
 
     implementation 'com.google.android.material:material:1.1.0'
+    implementation 'com.scwang.wave:MultiWaveHeader:1.0.0'
+    implementation 'com.scwang.wave:MultiWaveHeader:1.0.0-andx'
     implementation 'com.scwang.wave:MultiWaveHeader:1.0.0-alpha-1'
 }
 
