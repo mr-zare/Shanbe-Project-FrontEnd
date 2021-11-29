@@ -78,12 +78,14 @@
         <entry key="..\:/p/FrontEnd/app/src/main/res/layout/layout_navigation_header.xml" value="0.12001811594202899" />
         <entry key="..\:/p/FrontEnd/app/src/main/res/menu/navigation_menu.xml" value="0.1265625" />
         <entry key="..\:/project tahlil/FrontEnd/FrontEnd/app/src/main/res/drawable/border_event.xml" value="0.14635416666666667" />
+        <entry key="..\:/project tahlil/FrontEnd/FrontEnd/app/src/main/res/drawable/border_gradient.xml" value="0.24642857142857144" />
         <entry key="..\:/project tahlil/FrontEnd/FrontEnd/app/src/main/res/drawable/border_task.xml" value="0.14635416666666667" />
         <entry key="..\:/project tahlil/FrontEnd/FrontEnd/app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.1" />
         <entry key="..\:/project tahlil/FrontEnd/FrontEnd/app/src/main/res/layout/activity_add_event.xml" value="0.2" />
         <entry key="..\:/project tahlil/FrontEnd/FrontEnd/app/src/main/res/layout/activity_add_task.xml" value="0.2" />
         <entry key="..\:/project tahlil/FrontEnd/FrontEnd/app/src/main/res/layout/activity_event.xml" value="0.1793478260869565" />
         <entry key="..\:/project tahlil/FrontEnd/FrontEnd/app/src/main/res/layout/filters_evant.xml" value="0.264" />
+        <entry key="..\:/project tahlil/FrontEnd/FrontEnd/app/src/main/res/layout/fragment_profile.xml" value="0.13858695652173914" />
       </map>
     </option>
   </component>
