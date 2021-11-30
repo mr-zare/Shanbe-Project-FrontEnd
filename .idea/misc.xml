@@ -23,6 +23,8 @@
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/drawable-xxhdpi/images.xml" value="0.1368421052631579" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/drawable/border.xml" value="0.2703125" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/drawable/border2.xml" value="0.2703125" />
+        <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/drawable/border_event.xml" value="0.1707236842105263" />
+        <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/drawable/border_event_error.xml" value="0.1707236842105263" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/drawable/border_item_task.xml" value="0.2703125" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/drawable/border_recycler_background.xml" value="0.2703125" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/drawable/border_red.xml" value="0.2703125" />
