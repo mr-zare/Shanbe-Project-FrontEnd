@@ -2,7 +2,6 @@ package com.example;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,14 +11,10 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.DataBase.tasksDB;
 import com.example.entity.Event;
-import com.example.entity.Session;
-import com.example.entity.Task;
 import com.example.myapplication.R;
 import com.example.webService.EventAPI;
 import com.example.webService.TaskAPI;
-import com.example.webService.TaskSession;
 
 import java.util.ArrayList;
 
@@ -49,13 +44,13 @@ public class AddEvent  extends AppCompatActivity {
     String descriptionStr;
     String userToken;
 
+
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_event);
         getSupportActionBar().hide();
         init();
-
     }
 
     public void init()
@@ -66,12 +61,6 @@ public class AddEvent  extends AppCompatActivity {
         privacy = findViewById(R.id.privacyevent);
         description = findViewById(R.id.descript);
         addEvent = findViewById(R.id.addEventButton);
-
-        titleStr = title.toString();
-        categoryStr = category.toString();
-        locationStr = location.toString();
-        privacyStr = privacy.toString();
-        descriptionStr = description.toString();
 
         SharedPreferences sharedPreferences = getSharedPreferences("authentication", MODE_PRIVATE);
         userToken = sharedPreferences.getString("token", "");
@@ -90,6 +79,12 @@ public class AddEvent  extends AppCompatActivity {
     }
 
     public void AddEvent(View view) {
+        titleStr = title.getText().toString();
+        categoryStr = category.getSelectedItem().toString();
+        locationStr = location.getSelectedItem().toString();
+        privacyStr = privacy.getSelectedItem().toString();
+        descriptionStr = description.getText().toString();
+
         boolean valid = true;
         if(titleStr.equals(""))
         {
@@ -124,8 +119,8 @@ public class AddEvent  extends AppCompatActivity {
 
         if(valid)
         {
-            Session session = new Session("20_2021-12-14_18:30");
-            ArrayList<Session> sessions = new ArrayList<>();
+            String session = "20_2021-12-14_18:30";
+            ArrayList<String> sessions = new ArrayList<>();
             sessions.add(session);
             boolean pv = false;
             if(privacyStr.equals("Public"))
