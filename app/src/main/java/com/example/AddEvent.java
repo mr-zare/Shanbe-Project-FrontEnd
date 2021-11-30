@@ -7,16 +7,27 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.DataBase.tasksDB;
+import com.example.entity.Event;
+import com.example.entity.Session;
+import com.example.entity.Task;
 import com.example.myapplication.R;
 import com.example.webService.EventAPI;
 import com.example.webService.TaskAPI;
+import com.example.webService.TaskSession;
+
+import java.util.ArrayList;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -113,7 +124,46 @@ public class AddEvent  extends AppCompatActivity {
 
         if(valid)
         {
+            Session session = new Session("20_2021-12-14_18:30");
+            ArrayList<Session> sessions = new ArrayList<>();
+            sessions.add(session);
+            boolean pv = false;
+            if(privacyStr.equals("Public"))
+            {
+                pv = false;
+            }
+            else if(privacyStr.equals("Private"))
+            {
+                pv = true;
+            }
+            Event newEvent = new Event(userToken, titleStr,pv, categoryStr, descriptionStr, false, locationStr, sessions);
+            Call<Event> callBack = eventAPI.event_create("token "+userToken,newEvent);
+            callBack.enqueue(new Callback<Event>() {
+                @Override
+                public void onResponse(Call<Event> call, Response<Event> response) {
+                    if(!response.isSuccessful())
+                    {
+                        CustomeAlertDialog errorConnecting = new CustomeAlertDialog(AddEvent.this,"error","there is a problem connecting to server");
+                    }
+                    else{
+                        String code = Integer.toString(response.code());
+                        Event addedEvent = response.body();
+                        Toast.makeText(AddEvent.this, code, Toast.LENGTH_SHORT).show();
+                        CustomeAlertDialog saved = new CustomeAlertDialog(AddEvent.this,"Successful","event saved");
+                        saved.btnOk.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                finish();
+                            }
+                        });
+                    }
+                }
 
+                @Override
+                public void onFailure(Call<Event> call, Throwable t) {
+                    CustomeAlertDialog errorConnecting = new CustomeAlertDialog(AddEvent.this,"Error","there is a problem connecting to server");
+                }
+            });
         }
     }
 }

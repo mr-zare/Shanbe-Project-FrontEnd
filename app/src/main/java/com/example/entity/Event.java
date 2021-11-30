@@ -1,5 +1,7 @@
 package com.example.entity;
 
+import java.util.ArrayList;
+
 public class Event {
     String user_token;
     String title;
@@ -8,14 +10,14 @@ public class Event {
     String description;
     boolean isVirtual;
     String location;
-    Session sessions;
+    ArrayList<Session> sessions;
 
     int id;
     String event_token;
     String time;
 
 
-    public Event(String user_token, String title, boolean privacy, String category, String description, boolean isVirtual, String location, Session sessions) {
+    public Event(String user_token, String title, boolean privacy, String category, String description, boolean isVirtual, String location, ArrayList<Session> sessions) {
         this.user_token = user_token;
         this.title = title;
         this.privacy = privacy;
@@ -26,7 +28,7 @@ public class Event {
         this.sessions = sessions;
     }
 
-    public Event(String user_token, String title, boolean privacy, String category, String description, boolean isVirtual, String location, Session sessions, int id, String event_token, String time) {
+    public Event(String user_token, String title, boolean privacy, String category, String description, boolean isVirtual, String location, ArrayList<Session> sessions, int id, String event_token, String time) {
         this.user_token = user_token;
         this.title = title;
         this.privacy = privacy;
@@ -96,11 +98,11 @@ public class Event {
         this.location = location;
     }
 
-    public Session getSessions() {
+    public ArrayList<Session> getSessions() {
         return sessions;
     }
 
-    public void setSessions(Session sessions) {
+    public void setSessions(ArrayList<Session> sessions) {
         this.sessions = sessions;
     }
 
