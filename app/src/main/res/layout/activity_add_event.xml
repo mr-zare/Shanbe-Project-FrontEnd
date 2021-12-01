@@ -210,7 +210,9 @@
             android:layout_height="96dp"
             android:layout_marginStart="28dp"
             android:layout_marginTop="84dp"
-            android:background="@drawable/descripicon"
+            android:src="@drawable/descripicon"
+            app:layout_constraintEnd_toStartOf="@+id/descriptionSpace"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/privacylayout"></ImageView>
     </androidx.constraintlayout.widget.ConstraintLayout>

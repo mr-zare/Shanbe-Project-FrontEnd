@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.entity.Event;
 import com.example.myapplication.R;
@@ -44,6 +45,12 @@ public class AddEvent  extends AppCompatActivity {
     String descriptionStr;
     String userToken;
 
+    ConstraintLayout titleSpace;
+    ConstraintLayout categorySpace;
+    ConstraintLayout privacySpace;
+    ConstraintLayout locationSpace;
+    ConstraintLayout descriptionSpace;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -61,6 +68,13 @@ public class AddEvent  extends AppCompatActivity {
         privacy = findViewById(R.id.privacyevent);
         description = findViewById(R.id.descript);
         addEvent = findViewById(R.id.addEventButton);
+
+        titleSpace = findViewById(R.id.titleSpace);
+        categorySpace = findViewById(R.id.categorySpace);
+        privacySpace = findViewById(R.id.privacylayout);
+        locationSpace = findViewById(R.id.locationSpace);
+        descriptionSpace = findViewById(R.id.descriptionSpace);
+
 
         SharedPreferences sharedPreferences = getSharedPreferences("authentication", MODE_PRIVATE);
         userToken = sharedPreferences.getString("token", "");
@@ -89,31 +103,31 @@ public class AddEvent  extends AppCompatActivity {
         if(titleStr.equals(""))
         {
             CustomeAlertDialog titleEmpyt = new CustomeAlertDialog(this,"Error","please fill the title field");
-            title.setBackgroundResource(R.drawable.border_event_error);
+            titleSpace.setBackgroundResource(R.drawable.border_event_error);
             valid = false;
         }
         if(categoryStr.equals(""))
         {
             CustomeAlertDialog categortyEmpyt = new CustomeAlertDialog(this,"Error","please fill the category field");
-            category.setBackgroundResource(R.drawable.border_event_error);
+            categorySpace.setBackgroundResource(R.drawable.border_event_error);
             valid = false;
         }
         if(locationStr.equals(""))
         {
             CustomeAlertDialog locationEmpyt = new CustomeAlertDialog(this,"Error","please fill the location field");
-            location.setBackgroundResource(R.drawable.border_event_error);
+            locationSpace.setBackgroundResource(R.drawable.border_event_error);
             valid = false;
         }
         if(privacyStr.equals(""))
         {
             CustomeAlertDialog privacyEmpyt = new CustomeAlertDialog(this,"Error","please fill the privacy field");
-            privacy.setBackgroundResource(R.drawable.border_event_error);
+            privacySpace.setBackgroundResource(R.drawable.border_event_error);
             valid = false;
         }
         if(descriptionStr.equals(""))
         {
             CustomeAlertDialog privacyEmpyt = new CustomeAlertDialog(this,"Error","please fill the descrption field");
-            description.setBackgroundResource(R.drawable.border_event_error);
+            descriptionSpace.setBackgroundResource(R.drawable.border_event_error);
             valid = false;
         }
 
