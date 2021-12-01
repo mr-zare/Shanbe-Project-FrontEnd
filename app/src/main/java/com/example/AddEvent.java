@@ -1,5 +1,6 @@
 package com.example;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.format.Time;
@@ -190,6 +191,8 @@ public class AddEvent  extends AppCompatActivity {
                         saved.btnOk.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
+                                Intent event = new Intent(AddEvent.this, event_activity.class);
+                                startActivity(event);
                                 finish();
                             }
                         });
