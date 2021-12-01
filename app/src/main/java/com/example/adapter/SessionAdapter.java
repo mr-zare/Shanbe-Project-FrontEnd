@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -53,8 +54,7 @@ public class SessionAdapter extends BaseAdapter {
         TextView limit = view.findViewById(R.id.session_limit);
         TextView date = view.findViewById(R.id.date);
         TextView time = view.findViewById(R.id.time);
-        Button delete = view.findViewById(R.id.deleteBtn);
-
+        ImageView delete=view.findViewById(R.id.deletese);
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
