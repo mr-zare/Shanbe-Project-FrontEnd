@@ -5,14 +5,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.example.entity.Session;
 import com.example.entity.Task;
 import com.example.myapplication.R;
 
 import java.util.List;
+import java.util.Locale;
 
 public class SessionAdapter extends BaseAdapter {
 
@@ -47,53 +50,71 @@ public class SessionAdapter extends BaseAdapter {
         }
         Session currentSession = list.get(i);
 
-        EditText limit = view.findViewById(R.id.session_limit);
-        Spinner year = view.findViewById(R.id.date_year);
-        Spinner month = view.findViewById(R.id.date_month);
-        Spinner day = view.findViewById(R.id.date_year);
-        Spinner hour = view.findViewById(R.id.hour);
-        Spinner min = view.findViewById(R.id.min);
+        TextView limit = view.findViewById(R.id.session_limit);
+        TextView date = view.findViewById(R.id.date);
+        TextView time = view.findViewById(R.id.time);
+        Button delete = view.findViewById(R.id.deleteBtn);
 
-        int yearIndex = 0;
-        int monthIndex = 0;
-        int dayIndex = 0;
-        int hourIndex = 0;
-        int minIndex = 0;
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                list.remove(i);
+                notifyDataSetChanged();
+            }
+        });
 
-        String[] yearArray = context.getResources().getStringArray(R.array.year);
-        String[] monthArray = context.getResources().getStringArray(R.array.year);
-        String[] dayArray = context.getResources().getStringArray(R.array.year);
-        String[] hourArray = context.getResources().getStringArray(R.array.year);
-        String[] minArray = context.getResources().getStringArray(R.array.year);
+//        int yearIndex = 0;
+//        int monthIndex = 0;
+//        int dayIndex = 0;
+//        int hourIndex = 0;
+//        int minIndex = 0;
 
-        yearIndex = SearchIndex(currentSession.getYear().toString(),yearArray);
-        monthIndex = SearchIndex(currentSession.getMonth().toString(),monthArray);
-        dayIndex = SearchIndex(currentSession.getDay().toString(),dayArray);
-        hourIndex = SearchIndex(currentSession.getHour().toString(),hourArray);
-        minIndex = SearchIndex(currentSession.getMin().toString(),minArray);
+//        String[] yearArray = context.getResources().getStringArray(R.array.year);
+//        String[] monthArray = context.getResources().getStringArray(R.array.year);
+//        String[] dayArray = context.getResources().getStringArray(R.array.year);
+//        String[] hourArray = context.getResources().getStringArray(R.array.year);
+//        String[] minArray = context.getResources().getStringArray(R.array.year);
+//
+//        yearIndex = SearchIndex(currentSession.getYear().toString(),yearArray);
+//        monthIndex = SearchIndex(currentSession.getMonth().toString(),monthArray);
+//        dayIndex = SearchIndex(currentSession.getDay().toString(),dayArray);
+//        hourIndex = SearchIndex(currentSession.getHour().toString(),hourArray);
+//        minIndex = SearchIndex(currentSession.getMin().toString(),minArray);
 
         limit.setText(currentSession.getLimit());
-        year.setSelection(yearIndex);
-        month.setSelection(monthIndex);
-        day.setSelection(dayIndex);
-        hour.setSelection(hourIndex);
-        min.setSelection(minIndex);
+
+        String year = currentSession.getYear().toString();
+        String month = currentSession.getMonth().toString();
+        String day = currentSession.getDay().toString();
+        String dateStr = year+"/"+month+"/"+day;
+
+        String hour = currentSession.getHour().toString();
+        String min = currentSession.getMin().toString();
+        String timeStr = hour+":"+min;
+
+        date.setText(dateStr);
+        time.setText(timeStr);
+//        year.setSelection(yearIndex);
+//        month.setSelection(monthIndex);
+//        day.setSelection(dayIndex);
+//        hour.setSelection(hourIndex);
+//        min.setSelection(minIndex);
 
         return view;
     }
 
 
-    public int SearchIndex(String str,String [] array)
-    {
-        int index = 0;
-        for(int i=0;i< array.length;i++)
-        {
-            if(str.equals(array[i]))
-            {
-                index =  i;
-                break;
-            }
-        }
-        return index;
-    }
+//    public int SearchIndex(String str,String [] array)
+//    {
+//        int index = 0;
+//        for(int i=0;i< array.length;i++)
+//        {
+//            if(str.equals(array[i]))
+//            {
+//                index =  i;
+//                break;
+//            }
+//        }
+//        return index;
+//    }
 }

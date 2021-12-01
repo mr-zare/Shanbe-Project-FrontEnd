@@ -61,14 +61,14 @@
     </string-array>
 
     <string-array name="year">
-        <item></item>
+        <item>yyyy</item>
         <item>2020</item>
         <item>2021</item>
         <item>2022</item>
 
     </string-array>
     <string-array name="month">
-        <item></item>
+        <item>mm</item>
         <item>01</item>
         <item>02</item>
         <item>03</item>
@@ -83,7 +83,7 @@
         <item>12</item>
     </string-array>
     <string-array name="day">
-        <item></item>
+        <item>dd</item>
         <item>01</item>
         <item>02</item>
         <item>03</item>
@@ -117,7 +117,7 @@
         <item>31</item>
     </string-array>
     <string-array name="hour">
-        <item></item>
+        <item>hh</item>
         <item>00</item>
         <item>01</item>
         <item>02</item>
@@ -146,7 +146,7 @@
     </string-array>
 
     <string-array name="min">
-        <item></item>
+        <item>mm</item>
         <item>00</item>
         <item>01</item>
         <item>02</item>
