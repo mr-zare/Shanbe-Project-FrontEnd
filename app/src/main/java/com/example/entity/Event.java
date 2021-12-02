@@ -42,6 +42,16 @@ public class Event {
         this.time = time;
     }
 
+    public Event(String title, String category, String description, String location, int id, String event_token, String time) {
+        this.title = title;
+        this.category = category;
+        this.description = description;
+        this.location = location;
+        this.id = id;
+        this.event_token = event_token;
+        this.time = time;
+    }
+
     public String getUser_token() {
         return user_token;
     }

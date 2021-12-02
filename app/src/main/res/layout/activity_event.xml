@@ -20,12 +20,12 @@
             android:background="@color/blue_background"
             android:drawableRight="@drawable/ic_baseline_search_24"
             android:hint="search here"
-            android:hintTextColor="#4E342E"
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
             android:textColor="@color/white"
             android:textColorHint="@color/white"></EditText>
         <Button
+            android:id="@+id/filterBtn"
             android:layout_width="120dp"
             android:layout_height="50dp"
             android:layout_gravity="right"
