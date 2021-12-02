@@ -7,20 +7,26 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import com.example.entity.Event;
+import com.example.entity.Task;
 import com.example.myapplication.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class eventAdapter extends BaseAdapter {
+public class eventAdapter extends BaseAdapter implements Filterable {
     private Context context;
     private List<Event> list;
+    private List<Event> temp;
 
     public eventAdapter(Context context, List<Event> list) {
         this.context = context;
         this.list = list;
+        this.temp = list;
     }
 
     @Override
@@ -53,6 +59,12 @@ public class eventAdapter extends BaseAdapter {
         TextView desc = view.findViewById(R.id.descEventView);
         Button joinBtn = view.findViewById(R.id.joinBtn);
 
+
+        title.setText(currentEvent.getTitle().toString());
+        date.setText(currentEvent.getTime().toString());
+        location.setText(currentEvent.getLocation().toString());
+        desc.setText(currentEvent.getDescription().toString());
+
         joinBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -62,5 +74,34 @@ public class eventAdapter extends BaseAdapter {
         });
 
         return view;
+    }
+
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                FilterResults filterResults = new FilterResults();
+
+                ArrayList<Event> filterList = new ArrayList<>();
+                for(Event item:temp)
+                {
+                    if(item.getTitle().toString().toLowerCase().contains(charSequence.toString().toLowerCase()))
+                    {
+                        filterList.add(item);
+                    }
+                }
+
+                filterResults.count = filterList.size();
+                filterResults.values = filterList;
+
+                return  filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                list = (List<Event>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
     }
 }
