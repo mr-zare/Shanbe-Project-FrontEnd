@@ -48,8 +48,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:gravity="center"
-            android:textColor="@color/colorPrimaryDark"
             android:text="Title by LastName"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="22sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -62,9 +62,9 @@
             android:layout_width="170dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="50dp"
-            android:textColor="@color/colorPrimaryDark"
+            android:layout_marginTop="48dp"
             android:text="2021-05-04_10:30am"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="17sp"
 
             app:layout_constraintStart_toEndOf="@+id/logoid"
@@ -75,31 +75,34 @@
             android:layout_width="170dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="80dp"
-            android:textColor="@color/colorPrimaryDark"
             android:text="Tehran"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="17sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/logoid"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/dateTimeEventView" />
 
         <TextView
             android:id="@+id/descEventView"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="32dp"
             android:maxLength="60"
-            android:textColor="@color/colorPrimaryDark"
             android:text="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/logoid"
-            app:layout_constraintTop_toBottomOf="@+id/dateTimeEventView" />
+            app:layout_constraintTop_toBottomOf="@+id/LocationEventView" />
 
         <Button
             android:id="@+id/joinBtn"
             android:layout_width="79dp"
             android:layout_height="38dp"
-            android:layout_marginEnd="56dp"
+            android:layout_marginEnd="44dp"
+            android:layout_marginBottom="2dp"
             android:backgroundTint="@color/recycler_background"
             android:text="Join"
             android:textColor="@color/colorPrimaryDark"

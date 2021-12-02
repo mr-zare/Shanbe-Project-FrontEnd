@@ -9,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.entity.Event;
@@ -58,12 +59,35 @@ public class eventAdapter extends BaseAdapter implements Filterable {
         TextView location = view.findViewById(R.id.LocationEventView);
         TextView desc = view.findViewById(R.id.descEventView);
         Button joinBtn = view.findViewById(R.id.joinBtn);
+        ImageView imageViewCategory = view.findViewById(R.id.categoryImageItemEventView);
 
 
         title.setText(currentEvent.getTitle().toString());
         date.setText(currentEvent.getTime().toString());
         location.setText(currentEvent.getLocation().toString());
         desc.setText(currentEvent.getDescription().toString());
+
+        String category = currentEvent.getCategory();
+
+        if(category.equals("Sport"))
+        {
+            imageViewCategory.setImageResource(R.drawable.sport4);
+        }
+        else if(category.equals("Study")){
+            imageViewCategory.setImageResource(R.drawable.study1);
+        }
+        else if(category.equals("Meeting"))
+        {
+            imageViewCategory.setImageResource(R.drawable.meeting1);
+        }
+        else if(category.equals("Work"))
+        {
+            imageViewCategory.setImageResource(R.drawable.work1);
+        }
+        else if(category.equals("hang out"))
+        {
+            imageViewCategory.setImageResource(R.drawable.hang_out2);
+        }
 
         joinBtn.setOnClickListener(new View.OnClickListener() {
             @Override
