@@ -62,8 +62,11 @@ public class eventAdapter extends BaseAdapter implements Filterable {
         ImageView imageViewCategory = view.findViewById(R.id.categoryImageItemEventView);
 
 
+        String dateTime = currentEvent.getTime().toString();
+        String [] dateTimeInfo = dateTime.split("T");
+        dateTime = dateTimeInfo[0];
         title.setText(currentEvent.getTitle().toString());
-        date.setText(currentEvent.getTime().toString());
+        date.setText(dateTime);
         location.setText(currentEvent.getLocation().toString());
         desc.setText(currentEvent.getDescription().toString());
 
@@ -128,4 +131,6 @@ public class eventAdapter extends BaseAdapter implements Filterable {
             }
         };
     }
+
+
 }

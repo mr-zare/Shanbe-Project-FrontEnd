@@ -10,9 +10,11 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.adapter.eventAdapter;
 import com.example.adapter.taskAdapter;
@@ -66,6 +68,16 @@ public class event_activity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable editable) {
 
+            }
+        });
+
+        eventsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(event_activity.this, "join event page", Toast.LENGTH_SHORT).show();
+                //Intent intent = new Intent(event_activity.this, joinEvent.class);
+                //intent.putExtra("event_token", eventsListView.getItemAtPosition(i).);
+                //startActivity(intent);
             }
         });
     }
@@ -128,4 +140,6 @@ public class event_activity extends AppCompatActivity {
         Intent intent = new Intent(event_activity.this,FilterEvents.class);
         startActivity(intent);
     }
+
+
 }
