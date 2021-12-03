@@ -152,9 +152,6 @@ public class MainActivity extends AppCompatActivity {
                         }
                         else{
                             String code = Integer.toString(response.code());
-                            User user = response.body();
-                            Log.i("PHOTO","SUCCED");
-                            Log.i("IMAGE URL",user.getAvatar().toString());
                             Toast.makeText(MainActivity.this, "Profile Edited!", Toast.LENGTH_SHORT).show();
 
                         }
