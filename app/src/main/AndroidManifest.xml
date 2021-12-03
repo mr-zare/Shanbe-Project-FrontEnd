@@ -17,12 +17,7 @@
         android:theme="@style/Theme.MyApplication">
         <activity
             android:name="com.example.event_activity"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:exported="true">
         </activity>
         <activity
             android:name="com.example.EditProfile"
@@ -42,6 +37,11 @@
         <activity
             android:name="com.example.login"
             android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
         </activity>
 
