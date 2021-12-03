@@ -219,6 +219,9 @@ public class AddEvent  extends AppCompatActivity {
         String limitStr = limit.getText().toString();
         String yearStr = year.getSelectedItem().toString();
         String monthStr = month.getSelectedItem().toString();
+        int monthNumber = Integer.parseInt(monthStr);
+        monthNumber--;
+        monthStr = Integer.toString(monthNumber);
         String dayStr = day.getSelectedItem().toString();
         String hourStr = hour.getSelectedItem().toString();
         String minStr = min.getSelectedItem().toString();

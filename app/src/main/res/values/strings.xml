@@ -12,7 +12,7 @@
     <string name="calendar">Calendar</string>
     <string name="empty"> EMPTY</string>
     <string-array name="category">
-        <item></item>
+        <item>category</item>
         <item>Sport</item>
         <item>Study</item>
         <item>Meeting</item>
@@ -26,7 +26,7 @@
         <item>Private</item>
     </string-array>
     <string-array name="location">
-        <item></item>
+        <item>location</item>
         <item>azarbayjan sharqi</item>
         <item>azarbayjan gharbi</item>
         <item>Ardabil</item>

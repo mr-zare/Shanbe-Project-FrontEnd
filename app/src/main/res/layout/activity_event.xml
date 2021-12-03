@@ -7,6 +7,17 @@
     tools:context="com.example.event_activity"
     android:orientation="vertical">
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/filterBtn"
+        android:onClick="goTofilterPage"
+        android:layout_gravity="top|right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="90dp"
+        android:backgroundTint="@color/blue_background"
+        android:src="@drawable/ic_baseline_filter_alt_24"
+        />
     <LinearLayout
 
         android:layout_width="match_parent"
@@ -24,21 +35,11 @@
             android:paddingRight="30dp"
             android:textColor="@color/white"
             android:textColorHint="@color/white"></EditText>
-        <Button
-            android:id="@+id/filterBtn"
-            android:layout_width="120dp"
-            android:layout_height="50dp"
-            android:layout_gravity="right"
-            android:layout_marginRight="10dp"
-            android:backgroundTint="@color/blue_background"
-            android:text="Filter"
-            android:drawableLeft="@drawable/ic_baseline_filter_alt_24"
-            />
+
         <ListView
             android:id="@+id/eventsList"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
+            android:layout_height="match_parent">
 
         </ListView>
     </LinearLayout>

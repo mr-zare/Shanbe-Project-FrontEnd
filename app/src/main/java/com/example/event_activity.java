@@ -78,7 +78,6 @@ public class event_activity extends AppCompatActivity {
     public void init()
     {
         search = findViewById(R.id.searchEventEditText);
-        filterBtn = findViewById(R.id.filterBtn);
         SharedPreferences sharedPreferences = getSharedPreferences("authentication", MODE_PRIVATE);
         userToken = sharedPreferences.getString("token", "");
         eventsListView = findViewById(R.id.eventsList);
@@ -123,5 +122,10 @@ public class event_activity extends AppCompatActivity {
                 CustomeAlertDialog getTasksDayError = new CustomeAlertDialog(event_activity.this,"Error","there is a problem with your internet connection");
             }
         });
+    }
+
+    public void goTofilterPage(View view) {
+        Intent intent = new Intent(event_activity.this,FilterEvents.class);
+        startActivity(intent);
     }
 }
