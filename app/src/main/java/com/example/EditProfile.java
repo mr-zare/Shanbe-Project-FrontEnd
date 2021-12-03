@@ -22,7 +22,12 @@ import com.example.myapplication.R;
 import com.example.webService.UserAPI;
 import com.example.webService.UserSession;
 
+import java.io.File;
+
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
+import okhttp3.RequestBody;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;

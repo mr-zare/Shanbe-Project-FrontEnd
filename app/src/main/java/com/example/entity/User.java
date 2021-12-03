@@ -2,6 +2,8 @@ package com.example.entity;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.File;
+
 public class User {
     @SerializedName("id")
     private int id;
@@ -33,6 +35,8 @@ public class User {
     @SerializedName("avatar")
     private String avatar;
 
+
+
     public String getPhone_number() {
         return phone_number;
     }
@@ -45,7 +49,7 @@ public class User {
         this.avatar = avatar;
     }
 
-    public String getAvatar() {
+    public Object getAvatar() {
         return avatar;
     }
 
@@ -80,6 +84,14 @@ public class User {
         this.last_name = last_name;
         this.avatar = avatar;
     }
+    public User(int id , String email, String first_name, String last_name , String avatar ,String phone_number) {
+        this.phone_number=phone_number;
+        this.id =id;
+        this.email = email;
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.avatar = avatar;
+    }
 
     public User(int id, String username, String email) {
         this.id = id;
@@ -90,6 +102,13 @@ public class User {
     public User(String username, String password) {
         this.username = username;
         this.password = password;
+    }
+    public User(String first_name,String last_name,String email,String phone_number,String avatar){
+        this.phone_number=phone_number;
+        this.email = email;
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.avatar=avatar;
     }
     public User(String first_name,String last_name,String email,String phone_number){
         this.phone_number=phone_number;
