@@ -75,8 +75,9 @@ public class event_activity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Toast.makeText(event_activity.this, "join event page", Toast.LENGTH_SHORT).show();
+                Event currentEvent = (Event) adapterView.getItemAtPosition(i);
                 Intent intent = new Intent(event_activity.this, JoinEvent.class);
-                intent.putExtra("event_token", "");
+                intent.putExtra("event_token", currentEvent.getEvent_token());
                 startActivity(intent);
             }
         });
