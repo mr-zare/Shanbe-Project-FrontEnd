@@ -97,7 +97,8 @@ public class eventAdapter extends BaseAdapter implements Filterable {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, JoinEvent.class);
-                intent.putExtra("event_token", "");
+                String event_token = currentEvent.getEvent_token().toString();
+                intent.putExtra("event_token", event_token);
                 context.startActivity(intent);
             }
         });

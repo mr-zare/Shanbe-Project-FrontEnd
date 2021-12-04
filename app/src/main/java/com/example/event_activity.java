@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -78,6 +79,8 @@ public class event_activity extends AppCompatActivity {
                 Event currentEvent = (Event) adapterView.getItemAtPosition(i);
                 Intent intent = new Intent(event_activity.this, JoinEvent.class);
                 intent.putExtra("event_token", currentEvent.getEvent_token());
+                //Toast.makeText(event_activity.this, currentEvent.getEvent_token(), Toast.LENGTH_SHORT).show();
+                //Log.e("Thissss",currentEvent.getEvent_token());
                 startActivity(intent);
             }
         });
