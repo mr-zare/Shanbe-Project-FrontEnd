@@ -6,7 +6,10 @@ public class Session {
     private String day;
     private String hour;
     private String min;
-    private String limit;
+    private int limit;
+    private int id;
+    private String event_id;
+    private String time;
 
     public Session(String year, String month, String day, String hour, String min, String limit) {
         this.year = year;
@@ -14,6 +17,12 @@ public class Session {
         this.day = day;
         this.hour = hour;
         this.min = min;
+        this.limit = Integer.parseInt(limit);
+    }
+    public Session(int id,String event_id,String time,int limit){
+        this.id=id;
+        this.event_id=event_id;
+        this.time = time;
         this.limit = limit;
     }
 
@@ -57,11 +66,8 @@ public class Session {
         this.min = min;
     }
 
-    public String getLimit() {
+    public int getLimit() {
         return limit;
     }
 
-    public void setLimit(String limit) {
-        this.limit = limit;
-    }
 }

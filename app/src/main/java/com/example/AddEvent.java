@@ -155,7 +155,7 @@ public class AddEvent  extends AppCompatActivity {
             {
                 String session = "";
                 Session currentSession = sessions.get(i);
-                String limit = currentSession.getLimit();
+                String limit = String.valueOf(currentSession.getLimit());
                 String year = currentSession.getYear();
                 String month = currentSession.getMonth();
                 String day = currentSession.getDay();

@@ -11,6 +11,7 @@ public class Event {
     boolean isVirtual;
     String location;
     ArrayList<String> sessions;
+    ArrayList<Session> sessionsArr;
 
     int id;
     String event_token;
@@ -26,6 +27,10 @@ public class Event {
         this.isVirtual = isVirtual;
         this.location = location;
         this.sessions = sessions;
+    }
+
+    public ArrayList<Session> getSessionsArr() {
+        return sessionsArr;
     }
 
     public Event(String user_token, String title, boolean privacy, String category, String description, boolean isVirtual, String location, ArrayList<String> sessions, int id, String event_token, String time) {
@@ -50,6 +55,16 @@ public class Event {
         this.id = id;
         this.event_token = event_token;
         this.time = time;
+    }
+    public Event(String title, String category, String description, String location, int id, String event_token, String time,ArrayList<Session> sessions) {
+        this.title = title;
+        this.category = category;
+        this.description = description;
+        this.location = location;
+        this.id = id;
+        this.event_token = event_token;
+        this.time = time;
+        this.sessionsArr = sessions;
     }
 
     public String getUser_token() {
