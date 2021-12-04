@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name="com.example.ShanbehApp"
@@ -16,9 +16,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
+            android:name="com.example.JoinEvent"
+            android:exported="false" />
+        <activity
             android:name="com.example.event_activity"
-            android:exported="true">
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name="com.example.EditProfile"
             android:exported="false" />
@@ -42,18 +44,15 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-
         <activity
             android:name="com.example.AddEvent"
-            android:exported="true">
-        </activity>
+            android:exported="true"></activity>
 
         <receiver
             android:name="com.example.BroadCast.OnAlarmReceiver"
             android:enabled="true"
-            android:exported="true"></receiver>
+            android:exported="true" />
         <receiver
             android:name="com.example.BroadCast.OnBootReceiver"
             android:enabled="true"
@@ -83,16 +82,16 @@
             android:exported="true" />
         <activity
             android:name="com.example.AddTask"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name="com.example.FilterEvents"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name="com.example.SignUp"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name="com.example.MainActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
 
         <meta-data
             android:name="preloaded_fonts"

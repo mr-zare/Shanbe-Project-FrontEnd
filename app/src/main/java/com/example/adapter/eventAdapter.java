@@ -2,6 +2,7 @@ package com.example.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +13,10 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.JoinEvent;
 import com.example.entity.Event;
 import com.example.entity.Task;
+import com.example.event_activity;
 import com.example.myapplication.R;
 
 import java.util.ArrayList;
@@ -60,8 +63,6 @@ public class eventAdapter extends BaseAdapter implements Filterable {
         TextView desc = view.findViewById(R.id.descEventView);
         Button joinBtn = view.findViewById(R.id.joinBtn);
         ImageView imageViewCategory = view.findViewById(R.id.categoryImageItemEventView);
-
-
         String dateTime = currentEvent.getTime().toString();
         String [] dateTimeInfo = dateTime.split("T");
         dateTime = dateTimeInfo[0];
@@ -95,8 +96,9 @@ public class eventAdapter extends BaseAdapter implements Filterable {
         joinBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Intent intent = new Intent(context,);
-                //todo
+                Intent intent = new Intent(context, JoinEvent.class);
+                intent.putExtra("event_token", "");
+                context.startActivity(intent);
             }
         });
 
