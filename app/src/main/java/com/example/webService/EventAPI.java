@@ -31,7 +31,7 @@ public interface EventAPI {
     Call<Event> event_create(@Header("Authorization") String user_token, @Body Event event);
 
     @POST("enter-event-token/")
-    Call<Event> enter_event_token(@Header("Authorization") String event_token);
+    Call<Event> enter_event_token(@Header("Authorization") String event_token, @Body JsonObject body);
 
     @GET("event-get/")
     Call<List<Event>> event_get(@Header("Authorization") String user_token);

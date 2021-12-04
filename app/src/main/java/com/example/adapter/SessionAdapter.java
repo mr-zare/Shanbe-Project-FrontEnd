@@ -81,7 +81,7 @@ public class SessionAdapter extends BaseAdapter {
 //        hourIndex = SearchIndex(currentSession.getHour().toString(),hourArray);
 //        minIndex = SearchIndex(currentSession.getMin().toString(),minArray);
 
-        limit.setText(currentSession.getLimit());
+        limit.setText(String.valueOf(currentSession.getLimit()));
 
         String year = currentSession.getYear().toString();
         String month = currentSession.getMonth().toString();

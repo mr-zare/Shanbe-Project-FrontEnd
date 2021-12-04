@@ -18,6 +18,7 @@ import com.example.entity.User;
 import com.example.myapplication.R;
 import com.example.webService.EventAPI;
 import com.example.webService.TaskAPI;
+import com.google.gson.JsonObject;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -80,7 +81,9 @@ public class JoinEvent extends AppCompatActivity {
         }
         SharedPreferences shP = getSharedPreferences("userInformation", MODE_PRIVATE);
         String token = shP.getString("token", "");
-        Call<Event> callBack = eventAPI.enter_event_token("token "+ token);
+        JsonObject body = new JsonObject();
+        body.addProperty("event_token",extras.getString("token"));
+        Call<Event> callBack = eventAPI.enter_event_token("token "+ token,body);
         callBack.enqueue(new Callback<Event>() {
             @Override
             public void onResponse(Call<Event> call, Response<Event> response) {
