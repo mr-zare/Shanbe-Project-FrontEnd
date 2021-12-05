@@ -10,15 +10,21 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.adapter.SessionJoinAdapter;
+import com.example.adapter.eventAdapter;
 import com.example.entity.Event;
+import com.example.entity.Session;
 import com.example.entity.User;
 import com.example.myapplication.R;
 import com.example.webService.EventAPI;
 import com.example.webService.TaskAPI;
 import com.google.gson.JsonObject;
+
+import java.util.List;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -34,6 +40,9 @@ public class JoinEvent extends AppCompatActivity {
     Button joinButton;
     ImageView eventImage;
     EventAPI eventAPI;
+    List<Session> sessionList;
+    SessionJoinAdapter sessionAdap;
+    ListView listView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +55,7 @@ public class JoinEvent extends AppCompatActivity {
         location = findViewById(R.id.LocationJoinEvent);
         joinButton = findViewById(R.id.joinJoinEvent);
         eventImage = findViewById(R.id.categoryJoinImageItemEventView);
+        listView = findViewById(R.id.sessionsJoinListView);
         title.setText(extras.getString("title"));
         location.setText(extras.getString("location"));
         String category = extras.getString("category");
@@ -94,7 +104,10 @@ public class JoinEvent extends AppCompatActivity {
                 else{
                     String code = Integer.toString(response.code());
                     Event event = response.body();
-                    Log.i("RESID","RESID");
+                    sessionList = event.getSessionsArr();
+                    sessionAdap = new SessionJoinAdapter(JoinEvent.this,sessionList);
+
+                    listView.setAdapter(sessionAdap);
                 }
             }
 

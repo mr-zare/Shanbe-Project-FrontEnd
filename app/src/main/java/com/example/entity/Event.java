@@ -11,7 +11,7 @@ public class Event {
     boolean isVirtual;
     String location;
     ArrayList<String> sessions;
-    ArrayList<Session> sessionsArr;
+    ArrayList<Session> session_set;
 
     int id;
     String event_token;
@@ -30,7 +30,7 @@ public class Event {
     }
 
     public ArrayList<Session> getSessionsArr() {
-        return sessionsArr;
+        return session_set;
     }
 
     public Event(String user_token, String title, boolean privacy, String category, String description, boolean isVirtual, String location, ArrayList<String> sessions, int id, String event_token, String time) {
@@ -64,7 +64,7 @@ public class Event {
         this.id = id;
         this.event_token = event_token;
         this.time = time;
-        this.sessionsArr = sessions;
+        this.session_set = sessions;
     }
 
     public String getUser_token() {

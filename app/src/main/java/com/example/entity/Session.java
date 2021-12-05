@@ -10,6 +10,7 @@ public class Session {
     private int id;
     private String event_id;
     private String time;
+    private String session_token;
 
     public Session(String year, String month, String day, String hour, String min, String limit) {
         this.year = year;
@@ -19,11 +20,16 @@ public class Session {
         this.min = min;
         this.limit = Integer.parseInt(limit);
     }
-    public Session(int id,String event_id,String time,int limit){
+    public Session(int id,String session_token ,String event_id,String time,int limit){
         this.id=id;
         this.event_id=event_id;
         this.time = time;
         this.limit = limit;
+        this.session_token = session_token;
+    }
+
+    public String getTime() {
+        return time;
     }
 
     public String getYear() {
