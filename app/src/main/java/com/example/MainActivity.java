@@ -277,6 +277,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void EventClicked(MenuItem item) {
         Intent event = new Intent(MainActivity.this, event_activity.class);
+        event.putExtra("location","");
+        event.putExtra("category","");
+        event.putExtra("s_time","");
         startActivity(event);
     }
 

@@ -35,4 +35,7 @@ public interface EventAPI {
 
     @GET("event-get/")
     Call<List<Event>> event_get(@Header("Authorization") String user_token);
+
+    @POST("event-search/")
+    Call<List<Event>> event_search(@Header("Authorization") String user_token,@Body JsonObject jsonObject);
 }

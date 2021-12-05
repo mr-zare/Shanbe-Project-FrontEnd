@@ -44,6 +44,7 @@ public class event_activity extends AppCompatActivity {
     Button filterBtn;
     eventAdapter eventAdap;
     ListView eventsListView;
+    boolean isFiltered;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,9 +52,95 @@ public class event_activity extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_event);
+        Toast.makeText(this, "create", Toast.LENGTH_SHORT).show();
         init();
-        fillList();
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        Toast.makeText(this, "resume", Toast.LENGTH_SHORT).show();
+
+        String locationStr= "";
+        String categoryStr = "";
+        String date = "";
+
+        locationStr = getIntent().getStringExtra("location");
+        categoryStr = getIntent().getStringExtra("category");
+        date = getIntent().getStringExtra("s_time");
+
+        if(locationStr.length()==0 && categoryStr.length()==0 && date.length()==0)
+        {
+            fillList();
+        }
+        else{
+            JsonObject filter = new JsonObject();
+            if(locationStr.length()>=1)
+            {
+                filter.addProperty("location",locationStr);
+            }
+            if(categoryStr.length() >=1)
+            {
+                filter.addProperty("category",categoryStr);
+            }
+            if(date.length()>=1)
+            {
+                filter.addProperty("s_time",date);
+            }
+            filter.addProperty("privacy",false);
+            filter.addProperty("isVirtual",false);
+
+            HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+            interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+            OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
+
+            Retrofit searchEvent = new Retrofit.Builder()
+                    .baseUrl(TaskAPI.BASE_URL)
+                    .client(client)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+            eventAPI = searchEvent.create(EventAPI.class);
+
+            Call<List<Event>> callBack = eventAPI.event_search("token "+userToken,filter);
+            callBack.enqueue(new Callback<List<Event>>() {
+                @Override
+                public void onResponse(Call<List<Event>> call, Response<List<Event>> response) {
+                    if(!response.isSuccessful())
+                    {
+                        CustomeAlertDialog errorConnecting = new CustomeAlertDialog(event_activity.this,"error","there is a problem connecting to server");
+                    }
+                    else{
+                        String code = Integer.toString(response.code());
+                        List<Event> filteredEventList = response.body();
+                        Toast.makeText(event_activity.this, code, Toast.LENGTH_SHORT).show();
+
+                        eventAdap = new eventAdapter(event_activity.this,filteredEventList);
+
+                        eventsListView.setAdapter(eventAdap);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<List<Event>> call, Throwable t) {
+                    CustomeAlertDialog errorConnecting = new CustomeAlertDialog(event_activity.this,"error","there is a problem connecting to server");
+                }
+            });
+
+        }
+    }
+
+    public void goToAddEvent(View view) {
+        Intent intent = new Intent(event_activity.this,AddEvent.class);
+        startActivity(intent);
+    }
+
+    public void init()
+    {
+        search = findViewById(R.id.searchEventEditText);
+        SharedPreferences sharedPreferences = getSharedPreferences("authentication", MODE_PRIVATE);
+        userToken = sharedPreferences.getString("token", "");
+        eventsListView = findViewById(R.id.eventsList);
 
         search.addTextChangedListener(new TextWatcher() {
             @Override
@@ -71,33 +158,9 @@ public class event_activity extends AppCompatActivity {
 
             }
         });
-
-        eventsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(event_activity.this, "join event page", Toast.LENGTH_SHORT).show();
-                Event currentEvent = (Event) adapterView.getItemAtPosition(i);
-                Intent intent = new Intent(event_activity.this, JoinEvent.class);
-                intent.putExtra("event_token", currentEvent.getEvent_token());
-                //Toast.makeText(event_activity.this, currentEvent.getEvent_token(), Toast.LENGTH_SHORT).show();
-                //Log.e("Thissss",currentEvent.getEvent_token());
-                startActivity(intent);
-            }
-        });
     }
 
-    public void goToAddEvent(View view) {
-        Intent intent = new Intent(event_activity.this,AddEvent.class);
-        startActivity(intent);
-    }
 
-    public void init()
-    {
-        search = findViewById(R.id.searchEventEditText);
-        SharedPreferences sharedPreferences = getSharedPreferences("authentication", MODE_PRIVATE);
-        userToken = sharedPreferences.getString("token", "");
-        eventsListView = findViewById(R.id.eventsList);
-    }
     public void fillList()
     {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
@@ -144,6 +207,4 @@ public class event_activity extends AppCompatActivity {
         Intent intent = new Intent(event_activity.this,FilterEvents.class);
         startActivity(intent);
     }
-
-
 }
