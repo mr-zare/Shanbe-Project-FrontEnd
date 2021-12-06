@@ -20,6 +20,7 @@ import com.example.entity.Session;
 import com.example.entity.Task;
 import com.example.myapplication.R;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -29,134 +30,15 @@ import java.util.Locale;
 public class SessionJoinAdapter extends BaseAdapter {
 
     private Context context;
+    private boolean flag;
     private List<Session> list;
     private List<Session> list_selected;
 
     public SessionJoinAdapter(Context context, List<Session> list) {
         this.context = context;
         this.list = list;
-        list_selected = new List<Session>() {
-            @Override
-            public int size() {
-                return 0;
-            }
-
-            @Override
-            public boolean isEmpty() {
-                return false;
-            }
-
-            @Override
-            public boolean contains(@Nullable Object o) {
-                return false;
-            }
-
-            @NonNull
-            @Override
-            public Iterator<Session> iterator() {
-                return null;
-            }
-
-            @NonNull
-            @Override
-            public Object[] toArray() {
-                return new Object[0];
-            }
-
-            @NonNull
-            @Override
-            public <T> T[] toArray(@NonNull T[] a) {
-                return null;
-            }
-
-            @Override
-            public boolean add(Session session) {
-                return false;
-            }
-
-            @Override
-            public boolean remove(@Nullable Object o) {
-                return false;
-            }
-
-            @Override
-            public boolean containsAll(@NonNull Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public boolean addAll(@NonNull Collection<? extends Session> c) {
-                return false;
-            }
-
-            @Override
-            public boolean addAll(int index, @NonNull Collection<? extends Session> c) {
-                return false;
-            }
-
-            @Override
-            public boolean removeAll(@NonNull Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public boolean retainAll(@NonNull Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public void clear() {
-
-            }
-
-            @Override
-            public Session get(int index) {
-                return null;
-            }
-
-            @Override
-            public Session set(int index, Session element) {
-                return null;
-            }
-
-            @Override
-            public void add(int index, Session element) {
-
-            }
-
-            @Override
-            public Session remove(int index) {
-                return null;
-            }
-
-            @Override
-            public int indexOf(@Nullable Object o) {
-                return 0;
-            }
-
-            @Override
-            public int lastIndexOf(@Nullable Object o) {
-                return 0;
-            }
-
-            @NonNull
-            @Override
-            public ListIterator<Session> listIterator() {
-                return null;
-            }
-
-            @NonNull
-            @Override
-            public ListIterator<Session> listIterator(int index) {
-                return null;
-            }
-
-            @NonNull
-            @Override
-            public List<Session> subList(int fromIndex, int toIndex) {
-                return null;
-            }
-        };
+        this.list_selected = new ArrayList<>(list);
+        this.flag = false;
     }
 
     @Override
@@ -188,6 +70,10 @@ public class SessionJoinAdapter extends BaseAdapter {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(!flag){
+                    flag = true;
+                    list_selected.clear();
+                }
                 if(!list_selected.contains(currentSession)) {
                     view.setBackgroundTintList(context.getResources().getColorStateList(R.color.recycler_background));
                     list_selected.add(currentSession);
@@ -195,7 +81,6 @@ public class SessionJoinAdapter extends BaseAdapter {
                 }
                 else{
                     view.setBackgroundTintList(context.getResources().getColorStateList(R.color.session_join_item));
-                    Log.i("BARGASH","RANG");
                     list_selected.remove(currentSession);
                     notifyDataSetChanged();
                 }
