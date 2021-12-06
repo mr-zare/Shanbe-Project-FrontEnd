@@ -46,6 +46,7 @@
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/activity_join_event.xml" value="0.25416666666666665" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/activity_login.xml" value="0.25416666666666665" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/activity_main.xml" value="0.1375" />
+        <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/activity_my_created_events.xml" value="0.25416666666666665" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/alert_dialog_layout.xml" value="0.264" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/confirmation_alert_dialog.xml" value="0.264" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/content_day_task.xml" value="0.16052631578947368" />
@@ -56,6 +57,7 @@
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/fragment_second.xml" value="0.16052631578947368" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/item_view.xml" value="0.10104166666666667" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/list_item.xml" value="0.190625" />
+        <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/my_event_view.xml" value="0.25416666666666665" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/session_item.xml" value="0.4" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/task_view.xml" value="0.2" />
         <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/drawable/ic_about_background.xml" value="0.14537037037037037" />

@@ -4,20 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.event_activity"
+    tools:context="com.example.my_created_events"
     android:orientation="vertical">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/filterBtn"
-        android:onClick="goTofilterPage"
-        android:layout_gravity="top|right"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="90dp"
-        android:backgroundTint="@color/blue_background"
-        android:src="@drawable/ic_baseline_filter_alt_24"
-        />
+
     <LinearLayout
 
         android:layout_width="match_parent"
@@ -44,15 +34,13 @@
         </ListView>
     </LinearLayout>
 
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/extended_fab"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addEventButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:onClick="goMyEvent"
-        android:backgroundTint="#2196F3"
         android:layout_gravity="bottom|right"
-        android:contentDescription="see your created events"
-        android:text="my created events"/>
-
+        android:layout_margin="16dp"
+        android:onClick="goToAddEvent"
+        android:src="@drawable/ic_baseline_add_24"
+        tools:ignore="SpeakableTextPresentCheck" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

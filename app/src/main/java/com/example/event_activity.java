@@ -130,10 +130,7 @@ public class event_activity extends AppCompatActivity {
         }
     }
 
-    public void goToAddEvent(View view) {
-        Intent intent = new Intent(event_activity.this,AddEvent.class);
-        startActivity(intent);
-    }
+
 
     public void init()
     {
@@ -206,5 +203,11 @@ public class event_activity extends AppCompatActivity {
     public void goTofilterPage(View view) {
         Intent intent = new Intent(event_activity.this,FilterEvents.class);
         startActivity(intent);
+    }
+
+    public void goMyEvent(View view) {
+        Intent intent = new Intent(event_activity.this,my_created_events.class);
+        startActivity(intent);
+        finish();
     }
 }

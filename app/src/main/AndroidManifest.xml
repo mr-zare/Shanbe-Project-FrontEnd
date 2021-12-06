@@ -16,14 +16,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
+            android:name="com.example.my_created_events"
+            android:exported="true" />
+        <activity
             android:name="com.example.JoinEvent"
             android:exported="false" />
         <activity
             android:name="com.example.event_activity"
-            android:exported="true">
-
-
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name="com.example.EditProfile"
             android:exported="false" />
@@ -50,7 +50,7 @@
         </activity>
         <activity
             android:name="com.example.AddEvent"
-            android:exported="true"></activity>
+            android:exported="true" />
 
         <receiver
             android:name="com.example.BroadCast.OnAlarmReceiver"

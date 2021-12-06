@@ -38,4 +38,8 @@ public interface EventAPI {
 
     @POST("event-search/")
     Call<List<Event>> event_search(@Header("Authorization") String user_token,@Body JsonObject jsonObject);
+
+
+    @POST("event-created-get/")
+    Call<List<Event>> event_created_get(@Header("Authorization") String user_token);
 }

@@ -191,7 +191,7 @@ public class AddEvent  extends AppCompatActivity {
                         saved.btnOk.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                Intent event = new Intent(AddEvent.this, event_activity.class);
+                                Intent event = new Intent(AddEvent.this, my_created_events.class);
                                 startActivity(event);
                                 finish();
                             }
