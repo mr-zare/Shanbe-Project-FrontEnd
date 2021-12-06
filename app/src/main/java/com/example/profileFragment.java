@@ -10,9 +10,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.myapplication.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.Locale;
 
@@ -74,6 +76,8 @@ public class profileFragment extends Fragment {
         TextView userNameProfileFragment;
         TextView emailProfileFragment;
         TextView phoneProfileFragment;
+        ImageView profileImage;
+        profileImage = rootView.findViewById(R.id.profileImageSource);
         firstNameLastNameProfileFragment = rootView.findViewById(R.id.firstNameLastNameTextView);
         userNameProfileFragment = rootView.findViewById(R.id.userNameTextViewProfileFragment);
         emailProfileFragment = rootView.findViewById(R.id.emailTextViewProfileFragment);
@@ -83,8 +87,12 @@ public class profileFragment extends Fragment {
         String firstName = shP.getString("firstname","");
         String lastName = shP.getString("lastname","");
         String email = shP.getString("email","");
+        String avatarUrl = shP.getString("avatar","");
         String phoneNumber = shP.getString("phonenumber","");
         firstNameLastNameProfileFragment.setText(new StringBuilder().append(firstName).append(" ").append(lastName).toString());
+        if(!avatarUrl.equals("")){
+            Picasso.get().load("https://shanbe-back.herokuapp.com"+avatarUrl).placeholder(R.drawable.acount_circle).error(R.drawable.acount_circle).into(profileImage);
+        }
         if(!userName.equals("")){
             userNameProfileFragment.setText(userName);
         }

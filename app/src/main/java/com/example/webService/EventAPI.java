@@ -3,6 +3,7 @@ package com.example.webService;
 import android.content.SharedPreferences;
 
 import com.example.entity.Event;
+import com.example.entity.Session;
 import com.example.entity.Task;
 import com.example.entity.User;
 import com.google.gson.JsonObject;
@@ -33,6 +34,9 @@ public interface EventAPI {
 
     @POST("enter-event-token/")
     Call<Event> enter_event_token(@Header("Authorization") String event_token, @Body JsonObject body);
+
+    @POST("session-join/")
+    Call<Session> join_session(@Header("Authorization") String event_token, @Body JsonObject body);
 
     @GET("event-get/")
     Call<List<Event>> event_get(@Header("Authorization") String user_token);

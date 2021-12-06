@@ -39,6 +39,7 @@ import com.example.webService.UserAPI;
 import com.example.webService.UserSession;
 import com.google.android.material.navigation.NavigationView;
 import com.google.gson.JsonObject;
+import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -62,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
     NavigationView monthNavigationView;
     TextView userNameTextView;
     ImageView profileImage;
+    ImageView smallProfileImage;
 
     Bundle extras ;
     UserAPI userAPI;
@@ -106,67 +108,91 @@ public class MainActivity extends AppCompatActivity {
                 //Display an error
                 return;
             }
-            try {
-                Log.i("0","0");
-                Uri u = data.getData();
-                String filePath = getPath(u);
-                Log.i("DATA",u.toString());
-                Log.i("DATA2",filePath);
-                profileImage = findViewById(R.id.profileImageSource);
-                profileImage.setImageURI(data.getData());
-                File file = new File(filePath);
-                Log.i("file name",file.getName());
-                Log.i("1","1");
-                Log.i("3","3");
-                SharedPreferences shP = getSharedPreferences("userInformation", MODE_PRIVATE);
-                String token = shP.getString("token", "");
-                String firstName = shP.getString("firstname","");
-                String lastName = shP.getString("lastname","");
-                String email = shP.getString("email","");
-                String phoneNumber = shP.getString("phonenumber","");
-                Log.i("4","4");
+            Log.i("0","0");
+            Uri u = data.getData();
+            String filePath = getPath(u);
+            Log.i("DATA",u.toString());
+            Log.i("DATA2",filePath);
+            profileImage = findViewById(R.id.profileImageSource);
+            profileImage.setImageURI(data.getData());
+            File file = new File(filePath);
+            Log.i("file name",file.getName());
+            Log.i("1","1");
+            Log.i("3","3");
+            SharedPreferences shP = getSharedPreferences("userInformation", MODE_PRIVATE);
+            String token = shP.getString("token", "");
+            String firstName = shP.getString("firstname","");
+            String lastName = shP.getString("lastname","");
+            String email = shP.getString("email","");
+            String phoneNumber = shP.getString("phonenumber","");
+            Log.i("4","4");
 
-                RequestBody requestFile =
-                        RequestBody.create(MediaType.parse("multipart/form-data"), file);
+            RequestBody requestFile =
+                    RequestBody.create(MediaType.parse("multipart/form-data"), file);
 
 // MultipartBody.Part is used to send also the actual file name
-                MultipartBody.Part body =
-                        MultipartBody.Part.createFormData("avatar", file.getName(), requestFile);
-                RequestBody emailR =
-                        RequestBody.create(MediaType.parse("multipart/form-data"), email);
-                RequestBody firstNameR =
-                        RequestBody.create(MediaType.parse("multipart/form-data"), firstName);
-                RequestBody lastNameR =
-                        RequestBody.create(MediaType.parse("multipart/form-data"), lastName);
-                RequestBody phoneNumberR =
-                        RequestBody.create(MediaType.parse("multipart/form-data"), phoneNumber);
-                Call<User> userSessionCall = userAPI.editProfile("token "+ token,emailR,firstNameR,lastNameR,phoneNumberR,body);
-                Log.i("5","5");
-                userSessionCall.enqueue(new Callback<User>() {
-                    @Override
-                    public void onResponse(Call<User> call, Response<User> response) {
-                        if(!response.isSuccessful())
-                        {
-                            Toast.makeText(MainActivity.this, "Some Field Wrong", Toast.LENGTH_SHORT).show();
-                            Log.i("MOSHKEL",response.message());
-                        }
-                        else{
-                            String code = Integer.toString(response.code());
-                            Toast.makeText(MainActivity.this, "Profile Edited!", Toast.LENGTH_SHORT).show();
-
-                        }
+            MultipartBody.Part body =
+                    MultipartBody.Part.createFormData("avatar", file.getName(), requestFile);
+            RequestBody emailR =
+                    RequestBody.create(MediaType.parse("multipart/form-data"), email);
+            RequestBody firstNameR =
+                    RequestBody.create(MediaType.parse("multipart/form-data"), firstName);
+            RequestBody lastNameR =
+                    RequestBody.create(MediaType.parse("multipart/form-data"), lastName);
+            RequestBody phoneNumberR =
+                    RequestBody.create(MediaType.parse("multipart/form-data"), phoneNumber);
+            Call<User> userSessionCall = userAPI.editProfile("token "+ token,emailR,firstNameR,lastNameR,phoneNumberR,body);
+            Log.i("5","5");
+            userSessionCall.enqueue(new Callback<User>() {
+                @Override
+                public void onResponse(Call<User> call, Response<User> response) {
+                    if(!response.isSuccessful())
+                    {
+                        Toast.makeText(MainActivity.this, "Some Field Wrong", Toast.LENGTH_SHORT).show();
+                        Log.i("MOSHKEL",response.message());
                     }
+                    else{
+                        String code = Integer.toString(response.code());
+                        Toast.makeText(MainActivity.this, "Photo Edited!", Toast.LENGTH_SHORT).show();
+                        final String[] userAvatar = new String[1];
+                        Call<User> userSessionCall1 = userAPI.showProfile("token "+ token);
+                        userSessionCall1.enqueue(new Callback<User>() {
+                            @Override
+                            public void onResponse(Call<User> call, Response<User> response) {
+                                if(!response.isSuccessful())
+                                {
+                                    Toast.makeText(MainActivity.this, "Some Field Wrong", Toast.LENGTH_SHORT).show();
+                                }
+                                else{
+                                    String code = Integer.toString(response.code());
+                                    User user = response.body();
+                                    if(!(user.getAvatar() == null)){
+                                        userAvatar[0] = user.getAvatar();
+                                    }
+                                    else{
+                                        userAvatar[0] = "";
+                                    }
+                                    SharedPreferences UI = getSharedPreferences("userInformation",MODE_PRIVATE);
+                                    SharedPreferences.Editor myEdit = UI.edit();
+                                    myEdit.putString("avatar",userAvatar[0]);
+                                    myEdit.apply();
+                                }
+                            }
 
-                    @Override
-                    public void onFailure(Call<User> call, Throwable t) {
-                        Toast.makeText(MainActivity.this, "error is :"+t.getMessage(), Toast.LENGTH_LONG).show();
+                            @Override
+                            public void onFailure(Call<User> call, Throwable t) {
+                                Toast.makeText(MainActivity.this, "error is :"+t.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
                     }
-                });
-                InputStream inputStream = this.getContentResolver().openInputStream(data.getData());
+                }
 
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
+                @Override
+                public void onFailure(Call<User> call, Throwable t) {
+                    Toast.makeText(MainActivity.this, "error is :"+t.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            });
+
             //Now you can do whatever you want with your inpustream, save it as file, upload to a server, decode a bitmap...
         }
     }
@@ -256,6 +282,11 @@ public class MainActivity extends AppCompatActivity {
                 extras = getIntent().getExtras();
                 SharedPreferences shP = getSharedPreferences("userInformation", MODE_PRIVATE);
                 String userName = shP.getString("username", "");
+                String avatarUrl = shP.getString("avatar","");
+                if(!avatarUrl.equals("")){
+                    smallProfileImage = findViewById(R.id.imageProfileSmall);
+                    Picasso.get().load("https://shanbe-back.herokuapp.com"+avatarUrl).placeholder(R.drawable.acount_circle).error(R.drawable.acount_circle).into(smallProfileImage);
+                }
                 userNameTextView = findViewById(R.id.headerUsernameTextView);
                 userNameTextView.setText(userName);
             }

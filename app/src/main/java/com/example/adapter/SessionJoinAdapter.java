@@ -32,13 +32,14 @@ public class SessionJoinAdapter extends BaseAdapter {
     private Context context;
     private boolean flag;
     private List<Session> list;
-    private List<Session> list_selected;
+    private Session selected;
+    View selected_view;
 
     public SessionJoinAdapter(Context context, List<Session> list) {
         this.context = context;
         this.list = list;
-        this.list_selected = new ArrayList<>(list);
         this.flag = false;
+        selected = new Session(0,"","","",0,0);
     }
 
     @Override
@@ -49,6 +50,10 @@ public class SessionJoinAdapter extends BaseAdapter {
     @Override
     public Object getItem(int i) {
         return list.get(i);
+    }
+
+    public Session getSelected() {
+        return selected;
     }
 
     @Override
@@ -71,18 +76,16 @@ public class SessionJoinAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
                 if(!flag){
-                    flag = true;
-                    list_selected.clear();
-                }
-                if(!list_selected.contains(currentSession)) {
+                    selected = currentSession;
                     view.setBackgroundTintList(context.getResources().getColorStateList(R.color.recycler_background));
-                    list_selected.add(currentSession);
-                    notifyDataSetChanged();
+                    selected_view = view;
+                    flag = true;
                 }
                 else{
-                    view.setBackgroundTintList(context.getResources().getColorStateList(R.color.session_join_item));
-                    list_selected.remove(currentSession);
-                    notifyDataSetChanged();
+                    selected = currentSession;
+                    selected_view.setBackgroundTintList(context.getResources().getColorStateList(R.color.session_join_item));
+                    selected_view = view;
+                    view.setBackgroundTintList(context.getResources().getColorStateList(R.color.recycler_background));
                 }
             }
         });

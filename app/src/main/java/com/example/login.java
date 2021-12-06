@@ -135,6 +135,7 @@ public class login extends AppCompatActivity {
                             final String[] userFirstName = new String[1];
                             final String[] userLastName = new String[1];
                             final String[] userPhoneNumber = new String[1];
+                            final String[] userAvatar = new String[1];
                             Toast.makeText(login.this, code+"   "+namel , Toast.LENGTH_SHORT).show();
                             Call<User> userSessionCall = userAPI.showProfile("token "+ token);
                             userSessionCall.enqueue(new Callback<User>() {
@@ -170,6 +171,12 @@ public class login extends AppCompatActivity {
                                         else{
                                             userPhoneNumber[0] = "";
                                         }
+                                        if(!(user.getAvatar() == null)){
+                                            userAvatar[0] = user.getAvatar();
+                                        }
+                                        else{
+                                            userAvatar[0] = "";
+                                        }
                                         SharedPreferences UI = getSharedPreferences("userInformation",MODE_PRIVATE);
                                         SharedPreferences.Editor myEdit = UI.edit();
                                         myEdit.putString("token", token);
@@ -177,6 +184,7 @@ public class login extends AppCompatActivity {
                                         myEdit.putString("firstname",userFirstName[0]);
                                         myEdit.putString("lastname",userLastName[0]);
                                         myEdit.putString("email",userEmail[0]);
+                                        myEdit.putString("avatar",userAvatar[0]);
                                         myEdit.putString("phonenumber",userPhoneNumber[0]);
                                         myEdit.apply();
                                     }

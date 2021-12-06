@@ -49,7 +49,7 @@ public class User {
         this.avatar = avatar;
     }
 
-    public Object getAvatar() {
+    public String getAvatar() {
         return avatar;
     }
 
