@@ -12,6 +12,7 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.EditEventActivity;
 import com.example.JoinEvent;
 import com.example.entity.Event;
 import com.example.myapplication.R;
@@ -90,17 +91,14 @@ public class myEventsAdapter extends BaseAdapter implements Filterable {
             imageViewCategory.setImageResource(R.drawable.hang_out2);
         }
 
-//        editBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(context, EditEvent.class);
-//                intent.putExtra("title", currentEvent.getTitle());
-//                intent.putExtra("category", currentEvent.getCategory());
-//                intent.putExtra("location", currentEvent.getLocation());
-//                intent.putExtra("token", currentEvent.getEvent_token());
-//                context.startActivity(intent);
-//            }
-//        });
+        editBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                Intent intent = new Intent(context, EditEventActivity.class);
+                intent.putExtra("token", currentEvent.getEvent_token());
+                context.startActivity(intent);
+            }
+        });
 
         return view;
     }

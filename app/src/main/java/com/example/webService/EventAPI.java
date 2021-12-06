@@ -17,6 +17,7 @@ import retrofit2.http.HTTP;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.Multipart;
+import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Part;
@@ -42,4 +43,10 @@ public interface EventAPI {
 
     @POST("event-created-get/")
     Call<List<Event>> event_created_get(@Header("Authorization") String user_token);
+
+    @PATCH("event-edit/")
+    Call<Event> event_edit(@Header("Authorization") String user_token,@Body Event event);
+
+    @HTTP(method = "DELETE", path = "session-delete/", hasBody = true)
+    Call<JsonObject> session_delete(@Header("Authorization") String user_token, @Body JsonObject jsonObject);
 }

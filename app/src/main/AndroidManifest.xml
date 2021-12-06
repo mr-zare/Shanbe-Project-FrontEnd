@@ -48,6 +48,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.example.EditEventActivity" android:exported="true">
+
+        </activity>
         <activity
             android:name="com.example.AddEvent"
             android:exported="true" />

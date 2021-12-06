@@ -1,6 +1,7 @@
 package com.example.adapter;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,22 +11,40 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.AddEvent;
+import com.example.CustomeAlertDialog;
 import com.example.entity.Session;
 import com.example.entity.Task;
 import com.example.myapplication.R;
+import com.example.webService.EventAPI;
+import com.example.webService.TaskAPI;
+import com.google.gson.JsonObject;
 
 import java.util.List;
 import java.util.Locale;
+
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class SessionAdapter extends BaseAdapter {
 
     private Context context;
     private List<Session> list;
+    private List<Session> added;
+    EventAPI eventAPI;
+    String userToken;
 
-    public SessionAdapter(Context context, List<Session> list) {
+    public SessionAdapter(Context context, List<Session> list,List<Session> added) {
         this.context = context;
         this.list = list;
+        this.added = added;
     }
 
     @Override
@@ -58,8 +77,56 @@ public class SessionAdapter extends BaseAdapter {
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                list.remove(i);
-                notifyDataSetChanged();
+                if(added.size()==list.size())
+                {
+                    list.remove(i);
+                    notifyDataSetChanged();
+                }
+                else{
+                    if(added.contains(currentSession))
+                    {
+                        added.remove(i);
+                        list.remove(i);
+                        notifyDataSetChanged();
+                    }
+                    else{
+                        SharedPreferences sharedPreferences = context.getSharedPreferences("authentication", Context.MODE_PRIVATE);
+                        userToken = sharedPreferences.getString("token", "");
+
+                        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+                        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+                        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
+
+                        Retrofit sessionDelete = new Retrofit.Builder()
+                                .baseUrl(EventAPI.BASE_URL)
+                                .client(client)
+                                .addConverterFactory(GsonConverterFactory.create())
+                                .build();
+                        eventAPI = sessionDelete.create(EventAPI.class);
+
+                        JsonObject deleteSessionJson = new JsonObject();
+                        deleteSessionJson.addProperty("session_token",currentSession.getSession_token());
+                        Call<JsonObject> callBack = eventAPI.session_delete("token "+userToken,deleteSessionJson);
+                        callBack.enqueue(new Callback<JsonObject>() {
+                            @Override
+                            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                                if(!response.isSuccessful())
+                                {
+                                    CustomeAlertDialog errorConnecting = new CustomeAlertDialog(context,"error","there is a problem connecting to server");
+                                }
+                                else{
+                                    list.remove(i);
+                                    notifyDataSetChanged();
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<JsonObject> call, Throwable t) {
+                                CustomeAlertDialog errorConnecting = new CustomeAlertDialog(context,"error","there is a problem connecting to server");
+                            }
+                        });
+                    }
+                }
             }
         });
 

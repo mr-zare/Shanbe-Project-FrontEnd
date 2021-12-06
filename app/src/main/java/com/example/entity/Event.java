@@ -12,11 +12,24 @@ public class Event {
     String location;
     ArrayList<String> sessions;
     ArrayList<Session> session_set;
+    String first_name;
+    String last_name;
+    String username;
 
     int id;
     String event_token;
     String time;
 
+    public Event(String title, boolean privacy, String category, String description, boolean isVirtual, String location, ArrayList<String> sessions, String event_token) {
+        this.title = title;
+        this.privacy = privacy;
+        this.category = category;
+        this.description = description;
+        this.isVirtual = isVirtual;
+        this.location = location;
+        this.sessions = sessions;
+        this.event_token = event_token;
+    }
 
     public Event(String user_token, String title, boolean privacy, String category, String description, boolean isVirtual, String location, ArrayList<String> sessions) {
         this.user_token = user_token;
@@ -56,7 +69,7 @@ public class Event {
         this.event_token = event_token;
         this.time = time;
     }
-    public Event(String title, String category, String description, String location, int id, String event_token, String time,ArrayList<Session> sessions) {
+    public Event(String title, String category, String description, String location, int id, String event_token, String time,ArrayList<Session> sessions,String first_name,String last_name,String username) {
         this.title = title;
         this.category = category;
         this.description = description;
@@ -65,6 +78,9 @@ public class Event {
         this.event_token = event_token;
         this.time = time;
         this.session_set = sessions;
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.username = username;
     }
 
     public String getUser_token() {

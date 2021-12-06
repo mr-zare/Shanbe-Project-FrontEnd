@@ -11,6 +11,19 @@ public class Session {
     private String event_id;
     private String time;
     private String session_token;
+    private int filled;
+
+    public Session(String year, String month, String day, String hour, String min, String limit,String session_token) {
+        this.year = year;
+        this.month = month;
+        this.day = day;
+        this.hour = hour;
+        this.min = min;
+        this.limit = Integer.parseInt(limit);
+        this.session_token = session_token;
+    }
+
+
 
     public Session(String year, String month, String day, String hour, String min, String limit) {
         this.year = year;
@@ -20,11 +33,20 @@ public class Session {
         this.min = min;
         this.limit = Integer.parseInt(limit);
     }
-    public Session(int id,String session_token ,String event_id,String time,int limit){
+    public Session(int id,String session_token ,String event_id,String time,int limit,int filled){
         this.id=id;
         this.event_id=event_id;
         this.time = time;
         this.limit = limit;
+        this.session_token = session_token;
+        this.filled = filled;
+    }
+
+    public String getSession_token() {
+        return session_token;
+    }
+
+    public void setSession_token(String session_token) {
         this.session_token = session_token;
     }
 

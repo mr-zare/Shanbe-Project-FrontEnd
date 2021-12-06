@@ -74,7 +74,6 @@ public class FilterEvents extends AppCompatActivity {
 
         int year = datefilter.getYear();
         int month = datefilter.getMonth();
-        month++;
         int day = datefilter.getDayOfMonth();
 
         String yearStr = Integer.toString(year);

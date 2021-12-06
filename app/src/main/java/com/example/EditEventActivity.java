@@ -16,12 +16,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.adapter.SessionAdapter;
-import com.example.adapter.taskAdapter;
+import com.example.adapter.SessionJoinAdapter;
 import com.example.entity.Event;
 import com.example.entity.Session;
 import com.example.myapplication.R;
 import com.example.webService.EventAPI;
 import com.example.webService.TaskAPI;
+import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -35,8 +36,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class AddEvent  extends AppCompatActivity {
-
+public class EditEventActivity extends AppCompatActivity {
     Spinner category;
     EditText title;
     Spinner privacy;
@@ -45,6 +45,8 @@ public class AddEvent  extends AppCompatActivity {
     Button addEvent;
 
     EventAPI eventAPI;
+    String eventToken;
+    Event currentEvent;
 
     String titleStr;
     String categoryStr;
@@ -61,9 +63,10 @@ public class AddEvent  extends AppCompatActivity {
 
     ListView sessionsList;
 
-    List<Session> sessions;
-    SessionAdapter sessionAdapter;
+    List<Session> mySessions;
+    List<Session> addedSessions;
 
+    SessionAdapter sessionAdap;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -71,6 +74,7 @@ public class AddEvent  extends AppCompatActivity {
         setContentView(R.layout.activity_add_event);
         getSupportActionBar().hide();
         init();
+        load();
     }
 
     public void init()
@@ -89,7 +93,8 @@ public class AddEvent  extends AppCompatActivity {
         locationSpace = findViewById(R.id.locationSpace);
         descriptionSpace = findViewById(R.id.descriptionSpace);
 
-        sessions = new ArrayList<Session>();
+        mySessions = new ArrayList<Session>();
+        addedSessions = new ArrayList<Session>();
 
 
         SharedPreferences sharedPreferences = getSharedPreferences("authentication", MODE_PRIVATE);
@@ -99,13 +104,14 @@ public class AddEvent  extends AppCompatActivity {
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
 
-        Retrofit createTask = new Retrofit.Builder()
-                .baseUrl(EventAPI.BASE_URL)
+        Retrofit EditEvent = new Retrofit.Builder()
+                .baseUrl(TaskAPI.BASE_URL)
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        eventAPI = createTask.create(EventAPI.class);
+        eventAPI = EditEvent.create(EventAPI.class);
 
+        eventToken = getIntent().getStringExtra("token");
     }
 
     public void AddEvent(View view) {
@@ -151,10 +157,10 @@ public class AddEvent  extends AppCompatActivity {
         {
             //String session = "20_2021-12-14_18:30";
             ArrayList<String> sessionsStr = new ArrayList<>();
-            for(int i=0;i<sessions.size();i++)
+            for(int i=0;i<addedSessions.size();i++)
             {
                 String session = "";
-                Session currentSession = sessions.get(i);
+                Session currentSession = addedSessions.get(i);
                 String limit = String.valueOf(currentSession.getLimit());
                 String year = currentSession.getYear();
                 String month = currentSession.getMonth();
@@ -174,24 +180,24 @@ public class AddEvent  extends AppCompatActivity {
             {
                 pv = true;
             }
-            Event newEvent = new Event(userToken, titleStr,pv, categoryStr, descriptionStr, false, locationStr, sessionsStr);
-            Call<Event> callBack = eventAPI.event_create("token "+userToken,newEvent);
+            Event newEvent = new Event(titleStr, pv, categoryStr, descriptionStr,false, locationStr,sessionsStr, eventToken);
+            Call<Event> callBack = eventAPI.event_edit("token "+userToken,newEvent);
             callBack.enqueue(new Callback<Event>() {
                 @Override
                 public void onResponse(Call<Event> call, Response<Event> response) {
                     if(!response.isSuccessful())
                     {
-                        CustomeAlertDialog errorConnecting = new CustomeAlertDialog(AddEvent.this,"error","there is a problem connecting to server");
+                        CustomeAlertDialog errorConnecting = new CustomeAlertDialog(EditEventActivity.this,"error","there is a problem connecting to server");
                     }
                     else{
                         String code = Integer.toString(response.code());
                         Event addedEvent = response.body();
-                        Toast.makeText(AddEvent.this, code, Toast.LENGTH_SHORT).show();
-                        CustomeAlertDialog saved = new CustomeAlertDialog(AddEvent.this,"Successful","event saved");
+                        Toast.makeText(EditEventActivity.this, code, Toast.LENGTH_SHORT).show();
+                        CustomeAlertDialog saved = new CustomeAlertDialog(EditEventActivity.this,"Successful","event saved");
                         saved.btnOk.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                Intent event = new Intent(AddEvent.this, my_created_events.class);
+                                Intent event = new Intent(EditEventActivity.this, my_created_events.class);
                                 startActivity(event);
                                 finish();
                             }
@@ -201,7 +207,7 @@ public class AddEvent  extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<Event> call, Throwable t) {
-                    CustomeAlertDialog errorConnecting = new CustomeAlertDialog(AddEvent.this,"Error","there is a problem connecting to server");
+                    CustomeAlertDialog errorConnecting = new CustomeAlertDialog(EditEventActivity.this,"Error","there is a problem connecting to server");
                 }
             });
         }
@@ -235,13 +241,13 @@ public class AddEvent  extends AppCompatActivity {
         if(checkDate(yearNum,monthNum,dayNum,hourNum,minNum))
         {
             Session newSession = new Session(yearStr,monthStr,dayStr,hourStr,minStr,limitStr);
-            sessions.add(newSession);
-
-            sessionAdapter = new SessionAdapter(AddEvent.this,sessions,sessions);
-            sessionsList.setAdapter(sessionAdapter);
+            mySessions.add(newSession);
+            addedSessions.add(newSession);
+            sessionAdap = new SessionAdapter(EditEventActivity.this,mySessions,addedSessions);
+            sessionsList.setAdapter(sessionAdap);
         }
         else{
-            CustomeAlertDialog errorDate = new CustomeAlertDialog(AddEvent.this,"Error","you can not select a date in past");
+            CustomeAlertDialog errorDate = new CustomeAlertDialog(EditEventActivity.this,"Error","you can not select a date in past");
         }
     }
 
@@ -286,5 +292,97 @@ public class AddEvent  extends AppCompatActivity {
         //Toast.makeText(this, "you can set a task for past", Toast.LENGTH_SHORT).show();
         return false;
 
+    }
+
+
+    public void load()
+    {
+        JsonObject body = new JsonObject();
+        body.addProperty("event_token",eventToken);
+        Call<Event> callBack = eventAPI.enter_event_token("token "+ userToken,body);
+        callBack.enqueue(new Callback<Event>() {
+            @Override
+            public void onResponse(Call<Event> call, Response<Event> response) {
+                if(!response.isSuccessful())
+                {
+                    Toast.makeText(EditEventActivity.this, "Some Field Wrong", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    String code = Integer.toString(response.code());
+                    currentEvent = response.body();
+
+                    title.setText(currentEvent.getTitle().toString());
+                    loadSpinners();
+                    description.setText(currentEvent.getDescription().toString());
+                    loadSessions();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Event> call, Throwable t) {
+                Toast.makeText(EditEventActivity.this, "error is :"+t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
+    public void loadSpinners()
+    {
+        String[] categoryArr = getResources().getStringArray(R.array.category);
+        int categoryPos = searchIndex(currentEvent.getCategory().toString(),categoryArr);
+        category.setSelection(categoryPos);
+
+        String[] locationArr = getResources().getStringArray(R.array.category);
+        int locationPos = searchIndex(currentEvent.getCategory().toString(),locationArr);
+        location.setSelection(locationPos);
+
+        String[] privacyArr = getResources().getStringArray(R.array.privacy);
+        int privacyPos = searchIndex(currentEvent.getCategory().toString(),privacyArr);
+        privacy.setSelection(privacyPos);
+    }
+
+    public int searchIndex(String x,String [] array)
+    {
+        int index = 0;
+        for(int i=0;i<array.length;i++)
+        {
+            if(array[i].equals(x))
+            {
+                index = i;
+                break;
+            }
+        }
+
+        return index;
+    }
+
+    public void loadSessions()
+    {
+        List<Session> sessions = currentEvent.getSessionsArr();
+        mySessions = new ArrayList<>();
+
+        for(Session item:sessions)
+        {
+            String [] dateTime = item.getTime().split("_");
+            String date = dateTime[0];
+            String time = dateTime[1];
+            String limit = Integer.toString(item.getLimit());
+            String session_token = item.getSession_token();
+
+            String [] dateInfo = date.split("-");
+            String year = dateInfo[0];
+            String month = dateInfo[1];
+            String day = dateInfo[2];
+
+            String [] timeInfo = time.split(":");
+            String hour = timeInfo[0];
+            String min = timeInfo[1];
+
+            Session newSession = new Session(year,month,day,hour,min,limit,session_token);
+            mySessions.add(newSession);
+        }
+
+        sessionAdap = new SessionAdapter(EditEventActivity.this,mySessions,addedSessions);
+        sessionsList.setAdapter(sessionAdap);
     }
 }
