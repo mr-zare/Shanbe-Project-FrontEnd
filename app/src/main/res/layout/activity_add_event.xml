@@ -7,6 +7,7 @@
     android:fillViewport="true"
     >
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/titleborder"
         android:layout_width="match_parent"
@@ -25,12 +26,14 @@
             android:layout_width="310dp"
             android:layout_height="70dp"
             android:layout_marginTop="10dp"
-            android:background="#D7A5F6"
+            android:background="@drawable/dummy_background_border"
+            android:elevation="12dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
+                android:id="@+id/imageView4"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@drawable/title"
@@ -43,16 +46,17 @@
 
             <EditText
                 android:id="@+id/titleevent"
-                android:layout_width="240dp"
-                android:layout_height="55dp"
-                android:layout_marginStart="29dp"
-                android:layout_marginTop="8dp"
+                android:layout_width="220dp"
+                android:layout_height="50dp"
                 android:layout_marginEnd="10dp"
-                android:hint=" Title:"
+                android:backgroundTint="@color/white"
+                android:hint="title"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.666"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"></EditText>
+                app:layout_constraintStart_toEndOf="@+id/imageView4"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -62,7 +66,8 @@
             android:layout_marginStart="22dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="22dp"
-            android:background="@drawable/border_event"
+            android:background="@drawable/border_shadow"
+            android:elevation="12dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/locationSpace">
@@ -95,20 +100,21 @@
             android:id="@+id/descriptionSpace"
             android:layout_width="200dp"
             android:layout_height="184dp"
-            android:layout_marginTop="41dp"
-            android:layout_marginEnd="12dp"
-            android:background="@drawable/border_event"
+            android:layout_marginTop="36dp"
+            android:background="@drawable/dummy_background_border"
+            android:elevation="12dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.787"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/privacylayout">
 
             <EditText
                 android:id="@+id/descript"
-                android:layout_width="200dp"
-                android:layout_height="178dp"
-                android:layout_marginStart="88dp"
-                android:layout_marginEnd="14dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="15dp"
                 android:fontFamily="@font/indie_flower"
-                android:hint="        description"
+                android:hint="description"
                 android:maxLength="240"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -125,14 +131,17 @@
             android:layout_marginStart="22dp"
             android:layout_marginTop="96dp"
             android:layout_marginEnd="22dp"
-            android:background="@drawable/border_event"
+            android:background="@drawable/border_shadow"
+            android:elevation="12dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.333"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
+
             <Spinner
                 android:id="@+id/categoryevent"
+                style="@style/Widget.AppCompat.Spinner.DropDown"
                 android:layout_width="249dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="48dp"
@@ -162,9 +171,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:backgroundTint="#017065"
             android:fontFamily="@font/indie_flower"
             android:onClick="AddEvent"
-            android:background="#EDE6F1"
             android:text="ADD"
             android:textColor="#000"
             android:textSize="20dp"
@@ -180,7 +189,8 @@
             android:layout_marginStart="13dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="11dp"
-            android:background="@drawable/border_event"
+            android:background="@drawable/border_shadow"
+            android:elevation="12dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/categorySpace">
@@ -210,30 +220,33 @@
 
         <ImageView
             android:id="@+id/imagedesc"
-            android:layout_width="80dp"
-            android:layout_height="96dp"
-            android:layout_marginStart="28dp"
-            android:layout_marginTop="84dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="96dp"
+            android:background="@drawable/dummy_background"
+            android:elevation="12dp"
             android:src="@drawable/desc2"
             app:layout_constraintEnd_toStartOf="@+id/descriptionSpace"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.424"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/privacylayout"></ImageView>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:background="@drawable/back_color"
             android:id="@+id/sessionsList"
             android:layout_width="match_parent"
             android:layout_height="200dp"
+            android:layout_margin="22dp"
+            android:layout_marginTop="60dp"
+            android:background="@drawable/dummy_background"
+            android:elevation="22dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/descriptionSpace"
-            android:layout_marginTop="60dp">
+            app:layout_constraintTop_toBottomOf="@+id/descriptionSpace">
 
             <ListView
                 android:id="@+id/sessionsListView"
-                android:layout_width="354dp"
-                android:layout_height="196dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -248,10 +261,10 @@
             android:id="@+id/addSpace"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/newSession"
-            android:layout_marginTop="20dp">
+            app:layout_constraintTop_toBottomOf="@+id/newSession">
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/addSession"
@@ -273,8 +286,9 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/newSession"
             android:layout_width="match_parent"
-            android:layout_height="160dp"
-            android:layout_marginTop="16dp"
+            android:layout_height="192dp"
+            android:layout_margin="22dp"
+            android:padding="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -283,11 +297,10 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout"
-                android:layout_width="100dp"
+                android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginEnd="0dp"
-                android:background="#998CEB"
+                android:background="@drawable/dummy_background_border"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -297,7 +310,7 @@
 
                 <EditText
                     android:id="@+id/added_session_limit"
-                    android:layout_width="77dp"
+                    android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:hint="limit"
                     android:inputType="number"
@@ -311,10 +324,11 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout4"
-                android:layout_width="350dp"
+                android:layout_width="match_parent"
                 android:layout_height="70dp"
-                android:background="#998CEB"
 
+                android:background="@drawable/dummy_background_border"
+                android:elevation="12dp"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -363,14 +377,15 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/timeLayout"
-                android:layout_width="245dp"
+                android:layout_width="210dp"
 
                 android:layout_height="72dp"
-                android:layout_marginStart="0dp"
                 android:layout_marginTop="20dp"
-                android:background="#998CEB"
+                android:background="@drawable/dummy_background_border"
+                android:elevation="12dp"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
+                app:layout_constraintEnd_toStartOf="@+id/constraintLayout"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout4">
 
