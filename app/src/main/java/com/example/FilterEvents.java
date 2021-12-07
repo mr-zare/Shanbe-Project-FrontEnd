@@ -91,7 +91,7 @@ public class FilterEvents extends AppCompatActivity {
         }
 
         String date = yearStr+"-"+monthStr+"-"+dayStr;
-        if(date.equals("2000-02-01"))
+        if(date.equals("2000-01-01"))
         {
             date = "";
         }
