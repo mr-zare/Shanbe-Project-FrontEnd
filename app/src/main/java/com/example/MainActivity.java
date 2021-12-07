@@ -313,6 +313,11 @@ public class MainActivity extends AppCompatActivity {
         event.putExtra("s_time","");
         startActivity(event);
     }
+    public void EventPrivateClicked(MenuItem item) {
+        Intent event = new Intent(MainActivity.this, JoinPrivateEvent.class);
+        startActivity(event);
+    }
+
 
     public void MySessionsClicked(MenuItem item)
     {
