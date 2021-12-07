@@ -63,6 +63,7 @@ public class AddEvent  extends AppCompatActivity {
 
     List<Session> sessions;
     SessionAdapter sessionAdapter;
+    boolean pv;
 
 
     @Override
@@ -75,6 +76,7 @@ public class AddEvent  extends AppCompatActivity {
 
     public void init()
     {
+        pv = false;
         title = findViewById(R.id.titleevent);
         category = findViewById(R.id.categoryevent);
         location = findViewById(R.id.locationevent);
@@ -165,7 +167,7 @@ public class AddEvent  extends AppCompatActivity {
                 String thisSession = limit+"_"+year+"-"+month+"-"+day+"_"+hour+":"+min;
                 sessionsStr.add(thisSession);
             }
-            boolean pv = false;
+            pv = false;
             if(privacyStr.equals("Public"))
             {
                 pv = false;
@@ -187,15 +189,29 @@ public class AddEvent  extends AppCompatActivity {
                         String code = Integer.toString(response.code());
                         Event addedEvent = response.body();
                         Toast.makeText(AddEvent.this, code, Toast.LENGTH_SHORT).show();
-                        CustomeAlertDialog saved = new CustomeAlertDialog(AddEvent.this,"Successful","event saved");
-                        saved.btnOk.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                Intent event = new Intent(AddEvent.this, my_created_events.class);
-                                startActivity(event);
-                                finish();
-                            }
-                        });
+                        if(pv == false)
+                        {
+                            CustomeAlertDialog saved = new CustomeAlertDialog(AddEvent.this,"Successful","event saved");
+                            saved.btnOk.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Intent event = new Intent(AddEvent.this, my_created_events.class);
+                                    startActivity(event);
+                                    finish();
+                                }
+                            });
+                        }
+                        else if(pv == true){
+                            CustomeAlertDialog saved = new CustomeAlertDialog(AddEvent.this,"Alert!","save the token for inviting."+addedEvent.getEvent_token().toString());
+                            saved.btnOk.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Intent event = new Intent(AddEvent.this, my_created_events.class);
+                                    startActivity(event);
+                                    finish();
+                                }
+                            });
+                        }
                     }
                 }
 
