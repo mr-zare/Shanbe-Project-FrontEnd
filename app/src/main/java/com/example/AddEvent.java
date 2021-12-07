@@ -202,7 +202,7 @@ public class AddEvent  extends AppCompatActivity {
                             });
                         }
                         else if(pv == true){
-                            CustomeAlertDialog saved = new CustomeAlertDialog(AddEvent.this,"Alert!","save the token for inviting."+addedEvent.getEvent_token().toString());
+                            CustomeAlertDialog saved = new CustomeAlertDialog(AddEvent.this,"Alert!","save the token for inviting.\n"+addedEvent.getEvent_token().toString());
                             saved.btnOk.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {

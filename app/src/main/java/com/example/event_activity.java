@@ -70,64 +70,57 @@ public class event_activity extends AppCompatActivity {
         categoryStr = getIntent().getStringExtra("category");
         date = getIntent().getStringExtra("s_time");
 
-        if(locationStr.length()==0 && categoryStr.length()==0 && date.length()==0)
+        JsonObject filter = new JsonObject();
+        if(locationStr.length()>=1)
         {
-            fillList();
+            filter.addProperty("location",locationStr);
         }
-        else{
-            JsonObject filter = new JsonObject();
-            if(locationStr.length()>=1)
-            {
-                filter.addProperty("location",locationStr);
-            }
-            if(categoryStr.length() >=1)
-            {
-                filter.addProperty("category",categoryStr);
-            }
-            if(date.length()>=1)
-            {
-                filter.addProperty("s_time",date);
-            }
-            filter.addProperty("privacy",false);
-            filter.addProperty("isVirtual",false);
+        if(categoryStr.length() >=1)
+        {
+            filter.addProperty("category",categoryStr);
+        }
+        if(date.length()>=1)
+        {
+            filter.addProperty("s_time",date);
+        }
+        filter.addProperty("privacy",false);
+        filter.addProperty("isVirtual",false);
 
-            HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-            interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-            OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
 
-            Retrofit searchEvent = new Retrofit.Builder()
-                    .baseUrl(TaskAPI.BASE_URL)
-                    .client(client)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
-            eventAPI = searchEvent.create(EventAPI.class);
+        Retrofit searchEvent = new Retrofit.Builder()
+                .baseUrl(TaskAPI.BASE_URL)
+                .client(client)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        eventAPI = searchEvent.create(EventAPI.class);
 
-            Call<List<Event>> callBack = eventAPI.event_search("token "+userToken,filter);
-            callBack.enqueue(new Callback<List<Event>>() {
-                @Override
-                public void onResponse(Call<List<Event>> call, Response<List<Event>> response) {
-                    if(!response.isSuccessful())
-                    {
-                        CustomeAlertDialog errorConnecting = new CustomeAlertDialog(event_activity.this,"error","there is a problem connecting to server");
-                    }
-                    else{
-                        String code = Integer.toString(response.code());
-                        List<Event> filteredEventList = response.body();
-                        Toast.makeText(event_activity.this, code, Toast.LENGTH_SHORT).show();
-
-                        eventAdap = new eventAdapter(event_activity.this,filteredEventList);
-
-                        eventsListView.setAdapter(eventAdap);
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<List<Event>> call, Throwable t) {
+        Call<List<Event>> callBack = eventAPI.event_search("token "+userToken,filter);
+        callBack.enqueue(new Callback<List<Event>>() {
+            @Override
+            public void onResponse(Call<List<Event>> call, Response<List<Event>> response) {
+                if(!response.isSuccessful())
+                {
                     CustomeAlertDialog errorConnecting = new CustomeAlertDialog(event_activity.this,"error","there is a problem connecting to server");
                 }
-            });
+                else{
+                    String code = Integer.toString(response.code());
+                    List<Event> filteredEventList = response.body();
+                    Toast.makeText(event_activity.this, code, Toast.LENGTH_SHORT).show();
 
-        }
+                    eventAdap = new eventAdapter(event_activity.this,filteredEventList);
+
+                    eventsListView.setAdapter(eventAdap);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Event>> call, Throwable t) {
+                CustomeAlertDialog errorConnecting = new CustomeAlertDialog(event_activity.this,"error","there is a problem connecting to server");
+            }
+        });
     }
 
 

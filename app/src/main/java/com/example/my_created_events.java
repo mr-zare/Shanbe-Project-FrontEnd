@@ -111,5 +111,6 @@ public class my_created_events extends AppCompatActivity {
     public void goToAddEvent(View view) {
         Intent intent = new Intent(my_created_events.this,AddEvent.class);
         startActivity(intent);
+        finish();
     }
 }

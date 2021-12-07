@@ -101,5 +101,6 @@ public class FilterEvents extends AppCompatActivity {
         intent.putExtra("category",categoryStr);
         intent.putExtra("s_time",date);
         startActivity(intent);
+        finish();
     }
 }
