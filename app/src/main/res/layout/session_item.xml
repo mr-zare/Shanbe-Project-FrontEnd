@@ -29,8 +29,8 @@
 
             <TextView
                 android:id="@+id/session_limit"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="40dp"
+                android:layout_height="31dp"
                 android:inputType="number"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -55,8 +55,8 @@
 
             <TextView
                 android:id="@+id/date"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="88dp"
+                android:layout_height="25dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -79,8 +79,8 @@
 
             <TextView
                 android:id="@+id/time"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="53dp"
+                android:layout_height="26dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
