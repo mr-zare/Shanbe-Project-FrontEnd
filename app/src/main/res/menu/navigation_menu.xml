@@ -16,6 +16,10 @@
         android:icon="@mipmap/event"
         android:title="@string/event"
         android:onClick="EventClicked"/>
+    <item android:id="@+id/menuItemMySessions"
+        android:icon="@mipmap/event"
+        android:title="My sessions"
+        android:onClick="MySessionsClicked"/>
     <item android:title="@string/others">
         <menu>
             <item android:id="@+id/signoutItemProfile"

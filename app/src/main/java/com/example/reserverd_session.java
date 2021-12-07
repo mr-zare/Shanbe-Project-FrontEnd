@@ -28,7 +28,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class reserverd_session extends AppCompatActivity {
 
     TextView title,category , location , desc , date , time , limit;
-    String titleStr,categoryStr , locationStr , descStr , dateStr , timeStr , limitStr , dateTimeStr;
+    String titleStr,categoryStr , locationStr , descStr , dateStr , timeStr , limitStr , dateTimeStr ,sessionTokenStr;
     Button delete;
     String userToken;
     EventAPI eventAPI;
@@ -50,6 +50,8 @@ public class reserverd_session extends AppCompatActivity {
         locationStr = getIntent().getStringExtra("location");
         descStr = getIntent().getStringExtra("desc");
         dateTimeStr = getIntent().getStringExtra("datetime");
+        sessionTokenStr= getIntent().getStringExtra("session_token");
+        limitStr = getIntent().getStringExtra("limit");
 
         String [] dateTimeInfo = dateTimeStr.split("_");
         dateStr = dateTimeInfo[0];
@@ -58,7 +60,7 @@ public class reserverd_session extends AppCompatActivity {
         title = findViewById(R.id.titleevent);
         category = findViewById(R.id.categoryevent);
         location = findViewById(R.id.locationevent);
-        desc = findViewById(R.id.locationevent);
+        desc = findViewById(R.id.descript);
         date = findViewById(R.id.dateJoin);
         time = findViewById(R.id.timeJoin);
         limit = findViewById(R.id.limitJoin);
@@ -93,8 +95,9 @@ public class reserverd_session extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         eventAPI = cancelSession.create(EventAPI.class);
-
-        Call<JsonObject> callBack = eventAPI.session_cancel("token "+userToken);
+        JsonObject sessionToken = new JsonObject();
+        sessionToken.addProperty("session_token",sessionTokenStr);
+        Call<JsonObject> callBack = eventAPI.session_cancel("token "+userToken,sessionToken);
         callBack.enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {

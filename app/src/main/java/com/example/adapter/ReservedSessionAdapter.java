@@ -63,7 +63,8 @@ public class ReservedSessionAdapter extends BaseAdapter implements Filterable {
         ImageView imageViewCategory = view.findViewById(R.id.categoryImageItemEventView);
 
         title.setText(currentSession.getEvent().getTitle().toString());
-        date.setText(currentSession.getTime());
+        String [] dateTimeInfo = currentSession.getTime().split("_");
+        date.setText(dateTimeInfo[0]);
         location.setText(currentSession.getEvent().getLocation());
         desc.setText(currentSession.getEvent().getDescription().toString());
 
@@ -99,6 +100,8 @@ public class ReservedSessionAdapter extends BaseAdapter implements Filterable {
                 intent.putExtra("location",currentSession.getEvent().getLocation());
                 intent.putExtra("desc",currentSession.getEvent().getDescription());
                 intent.putExtra("datetime",currentSession.getTime().toString());
+                intent.putExtra("session_token",currentSession.getSession_token());
+                intent.putExtra("limit",Integer.toString(currentSession.getLimit()));
                 context.startActivity(intent);
             }
         });

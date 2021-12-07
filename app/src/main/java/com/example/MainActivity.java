@@ -314,4 +314,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(event);
     }
 
+    public void MySessionsClicked(MenuItem item)
+    {
+        Intent sessions = new Intent(MainActivity.this, my_sessions.class);
+        startActivity(sessions);
+    }
 }

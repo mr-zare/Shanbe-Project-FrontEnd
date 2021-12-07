@@ -47,16 +47,20 @@ public class my_sessions extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_my_sessions);
         init();
-        fillList();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        fillList();
+    }
 
     public void init()
     {
         search = findViewById(R.id.searchEventEditText);
         SharedPreferences sharedPreferences = getSharedPreferences("authentication", MODE_PRIVATE);
         userToken = sharedPreferences.getString("token", "");
-        sessionsListView = findViewById(R.id.eventsList);
+        sessionsListView = findViewById(R.id.sessionsList);
 
         search.addTextChangedListener(new TextWatcher() {
             @Override
