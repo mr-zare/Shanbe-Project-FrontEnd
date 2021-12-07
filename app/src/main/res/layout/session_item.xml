@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout6"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
 
@@ -20,7 +20,8 @@
             android:id="@+id/constraintLayout"
             android:layout_width="60dp"
             android:layout_height="match_parent"
-            android:background="@drawable/border_session"
+            android:background="@drawable/dummy_background"
+
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -29,9 +30,10 @@
 
             <TextView
                 android:id="@+id/session_limit"
-                android:layout_width="40dp"
-                android:layout_height="31dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:inputType="number"
+                android:gravity="center"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -43,10 +45,10 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout4"
-            android:layout_width="120dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
 
-            android:background="@drawable/border_session"
+            android:background="@drawable/dummy_background"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -55,8 +57,9 @@
 
             <TextView
                 android:id="@+id/date"
-                android:layout_width="88dp"
-                android:layout_height="25dp"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -67,10 +70,9 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout5"
-            android:layout_width="80dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-
-            android:background="@drawable/border_session"
+            android:background="@drawable/dummy_background"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -79,8 +81,9 @@
 
             <TextView
                 android:id="@+id/time"
-                android:layout_width="53dp"
-                android:layout_height="26dp"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
