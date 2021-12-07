@@ -16,6 +16,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
+            android:name="com.example.reserverd_session"
+            android:exported="true" />
+        <activity
+            android:name="com.example.my_sessions"
+            android:exported="true" />
+        <activity
             android:name="com.example.my_created_events"
             android:exported="true" />
         <activity
@@ -23,7 +29,7 @@
             android:exported="false" />
         <activity
             android:name="com.example.event_activity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name="com.example.EditProfile"
             android:exported="false" />
@@ -48,9 +54,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.EditEventActivity" android:exported="true">
-
-        </activity>
+        <activity
+            android:name="com.example.EditEventActivity"
+            android:exported="true" />
         <activity
             android:name="com.example.AddEvent"
             android:exported="true" />

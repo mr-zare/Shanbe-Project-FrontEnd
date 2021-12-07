@@ -53,4 +53,10 @@ public interface EventAPI {
 
     @HTTP(method = "DELETE", path = "session-delete/", hasBody = true)
     Call<JsonObject> session_delete(@Header("Authorization") String user_token, @Body JsonObject jsonObject);
+
+    @POST("session-get/")
+    Call<List<Session>> session_get(@Header("Authorization") String user_token);
+
+    @POST("session-cancel")
+    Call<JsonObject> session_cancel(@Header("Authorization") String user_token);
 }

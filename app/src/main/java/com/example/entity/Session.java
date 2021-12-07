@@ -12,8 +12,58 @@ public class Session {
     private String time;
     private String session_token;
     private int filled;
+    private Event event;
 
-    public Session(String year, String month, String day, String hour, String min, String limit,String session_token) {
+    public void setLimit(int limit) {
+        this.limit = limit;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getEvent_id() {
+        return event_id;
+    }
+
+    public void setEvent_id(String event_id) {
+        this.event_id = event_id;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public int getFilled() {
+        return filled;
+    }
+
+    public void setFilled(int filled) {
+        this.filled = filled;
+    }
+
+    public Event getEvent() {
+        return event;
+    }
+
+    public void setEvent(Event event) {
+        this.event = event;
+    }
+
+    public Session(int limit, int id, String time, String session_token, int filled, Event event) {
+        this.limit = limit;
+        this.id = id;
+        this.time = time;
+        this.session_token = session_token;
+        this.filled = filled;
+        this.event = event;
+    }
+
+    public Session(String year, String month, String day, String hour, String min, String limit, String session_token) {
         this.year = year;
         this.month = month;
         this.day = day;
