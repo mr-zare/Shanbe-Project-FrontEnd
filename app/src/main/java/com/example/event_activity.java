@@ -198,9 +198,5 @@ public class event_activity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void goMyEvent(View view) {
-        Intent intent = new Intent(event_activity.this,my_created_events.class);
-        startActivity(intent);
-        finish();
-    }
+
 }

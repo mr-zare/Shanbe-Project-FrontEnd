@@ -324,4 +324,8 @@ public class MainActivity extends AppCompatActivity {
         Intent sessions = new Intent(MainActivity.this, my_sessions.class);
         startActivity(sessions);
     }
+    public void goMyEvent(MenuItem view) {
+        Intent intent = new Intent(MainActivity.this,my_created_events.class);
+        startActivity(intent);
+    }
 }

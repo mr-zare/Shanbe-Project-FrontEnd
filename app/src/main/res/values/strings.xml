@@ -222,4 +222,5 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="event">Event</string>
     <string name="private_event">Private Event</string>
+    <string name="search_join"><![CDATA[Search & Join]]></string>
 </resources>

@@ -30,6 +30,6 @@
     <color name="element_white">#d3d8e3</color>
     <color name="warning_task_color">#D58080</color>
     <color name="side_bar_background">#80d8ff</color>
-
+    <color name="darkBlue">#080261</color>
     <color name="session_join_item">#EFEFFF</color>
 </resources>
