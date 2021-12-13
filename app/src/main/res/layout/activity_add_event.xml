@@ -71,21 +71,20 @@
                 android:layout_width="310dp"
                 android:layout_height="70dp"
                 android:layout_marginStart="22dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="90dp"
                 android:layout_marginEnd="22dp"
                 android:background="@drawable/border_shadow"
                 android:elevation="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/locationSpace">
+                app:layout_constraintTop_toBottomOf="@+id/addresslayoutaddevent">
 
                 <Spinner
                     android:id="@+id/privacyevent"
-                    android:layout_width="249dp"
+                    android:layout_width="239dp"
                     android:layout_height="50dp"
                     android:layout_marginStart="7dp"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginEnd="10dp"
                     android:entries="@array/privacy"
                     android:gravity="center"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -96,36 +95,92 @@
                     android:id="@+id/privacyimageevent"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginTop="6dp"
+                    android:layout_marginTop="7dp"
                     android:background="@drawable/privacy"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/addresslayoutaddevent"
+                android:layout_width="310dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/border_shadow"
+                android:elevation="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/locationSpace">
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="18dp"
+                    android:background="@drawable/icon_address_event"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"></ImageView>
+
+                <TextView
+                    android:id="@+id/addressaddevent"
+                    android:layout_width="229dp"
+                    android:layout_height="74dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="7dp"
+                    android:textSize="14dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.236"></TextView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="310dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="23dp"
+                android:background="@drawable/border_shadow"
+                android:elevation="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/addresslayoutaddevent">
+
+                <TextView
+                    android:layout_width="235dp"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="4dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"></TextView>
+
+                <ImageView
+                    android:layout_width="49dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/link_oicon"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"></ImageView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/descriptionSpace"
-                android:layout_width="200dp"
-                android:layout_height="184dp"
+                android:layout_width="230dp"
+                android:layout_height="191dp"
                 android:layout_marginTop="36dp"
                 android:background="@drawable/dummy_background_border"
                 android:elevation="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.787"
+                app:layout_constraintHorizontal_bias="0.751"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/privacylayout">
 
                 <EditText
                     android:id="@+id/descript"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="206dp"
+                    android:layout_height="151dp"
                     android:layout_margin="15dp"
+                    android:layout_marginTop="10dp"
                     android:fontFamily="@font/indie_flower"
                     android:hint="description"
                     android:maxLength="240"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.862"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"></EditText>
 
@@ -149,7 +204,7 @@
                 <Spinner
                     android:id="@+id/categoryevent"
                     style="@style/Widget.AppCompat.Spinner.DropDown"
-                    android:layout_width="249dp"
+                    android:layout_width="240dp"
                     android:layout_height="50dp"
                     android:layout_marginStart="48dp"
                     android:layout_marginTop="2dp"
@@ -166,8 +221,8 @@
                     android:id="@+id/categoryimageevent"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginTop="10dp"
                     android:background="@drawable/category"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -204,10 +259,10 @@
 
                 <Spinner
                     android:id="@+id/locationevent"
-                    android:layout_width="249dp"
+                    android:layout_width="240dp"
                     android:layout_height="50dp"
                     android:layout_marginTop="2dp"
-                    android:layout_marginEnd="9dp"
+                    android:layout_marginEnd="5dp"
                     android:entries="@array/location"
                     android:gravity="center"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -218,8 +273,7 @@
                     android:id="@+id/locimageevent"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="9dp"
+                    android:layout_marginTop="8dp"
                     android:background="@drawable/loc"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
