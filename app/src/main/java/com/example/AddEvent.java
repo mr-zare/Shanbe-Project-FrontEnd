@@ -188,7 +188,7 @@ public class AddEvent  extends AppCompatActivity {
                     else{
                         String code = Integer.toString(response.code());
                         Event addedEvent = response.body();
-                        Toast.makeText(AddEvent.this, code, Toast.LENGTH_SHORT).show();
+                      //Toast.makeText(AddEvent.this, code, Toast.LENGTH_SHORT).show();
                         if(pv == false)
                         {
                             CustomeAlertDialog saved = new CustomeAlertDialog(AddEvent.this,"Successful","event saved");
@@ -277,7 +277,7 @@ public class AddEvent  extends AppCompatActivity {
         int currentMinuate = now.minute;
 
         String currentDateTime = Integer.toString(currentYear)+Integer.toString(currentMonth)+Integer.toString(currentDay)+"_"+Integer.toString(currentHour)+":"+Integer.toString(currentMinuate);
-        Toast.makeText(this, currentDateTime, Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(this, currentDateTime, Toast.LENGTH_SHORT).show();
         if(currentYear<year)
         {
             return true;

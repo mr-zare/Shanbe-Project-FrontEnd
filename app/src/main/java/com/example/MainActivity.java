@@ -181,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
 
                             @Override
                             public void onFailure(Call<User> call, Throwable t) {
-                                Toast.makeText(MainActivity.this, "error is :"+t.getMessage(), Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(MainActivity.this, "error is :"+t.getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
@@ -189,7 +189,7 @@ public class MainActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<User> call, Throwable t) {
-                    Toast.makeText(MainActivity.this, "error is :"+t.getMessage(), Toast.LENGTH_LONG).show();
+                    //Toast.makeText(MainActivity.this, "error is :"+t.getMessage(), Toast.LENGTH_LONG).show();
                 }
             });
 
@@ -237,7 +237,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(Call<UserSession> call, Response<UserSession> response) {
                         if(!response.isSuccessful())
                         {
-                            Toast.makeText(MainActivity.this, "username or password is not correct!", Toast.LENGTH_SHORT).show();
+                           // Toast.makeText(MainActivity.this, "username or password is not correct!", Toast.LENGTH_SHORT).show();
                         }
                         else{
                             Intent logOut = new Intent(MainActivity.this, login.class);
@@ -247,7 +247,7 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<UserSession> call, Throwable t) {
-                        Toast.makeText(MainActivity.this, "error is :"+t.getMessage(), Toast.LENGTH_SHORT).show();
+                      //  Toast.makeText(MainActivity.this, "error is :"+t.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
             }

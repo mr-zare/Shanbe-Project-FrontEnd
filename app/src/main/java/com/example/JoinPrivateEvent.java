@@ -59,7 +59,7 @@ public class JoinPrivateEvent extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<Event> call, Response<Event> response) {
                         if (!response.isSuccessful()) {
-                            Toast.makeText(JoinPrivateEvent.this, "Some Field Wrong", Toast.LENGTH_SHORT).show();
+                          //  Toast.makeText(JoinPrivateEvent.this, "Some Field Wrong", Toast.LENGTH_SHORT).show();
                         } else {
                             String code = Integer.toString(response.code());
                             Event event = response.body();
@@ -79,7 +79,7 @@ public class JoinPrivateEvent extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<Event> call, Throwable t) {
-                        Toast.makeText(JoinPrivateEvent.this, "error is :" + t.getMessage(), Toast.LENGTH_SHORT).show();
+                     //   Toast.makeText(JoinPrivateEvent.this, "error is :" + t.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
             }

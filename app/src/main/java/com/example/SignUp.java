@@ -227,7 +227,7 @@ public class SignUp extends AppCompatActivity {
                         public void onResponse(Call<UserSession> call, Response<UserSession> response) {
                             if(!response.isSuccessful())
                             {
-                                Toast.makeText(SignUp.this, "this user has already exists!", Toast.LENGTH_LONG).show();
+                                //Toast.makeText(SignUp.this, "this user has already exists!", Toast.LENGTH_LONG).show();
                                 v.setEnabled(true);
                                 v.clearAnimation();
                             }
@@ -258,7 +258,7 @@ public class SignUp extends AppCompatActivity {
 
                         @Override
                         public void onFailure(Call<UserSession> call, Throwable t) {
-                            Toast.makeText(SignUp.this, "error is:"+t.getMessage(), Toast.LENGTH_LONG).show();
+                            //Toast.makeText(SignUp.this, "error is:"+t.getMessage(), Toast.LENGTH_LONG).show();
                             v.setEnabled(true);
                         }
                     });

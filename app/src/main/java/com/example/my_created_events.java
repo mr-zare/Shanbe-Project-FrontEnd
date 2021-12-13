@@ -94,7 +94,7 @@ public class my_created_events extends AppCompatActivity {
                 }
                 else{
                     int responseCode = response.code();
-                    Toast.makeText(my_created_events.this, Integer.toString(responseCode), Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(my_created_events.this, Integer.toString(responseCode), Toast.LENGTH_SHORT).show();
                     List<Event> myEvents = response.body();
                     myEventsAdap = new myEventsAdapter(my_created_events.this,myEvents);
                     myEventsList.setAdapter(myEventsAdap);

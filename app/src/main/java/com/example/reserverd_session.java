@@ -106,7 +106,7 @@ public class reserverd_session extends AppCompatActivity {
                     CustomeAlertDialog getTasksDayError = new CustomeAlertDialog(reserverd_session.this,"Error","there is a problem with your internet connection");
                 }
                 else{
-                    Toast.makeText(reserverd_session.this, Integer.toString(response.code()), Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(reserverd_session.this, Integer.toString(response.code()), Toast.LENGTH_SHORT).show();
                     CustomeAlertDialog getTasksDayError = new CustomeAlertDialog(reserverd_session.this,"Successful","session canceled");
                     getTasksDayError.btnOk.setOnClickListener(new View.OnClickListener() {
                         @Override

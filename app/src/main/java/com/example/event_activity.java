@@ -52,7 +52,7 @@ public class event_activity extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_event);
-        Toast.makeText(this, "create", Toast.LENGTH_SHORT).show();
+       // Toast.makeText(this, "create", Toast.LENGTH_SHORT).show();
         init();
     }
 
@@ -60,7 +60,7 @@ public class event_activity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        Toast.makeText(this, "resume", Toast.LENGTH_SHORT).show();
+       // Toast.makeText(this, "resume", Toast.LENGTH_SHORT).show();
 
         String locationStr= "";
         String categoryStr = "";
@@ -108,7 +108,7 @@ public class event_activity extends AppCompatActivity {
                 else{
                     String code = Integer.toString(response.code());
                     List<Event> filteredEventList = response.body();
-                    Toast.makeText(event_activity.this, code, Toast.LENGTH_SHORT).show();
+                 //   Toast.makeText(event_activity.this, code, Toast.LENGTH_SHORT).show();
 
                     eventAdap = new eventAdapter(event_activity.this,filteredEventList);
 

@@ -101,7 +101,7 @@ public class forgetPass_email extends AppCompatActivity {
                         public void onResponse(Call<Void> call, Response<Void> response) {
                             if(!response.isSuccessful())
                             {
-                                Toast.makeText(forgetPass_email.this, "error is:"+response.message(), Toast.LENGTH_LONG).show();
+                               // Toast.makeText(forgetPass_email.this, "error is:"+response.message(), Toast.LENGTH_LONG).show();
                                 view.setEnabled(true);
                                 view.clearAnimation();
                             }
@@ -117,7 +117,7 @@ public class forgetPass_email extends AppCompatActivity {
 
                         @Override
                         public void onFailure(Call<Void> call, Throwable t) {
-                            Toast.makeText(forgetPass_email.this, "error is:"+t.getMessage(), Toast.LENGTH_LONG).show();
+                          //  Toast.makeText(forgetPass_email.this, "error is:"+t.getMessage(), Toast.LENGTH_LONG).show();
                             view.setEnabled(true);
                         }
                     });

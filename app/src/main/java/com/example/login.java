@@ -136,14 +136,14 @@ public class login extends AppCompatActivity {
                             final String[] userLastName = new String[1];
                             final String[] userPhoneNumber = new String[1];
                             final String[] userAvatar = new String[1];
-                            Toast.makeText(login.this, code+"   "+namel , Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(login.this, code+"   "+namel , Toast.LENGTH_SHORT).show();
                             Call<User> userSessionCall = userAPI.showProfile("token "+ token);
                             userSessionCall.enqueue(new Callback<User>() {
                                 @Override
                                 public void onResponse(Call<User> call, Response<User> response) {
                                     if(!response.isSuccessful())
                                     {
-                                        Toast.makeText(login.this, "Some Field Wrong", Toast.LENGTH_SHORT).show();
+                                        //Toast.makeText(login.this, "Some Field Wrong", Toast.LENGTH_SHORT).show();
                                     }
                                     else{
                                         String code = Integer.toString(response.code());
@@ -192,7 +192,7 @@ public class login extends AppCompatActivity {
 
                                 @Override
                                 public void onFailure(Call<User> call, Throwable t) {
-                                    Toast.makeText(login.this, "error is :"+t.getMessage(), Toast.LENGTH_SHORT).show();
+                                    //Toast.makeText(login.this, "error is :"+t.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             });
                             //SystemClock.sleep(200);

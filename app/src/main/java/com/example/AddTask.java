@@ -289,7 +289,7 @@ public class AddTask extends AppCompatActivity {
         int currentMinuate = now.minute;
 
         String currentDateTime = Integer.toString(currentYear)+Integer.toString(currentMonth)+Integer.toString(currentDay)+"_"+Integer.toString(currentHour)+":"+Integer.toString(currentMinuate);
-        Toast.makeText(this, currentDateTime, Toast.LENGTH_SHORT).show();
+       // Toast.makeText(this, currentDateTime, Toast.LENGTH_SHORT).show();
         if(currentYear<year)
         {
             return true;

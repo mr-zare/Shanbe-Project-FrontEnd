@@ -159,7 +159,7 @@ public class forgotpass extends AppCompatActivity {
                                 String code = Integer.toString(response.code());
                                 UserSession responseSession = response.body();
                                 String token = responseSession.getToken();
-                                Toast.makeText(forgotpass.this, code +"\n"+token, Toast.LENGTH_LONG).show();
+                               // Toast.makeText(forgotpass.this, code +"\n"+token, Toast.LENGTH_LONG).show();
 
                                 Intent output=new Intent(forgotpass.this,login.class);
                                 //output.putExtra("token",token);
@@ -171,7 +171,7 @@ public class forgotpass extends AppCompatActivity {
 
                         @Override
                         public void onFailure(Call<UserSession> call, Throwable t) {
-                            Toast.makeText(forgotpass.this, "error is:"+t.getMessage(), Toast.LENGTH_LONG).show();
+                           // Toast.makeText(forgotpass.this, "error is:"+t.getMessage(), Toast.LENGTH_LONG).show();
                             codeToken.setBackgroundResource(R.drawable.border_red);
                             v.setEnabled(true);
                         }
