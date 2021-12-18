@@ -189,7 +189,7 @@
             app:mwhColorAlpha="0.45"
             app:mwhGradientAngle="45"
             app:mwhProgress="1"
-            app:mwhStartColor="#9F88D6"
+            app:mwhStartColor="#CC6FDC"
             app:mwhVelocity="1"
             app:mwhWaveHeight="50dp"
             app:mwhWaves="MultiWave" />
