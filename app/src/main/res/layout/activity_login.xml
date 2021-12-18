@@ -4,11 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bacground_eight"
+    android:background="#C5FFF1"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/transparent"
+        app:cardElevation="200dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/forgetpasscard">
     <TextView
-        android:textStyle="bold"
         android:id="@+id/gosignup"
         android:layout_width="229dp"
         android:layout_height="32dp"
@@ -18,12 +24,20 @@
         android:text="I don't have an account"
         android:textColor="@color/text_color"
         android:textSize="18dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/forgetpass" />
-
-    <TextView
         android:textStyle="bold"
+        />
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/forgetpasscard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/transparent"
+        app:cardElevation="200dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardViewlogin">
+    <TextView
         android:id="@+id/forgetpass"
         android:layout_width="172dp"
         android:layout_height="25dp"
@@ -33,11 +47,9 @@
         android:text="Forgot password"
         android:textColor="@color/text_color"
         android:textSize="18dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardViewlogin" />
-
+        android:textStyle="bold"
+        />
+    </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
         android:id="@+id/logoid"
         android:layout_width="160dp"
@@ -51,6 +63,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
         <androidx.cardview.widget.CardView
             android:layout_width="160dp"
             android:layout_height="160dp"
@@ -67,54 +80,70 @@
     </androidx.cardview.widget.CardView>
 
 
-
-    <EditText
-        android:id="@+id/nameidlog"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/namelog"
         android:layout_width="280dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="328dp"
-        android:background="@drawable/border"
-        android:drawableLeft="@drawable/ic_action_name"
-        android:ems="10"
-        android:fontFamily="@font/indie_flower"
-        android:hint=" Name"
-        android:inputType="textPersonName"
-        android:onClick="colorFilterLogin"
-        android:textColor="@color/teal_200"
-        android:textColorHint="@color/hintColor"
-        android:textSize="16dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/transparent"
+        app:cardElevation="200dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <EditText
-        android:id="@+id/passidlog"
-        android:onClick="colorFilterLogin"
-        android:textColorHint="@color/hintColor"
-        android:layout_width="280dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="48dp"
-        android:background="@drawable/border"
-        android:drawableLeft="@drawable/ic_action_pass"
-        android:ems="10"
-        android:fontFamily="@font/indie_flower"
-        android:hint=" Password"
-        android:textColor="@color/teal_200"
-        android:inputType="textPassword"
-        android:minHeight="48dp"
+        <EditText
+            android:id="@+id/nameidlog"
+            android:layout_width="280dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="328dp"
+            android:background="@drawable/border"
+            android:drawableLeft="@drawable/ic_action_name"
+            android:ems="10"
+            android:fontFamily="@font/indie_flower"
+            android:hint=" Name"
+            android:inputType="textPersonName"
+            android:onClick="colorFilterLogin"
+            android:textColor="@color/teal_200"
+            android:textColorHint="@color/hintColor"
+            android:textSize="16dp" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/passlog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/transparent"
+        app:cardElevation="200dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameidlog" />
+        app:layout_constraintTop_toBottomOf="@+id/namelog">
+
+        <EditText
+            android:id="@+id/passidlog"
+            android:layout_width="280dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="48dp"
+            android:background="@drawable/border"
+            android:drawableLeft="@drawable/ic_action_pass"
+            android:ems="10"
+            android:fontFamily="@font/indie_flower"
+            android:hint=" Password"
+            android:inputType="textPassword"
+            android:minHeight="48dp"
+            android:onClick="colorFilterLogin"
+            android:textColor="@color/teal_200"
+            android:textColorHint="@color/hintColor" />
+    </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:foregroundGravity="center_vertical"
-        android:padding="5dp"
         android:id="@+id/cardViewlogin"
         android:layout_width="250dp"
         android:layout_height="60dp"
         android:layout_marginTop="48dp"
+        android:foregroundGravity="center_vertical"
+        android:padding="5dp"
         app:cardBackgroundColor="#07F4DE"
         app:cardCornerRadius="15dp"
         app:cardElevation="10dp"
@@ -122,14 +151,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passidlog"
+        app:layout_constraintTop_toBottomOf="@+id/passlog"
         app:layout_constraintVertical_bias="0.0">
 
         <RelativeLayout
-            android:gravity="center"
             android:id="@+id/relativeLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:gravity="center">
 
             <TextView
                 android:id="@+id/login"
@@ -143,5 +172,28 @@
                 android:textStyle="bold" />
 
         </RelativeLayout>
+
     </androidx.cardview.widget.CardView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.scwang.wave.MultiWaveHeader
+            android:id="@+id/waveHeader"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="200dp"
+            android:scaleY="-1"
+            app:mwhCloseColor="@color/start_blue"
+            app:mwhColorAlpha="0.45"
+            app:mwhGradientAngle="45"
+            app:mwhProgress="1"
+            app:mwhStartColor="#9F88D6"
+            app:mwhVelocity="1"
+            app:mwhWaveHeight="50dp"
+            app:mwhWaves="MultiWave" />
+
+
+    </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

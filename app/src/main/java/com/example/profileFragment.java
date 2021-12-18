@@ -91,7 +91,7 @@ public class profileFragment extends Fragment {
         String phoneNumber = shP.getString("phonenumber","");
         firstNameLastNameProfileFragment.setText(new StringBuilder().append(firstName).append(" ").append(lastName).toString());
         if(!avatarUrl.equals("")){
-            Picasso.get().load("https://shanbe-back.herokuapp.com"+avatarUrl).placeholder(R.drawable.acount_circle).error(R.drawable.acount_circle).into(profileImage);
+            Picasso.get().load(avatarUrl).placeholder(R.drawable.acount_circle).error(R.drawable.acount_circle).into(profileImage);
         }
         if(!userName.equals("")){
             userNameProfileFragment.setText(userName);

@@ -288,7 +288,7 @@ public class MainActivity extends AppCompatActivity {
                 String avatarUrl = shP.getString("avatar","");
                 if(!avatarUrl.equals("")){
                     smallProfileImage = findViewById(R.id.imageProfileSmall);
-                    Picasso.get().load("https://shanbe-back.herokuapp.com"+avatarUrl).placeholder(R.drawable.acount_circle).error(R.drawable.acount_circle).into(smallProfileImage);
+                    Picasso.get().load(avatarUrl).placeholder(R.drawable.acount_circle).error(R.drawable.acount_circle).into(smallProfileImage);
                 }
                 userNameTextView = findViewById(R.id.headerUsernameTextView);
                 userNameTextView.setText(userName);
