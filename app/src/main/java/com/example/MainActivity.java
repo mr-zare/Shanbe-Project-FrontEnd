@@ -240,6 +240,9 @@ public class MainActivity extends AppCompatActivity {
                            // Toast.makeText(MainActivity.this, "username or password is not correct!", Toast.LENGTH_SHORT).show();
                         }
                         else{
+                            SharedPreferences.Editor myEdit = shP.edit();
+                            myEdit.putString("token","");
+                            myEdit.apply();
                             Intent logOut = new Intent(MainActivity.this, login.class);
                             startActivity(logOut);
                         }
