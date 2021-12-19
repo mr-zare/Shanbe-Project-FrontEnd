@@ -232,11 +232,17 @@ public class MainActivity extends AppCompatActivity {
                 SharedPreferences shP = getSharedPreferences("userInformation", MODE_PRIVATE);
                 String token = shP.getString("token", "");
                 Call<UserSession> userSessionCall = userAPI.logOut("token "+ token);
+
                 userSessionCall.enqueue(new Callback<UserSession>() {
                     @Override
                     public void onResponse(Call<UserSession> call, Response<UserSession> response) {
                         if(!response.isSuccessful())
                         {
+                            SharedPreferences.Editor myEdit = shP.edit();
+                            myEdit.putString("token","");
+                            myEdit.apply();
+                            Intent logOut = new Intent(MainActivity.this, login.class);
+                            startActivity(logOut);
                            // Toast.makeText(MainActivity.this, "username or password is not correct!", Toast.LENGTH_SHORT).show();
                         }
                         else{
@@ -251,6 +257,11 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(Call<UserSession> call, Throwable t) {
                       //  Toast.makeText(MainActivity.this, "error is :"+t.getMessage(), Toast.LENGTH_SHORT).show();
+                        SharedPreferences.Editor myEdit = shP.edit();
+                        myEdit.putString("token","");
+                        myEdit.apply();
+                        Intent logOut = new Intent(MainActivity.this, login.class);
+                        startActivity(logOut);
                     }
                 });
             }
