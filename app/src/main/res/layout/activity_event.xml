@@ -35,6 +35,19 @@
             android:paddingRight="30dp"
             android:textColor="@color/white"
             android:textColorHint="@color/white"></EditText>
+        <ProgressBar
+            android:id="@+id/pBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="20dp"
+            android:minHeight="50dp"
+            android:minWidth="200dp"
+            android:max="100"
+            android:indeterminate="false"
+            android:progress="0" />
+
 
         <ListView
             android:id="@+id/eventsList"
@@ -43,8 +56,9 @@
             android:divider="@android:color/transparent"
             android:dividerHeight="5dp"
             >
-
         </ListView>
+
     </LinearLayout>
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

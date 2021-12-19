@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -15,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.adapter.eventAdapter;
@@ -44,7 +46,10 @@ public class event_activity extends AppCompatActivity {
     Button filterBtn;
     eventAdapter eventAdap;
     ListView eventsListView;
+    private ProgressBar pgsBar;
     boolean isFiltered;
+    int i = 0;
+    Handler hdlr = new Handler();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -131,6 +136,7 @@ public class event_activity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("authentication", MODE_PRIVATE);
         userToken = sharedPreferences.getString("token", "");
         eventsListView = findViewById(R.id.eventsList);
+        pgsBar = (ProgressBar) findViewById(R.id.pBar);
 
         search.addTextChangedListener(new TextWatcher() {
             @Override
