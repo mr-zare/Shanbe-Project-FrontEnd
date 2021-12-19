@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bacground_eight"
     tools:context="com.example.SignUp">
 
     <androidx.cardview.widget.CardView
@@ -36,88 +35,97 @@
         </androidx.cardview.widget.CardView>
     </androidx.cardview.widget.CardView>
 
-
-    <EditText
-        android:id="@+id/nameid"
-        android:layout_width="280dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="244dp"
-        android:background="@drawable/border"
-        android:drawableLeft="@drawable/ic_action_name"
-        android:ems="10"
-        android:fontFamily="@font/indie_flower"
-        android:hint=" Username"
-        android:inputType="textPersonName"
-
-        android:textColor="@color/teal_200"
-        android:textColorHint="@color/hintColor"
-        android:textSize="16dp"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/snCardView"
+        app:cardElevation="200dp"
+        android:backgroundTint="@android:color/transparent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/relativeLayout2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/logo1">
 
-    <EditText
-        android:textColorHint="@color/hintColor"
+        <EditText
+            android:id="@+id/nameid"
+            android:layout_width="280dp"
+            android:layout_height="48dp"
+            android:background="@drawable/border"
+            android:drawableLeft="@drawable/ic_action_name"
+            android:ems="10"
+            android:fontFamily="@font/indie_flower"
+            android:hint=" Username"
+            android:inputType="textPersonName"
 
-        android:id="@+id/emailid"
-        android:layout_width="280dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="36dp"
-        android:background="@drawable/border"
-        android:drawableLeft="@drawable/ic_action_mail"
-        android:ems="10"
-        android:fontFamily="@font/indie_flower"
-        android:foregroundGravity="center_horizontal"
-        android:hint=" Email"
-        android:inputType="textPersonName"
-        android:textColor="@color/teal_200"
-        android:textSize="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameid" />
+            android:textColor="@color/teal_200"
+            android:textColorHint="@color/hintColor"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:textColorHint="@color/hintColor"
+        <EditText
+            android:id="@+id/emailid"
 
-        android:id="@+id/passid"
-        android:layout_width="280dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/border"
-        android:drawableLeft="@drawable/ic_action_pass"
-        android:ems="10"
-        android:fontFamily="@font/indie_flower"
-        android:hint=" Password"
-        android:inputType="textPassword"
-        android:minHeight="48dp"
-        android:textColor="@color/teal_200"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailid" />
+            android:layout_width="280dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="72dp"
+            android:background="@drawable/border"
+            android:drawableLeft="@drawable/ic_action_mail"
+            android:ems="10"
+            android:fontFamily="@font/indie_flower"
+            android:foregroundGravity="center_horizontal"
+            android:hint=" Email"
+            android:inputType="textPersonName"
+            android:textColor="@color/teal_200"
+            android:textColorHint="@color/hintColor"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.504"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nameid" />
 
-    <EditText
-        android:textColorHint="@color/hintColor"
+        <EditText
+            android:id="@+id/passid"
 
-        android:id="@+id/confpassid"
-        android:layout_width="280dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="36dp"
-        android:background="@drawable/border"
-        android:drawableLeft="@drawable/ic_action_pass"
-        android:ems="10"
-        android:fontFamily="@font/indie_flower"
-        android:hint=" Confirm password"
-        android:inputType="textPassword"
-        android:minHeight="48dp"
-        android:textColor="@color/teal_200"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passid" />
+            android:layout_width="280dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="144dp"
+            android:background="@drawable/border"
+            android:drawableLeft="@drawable/ic_action_pass"
+            android:ems="10"
+            android:fontFamily="@font/indie_flower"
+            android:hint=" Password"
+            android:inputType="textPassword"
+            android:minHeight="48dp"
+            android:textColor="@color/teal_200"
+            android:textColorHint="@color/hintColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.504"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/emailid" />
 
+        <EditText
+            android:id="@+id/confpassid"
+
+            android:layout_width="280dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="216dp"
+            android:background="@drawable/border"
+            android:drawableLeft="@drawable/ic_action_pass"
+            android:ems="10"
+            android:fontFamily="@font/indie_flower"
+            android:hint=" Confirm password"
+            android:inputType="textPassword"
+            android:minHeight="48dp"
+            android:textColor="@color/teal_200"
+            android:textColorHint="@color/hintColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.504"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/passid" />
+    </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
         android:id="@+id/cardViewsignup"
         android:layout_width="250dp"
@@ -130,7 +138,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/confpassid">
+        app:layout_constraintTop_toBottomOf="@+id/snCardView">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -166,4 +174,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardViewsignup" />
 
+    <RelativeLayout
+        android:id="@+id/relativeLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.scwang.wave.MultiWaveHeader
+            android:id="@+id/waveHeader"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="200dp"
+            android:scaleY="-1"
+            app:mwhCloseColor="@color/start_blue"
+            app:mwhColorAlpha="0.45"
+            app:mwhGradientAngle="45"
+            app:mwhProgress="1"
+            app:mwhStartColor="#CC6FDC"
+            app:mwhVelocity="1"
+            app:mwhWaveHeight="50dp"
+            app:mwhWaves="MultiWave" />
+
+
+    </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

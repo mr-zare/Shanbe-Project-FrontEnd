@@ -196,13 +196,13 @@ public class login extends AppCompatActivity {
                                 }
                             });
                             //SystemClock.sleep(200);
-                            Intent output=new Intent(login.this,welcome.class);
-                            output.putExtra("token",token);
-                            output.putExtra("username",namel);
                             SharedPreferences.Editor editor = ((ShanbehApp)getApplication()).sharedPreferences.edit();
                             editor.putString("token",token);
                             editor.putString("username",namel);
                             editor.apply();
+                            Intent output=new Intent(login.this,MainActivity.class);
+                            output.putExtra("token",token);
+                            output.putExtra("username",namel);
                             startActivity(output);
                             v.clearAnimation();
                             v.setEnabled(true);
