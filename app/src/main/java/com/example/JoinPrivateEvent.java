@@ -34,6 +34,7 @@ public class JoinPrivateEvent extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_join_private_event);
+        getSupportActionBar().hide();
         joinButton = findViewById(R.id.PrivateEventJoinButton);
         eventTokenEditText = findViewById(R.id.EnterEventToken);
         joinButton.setOnClickListener(new View.OnClickListener() {

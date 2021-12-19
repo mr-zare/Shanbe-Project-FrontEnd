@@ -130,13 +130,7 @@ public class JoinEvent extends AppCompatActivity {
                                 } else {
                                     String code = Integer.toString(response.code());
                                     Session session = response.body();
-                                    CustomeAlertDialog saved = new CustomeAlertDialog(JoinEvent.this,"Alert!","Successfully joined");
-                                    saved.btnOk.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View view) {
-                                            finish();
-                                        }
-                                    });
+                                    CustomSuccessAlertDialog saved = new CustomSuccessAlertDialog(JoinEvent.this,"Alert!","Successfully joined");
                                   //  Toast.makeText(JoinEvent.this, response.message(), Toast.LENGTH_LONG).show();
                                 }
                             }
@@ -146,12 +140,9 @@ public class JoinEvent extends AppCompatActivity {
                                // Toast.makeText(JoinEvent.this, "error is :" + t.getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         });
-                    } else {
-
-                        Toast toast = new Toast(mContext);
-                        toast.setText("You should select a session");
-                        toast.setDuration(Toast.LENGTH_LONG);
-                        toast.show();
+                    }
+                    else {
+                        CustomErrorAlertDialog error = new CustomErrorAlertDialog(JoinEvent.this, "Error", "You should select a session");
                     }
                 }
             }
