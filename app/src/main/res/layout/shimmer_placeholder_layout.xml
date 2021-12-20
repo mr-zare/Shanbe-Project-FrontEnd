@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="HardcodedText,MissingConstraints"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="20dp"
+    android:background="@drawable/border_shadow">
+    <TextView
+        android:id="@+id/event_title"
+        android:layout_width="200dp"
+        android:layout_height="20dp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:background="@color/shimmer_placeholder" />
+
+    <LinearLayout
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal"
+        android:padding="3dp">
+
+        <ImageView
+            android:id="@+id/item_profile_img"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:background="@color/shimmer_placeholder"
+            app:layout_constraintTop_toBottomOf="@+id/event_title"
+            tools:ignore="ContentDescription,MissingConstraints" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/item_student_name_title"
+                android:layout_width="150dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="15dp"
+                android:background="@color/shimmer_placeholder"
+                app:layout_constraintStart_toEndOf="@+id/item_profile_img" />
+
+            <TextView
+                android:id="@+id/event_owner"
+                android:layout_width="150dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/shimmer_placeholder"
+                app:layout_constraintStart_toEndOf="@+id/item_student_name_title" />
+
+            <TextView
+                android:id="@+id/item_student_college"
+                android:layout_width="150dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/shimmer_placeholder"
+                app:layout_constraintStart_toEndOf="@+id/item_profile_img"
+                app:layout_constraintTop_toBottomOf="@+id/event_owner" />
+
+            <TextView
+                android:id="@+id/item_student_specialization"
+                android:layout_width="250dp"
+                android:layout_height="55dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/shimmer_placeholder"
+                app:layout_constraintStart_toEndOf="@+id/item_profile_img"
+                app:layout_constraintTop_toBottomOf="@+id/item_student_college" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

@@ -134,11 +134,13 @@
         <entry key="..\:/p/FrontEnd/app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.2703125" />
         <entry key="..\:/p/FrontEnd/app/src/main/res/drawable/ic_baseline_work_24.xml" value="0.2703125" />
         <entry key="..\:/p/FrontEnd/app/src/main/res/layout/activity_edit_profile.xml" value="0.16666666666666666" />
-        <entry key="..\:/p/FrontEnd/app/src/main/res/layout/activity_event.xml" value="0.264" />
+        <entry key="..\:/p/FrontEnd/app/src/main/res/layout/activity_event.xml" value="0.10400000000000001" />
         <entry key="..\:/p/FrontEnd/app/src/main/res/layout/confirmation_alert_dialog.xml" value="0.176" />
         <entry key="..\:/p/FrontEnd/app/src/main/res/layout/created_event_dialog.xml" value="0.264" />
         <entry key="..\:/p/FrontEnd/app/src/main/res/layout/error_alert_dialog.xml" value="0.17300724637681159" />
         <entry key="..\:/p/FrontEnd/app/src/main/res/layout/layout_navigation_header.xml" value="0.12001811594202899" />
+        <entry key="..\:/p/FrontEnd/app/src/main/res/layout/my_event_view.xml" value="0.14673913043478262" />
+        <entry key="..\:/p/FrontEnd/app/src/main/res/layout/shimmer_placeholder_layout.xml" value="0.152" />
         <entry key="..\:/p/FrontEnd/app/src/main/res/layout/successfull_alert_dialog.xml" value="0.13020833333333334" />
         <entry key="..\:/p/FrontEnd/app/src/main/res/menu/navigation_menu.xml" value="0.1265625" />
         <entry key="..\:/project tahlil/FrontEnd/FrontEnd/app/src/main/res/drawable/border_editevent.xml" value="0.12037037037037036" />

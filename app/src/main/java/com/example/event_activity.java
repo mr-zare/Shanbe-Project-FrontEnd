@@ -26,6 +26,7 @@ import com.example.entity.Task;
 import com.example.myapplication.R;
 import com.example.webService.EventAPI;
 import com.example.webService.TaskAPI;
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.gson.JsonObject;
 
 import java.util.List;
@@ -46,7 +47,7 @@ public class event_activity extends AppCompatActivity {
     Button filterBtn;
     eventAdapter eventAdap;
     ListView eventsListView;
-    private ProgressBar pgsBar;
+    private ShimmerFrameLayout mFrameLayout;
     boolean isFiltered;
     int i = 0;
     Handler hdlr = new Handler();
@@ -59,10 +60,12 @@ public class event_activity extends AppCompatActivity {
         setContentView(R.layout.activity_event);
        // Toast.makeText(this, "create", Toast.LENGTH_SHORT).show();
         init();
+        mFrameLayout = findViewById(R.id.shimmerLayout);
     }
 
     @Override
     protected void onResume() {
+        mFrameLayout.startShimmer();
         super.onResume();
 
        // Toast.makeText(this, "resume", Toast.LENGTH_SHORT).show();
@@ -118,6 +121,8 @@ public class event_activity extends AppCompatActivity {
                     eventAdap = new eventAdapter(event_activity.this,filteredEventList);
 
                     eventsListView.setAdapter(eventAdap);
+                    mFrameLayout.startShimmer();
+                    mFrameLayout.setVisibility(View.GONE);
                 }
             }
 
@@ -126,6 +131,12 @@ public class event_activity extends AppCompatActivity {
                 CustomErrorAlertDialog errorConnecting = new CustomErrorAlertDialog(event_activity.this,"Error","there is a problem connecting to server");
             }
         });
+
+    }
+    @Override
+    protected void onPause() {
+        mFrameLayout.stopShimmer();
+        super.onPause();
     }
 
 
@@ -136,7 +147,6 @@ public class event_activity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("authentication", MODE_PRIVATE);
         userToken = sharedPreferences.getString("token", "");
         eventsListView = findViewById(R.id.eventsList);
-        pgsBar = (ProgressBar) findViewById(R.id.pBar);
 
         search.addTextChangedListener(new TextWatcher() {
             @Override
