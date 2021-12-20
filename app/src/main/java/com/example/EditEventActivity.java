@@ -66,6 +66,16 @@ public class EditEventActivity extends AppCompatActivity {
     List<Session> mySessions;
     List<Session> addedSessions;
 
+    CustomDatePicker customDatePicker;
+    CustomTimePicker customTimePicker;
+
+
+    int yearNum;
+    int monthNum;
+    int dayNum;
+    int hourNum;
+    int minNum;
+
     SessionAdapter sessionAdap;
 
     @Override
@@ -217,38 +227,57 @@ public class EditEventActivity extends AppCompatActivity {
     public void addSessionBtn(View view) {
 
         EditText limit = findViewById(R.id.added_session_limit);
-        Spinner year = findViewById(R.id.added_date_year);
-        Spinner month = findViewById(R.id.added_date_month);
-        Spinner day = findViewById(R.id.added_date_day);
-        Spinner hour = findViewById(R.id.added_hour);
-        Spinner min = findViewById(R.id.added_min);
+
 
         String limitStr = limit.getText().toString();
-        String yearStr = year.getSelectedItem().toString();
-        String monthStr = month.getSelectedItem().toString();
-        int monthNumber = Integer.parseInt(monthStr);
-        monthNumber--;
-        monthStr = Integer.toString(monthNumber);
-        String dayStr = day.getSelectedItem().toString();
-        String hourStr = hour.getSelectedItem().toString();
-        String minStr = min.getSelectedItem().toString();
 
-        int yearNum = Integer.parseInt(yearStr);
-        int monthNum = Integer.parseInt(monthStr);
-        int dayNum = Integer.parseInt(dayStr);
-        int hourNum = Integer.parseInt(hourStr);
-        int minNum = Integer.parseInt(minStr);
-
-        if(checkDate(yearNum,monthNum,dayNum,hourNum,minNum))
+        if(limitStr.equals("")||limitStr.equals("0"))
         {
-            Session newSession = new Session(yearStr,monthStr,dayStr,hourStr,minStr,limitStr);
-            mySessions.add(newSession);
-            addedSessions.add(newSession);
-            sessionAdap = new SessionAdapter(EditEventActivity.this,mySessions,addedSessions);
-            sessionsList.setAdapter(sessionAdap);
+            CustomErrorAlertDialog errorDate = new CustomErrorAlertDialog(EditEventActivity.this,"Error","Please fill the limit field.");
         }
         else{
-            CustomErrorAlertDialog errorDate = new CustomErrorAlertDialog(EditEventActivity.this,"Error","you can not select a date in past");
+            yearNum = customDatePicker.getYearNum();
+            monthNum = customDatePicker.getMonthNum();
+            dayNum = customDatePicker.getDayNum();
+
+            hourNum = customTimePicker.getHourNum();
+            minNum = customTimePicker.getMinNum();
+
+            if(yearNum==0||monthNum==0||dayNum==0)
+            {
+                CustomErrorAlertDialog errorDate = new CustomErrorAlertDialog(EditEventActivity.this,"Error","you must select a date for the session.");
+            }
+            if(hourNum==0||minNum==0)
+            {
+                CustomErrorAlertDialog errorDate = new CustomErrorAlertDialog(EditEventActivity.this,"Error","you must select a time for the session.");
+            }
+            else{
+                //Toast.makeText(this, Integer.toString(yearNum)+"_"+Integer.toString(monthNum)+"_"+Integer.toString(dayNum)+"_"+Integer.toString(hourNum)+"_"+Integer.toString(minNum)+"_", Toast.LENGTH_SHORT).show();
+                if(checkDate(yearNum,monthNum,dayNum,hourNum,minNum))
+                {
+                    String yearStr = customDatePicker.getYearS();
+                    String monthStr = customDatePicker.getMonthS();
+                    int monthNumber = Integer.parseInt(monthStr);
+                    monthNumber++;
+                    monthStr = Integer.toString(monthNumber);
+                    if(monthStr.length()==1)
+                    {
+                        monthStr = "0"+monthStr;
+                    }
+                    String dayStr = customDatePicker.getDayS();
+                    String hourStr = customTimePicker.getHourS();
+                    String minStr = customTimePicker.getMinS();
+
+                    Session newSession = new Session(yearStr,monthStr,dayStr,hourStr,minStr,limitStr);
+                    mySessions.add(newSession);
+                    addedSessions.add(newSession);
+                    sessionAdap = new SessionAdapter(EditEventActivity.this,mySessions,addedSessions);
+                    sessionsList.setAdapter(sessionAdap);
+                }
+                else{
+                    CustomErrorAlertDialog errorDate = new CustomErrorAlertDialog(EditEventActivity.this,"Error","you can not select a date in past.");
+                }
+            }
         }
     }
 
@@ -385,5 +414,14 @@ public class EditEventActivity extends AppCompatActivity {
 
         sessionAdap = new SessionAdapter(EditEventActivity.this,mySessions,addedSessions);
         sessionsList.setAdapter(sessionAdap);
+    }
+
+    public void PickTime(View view) {
+        customTimePicker = new CustomTimePicker(this);
+    }
+
+    public void PickDate(View view) {
+        customDatePicker = new CustomDatePicker(this);
+        //Toast.makeText(this, Integer.toString(yearNum)+"_"+Integer.toString(monthNum)+"_"+Integer.toString(dayNum), Toast.LENGTH_SHORT).show();
     }
 }
