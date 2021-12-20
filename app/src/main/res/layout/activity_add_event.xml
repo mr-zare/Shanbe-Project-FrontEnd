@@ -319,6 +319,33 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/newSession">
 
+                <Button
+                    android:onClick="PickTime"
+                    android:text="time"
+                    android:id="@+id/pickTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                </Button>
+
+                <Button
+                    android:onClick="PickDate"
+                    android:text="date"
+                    android:id="@+id/pickDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="48dp"
+                    android:layout_marginEnd="24dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/addSession"
+                    app:layout_constraintStart_toEndOf="@+id/pickTime"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                </Button>
+
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/addSession"
                     android:layout_width="wrap_content"
