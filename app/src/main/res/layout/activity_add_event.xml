@@ -8,22 +8,23 @@
     >
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/add_event_background"
+        >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/titleborder"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="20dp"
-            android:layout_marginTop="20dp"
             android:layout_marginLeft="20dp"
+            android:layout_marginTop="40dp"
             android:layout_marginRight="20dp"
 
             android:background="@drawable/border_shadow"
             android:elevation="12dp"
             android:padding="10dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.492"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:context="com.example.AddEvent">
@@ -70,14 +71,13 @@
                 android:id="@+id/privacylayout"
                 android:layout_width="310dp"
                 android:layout_height="70dp"
-                android:layout_marginStart="22dp"
-                android:layout_marginTop="90dp"
-                android:layout_marginEnd="22dp"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/border_shadow"
                 android:elevation="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.491"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/addresslayoutaddevent">
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout7">
 
                 <Spinner
                     android:id="@+id/privacyevent"
@@ -106,11 +106,12 @@
                 android:layout_width="310dp"
                 android:layout_height="100dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="20dp"
                 android:background="@drawable/border_shadow"
                 android:elevation="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/locationSpace">
+
                 <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
@@ -134,13 +135,15 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout7"
                 android:layout_width="310dp"
                 android:layout_height="70dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="23dp"
                 android:background="@drawable/border_shadow"
                 android:elevation="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.491"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/addresslayoutaddevent">
 
                 <TextView
@@ -160,13 +163,13 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/descriptionSpace"
-                android:layout_width="230dp"
+                android:layout_width="310dp"
                 android:layout_height="191dp"
-                android:layout_marginTop="36dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/dummy_background_border"
                 android:elevation="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.751"
+                app:layout_constraintHorizontal_bias="0.567"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/privacylayout">
 
@@ -190,15 +193,13 @@
                 android:id="@+id/categorySpace"
                 android:layout_width="310dp"
                 android:layout_height="70dp"
-                android:layout_marginStart="22dp"
-                android:layout_marginTop="96dp"
-                android:layout_marginEnd="22dp"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/border_shadow"
                 android:elevation="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.333"
+                app:layout_constraintHorizontal_bias="0.508"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toBottomOf="@+id/titleSpace">
 
 
                 <Spinner
@@ -248,12 +249,11 @@
                 android:id="@+id/locationSpace"
                 android:layout_width="310dp"
                 android:layout_height="70dp"
-                android:layout_marginStart="13dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="11dp"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/border_shadow"
                 android:elevation="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.508"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/categorySpace">
 
@@ -279,25 +279,12 @@
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <ImageView
-                android:id="@+id/imagedesc"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_marginTop="96dp"
-                android:background="@drawable/dummy_background"
-                android:elevation="12dp"
-                android:src="@drawable/desc2"
-                app:layout_constraintEnd_toStartOf="@+id/descriptionSpace"
-                app:layout_constraintHorizontal_bias="0.424"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/privacylayout"></ImageView>
-
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/sessionsList"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_margin="22dp"
-                android:layout_marginTop="60dp"
+                android:layout_width="310dp"
+                android:layout_height="230dp"
+
+                android:layout_marginTop="30dp"
                 android:background="@drawable/dummy_background"
                 android:elevation="22dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -305,13 +292,18 @@
                 app:layout_constraintTop_toBottomOf="@+id/descriptionSpace">
 
                 <ListView
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
                     android:id="@+id/sessionsListView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:divider="@android:color/transparent"
+                    android:dividerHeight="3dp"
+                    >
 
                 </ListView>
 

@@ -232,14 +232,23 @@ public class MainActivity extends AppCompatActivity {
                 SharedPreferences shP = getSharedPreferences("userInformation", MODE_PRIVATE);
                 String token = shP.getString("token", "");
                 Call<UserSession> userSessionCall = userAPI.logOut("token "+ token);
+
                 userSessionCall.enqueue(new Callback<UserSession>() {
                     @Override
                     public void onResponse(Call<UserSession> call, Response<UserSession> response) {
                         if(!response.isSuccessful())
                         {
+                            SharedPreferences.Editor myEdit = shP.edit();
+                            myEdit.putString("token","");
+                            myEdit.apply();
+                            Intent logOut = new Intent(MainActivity.this, login.class);
+                            startActivity(logOut);
                            // Toast.makeText(MainActivity.this, "username or password is not correct!", Toast.LENGTH_SHORT).show();
                         }
                         else{
+                            SharedPreferences.Editor myEdit = shP.edit();
+                            myEdit.putString("token","");
+                            myEdit.apply();
                             Intent logOut = new Intent(MainActivity.this, login.class);
                             startActivity(logOut);
                         }
@@ -248,6 +257,11 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(Call<UserSession> call, Throwable t) {
                       //  Toast.makeText(MainActivity.this, "error is :"+t.getMessage(), Toast.LENGTH_SHORT).show();
+                        SharedPreferences.Editor myEdit = shP.edit();
+                        myEdit.putString("token","");
+                        myEdit.apply();
+                        Intent logOut = new Intent(MainActivity.this, login.class);
+                        startActivity(logOut);
                     }
                 });
             }
@@ -285,7 +299,7 @@ public class MainActivity extends AppCompatActivity {
                 String avatarUrl = shP.getString("avatar","");
                 if(!avatarUrl.equals("")){
                     smallProfileImage = findViewById(R.id.imageProfileSmall);
-                    Picasso.get().load("https://shanbe-back.herokuapp.com"+avatarUrl).placeholder(R.drawable.acount_circle).error(R.drawable.acount_circle).into(smallProfileImage);
+                    Picasso.get().load(avatarUrl).placeholder(R.drawable.acount_circle).error(R.drawable.acount_circle).into(smallProfileImage);
                 }
                 userNameTextView = findViewById(R.id.headerUsernameTextView);
                 userNameTextView.setText(userName);

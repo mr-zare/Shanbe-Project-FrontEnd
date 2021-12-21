@@ -122,27 +122,33 @@ public class JoinEvent extends AppCompatActivity {
             public void onClick(View v) {
                 if (sessionAdap != null) {
                     if (sessionAdap.getSelected().getSession_token() != "") {
-                        JsonObject session_item = new JsonObject();
-                        session_item.addProperty("session_token", sessionAdap.getSelected().getSession_token());
-                        Call<Session> callBack = eventAPI.join_session("token " + token, session_item);
-                        callBack.enqueue(new Callback<Session>() {
-                            @Override
-                            public void onResponse(Call<Session> call, Response<Session> response) {
-                                if (!response.isSuccessful()) {
-                                   // Toast.makeText(JoinEvent.this, "Some Field Wrong", Toast.LENGTH_SHORT).show();
-                                } else {
-                                    String code = Integer.toString(response.code());
-                                    Session session = response.body();
-                                    CustomSuccessAlertDialog saved = new CustomSuccessAlertDialog(JoinEvent.this,"Alert!","Successfully joined");
-                                  //  Toast.makeText(JoinEvent.this, response.message(), Toast.LENGTH_LONG).show();
+                        if(sessionAdap.getSelected().getFilled() >= sessionAdap.getSelected().getLimit())
+                        {
+                            CustomErrorAlertDialog error = new CustomErrorAlertDialog(JoinEvent.this, "Error", "Choose another session. This session is full.");
+                        }
+                        else{
+                            JsonObject session_item = new JsonObject();
+                            session_item.addProperty("session_token", sessionAdap.getSelected().getSession_token());
+                            Call<Session> callBack = eventAPI.join_session("token " + token, session_item);
+                            callBack.enqueue(new Callback<Session>() {
+                                @Override
+                                public void onResponse(Call<Session> call, Response<Session> response) {
+                                    if (!response.isSuccessful()) {
+                                        // Toast.makeText(JoinEvent.this, "Some Field Wrong", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        String code = Integer.toString(response.code());
+                                        Session session = response.body();
+                                        CustomSuccessAlertDialog saved = new CustomSuccessAlertDialog(JoinEvent.this,"Alert!","Successfully joined");
+                                        //  Toast.makeText(JoinEvent.this, response.message(), Toast.LENGTH_LONG).show();
+                                    }
                                 }
-                            }
 
-                            @Override
-                            public void onFailure(Call<Session> call, Throwable t) {
-                               // Toast.makeText(JoinEvent.this, "error is :" + t.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                                @Override
+                                public void onFailure(Call<Session> call, Throwable t) {
+                                    // Toast.makeText(JoinEvent.this, "error is :" + t.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
                     }
                     else {
                         CustomErrorAlertDialog error = new CustomErrorAlertDialog(JoinEvent.this, "Error", "You should select a session");

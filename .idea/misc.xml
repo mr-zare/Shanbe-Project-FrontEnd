@@ -24,6 +24,7 @@
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/drawable-normal/delete1.xml" value="0.2703125" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/drawable-small/delete1.xml" value="0.2703125" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/drawable-xxhdpi/images.xml" value="0.1368421052631579" />
+        <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/drawable/add_event_background.xml" value="0.17533783783783785" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/drawable/border.xml" value="0.2703125" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/drawable/border2.xml" value="0.2703125" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/drawable/border_event.xml" value="0.1707236842105263" />
@@ -40,14 +41,16 @@
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/drawable/delete_button.xml" value="0.2703125" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/drawable/dummy_background.xml" value="0.1796875" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/drawable/dummy_background_border.xml" value="0.21510416666666668" />
-        <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/activity_add_event.xml" value="0.136" />
+        <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/activity_add_event.xml" value="0.2" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/activity_add_task.xml" value="0.264" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/activity_day.xml" value="0.25416666666666665" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/activity_day_task.xml" value="0.16052631578947368" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/activity_edit_task.xml" value="0.25416666666666665" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/activity_event.xml" value="0.25416666666666665" />
+        <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/activity_forget_pass_email.xml" value="0.16486486486486487" />
+        <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/activity_forgotpass.xml" value="0.152" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/activity_join_event.xml" value="0.25416666666666665" />
-        <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/activity_login.xml" value="0.25416666666666665" />
+        <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/activity_login.xml" value="0.176" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/activity_main.xml" value="0.1375" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/activity_my_created_events.xml" value="0.25416666666666665" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/activity_my_sessions.xml" value="0.16052631578947368" />
@@ -64,7 +67,7 @@
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/list_item.xml" value="0.190625" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/my_event_view.xml" value="0.25416666666666665" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/reserved_session_item.xml" value="0.536" />
-        <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/session_item.xml" value="0.4" />
+        <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/session_item.xml" value="0.264" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/sessionjoin_item.xml" value="0.16052631578947368" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/task_view.xml" value="0.2" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/menu/navigation_menu.xml" value="0.16052631578947368" />
@@ -103,7 +106,10 @@
         <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/layout/activity_event.xml" value="0.264" />
         <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/layout/activity_join_event.xml" value="0.2028985507246377" />
         <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/layout/activity_join_private_event.xml" value="0.24003623188405798" />
+        <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/layout/activity_signup.xml" value="0.4" />
+        <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/layout/activity_welcome.xml" value="0.19479166666666667" />
         <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/layout/calendar_layout.xml" value="0.25416666666666665" />
         <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/layout/event_view.xml" value="0.264" />
         <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/layout/filters_evant.xml" value="0.223731884057971" />
@@ -113,7 +119,7 @@
         <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/layout/layout_navigation_header.xml" value="0.1875" />
         <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/layout/layout_warning_dialog.xml" value="0.13854166666666667" />
         <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/layout/list_item.xml" value="0.13854166666666667" />
-        <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/layout/movie_row.xml" value="0.1" />
+        <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/layout/movie_row.xml" value="0.2" />
         <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/layout/recycler_view_item.xml" value="0.25416666666666665" />
         <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/layout/single_cell_layout.xml" value="0.25416666666666665" />
         <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/layout/task_view.xml" value="0.223731884057971" />
@@ -167,7 +173,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

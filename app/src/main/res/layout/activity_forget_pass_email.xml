@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bacground_eight"
+    android:background="#52E4F6"
     tools:context="com.example.forgetPass_email">
 
     <androidx.cardview.widget.CardView
@@ -33,25 +33,33 @@
         </androidx.cardview.widget.CardView>
     </androidx.cardview.widget.CardView>
 
-
-    <EditText
-        android:id="@+id/emailConfirmation"
-        android:layout_width="280dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="240dp"
-        android:background="@drawable/border"
-        android:drawableLeft="@drawable/ic_action_mail"
-        android:ems="10"
-        android:fontFamily="@font/indie_flower"
-        android:hint=" Email"
-        android:minHeight="48dp"
-        android:onClick="ColorFilterEmailForget"
-        android:textColor="@color/teal_200"
-        android:textColorHint="@color/hintColor"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/emailConfirmationCard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
+        app:cardElevation="200dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logo2" />
+        app:layout_constraintTop_toBottomOf="@+id/logo2"
+        android:backgroundTint="@android:color/transparent">
+        <EditText
+            android:id="@+id/emailConfirmation"
+            android:layout_width="280dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="240dp"
+            android:background="@drawable/border"
+            android:drawableLeft="@drawable/ic_action_mail"
+            android:ems="10"
+            android:fontFamily="@font/indie_flower"
+            android:hint=" Email"
+            android:minHeight="48dp"
+            android:onClick="ColorFilterEmailForget"
+            android:textColor="@color/teal_200"
+            android:textColorHint="@color/hintColor"
+            />
+    </androidx.cardview.widget.CardView>
+
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardViewfgEmail"
@@ -67,7 +75,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailConfirmation"
+        app:layout_constraintTop_toBottomOf="@+id/emailConfirmationCard"
         app:layout_constraintVertical_bias="0.483">
 
         <RelativeLayout
@@ -87,7 +95,27 @@
                 android:textStyle="bold" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
+        <com.scwang.wave.MultiWaveHeader
+            android:id="@+id/waveHeader"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="200dp"
+            android:scaleY="-1"
+            app:mwhCloseColor="@color/blue_background"
+            app:mwhColorAlpha="0.45"
+            app:mwhGradientAngle="90"
+            app:mwhProgress="1"
+            app:mwhStartColor="#CC6FDC"
+            app:mwhVelocity="1"
+            app:mwhWaveHeight="50dp"
+            app:mwhWaves="MultiWave" />
+
+
+    </RelativeLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

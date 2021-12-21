@@ -63,6 +63,7 @@ dependencies {
     implementation 'com.scwang.wave:MultiWaveHeader:1.0.0'
     implementation 'com.scwang.wave:MultiWaveHeader:1.0.0-andx'
     implementation 'com.scwang.wave:MultiWaveHeader:1.0.0-alpha-1'
+    implementation 'com.github.ybq:Android-SpinKit:1.4.0'
 
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
     implementation 'com.android.volley:volley:1.1.0'
