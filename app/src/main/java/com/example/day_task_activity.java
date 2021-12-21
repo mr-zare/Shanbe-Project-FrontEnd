@@ -22,6 +22,7 @@ import com.example.adapter.taskAdapter;
 import com.example.entity.Task;
 import com.example.myapplication.R;
 import com.example.webService.TaskAPI;
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.gson.JsonObject;
 
 import java.util.List;
@@ -43,10 +44,12 @@ public class day_task_activity extends AppCompatActivity {
     taskAdapter tasksAdap;
     TaskAPI taskAPI;
     String FinalDate;
+    private ShimmerFrameLayout mFrameLayout;
 
     @Override
     protected void onResume() {
         super.onResume();
+        mFrameLayout.startShimmer();
         fillList();
     }
 
@@ -57,6 +60,8 @@ public class day_task_activity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         init();
+
+        mFrameLayout = findViewById(R.id.shimmerLayout);
 
         //active alarms..
         AlarmController alarm = new AlarmController(day_task_activity.this);
@@ -205,5 +210,12 @@ public class day_task_activity extends AppCompatActivity {
         List<Task> listOfTasks = tasksdb.select(FinalDate);
         tasksAdap = new taskAdapter(day_task_activity.this,listOfTasks);
         list.setAdapter(tasksAdap);
+        mFrameLayout.startShimmer();
+        mFrameLayout.setVisibility(View.GONE);
+    }
+    @Override
+    protected void onPause() {
+        mFrameLayout.stopShimmer();
+        super.onPause();
     }
 }

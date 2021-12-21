@@ -34,5 +34,6 @@
     <color name="session_join_item">#EFEFFF</color>
     <color name="colorRed">#D3443A</color>
     <color name="SuccessfullGreen">#3dd654</color>
+    <color name="shimmer_placeholder">#dddddd</color>
     //salam 
 </resources>
