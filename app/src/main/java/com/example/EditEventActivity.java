@@ -68,6 +68,8 @@ public class EditEventActivity extends AppCompatActivity {
 
     SessionAdapter sessionAdap;
 
+    CustomLoadingDialog loadingDialog;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -316,6 +318,7 @@ public class EditEventActivity extends AppCompatActivity {
                     loadSpinners();
                     description.setText(currentEvent.getDescription().toString());
                     loadSessions();
+                    loadingDialog.dismisDialog();
                 }
             }
 
@@ -385,5 +388,16 @@ public class EditEventActivity extends AppCompatActivity {
 
         sessionAdap = new SessionAdapter(EditEventActivity.this,mySessions,addedSessions);
         sessionsList.setAdapter(sessionAdap);
+    }
+
+    public void openLoadingDialog()
+    {
+        loadingDialog = new CustomLoadingDialog(EditEventActivity.this);
+        loadingDialog.startLoadingDialog();
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        openLoadingDialog();
     }
 }

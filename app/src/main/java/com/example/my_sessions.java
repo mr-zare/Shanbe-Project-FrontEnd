@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -19,6 +20,7 @@ import com.example.entity.Session;
 import com.example.myapplication.R;
 import com.example.webService.EventAPI;
 import com.example.webService.TaskAPI;
+import com.facebook.shimmer.ShimmerFrameLayout;
 
 import java.util.List;
 
@@ -37,6 +39,7 @@ public class my_sessions extends AppCompatActivity {
     String userToken;
     ReservedSessionAdapter reservedSessionAdapter;
     ListView sessionsListView;
+    private ShimmerFrameLayout mFrameLayout;
 
 
     @Override
@@ -47,11 +50,13 @@ public class my_sessions extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_my_sessions);
         init();
+        mFrameLayout = findViewById(R.id.shimmerLayout);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        mFrameLayout.startShimmer();
         fillList();
     }
 
@@ -112,6 +117,8 @@ public class my_sessions extends AppCompatActivity {
                     reservedSessionAdapter = new ReservedSessionAdapter(my_sessions.this,listOfSessions);
 
                     sessionsListView.setAdapter(reservedSessionAdapter);
+                    mFrameLayout.startShimmer();
+                    mFrameLayout.setVisibility(View.GONE);
 
                 }
             }
@@ -121,5 +128,10 @@ public class my_sessions extends AppCompatActivity {
                 CustomErrorAlertDialog getTasksDayError = new CustomErrorAlertDialog(my_sessions.this,"Error","there is a problem with your internet connection");
             }
         });
+    }
+    @Override
+    protected void onPause() {
+        mFrameLayout.stopShimmer();
+        super.onPause();
     }
 }

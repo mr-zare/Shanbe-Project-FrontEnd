@@ -20,6 +20,7 @@ import com.example.entity.Event;
 import com.example.myapplication.R;
 import com.example.webService.EventAPI;
 import com.example.webService.TaskAPI;
+import com.facebook.shimmer.ShimmerFrameLayout;
 
 import java.util.List;
 
@@ -36,6 +37,7 @@ public class my_created_events extends AppCompatActivity {
         String userToken;
         ListView myEventsList;
         myEventsAdapter myEventsAdap;
+        private ShimmerFrameLayout mFrameLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +47,13 @@ public class my_created_events extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_my_created_events);
         init();
+        mFrameLayout = findViewById(R.id.shimmerLayout);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mFrameLayout.startShimmer();
         fillList();
     }
 
@@ -98,6 +107,8 @@ public class my_created_events extends AppCompatActivity {
                     List<Event> myEvents = response.body();
                     myEventsAdap = new myEventsAdapter(my_created_events.this,myEvents);
                     myEventsList.setAdapter(myEventsAdap);
+                    mFrameLayout.startShimmer();
+                    mFrameLayout.setVisibility(View.GONE);
                 }
             }
 
@@ -112,5 +123,10 @@ public class my_created_events extends AppCompatActivity {
         Intent intent = new Intent(my_created_events.this,AddEvent.class);
         startActivity(intent);
         finish();
+    }
+    @Override
+    protected void onPause() {
+        mFrameLayout.stopShimmer();
+        super.onPause();
     }
 }

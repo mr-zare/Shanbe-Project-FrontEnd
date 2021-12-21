@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.JetPlayer;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -49,6 +50,7 @@ public class JoinEvent extends AppCompatActivity {
     SessionJoinAdapter sessionAdap;
     ListView listView;
     Context mContext;
+    CustomLoadingDialog loadingDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,6 +108,7 @@ public class JoinEvent extends AppCompatActivity {
                     sessionAdap = new SessionJoinAdapter(JoinEvent.this, sessionList);
 
                     listView.setAdapter(sessionAdap);
+                    loadingDialog.dismisDialog();
                 }
             }
 
@@ -148,5 +151,15 @@ public class JoinEvent extends AppCompatActivity {
             }
         });
 
+    }
+    public void openLoadingDialog()
+    {
+        loadingDialog = new CustomLoadingDialog(JoinEvent.this);
+        loadingDialog.startLoadingDialog();
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        openLoadingDialog();
     }
 }
