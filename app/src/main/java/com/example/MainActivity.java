@@ -342,4 +342,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this,my_created_events.class);
         startActivity(intent);
     }
+    public void signInGoogle(MenuItem item)
+    {
+        Intent intent = new Intent(MainActivity.this,googleSginInActivity.class);
+        startActivity(intent);
+    }
 }

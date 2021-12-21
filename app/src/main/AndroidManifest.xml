@@ -109,6 +109,9 @@
         <activity
             android:name="com.example.MainActivity"
             android:exported="true" />
+        <activity android:name="com.example.googleSginInActivity" android:exported="true">
+
+        </activity>
 
         <meta-data
             android:name="preloaded_fonts"

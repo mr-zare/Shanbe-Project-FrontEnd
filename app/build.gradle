@@ -64,6 +64,6 @@ dependencies {
     implementation 'com.scwang.wave:MultiWaveHeader:1.0.0-andx'
     implementation 'com.scwang.wave:MultiWaveHeader:1.0.0-alpha-1'
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'
-
+    implementation 'com.google.android.gms:play-services-auth:19.2.0'
 }
 

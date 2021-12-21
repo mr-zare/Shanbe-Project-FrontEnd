@@ -44,10 +44,15 @@
     <item android:title="@string/others">
         <menu>
             <item
+                android:id="@+id/signInGoogle"
+                android:onClick="signInGoogle"
+                android:title="sync google" />
+            <item
                 android:id="@+id/signoutItemProfile"
                 android:icon="@mipmap/logout"
                 android:onClick="LogoutClicked"
                 android:title="Logout" />
+
         </menu>
     </item>
 </menu>
