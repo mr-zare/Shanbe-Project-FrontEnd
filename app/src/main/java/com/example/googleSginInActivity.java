@@ -41,6 +41,8 @@ public class googleSginInActivity extends AppCompatActivity {
         signInButton.setSize(SignInButton.SIZE_STANDARD);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken("565907076275-dfcr2jb40hlgoentonn8avj4ql1mn915.apps.googleusercontent.com")
+                .requestServerAuthCode("565907076275-dfcr2jb40hlgoentonn8avj4ql1mn915.apps.googleusercontent.com",true)
                 .requestEmail()
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
@@ -101,8 +103,8 @@ public class googleSginInActivity extends AppCompatActivity {
 
             JsonObject jsonObject = new JsonObject();
             jsonObject.addProperty("grant_type","authorization_code");
-            jsonObject.addProperty("client_id","565907076275-88g5m2opgh3m2s1qipi8v0bkv5iui24k.apps.googleusercontent.com");
-            jsonObject.addProperty("client_secret","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");
+            jsonObject.addProperty("client_id","565907076275-dfcr2jb40hlgoentonn8avj4ql1mn915.apps.googleusercontent.com");
+            jsonObject.addProperty("client_secret","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");
             jsonObject.addProperty("redirect_uri","");
             jsonObject.addProperty("code",AuthCode);
             jsonObject.addProperty("id_token",IdToken);

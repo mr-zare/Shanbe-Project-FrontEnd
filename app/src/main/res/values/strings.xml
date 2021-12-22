@@ -11,6 +11,7 @@
     <string name="profile">Profile</string>
     <string name="calendar">Calendar</string>
     <string name="empty"> EMPTY</string>
+    <string name="auth_code">565907076275-88g5m2opgh3m2s1qipi8v0bkv5iui24k.apps.googleusercontent.com</string>
     <string-array name="category">
         <item></item>
         <item>Sport</item>

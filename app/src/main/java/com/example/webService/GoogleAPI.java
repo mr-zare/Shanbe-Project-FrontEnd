@@ -13,6 +13,6 @@ public interface GoogleAPI {
     public static final String BASE_URL="https://www.googleapis.com/oauth2/v4/";
 
     @POST("token")
-    @Headers("Content-Type:application/x-www-form-urlencoded")
+    @Headers("Content-Type:application/json")
     Call<JsonObject> getToken(@Body JsonObject jsonObject);
     }
