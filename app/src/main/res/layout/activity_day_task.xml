@@ -59,6 +59,14 @@
                 android:divider="@android:color/transparent"
                 android:dividerHeight="5dp">
             </ListView>
+            <ListView
+                android:id="@+id/eventsList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@android:color/transparent"
+                android:dividerHeight="5dp"
+                >
+            </ListView>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 

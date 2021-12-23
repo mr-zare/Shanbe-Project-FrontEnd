@@ -18,9 +18,12 @@ import android.widget.Toast;
 
 import com.example.BroadCast.AlarmController;
 import com.example.DataBase.tasksDB;
+import com.example.adapter.ReservedSessionAdapter;
 import com.example.adapter.taskAdapter;
+import com.example.entity.Session;
 import com.example.entity.Task;
 import com.example.myapplication.R;
+import com.example.webService.EventAPI;
 import com.example.webService.TaskAPI;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.gson.JsonObject;
@@ -44,7 +47,9 @@ public class day_task_activity extends AppCompatActivity {
     taskAdapter tasksAdap;
     TaskAPI taskAPI;
     String FinalDate;
+    ListView sessionsListView;
     private ShimmerFrameLayout mFrameLayout;
+    ReservedSessionAdapter reservedSessionAdapter;
 
     @Override
     protected void onResume() {
@@ -153,6 +158,7 @@ public class day_task_activity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("authentication", MODE_PRIVATE);
         userToken = sharedPreferences.getString("token", "");
         username = sharedPreferences.getString("username","");
+        sessionsListView = findViewById(R.id.eventsList);
     }
 
     public void addTaskBtn(View view) {
@@ -206,12 +212,53 @@ public class day_task_activity extends AppCompatActivity {
 //        });
 
         //offline part ....
+        EventAPI eventAPI;
+
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
+
+        Retrofit createTask = new Retrofit.Builder()
+                .baseUrl(EventAPI.BASE_URL)
+                .client(client)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        eventAPI = createTask.create(EventAPI.class);
+
+
         tasksDB tasksdb = new tasksDB(day_task_activity.this);
         List<Task> listOfTasks = tasksdb.select(FinalDate);
         tasksAdap = new taskAdapter(day_task_activity.this,listOfTasks);
         list.setAdapter(tasksAdap);
         mFrameLayout.startShimmer();
         mFrameLayout.setVisibility(View.GONE);
+
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("user_token", userToken);
+        jsonObject.addProperty("time", FinalDate);
+
+        Call<List<Session>> request = eventAPI.session_get_day("token "+userToken,jsonObject);
+        request.enqueue(new Callback<List<Session>>() {
+            @Override
+            public void onResponse(Call<List<Session>> call, Response<List<Session>> response) {
+                if(!response.isSuccessful())
+                {
+                    CustomErrorAlertDialog internetConnection = new CustomErrorAlertDialog(day_task_activity.this,"Error","We could'nt get your events , please check your connection and try again");
+                }
+                List<Session> listOfSessions = response.body();
+                reservedSessionAdapter = new ReservedSessionAdapter(day_task_activity.this,listOfSessions);
+
+                sessionsListView.setAdapter(reservedSessionAdapter);
+                mFrameLayout.startShimmer();
+                mFrameLayout.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onFailure(Call<List<Session>> call, Throwable t) {
+                CustomErrorAlertDialog internetConnection = new CustomErrorAlertDialog(day_task_activity.this,"Error","We could'nt get your events , please check your connection and try again");
+            }
+        });
+
     }
     @Override
     protected void onPause() {

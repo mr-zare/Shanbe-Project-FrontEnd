@@ -59,4 +59,7 @@ public interface EventAPI {
 
     @POST("session-cancel/")
     Call<JsonObject> session_cancel(@Header("Authorization") String user_token,@Body JsonObject sessionToken);
+
+    @POST("session-get-day/")
+    Call<List<Session>> session_get_day(@Header("Authorization") String user_token,@Body JsonObject sessionToken);
 }
