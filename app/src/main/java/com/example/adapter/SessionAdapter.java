@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.AddEvent;
+import com.example.CustomErrorAlertDialog;
 import com.example.CustomeAlertDialog;
 import com.example.entity.Session;
 import com.example.entity.Task;
@@ -112,7 +113,7 @@ public class SessionAdapter extends BaseAdapter {
                             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                                 if(!response.isSuccessful())
                                 {
-                                    CustomeAlertDialog errorConnecting = new CustomeAlertDialog(context,"error","there is a problem connecting to server");
+                                    CustomErrorAlertDialog errorConnecting = new CustomErrorAlertDialog(context,"Error","there is a problem connecting to server");
                                 }
                                 else{
                                     list.remove(i);
@@ -122,10 +123,11 @@ public class SessionAdapter extends BaseAdapter {
 
                             @Override
                             public void onFailure(Call<JsonObject> call, Throwable t) {
-                                CustomeAlertDialog errorConnecting = new CustomeAlertDialog(context,"error","there is a problem connecting to server");
+                                CustomErrorAlertDialog errorConnecting = new CustomErrorAlertDialog(context,"Error","there is a problem connecting to server");
                             }
                         });
                     }
+
                 }
             }
         });

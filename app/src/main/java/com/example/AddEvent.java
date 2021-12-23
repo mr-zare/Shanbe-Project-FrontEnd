@@ -6,9 +6,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.format.Time;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -102,8 +105,8 @@ public class AddEvent  extends AppCompatActivity {
         privacy = findViewById(R.id.privacyevent);
         description = findViewById(R.id.descript);
         addEvent = findViewById(R.id.addEventButton);
-        sessionsList = findViewById(R.id.sessionsListView);
-
+        sessionsList = (ListView)findViewById(R.id.sessionsListView);
+        justifyListViewHeightBasedOnChildren(sessionsList);
         titleSpace = findViewById(R.id.titleSpace);
         categorySpace = findViewById(R.id.categorySpace);
         privacySpace = findViewById(R.id.privacylayout);
@@ -254,7 +257,26 @@ public class AddEvent  extends AppCompatActivity {
             });
         }
     }
+    public static void justifyListViewHeightBasedOnChildren (ListView listView) {
 
+        ListAdapter adapter = listView.getAdapter();
+
+        if (adapter == null) {
+            return;
+        }
+        ViewGroup vg = listView;
+        int totalHeight = 0;
+        for (int i = 0; i < adapter.getCount(); i++) {
+            View listItem = adapter.getView(i, null, vg);
+            listItem.measure(0, 0);
+            totalHeight += listItem.getMeasuredHeight();
+        }
+
+        ViewGroup.LayoutParams par = listView.getLayoutParams();
+        par.height = totalHeight + (listView.getDividerHeight() * (adapter.getCount() - 1));
+        listView.setLayoutParams(par);
+        listView.requestLayout();
+    }
     public void addSessionBtn(View view) {
 
         EditText limit = findViewById(R.id.added_session_limit);
@@ -302,6 +324,7 @@ public class AddEvent  extends AppCompatActivity {
 
                     sessionAdapter = new SessionAdapter(AddEvent.this,sessions,sessions);
                     sessionsList.setAdapter(sessionAdapter);
+                    justifyListViewHeightBasedOnChildren(sessionsList);
                 }
                 else{
                     CustomErrorAlertDialog errorDate = new CustomErrorAlertDialog(AddEvent.this,"Error","you can not select a date in past.");
