@@ -59,4 +59,7 @@ public interface EventAPI {
 
     @POST("session-cancel/")
     Call<JsonObject> session_cancel(@Header("Authorization") String user_token,@Body JsonObject sessionToken);
+
+    @POST("googlecalendar_login-create/")
+    Call<JsonObject> send_tokens(@Header("Authorization") String user_toekn,@Body JsonObject tokens);
 }

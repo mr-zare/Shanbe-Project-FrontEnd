@@ -35,6 +35,7 @@ import android.widget.Toast;
 
 import com.example.entity.User;
 import com.example.myapplication.R;
+import com.example.webService.EventAPI;
 import com.example.webService.GoogleAPI;
 import com.example.webService.UserAPI;
 import com.example.webService.UserSession;
@@ -46,6 +47,7 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.Scope;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.squareup.picasso.Picasso;
 
@@ -136,12 +138,42 @@ public class MainActivity extends AppCompatActivity {
                     .build();
 
             GoogleAPI googleAPI= googleLogin.create(GoogleAPI.class);
-            final JsonObject[] responseToken = new JsonObject[1];
             Call<JsonObject> callBack = googleAPI.getToken(jsonObject);
             callBack.enqueue(new Callback<JsonObject>() {
                 @Override
                 public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                    responseToken[0] = response.body();
+                    JsonObject responseToken = response.body();
+                    JsonObject tokens = new JsonObject();
+                    JsonElement act = responseToken.get("access_token");
+                    tokens.addProperty("access_token", act.getAsString());
+                    JsonElement rft = responseToken.get("refresh_token");
+                    tokens.addProperty("refresh_token", rft.getAsString());
+                    HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+                    interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+                    OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
+
+                    Retrofit sendtok = new Retrofit.Builder()
+                            .baseUrl(EventAPI.BASE_URL)
+                            .client(client)
+                            .addConverterFactory(GsonConverterFactory.create())
+                            .build();
+                    EventAPI eventAPI = sendtok.create(EventAPI.class);
+                    SharedPreferences shP = getSharedPreferences("userInformation", MODE_PRIVATE);
+                    String token = shP.getString("token", "");
+                    Call<JsonObject> callBack_1 = eventAPI.send_tokens("token "+ token,tokens);
+                    callBack_1.enqueue(new Callback<JsonObject>() {
+                        @Override
+                        public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                            JsonObject res = response.body();
+                            Log.i("SA","SA");
+                        }
+
+                        @Override
+                        public void onFailure(Call<JsonObject> call, Throwable t) {
+
+                        }
+                    });
+
                 }
 
                 @Override
