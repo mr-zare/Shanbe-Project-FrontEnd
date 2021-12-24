@@ -6,9 +6,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.format.Time;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -65,6 +68,17 @@ public class AddEvent  extends AppCompatActivity {
 
     List<Session> sessions;
     SessionAdapter sessionAdapter;
+
+    CustomDatePicker customDatePicker;
+    CustomTimePicker customTimePicker;
+
+
+    int yearNum;
+    int monthNum;
+    int dayNum;
+    int hourNum;
+    int minNum;
+
     boolean pv;
 
 
@@ -78,6 +92,12 @@ public class AddEvent  extends AppCompatActivity {
 
     public void init()
     {
+        yearNum = 0;
+        monthNum = 0;
+        dayNum = 0;
+        hourNum = 0;
+        minNum = 0;
+
         pv = false;
         title = findViewById(R.id.titleevent);
         category = findViewById(R.id.categoryevent);
@@ -85,8 +105,8 @@ public class AddEvent  extends AppCompatActivity {
         privacy = findViewById(R.id.privacyevent);
         description = findViewById(R.id.descript);
         addEvent = findViewById(R.id.addEventButton);
-        sessionsList = findViewById(R.id.sessionsListView);
-
+        sessionsList = (ListView)findViewById(R.id.sessionsListView);
+        justifyListViewHeightBasedOnChildren(sessionsList);
         titleSpace = findViewById(R.id.titleSpace);
         categorySpace = findViewById(R.id.categorySpace);
         privacySpace = findViewById(R.id.privacylayout);
@@ -237,42 +257,79 @@ public class AddEvent  extends AppCompatActivity {
             });
         }
     }
+    public static void justifyListViewHeightBasedOnChildren (ListView listView) {
 
+        ListAdapter adapter = listView.getAdapter();
+
+        if (adapter == null) {
+            return;
+        }
+        ViewGroup vg = listView;
+        int totalHeight = 0;
+        for (int i = 0; i < adapter.getCount(); i++) {
+            View listItem = adapter.getView(i, null, vg);
+            listItem.measure(0, 0);
+            totalHeight += listItem.getMeasuredHeight();
+        }
+
+        ViewGroup.LayoutParams par = listView.getLayoutParams();
+        par.height = totalHeight + (listView.getDividerHeight() * (adapter.getCount() - 1));
+        listView.setLayoutParams(par);
+        listView.requestLayout();
+    }
     public void addSessionBtn(View view) {
 
         EditText limit = findViewById(R.id.added_session_limit);
-        Spinner year = findViewById(R.id.added_date_year);
-        Spinner month = findViewById(R.id.added_date_month);
-        Spinner day = findViewById(R.id.added_date_day);
-        Spinner hour = findViewById(R.id.added_hour);
-        Spinner min = findViewById(R.id.added_min);
-
         String limitStr = limit.getText().toString();
-        String yearStr = year.getSelectedItem().toString();
-        String monthStr = month.getSelectedItem().toString();
-        int monthNumber = Integer.parseInt(monthStr);
-        monthNumber--;
-        monthStr = Integer.toString(monthNumber);
-        String dayStr = day.getSelectedItem().toString();
-        String hourStr = hour.getSelectedItem().toString();
-        String minStr = min.getSelectedItem().toString();
 
-        int yearNum = Integer.parseInt(yearStr);
-        int monthNum = Integer.parseInt(monthStr);
-        int dayNum = Integer.parseInt(dayStr);
-        int hourNum = Integer.parseInt(hourStr);
-        int minNum = Integer.parseInt(minStr);
-
-        if(checkDate(yearNum,monthNum,dayNum,hourNum,minNum))
+        if(limitStr.equals("")||limitStr.equals("0"))
         {
-            Session newSession = new Session(yearStr,monthStr,dayStr,hourStr,minStr,limitStr);
-            sessions.add(newSession);
-
-            sessionAdapter = new SessionAdapter(AddEvent.this,sessions,sessions);
-            sessionsList.setAdapter(sessionAdapter);
+            CustomErrorAlertDialog errorDate = new CustomErrorAlertDialog(AddEvent.this,"Error","Please fill the limit field.");
         }
         else{
-            CustomErrorAlertDialog errorDate = new CustomErrorAlertDialog(AddEvent.this,"Error","you can not select a date in past");
+            yearNum = customDatePicker.getYearNum();
+            monthNum = customDatePicker.getMonthNum();
+            dayNum = customDatePicker.getDayNum();
+
+            hourNum = customTimePicker.getHourNum();
+            minNum = customTimePicker.getMinNum();
+
+            if(yearNum==0||monthNum==0||dayNum==0)
+            {
+                CustomErrorAlertDialog errorDate = new CustomErrorAlertDialog(AddEvent.this,"Error","you must select a date for the session.");
+            }
+            if(hourNum==0||minNum==0)
+            {
+                CustomErrorAlertDialog errorDate = new CustomErrorAlertDialog(AddEvent.this,"Error","you must select a time for the session.");
+            }
+            else{
+                //Toast.makeText(this, Integer.toString(yearNum)+"_"+Integer.toString(monthNum)+"_"+Integer.toString(dayNum)+"_"+Integer.toString(hourNum)+"_"+Integer.toString(minNum)+"_", Toast.LENGTH_SHORT).show();
+                if(checkDate(yearNum,monthNum,dayNum,hourNum,minNum))
+                {
+                    String yearStr = customDatePicker.getYearS();
+                    String monthStr = customDatePicker.getMonthS();
+                    int monthNumber = Integer.parseInt(monthStr);
+                    monthNumber++;
+                    monthStr = Integer.toString(monthNumber);
+                    if(monthStr.length()==1)
+                    {
+                        monthStr = "0"+monthStr;
+                    }
+                    String dayStr = customDatePicker.getDayS();
+                    String hourStr = customTimePicker.getHourS();
+                    String minStr = customTimePicker.getMinS();
+
+                    Session newSession = new Session(yearStr,monthStr,dayStr,hourStr,minStr,limitStr);
+                    sessions.add(newSession);
+
+                    sessionAdapter = new SessionAdapter(AddEvent.this,sessions,sessions);
+                    sessionsList.setAdapter(sessionAdapter);
+                    justifyListViewHeightBasedOnChildren(sessionsList);
+                }
+                else{
+                    CustomErrorAlertDialog errorDate = new CustomErrorAlertDialog(AddEvent.this,"Error","you can not select a date in past.");
+                }
+            }
         }
     }
 
@@ -313,9 +370,18 @@ public class AddEvent  extends AppCompatActivity {
         {
             return true;
         }
-        CustomErrorAlertDialog dateAlert = new CustomErrorAlertDialog(this,"Error","you can set a task for past");
+        //CustomErrorAlertDialog dateAlert = new CustomErrorAlertDialog(this,"Error","you can set a task for past");
         //Toast.makeText(this, "you can set a task for past", Toast.LENGTH_SHORT).show();
         return false;
 
+    }
+
+    public void PickTime(View view) {
+        customTimePicker = new CustomTimePicker(this);
+    }
+
+    public void PickDate(View view) {
+        customDatePicker = new CustomDatePicker(this);
+        //Toast.makeText(this, Integer.toString(yearNum)+"_"+Integer.toString(monthNum)+"_"+Integer.toString(dayNum), Toast.LENGTH_SHORT).show();
     }
 }
