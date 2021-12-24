@@ -35,8 +35,16 @@ import android.widget.Toast;
 
 import com.example.entity.User;
 import com.example.myapplication.R;
+import com.example.webService.GoogleAPI;
 import com.example.webService.UserAPI;
 import com.example.webService.UserSession;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.common.api.Scope;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.gson.JsonObject;
 import com.squareup.picasso.Picasso;
@@ -64,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
     TextView userNameTextView;
     ImageView profileImage;
     ImageView smallProfileImage;
+    private GoogleSignInClient mGoogleSignInClient;
 
     Bundle extras ;
     UserAPI userAPI;
@@ -74,7 +83,82 @@ public class MainActivity extends AppCompatActivity {
             Manifest.permission.WRITE_EXTERNAL_STORAGE
     };
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+        updateUI(account);
+    }
+    public void updateUI(GoogleSignInAccount account)
+    {
+        if(account == null)
+        {
+            Log.i("SIIIIIIGN IN","fail");
+        }
+        else
+        {
+            Log.i("SIIIIIIGN IN","success");
+        }
+    }
 
+    private void signIn() {
+        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+        startActivityForResult(signInIntent, 1);
+    }
+
+
+    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
+        try {
+            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+
+            // Signed in successfully, show authenticated UI.
+            String IdToken = account.getIdToken().toString();
+            String AuthCode = account.getServerAuthCode().toString();
+
+
+            JsonObject jsonObject = new JsonObject();
+            jsonObject.addProperty("grant_type","authorization_code");
+            jsonObject.addProperty("client_id","565907076275-dfcr2jb40hlgoentonn8avj4ql1mn915.apps.googleusercontent.com");
+            jsonObject.addProperty("client_secret","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");
+            jsonObject.addProperty("redirect_uri","");
+            jsonObject.addProperty("code",AuthCode);
+            jsonObject.addProperty("id_token",IdToken);
+
+
+            HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+            interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+            OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
+
+            Retrofit googleLogin = new Retrofit.Builder()
+                    .baseUrl(GoogleAPI.BASE_URL)
+                    .client(client)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+
+            GoogleAPI googleAPI= googleLogin.create(GoogleAPI.class);
+            final JsonObject[] responseToken = new JsonObject[1];
+            Call<JsonObject> callBack = googleAPI.getToken(jsonObject);
+            callBack.enqueue(new Callback<JsonObject>() {
+                @Override
+                public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                    responseToken[0] = response.body();
+                }
+
+                @Override
+                public void onFailure(Call<JsonObject> call, Throwable t) {
+
+                }
+            });
+
+            updateUI(account);
+
+        } catch (ApiException e) {
+            // The ApiException status code indicates the detailed failure reason.
+            // Please refer to the GoogleSignInStatusCodes class reference for more information.
+            Log.w("SSSSSGGGGG", "signInResult:failed code=" + e.getStatusCode());
+            updateUI(null);
+        }
+    }
     public void pickImage(View view) {
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
@@ -195,6 +279,12 @@ public class MainActivity extends AppCompatActivity {
 
             //Now you can do whatever you want with your inpustream, save it as file, upload to a server, decode a bitmap...
         }
+        if (requestCode == 1) {
+            // The Task returned from this call is always completed, no need to attach
+            // a listener.
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            handleSignInResult(task);
+        }
     }
     public Fragment getVisibleFragment(){
         FragmentManager fragmentManager = MainActivity.this.getSupportFragmentManager();
@@ -285,6 +375,13 @@ public class MainActivity extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestScopes(new Scope("https://www.googleapis.com/auth/calendar"))
+                .requestIdToken("565907076275-dfcr2jb40hlgoentonn8avj4ql1mn915.apps.googleusercontent.com")
+                .requestServerAuthCode("565907076275-dfcr2jb40hlgoentonn8avj4ql1mn915.apps.googleusercontent.com",true)
+                .requestEmail()
+                .build();
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
         customCalendarView = (CustomCalendarView)findViewById(R.id.custom_calendar_view);
         drawerLayout = findViewById(R.id.drawerMonthLayout);
         verifyStoragePermissions(this);
@@ -344,7 +441,6 @@ public class MainActivity extends AppCompatActivity {
     }
     public void signInGoogle(MenuItem item)
     {
-        Intent intent = new Intent(MainActivity.this,googleSginInActivity.class);
-        startActivity(intent);
+        signIn();
     }
 }

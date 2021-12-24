@@ -46,6 +46,7 @@
             <item
                 android:id="@+id/signInGoogle"
                 android:onClick="signInGoogle"
+                android:icon="@drawable/ggoogle"
                 android:title="sync google" />
             <item
                 android:id="@+id/signoutItemProfile"
