@@ -2,6 +2,7 @@ package com.example;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -13,6 +14,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -158,6 +160,9 @@ public class day_task_activity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("authentication", MODE_PRIVATE);
         userToken = sharedPreferences.getString("token", "");
         username = sharedPreferences.getString("username","");
+        ConstraintLayout eventsLayout = findViewById(R.id.eventsContainer);
+        LinearLayout.LayoutParams eventLayoutParams = (LinearLayout.LayoutParams) eventsLayout.getLayoutParams();
+        eventLayoutParams.height = 0;
         sessionsListView = findViewById(R.id.eventsList);
     }
 
@@ -264,5 +269,27 @@ public class day_task_activity extends AppCompatActivity {
     protected void onPause() {
         mFrameLayout.stopShimmer();
         super.onPause();
+    }
+
+    public void toggle(View view) {
+        ConstraintLayout tasks = findViewById(R.id.tasksContainer);
+        ConstraintLayout events = findViewById(R.id.eventsContainer);
+        LinearLayout.LayoutParams tasksParams = (LinearLayout.LayoutParams) tasks.getLayoutParams();
+        LinearLayout.LayoutParams eventParams = (LinearLayout.LayoutParams) events.getLayoutParams();
+        if(tasks.getVisibility() == View.VISIBLE)
+        {
+            events.setVisibility(View.VISIBLE);
+            tasks.setVisibility(View.INVISIBLE);
+            tasksParams.height = 1;
+            eventParams.height = LinearLayout.LayoutParams.WRAP_CONTENT;
+        }
+        else{
+            events.setVisibility(View.INVISIBLE);
+            tasks.setVisibility(View.VISIBLE);
+            eventParams.height = 1;
+            tasksParams.height = LinearLayout.LayoutParams.WRAP_CONTENT;
+        }
+        tasks.setLayoutParams(tasksParams);
+        events.setLayoutParams((eventParams));
     }
 }

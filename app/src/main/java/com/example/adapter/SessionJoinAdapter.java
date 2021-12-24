@@ -112,6 +112,12 @@ public class SessionJoinAdapter extends BaseAdapter {
 
         String dateTime = currentSession.getTime();
         String [] Temp = dateTime.split("_");
+        String [] dateInfo = Temp[0].split("-");
+        String month = dateInfo[1];
+        int monthNum = Integer.parseInt(month);
+        monthNum++;
+        month = Integer.toString(monthNum);
+        Temp[0] = dateInfo[0] + "-" + month +"-"+ dateInfo[2];
         date.setText(Temp[0]);
         time.setText(Temp[1]);
 //        year.setSelection(yearIndex);

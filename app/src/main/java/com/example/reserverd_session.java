@@ -50,6 +50,12 @@ public class reserverd_session extends AppCompatActivity {
         locationStr = getIntent().getStringExtra("location");
         descStr = getIntent().getStringExtra("desc");
         dateTimeStr = getIntent().getStringExtra("datetime");
+        String [] dateInfo = dateTimeStr.split("-");
+        String month = dateInfo [1];
+        int monthNum = Integer.parseInt(month);
+        monthNum++;
+        month = Integer.toString(monthNum);
+        dateTimeStr = dateInfo[0]+"-"+month+"-"+dateInfo[2];
         sessionTokenStr= getIntent().getStringExtra("session_token");
         limitStr = getIntent().getStringExtra("limit");
 
