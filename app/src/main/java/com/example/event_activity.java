@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -15,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.adapter.eventAdapter;
@@ -24,6 +26,7 @@ import com.example.entity.Task;
 import com.example.myapplication.R;
 import com.example.webService.EventAPI;
 import com.example.webService.TaskAPI;
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.gson.JsonObject;
 
 import java.util.List;
@@ -44,7 +47,10 @@ public class event_activity extends AppCompatActivity {
     Button filterBtn;
     eventAdapter eventAdap;
     ListView eventsListView;
+    private ShimmerFrameLayout mFrameLayout;
     boolean isFiltered;
+    int i = 0;
+    Handler hdlr = new Handler();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,10 +60,12 @@ public class event_activity extends AppCompatActivity {
         setContentView(R.layout.activity_event);
        // Toast.makeText(this, "create", Toast.LENGTH_SHORT).show();
         init();
+        mFrameLayout = findViewById(R.id.shimmerLayout);
     }
 
     @Override
     protected void onResume() {
+        mFrameLayout.startShimmer();
         super.onResume();
 
        // Toast.makeText(this, "resume", Toast.LENGTH_SHORT).show();
@@ -113,6 +121,8 @@ public class event_activity extends AppCompatActivity {
                     eventAdap = new eventAdapter(event_activity.this,filteredEventList);
 
                     eventsListView.setAdapter(eventAdap);
+                    mFrameLayout.startShimmer();
+                    mFrameLayout.setVisibility(View.GONE);
                 }
             }
 
@@ -121,6 +131,12 @@ public class event_activity extends AppCompatActivity {
                 CustomErrorAlertDialog errorConnecting = new CustomErrorAlertDialog(event_activity.this,"Error","there is a problem connecting to server");
             }
         });
+
+    }
+    @Override
+    protected void onPause() {
+        mFrameLayout.stopShimmer();
+        super.onPause();
     }
 
 

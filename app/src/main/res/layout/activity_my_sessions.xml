@@ -24,15 +24,42 @@
             android:paddingRight="30dp"
             android:textColor="@color/white"
             android:textColorHint="@color/white"></EditText>
-
-        <ListView
-            android:id="@+id/sessionsList"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:divider="@android:color/transparent"
-            android:dividerHeight="5dp"
-            >
-        </ListView>
+            android:layout_height="match_parent">
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmerLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:ignore="MissingConstraints">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <!--add  several shimmer placeholder layout -->
+
+                    <include layout="@layout/shimmer_placeholder_layout"></include>
+                    <include layout="@layout/shimmer_placeholder_layout"></include>
+                    <include layout="@layout/shimmer_placeholder_layout"></include>
+                    <include layout="@layout/shimmer_placeholder_layout"></include>
+                    <include layout="@layout/shimmer_placeholder_layout"></include>
+                    <include layout="@layout/shimmer_placeholder_layout"></include>
+                    <include layout="@layout/shimmer_placeholder_layout"></include>
+
+                </LinearLayout>
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
+            <ListView
+                android:id="@+id/sessionsList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@android:color/transparent"
+                android:dividerHeight="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"></ListView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 
 

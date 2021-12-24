@@ -2,6 +2,7 @@ package com.example.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,8 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
+
 import com.example.EditTask;
 import com.example.entity.Event;
 import com.example.entity.Session;
@@ -20,6 +23,7 @@ import com.example.myapplication.R;
 import java.util.ArrayList;
 import java.util.List;
 import com.example.reserverd_session;
+import com.example.day_task_activity;
 
 public class ReservedSessionAdapter extends BaseAdapter implements Filterable {
     private Context context;
@@ -53,7 +57,12 @@ public class ReservedSessionAdapter extends BaseAdapter implements Filterable {
         {
             view = LayoutInflater.from(context).inflate(R.layout.reserved_session_item,null);
         }
-
+//        if(context instanceof day_task_activity)
+//        {
+//            ConstraintLayout reservedSessionContainer = view.findViewById(R.id.reservedSessionContainer);
+//
+//            reservedSessionContainer.setBackgroundColor(Color.GRAY);
+//        }
         Session currentSession = list.get(i);
 
         TextView title = view.findViewById(R.id.titleEventView);
@@ -64,7 +73,12 @@ public class ReservedSessionAdapter extends BaseAdapter implements Filterable {
 
         title.setText(currentSession.getEvent().getTitle().toString());
         String [] dateTimeInfo = currentSession.getTime().split("_");
-        date.setText(dateTimeInfo[0]);
+        String [] dateInfo = dateTimeInfo[0].split("-");
+        String month = dateInfo [1];
+        int monthNum = Integer.parseInt(month);
+        monthNum++;
+        month = Integer.toString(monthNum);
+        dateTimeInfo[0] = dateInfo[0]+month+dateInfo[2];
         location.setText(currentSession.getEvent().getLocation());
         desc.setText(currentSession.getEvent().getDescription().toString());
 
