@@ -62,4 +62,7 @@ public interface EventAPI {
 
     @POST("session-get-day/")
     Call<List<Session>> session_get_day(@Header("Authorization") String user_token,@Body JsonObject sessionToken);
+
+    @POST("session-users/")
+    Call<List<User>> session_users(@Header("Authorization") String user_token,@Body JsonObject sessionToken);
 }

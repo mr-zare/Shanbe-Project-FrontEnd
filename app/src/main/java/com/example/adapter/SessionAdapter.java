@@ -18,6 +18,7 @@ import com.example.CustomErrorAlertDialog;
 import com.example.CustomeAlertDialog;
 import com.example.entity.Session;
 import com.example.entity.Task;
+import com.example.entity.User;
 import com.example.myapplication.R;
 import com.example.webService.EventAPI;
 import com.example.webService.TaskAPI;

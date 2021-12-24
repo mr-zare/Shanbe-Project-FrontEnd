@@ -9,13 +9,19 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.adapter.SessionJoinAdapter;
+import com.example.adapter.SessionMembersAdapter;
 import com.example.entity.Session;
+import com.example.entity.User;
 import com.example.myapplication.R;
 import com.example.webService.EventAPI;
 import com.google.gson.JsonObject;
+
+import java.util.List;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -26,12 +32,16 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class reserverd_session extends AppCompatActivity {
-
+    Bundle extras;
     TextView title,category , location , desc , date , time , limit;
     String titleStr,categoryStr , locationStr , descStr , dateStr , timeStr , limitStr , dateTimeStr ,sessionTokenStr;
     Button delete;
     String userToken;
     EventAPI eventAPI;
+    List<Session> sessionList;
+    SessionMembersAdapter sessionAdap;
+    ListView session_users;
+    CustomLoadingDialog loadingDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +60,7 @@ public class reserverd_session extends AppCompatActivity {
         locationStr = getIntent().getStringExtra("location");
         descStr = getIntent().getStringExtra("desc");
         dateTimeStr = getIntent().getStringExtra("datetime");
+        session_users = findViewById(R.id.sessionsMembers);
         String [] dateInfo = dateTimeStr.split("-");
         String month = dateInfo [1];
         int monthNum = Integer.parseInt(month);
@@ -76,6 +87,40 @@ public class reserverd_session extends AppCompatActivity {
         userToken = sharedPreferences.getString("token", "");
 
         fill();
+
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
+        Retrofit createTask = new Retrofit.Builder()
+                .baseUrl(EventAPI.BASE_URL)
+                .client(client)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        eventAPI = createTask.create(EventAPI.class);
+        extras = getIntent().getExtras();
+        SharedPreferences shP = getSharedPreferences("userInformation", MODE_PRIVATE);
+        String token2 = shP.getString("token", "");
+        JsonObject body2 = new JsonObject();
+        body2.addProperty("session_token", extras.getString("session_token"));
+        Call<List<User>> callBack2 = eventAPI.session_users("token " + token2, body2);
+        callBack2.enqueue(new Callback<List<User>>() {
+            @Override
+            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+                if (!response.isSuccessful()) {
+                    // Toast.makeText(JoinEvent.this, "Some Field Wrong", Toast.LENGTH_SHORT).show();
+                } else {
+                    String code = Integer.toString(response.code());
+                    List<User> sessionusers = response.body();
+                    sessionAdap = new SessionMembersAdapter(reserverd_session.this, sessionusers, sessionusers);
+                    session_users.setAdapter(sessionAdap);
+                    loadingDialog.dismisDialog();
+                }
+            }
+            @Override
+            public void onFailure(Call<List<User>> call, Throwable t) {
+                // Toast.makeText(JoinEvent.this, "error is :" + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public void fill()
@@ -87,6 +132,16 @@ public class reserverd_session extends AppCompatActivity {
         date.setText(dateStr);
         time.setText(timeStr);
         limit.setText(limitStr);
+    }
+    public void openLoadingDialog()
+    {
+        loadingDialog = new CustomLoadingDialog(reserverd_session.this);
+        loadingDialog.startLoadingDialog();
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        openLoadingDialog();
     }
 
 

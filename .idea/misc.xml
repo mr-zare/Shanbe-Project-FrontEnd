@@ -147,8 +147,11 @@
         <entry key="..\:/p/FrontEnd/app/src/main/res/layout/activity_day.xml" value="0.1331521739130435" />
         <entry key="..\:/p/FrontEnd/app/src/main/res/layout/activity_day_task.xml" value="0.1331521739130435" />
         <entry key="..\:/p/FrontEnd/app/src/main/res/layout/activity_event.xml" value="0.1331521739130435" />
+        <entry key="..\:/p/FrontEnd/app/src/main/res/layout/activity_join_event.xml" value="0.1956521739130435" />
+        <entry key="..\:/p/FrontEnd/app/src/main/res/layout/activity_join_private_event.xml" value="0.165625" />
         <entry key="..\:/p/FrontEnd/app/src/main/res/layout/activity_main.xml" value="0.2115036231884058" />
         <entry key="..\:/p/FrontEnd/app/src/main/res/layout/activity_my_created_events.xml" value="0.1331521739130435" />
+        <entry key="..\:/p/FrontEnd/app/src/main/res/layout/activity_reserverd_session.xml" value="0.165625" />
         <entry key="..\:/p/FrontEnd/app/src/main/res/layout/calendar_layout.xml" value="0.2115036231884058" />
         <entry key="..\:/p/FrontEnd/app/src/main/res/layout/custome_date_picker.xml" value="0.2115036231884058" />
         <entry key="..\:/p/FrontEnd/app/src/main/res/layout/custome_time_picker.xml" value="0.2115036231884058" />
@@ -160,6 +163,7 @@
         <entry key="..\:/p/FrontEnd/app/src/main/res/layout/my_event_view.xml" value="0.1331521739130435" />
         <entry key="..\:/p/FrontEnd/app/src/main/res/layout/reserved_session_item.xml" value="0.2115036231884058" />
         <entry key="..\:/p/FrontEnd/app/src/main/res/layout/session_item.xml" value="0.2115036231884058" />
+        <entry key="..\:/p/FrontEnd/app/src/main/res/layout/session_members_layout.xml" value="0.16145833333333334" />
         <entry key="..\:/p/FrontEnd/app/src/main/res/layout/sessionjoin_item.xml" value="0.2115036231884058" />
         <entry key="..\:/p/FrontEnd/app/src/main/res/layout/single_cell_layout.xml" value="0.2115036231884058" />
         <entry key="..\:/p/FrontEnd/app/src/main/res/layout/successfull_alert_dialog.xml" value="0.1331521739130435" />
