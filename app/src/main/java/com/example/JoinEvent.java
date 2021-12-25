@@ -28,6 +28,7 @@ import com.example.entity.User;
 import com.example.myapplication.R;
 import com.example.webService.EventAPI;
 import com.example.webService.TaskAPI;
+import com.example.webService.UserAPI;
 import com.google.gson.JsonObject;
 
 import java.util.List;
@@ -42,7 +43,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class JoinEvent extends AppCompatActivity {
     Bundle extras;
-    TextView title, location;
+    TextView title, location , creator , link;
     Button joinButton;
     ImageView eventImage;
     EventAPI eventAPI;
@@ -51,6 +52,9 @@ public class JoinEvent extends AppCompatActivity {
     ListView listView;
     Context mContext;
     CustomLoadingDialog loadingDialog;
+    String creatorUsername,creatorFirstName,creatorLastName,creatorEmail,creatorPhoneNumber,creatorAvatar;
+    UserAPI userAPI;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +65,7 @@ public class JoinEvent extends AppCompatActivity {
         getSupportActionBar().hide();
         extras = getIntent().getExtras();
         title = findViewById(R.id.TitleJoinEvnet);
+        creator = findViewById(R.id.usernamejoinevent);
         location = findViewById(R.id.LocationJoinEvent);
         joinButton = findViewById(R.id.joinJoinEvent);
         eventImage = findViewById(R.id.categoryJoinImageItemEventView);
@@ -73,12 +78,49 @@ public class JoinEvent extends AppCompatActivity {
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
         mContext = this;
 
+        creatorFirstName = "";
+        creatorLastName = "";
+        creatorEmail = "";
+        creatorPhoneNumber = "";
+        creatorAvatar = "";
+
+        SharedPreferences shP = getSharedPreferences("userInformation", MODE_PRIVATE);
+        String token = shP.getString("token", "");
+
         Retrofit createTask = new Retrofit.Builder()
                 .baseUrl(TaskAPI.BASE_URL)
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         eventAPI = createTask.create(EventAPI.class);
+
+        JsonObject body = new JsonObject();
+        body.addProperty("event_token", extras.getString("token"));
+        Call<Event> callBack = eventAPI.enter_event_token("token " + token, body);
+        callBack.enqueue(new Callback<Event>() {
+            @Override
+            public void onResponse(Call<Event> call, Response<Event> response) {
+                if (!response.isSuccessful()) {
+                    // Toast.makeText(JoinEvent.this, "Some Field Wrong", Toast.LENGTH_SHORT).show();
+                } else {
+                    String code = Integer.toString(response.code());
+                    Event event = response.body();
+                    sessionList = event.getSessionsArr();
+                    sessionAdap = new SessionJoinAdapter(JoinEvent.this, sessionList);
+                    creator.setText(event.getUsername());
+                    creatorUsername = event.getUsername();
+                    listView.setAdapter(sessionAdap);
+                    loadingDialog.dismisDialog();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Event> call, Throwable t) {
+                // Toast.makeText(JoinEvent.this, "error is :" + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
 
         if (category.equals("Sport") || category.equals("sports")) {
             eventImage.setImageResource(R.drawable.sport4);
@@ -91,32 +133,8 @@ public class JoinEvent extends AppCompatActivity {
         } else if (category.equals("hang out")) {
             eventImage.setImageResource(R.drawable.hang_out2);
         }
-        SharedPreferences shP = getSharedPreferences("userInformation", MODE_PRIVATE);
-        String token = shP.getString("token", "");
-        JsonObject body = new JsonObject();
-        body.addProperty("event_token", extras.getString("token"));
-        Call<Event> callBack = eventAPI.enter_event_token("token " + token, body);
-        callBack.enqueue(new Callback<Event>() {
-            @Override
-            public void onResponse(Call<Event> call, Response<Event> response) {
-                if (!response.isSuccessful()) {
-                   // Toast.makeText(JoinEvent.this, "Some Field Wrong", Toast.LENGTH_SHORT).show();
-                } else {
-                    String code = Integer.toString(response.code());
-                    Event event = response.body();
-                    sessionList = event.getSessionsArr();
-                    sessionAdap = new SessionJoinAdapter(JoinEvent.this, sessionList);
 
-                    listView.setAdapter(sessionAdap);
-                    loadingDialog.dismisDialog();
-                }
-            }
 
-            @Override
-            public void onFailure(Call<Event> call, Throwable t) {
-               // Toast.makeText(JoinEvent.this, "error is :" + t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
         joinButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -167,5 +185,12 @@ public class JoinEvent extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         openLoadingDialog();
+    }
+
+
+
+    public void ViewCreatorProfile(View view) {
+        profileAlertdialog profile_alertdialog = new profileAlertdialog(JoinEvent.this,creatorUsername);
+
     }
 }

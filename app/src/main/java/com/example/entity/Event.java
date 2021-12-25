@@ -196,4 +196,16 @@ public class Event {
     public void setTime(String time) {
         this.time = time;
     }
+
+    public String getFirst_name() {
+        return first_name;
+    }
+
+    public String getLast_name() {
+        return last_name;
+    }
+
+    public String getUsername() {
+        return username;
+    }
 }
