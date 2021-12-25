@@ -25,6 +25,7 @@ import com.example.myapplication.R;
 import com.example.webService.EventAPI;
 import com.google.gson.JsonObject;
 
+import java.io.IOException;
 import java.util.List;
 
 import okhttp3.OkHttpClient;
@@ -111,25 +112,33 @@ public class reserverd_session extends AppCompatActivity {
         JsonObject body2 = new JsonObject();
         body2.addProperty("session_token", extras.getString("session_token"));
         Call<List<User>> callBack2 = eventAPI.session_users("token " + token2, body2);
-        callBack2.enqueue(new Callback<List<User>>() {
-            @Override
-            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
-                if (!response.isSuccessful()) {
-                    // Toast.makeText(JoinEvent.this, "Some Field Wrong", Toast.LENGTH_SHORT).show();
-                } else {
-                    String code = Integer.toString(response.code());
-                    List<User> sessionusers = response.body();
-                    sessionAdap = new SessionMembersAdapter(reserverd_session.this, sessionusers, sessionusers);
-                    session_users.setAdapter(sessionAdap);
-                    justifyListViewHeightBasedOnChildren(session_users);
-                    loadingDialog.dismisDialog();
+        if(callBack2 != null)
+        {
+            callBack2.enqueue(new Callback<List<User>>() {
+                @Override
+                public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+                    if(response.errorBody() != null)
+                    {
+                        loadingDialog.dismisDialog();
+                    }
+                    if (!response.isSuccessful()) {
+                        // Toast.makeText(JoinEvent.this, "Some Field Wrong", Toast.LENGTH_SHORT).show();
+                    } else {
+                        String code = Integer.toString(response.code());
+                        List<User> sessionusers = response.body();
+                        sessionAdap = new SessionMembersAdapter(reserverd_session.this, sessionusers, sessionusers);
+                        session_users.setAdapter(sessionAdap);
+                        justifyListViewHeightBasedOnChildren(session_users);
+                        loadingDialog.dismisDialog();
+                    }
                 }
-            }
-            @Override
-            public void onFailure(Call<List<User>> call, Throwable t) {
-                // Toast.makeText(JoinEvent.this, "error is :" + t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+                @Override
+                public void onFailure(Call<List<User>> call, Throwable t) {
+                    loadingDialog.dismisDialog();
+                    // Toast.makeText(JoinEvent.this, "error is :" + t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
     public static void justifyListViewHeightBasedOnChildren (ListView listView) {
 
