@@ -116,6 +116,8 @@ public class ReservedSessionAdapter extends BaseAdapter implements Filterable {
                 intent.putExtra("datetime",currentSession.getTime().toString());
                 intent.putExtra("session_token",currentSession.getSession_token());
                 intent.putExtra("limit",Integer.toString(currentSession.getLimit()));
+                intent.putExtra("address",currentSession.getEvent().getAddress());
+                intent.putExtra("link",currentSession.getEvent().getLink());
                 context.startActivity(intent);
             }
         });

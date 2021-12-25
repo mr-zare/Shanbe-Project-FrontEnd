@@ -49,6 +49,10 @@ public class AddEvent  extends AppCompatActivity {
     EditText description;
     Button addEvent;
 
+
+    EditText address;
+    EditText link;
+
     EventAPI eventAPI;
 
     String titleStr;
@@ -112,6 +116,8 @@ public class AddEvent  extends AppCompatActivity {
         privacySpace = findViewById(R.id.privacylayout);
         locationSpace = findViewById(R.id.locationSpace);
         descriptionSpace = findViewById(R.id.descriptionSpace);
+        address = findViewById(R.id.addressaddevent);
+        link = findViewById(R.id.linkEvent);
 
         sessions = new ArrayList<Session>();
 
@@ -138,6 +144,8 @@ public class AddEvent  extends AppCompatActivity {
         locationStr = location.getSelectedItem().toString();
         privacyStr = privacy.getSelectedItem().toString();
         descriptionStr = description.getText().toString();
+        String addressStr = address.getText().toString();
+        String linkStr = link.getText().toString();
 
         boolean valid = true;
         if(titleStr.equals(""))
@@ -198,7 +206,7 @@ public class AddEvent  extends AppCompatActivity {
             {
                 pv = true;
             }
-            Event newEvent = new Event(userToken, titleStr,pv, categoryStr, descriptionStr, false, locationStr, sessionsStr);
+            Event newEvent = new Event(userToken, titleStr,pv, categoryStr, descriptionStr, false, locationStr, sessionsStr,addressStr,linkStr);
             Call<Event> callBack = eventAPI.event_create("token "+userToken,newEvent);
             callBack.enqueue(new Callback<Event>() {
                 @Override

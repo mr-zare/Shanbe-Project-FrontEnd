@@ -52,6 +52,9 @@ public class EditEventActivity extends AppCompatActivity {
     String eventToken;
     Event currentEvent;
 
+    EditText address;
+    EditText link;
+
     String titleStr;
     String categoryStr;
     String locationStr;
@@ -87,7 +90,7 @@ public class EditEventActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_event);
+        setContentView(R.layout.activity_add_event);
         getSupportActionBar().hide();
         init();
         load();
@@ -103,6 +106,9 @@ public class EditEventActivity extends AppCompatActivity {
         addEvent = findViewById(R.id.addEventButton);
         sessionsList = findViewById(R.id.sessionsListView);
         justifyListViewHeightBasedOnChildren(sessionsList);
+
+        address = findViewById(R.id.addressaddevent);
+        link = findViewById(R.id.linkEvent);
 
         titleSpace = findViewById(R.id.titleSpace);
         categorySpace = findViewById(R.id.categorySpace);
@@ -137,6 +143,8 @@ public class EditEventActivity extends AppCompatActivity {
         locationStr = location.getSelectedItem().toString();
         privacyStr = privacy.getSelectedItem().toString();
         descriptionStr = description.getText().toString();
+        String addressStr = address.getText().toString();
+        String linkStr = link.getText().toString();
 
         boolean valid = true;
         if(titleStr.equals(""))
@@ -197,7 +205,7 @@ public class EditEventActivity extends AppCompatActivity {
             {
                 pv = true;
             }
-            Event newEvent = new Event(titleStr, pv, categoryStr, descriptionStr,false, locationStr,sessionsStr, eventToken);
+            Event newEvent = new Event(titleStr, pv, categoryStr, descriptionStr,false, locationStr,sessionsStr, eventToken,addressStr,linkStr);
             Call<Event> callBack = eventAPI.event_edit("token "+userToken,newEvent);
             boolean finalPv = pv;
             callBack.enqueue(new Callback<Event>() {
@@ -407,6 +415,8 @@ public class EditEventActivity extends AppCompatActivity {
                     title.setText(currentEvent.getTitle().toString());
                     loadSpinners();
                     description.setText(currentEvent.getDescription().toString());
+                    address.setText(currentEvent.getAddress().toString());
+                    link.setText((currentEvent.getLink().toString()));
                     loadSessions();
                     loadingDialog.dismisDialog();
                 }

@@ -16,11 +16,31 @@ public class Event {
     String last_name;
     String username;
 
+    String address;
+    String link;
+
     int id;
     String event_token;
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
+
     String time;
 
-    public Event(String title, boolean privacy, String category, String description, boolean isVirtual, String location, ArrayList<String> sessions, String event_token) {
+    public Event(String title, boolean privacy, String category, String description, boolean isVirtual, String location, ArrayList<String> sessions, String event_token,String address,String link) {
         this.title = title;
         this.privacy = privacy;
         this.category = category;
@@ -29,9 +49,11 @@ public class Event {
         this.location = location;
         this.sessions = sessions;
         this.event_token = event_token;
+        this.address = address;
+        this.link = link;
     }
 
-    public Event(String user_token, String title, boolean privacy, String category, String description, boolean isVirtual, String location, ArrayList<String> sessions) {
+    public Event(String user_token, String title, boolean privacy, String category, String description, boolean isVirtual, String location, ArrayList<String> sessions ,String address,String link) {
         this.user_token = user_token;
         this.title = title;
         this.privacy = privacy;
@@ -40,6 +62,8 @@ public class Event {
         this.isVirtual = isVirtual;
         this.location = location;
         this.sessions = sessions;
+        this.address = address;
+        this.link = link;
     }
 
     public ArrayList<Session> getSessionsArr() {
@@ -59,6 +83,8 @@ public class Event {
         this.event_token = event_token;
         this.time = time;
     }
+
+
 
     public Event(String title, String category, String description, String location, int id, String event_token, String time) {
         this.title = title;

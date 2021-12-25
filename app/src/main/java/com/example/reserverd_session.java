@@ -37,8 +37,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class reserverd_session extends AppCompatActivity {
     Bundle extras;
-    TextView title,category , location , desc , date , time , limit;
-    String titleStr,categoryStr , locationStr , descStr , dateStr , timeStr , limitStr , dateTimeStr ,sessionTokenStr;
+    TextView title,category , location , desc , date , time , limit ,address,link;
+    String titleStr,categoryStr , locationStr , descStr , dateStr , timeStr , limitStr , dateTimeStr ,sessionTokenStr,addressStr,linkStr;
     Button delete;
     String userToken;
     EventAPI eventAPI;
@@ -64,6 +64,8 @@ public class reserverd_session extends AppCompatActivity {
         locationStr = getIntent().getStringExtra("location");
         descStr = getIntent().getStringExtra("desc");
         dateTimeStr = getIntent().getStringExtra("datetime");
+        addressStr = getIntent().getStringExtra("address");
+        linkStr = getIntent().getStringExtra("link");
         session_users = findViewById(R.id.sessionsMembers);
         String [] dateInfo = dateTimeStr.split("-");
         String month = dateInfo [1];
@@ -86,6 +88,8 @@ public class reserverd_session extends AppCompatActivity {
         time = findViewById(R.id.timeJoin);
         limit = findViewById(R.id.limitJoin);
         delete = findViewById(R.id.delete);
+        address = findViewById(R.id.addressEvent);
+        link = findViewById(R.id.linkEvent);
 
         SharedPreferences sharedPreferences = getSharedPreferences("authentication", Context.MODE_PRIVATE);
         userToken = sharedPreferences.getString("token", "");
@@ -156,6 +160,8 @@ public class reserverd_session extends AppCompatActivity {
         date.setText(dateStr);
         time.setText(timeStr);
         limit.setText(limitStr);
+        address.setText(addressStr);
+        link.setText(linkStr);
     }
     public void openLoadingDialog()
     {
