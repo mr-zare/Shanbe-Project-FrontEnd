@@ -18,6 +18,7 @@ import androidx.annotation.Nullable;
 
 import com.example.entity.Session;
 import com.example.entity.Task;
+import com.example.entity.User;
 import com.example.myapplication.R;
 
 import java.util.ArrayList;
@@ -33,6 +34,7 @@ public class SessionJoinAdapter extends BaseAdapter {
     private boolean flag;
     private List<Session> list;
     private Session selected;
+    private List<User> sessionUsers;
     View selected_view;
 
     public SessionJoinAdapter(Context context, List<Session> list) {
@@ -40,6 +42,16 @@ public class SessionJoinAdapter extends BaseAdapter {
         this.list = list;
         this.flag = false;
         selected = new Session(0,"","","",0,0);
+    }
+
+    public SessionJoinAdapter(Context context, List<Session> list, List<User>users) {
+        this.context = context;
+        this.list = list;
+        this.flag = false;
+        selected = new Session(0,"","","",0,0);
+        this.sessionUsers = users;
+
+
     }
 
     @Override

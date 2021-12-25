@@ -27,7 +27,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:context="com.example.AddEvent">
+            tools:context="com.example.EditEventActivity">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/titleSpace"
@@ -237,7 +237,7 @@
                 android:backgroundTint="#DFAAE8"
                 android:fontFamily="@font/indie_flower"
                 android:onClick="AddEvent"
-                android:text="ADD"
+                android:text="EDIT"
                 android:textColor="#000"
                 android:textSize="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -286,6 +286,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp"
+                android:layout_marginBottom="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.565"
                 app:layout_constraintStart_toStartOf="parent"
@@ -366,23 +367,23 @@
                 android:id="@+id/sessionsList"
                 android:layout_width="310dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:elevation="22dp"
+                android:layout_marginTop="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/addSpace"
                 android:orientation="vertical">
+
                 <ListView
                     android:id="@+id/sessionsListView"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
+                    android:divider="@android:color/transparent"
+                    android:dividerHeight="3dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:divider="@android:color/transparent"
-                    android:dividerHeight="3dp">
-                </ListView>
+                    app:layout_constraintTop_toTopOf="parent"></ListView>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 

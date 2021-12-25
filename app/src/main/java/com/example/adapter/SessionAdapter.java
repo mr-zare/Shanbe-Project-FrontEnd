@@ -2,6 +2,7 @@ package com.example.adapter;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,8 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,7 +21,9 @@ import com.example.CustomErrorAlertDialog;
 import com.example.CustomeAlertDialog;
 import com.example.entity.Session;
 import com.example.entity.Task;
+import com.example.entity.User;
 import com.example.myapplication.R;
+import com.example.reserverd_session;
 import com.example.webService.EventAPI;
 import com.example.webService.TaskAPI;
 import com.google.gson.JsonObject;
@@ -39,8 +44,10 @@ public class SessionAdapter extends BaseAdapter {
     private Context context;
     private List<Session> list;
     private List<Session> added;
+    Bundle extras;
     EventAPI eventAPI;
     String userToken;
+    SessionMembersAdapter sessionAdap;
 
     public SessionAdapter(Context context, List<Session> list,List<Session> added) {
         this.context = context;
@@ -74,6 +81,40 @@ public class SessionAdapter extends BaseAdapter {
         TextView limit = view.findViewById(R.id.session_limit);
         TextView date = view.findViewById(R.id.date);
         TextView time = view.findViewById(R.id.time);
+        ListView members = view.findViewById(R.id.members);
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
+        Retrofit createTask = new Retrofit.Builder()
+                .baseUrl(EventAPI.BASE_URL)
+                .client(client)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        eventAPI = createTask.create(EventAPI.class);
+        SharedPreferences shP = context.getSharedPreferences("userInformation", context.MODE_PRIVATE);
+        String token2 = shP.getString("token", "");
+        JsonObject body2 = new JsonObject();
+        body2.addProperty("session_token", currentSession.getSession_token());
+        Call<List<User>> callBack2 = eventAPI.session_users("token " + token2, body2);
+        callBack2.enqueue(new Callback<List<User>>() {
+            @Override
+            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+                if (!response.isSuccessful()) {
+                    // Toast.makeText(JoinEvent.this, "Some Field Wrong", Toast.LENGTH_SHORT).show();
+                } else {
+                    String code = Integer.toString(response.code());
+                    List<User> sessionusers = response.body();
+                    sessionAdap = new SessionMembersAdapter(context, sessionusers, sessionusers);
+                    members.setAdapter(sessionAdap);
+                    justifyListViewHeightBasedOnChildren(members);
+                }
+            }
+            @Override
+            public void onFailure(Call<List<User>> call, Throwable t) {
+                // Toast.makeText(JoinEvent.this, "error is :" + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
         Button delete=view.findViewById(R.id.deletese);
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -171,7 +212,26 @@ public class SessionAdapter extends BaseAdapter {
 
         return view;
     }
+    public static void justifyListViewHeightBasedOnChildren (ListView listView) {
 
+        ListAdapter adapter = listView.getAdapter();
+
+        if (adapter == null) {
+            return;
+        }
+        ViewGroup vg = listView;
+        int totalHeight = 0;
+        for (int i = 0; i < adapter.getCount(); i++) {
+            View listItem = adapter.getView(i, null, vg);
+            listItem.measure(0, 0);
+            totalHeight += listItem.getMeasuredHeight();
+        }
+
+        ViewGroup.LayoutParams par = listView.getLayoutParams();
+        par.height = totalHeight + (listView.getDividerHeight() * (adapter.getCount() - 1));
+        listView.setLayoutParams(par);
+        listView.requestLayout();
+    }
 
 //    public int SearchIndex(String str,String [] array)
 //    {
