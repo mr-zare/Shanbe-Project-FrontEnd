@@ -120,35 +120,7 @@ public class JoinEvent extends AppCompatActivity {
             }
         });
 
-        Retrofit LoginRetrofit = new Retrofit.Builder()
-                .baseUrl(UserAPI.BASE_URL)
-                .client(client)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        userAPI =LoginRetrofit.create(UserAPI.class);
 
-        JsonObject username = new JsonObject();
-        username.addProperty("username",creatorUsername);
-        Call<User> callBackUser = userAPI.getProfile("token "+token,username);
-        callBackUser.enqueue(new Callback<User>() {
-            @Override
-            public void onResponse(Call<User> call, Response<User> response) {
-                if(response.isSuccessful())
-                {
-                    User creator = response.body();
-                    creatorFirstName = creator.getFirst_name();
-                    creatorLastName = creator.getLast_name();
-                    creatorEmail = creator.getEmail();
-                    creatorPhoneNumber = creator.getPhone_number();
-                    creatorAvatar = creator.getAvatar();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<User> call, Throwable t) {
-
-            }
-        });
 
         if (category.equals("Sport") || category.equals("sports")) {
             eventImage.setImageResource(R.drawable.sport4);
@@ -218,7 +190,7 @@ public class JoinEvent extends AppCompatActivity {
 
 
     public void ViewCreatorProfile(View view) {
-        profileAlertdialog profile_alertdialog = new profileAlertdialog(JoinEvent.this,creatorUsername,creatorFirstName,creatorLastName,creatorEmail,creatorPhoneNumber,creatorAvatar);
+        profileAlertdialog profile_alertdialog = new profileAlertdialog(JoinEvent.this,creatorUsername);
 
     }
 }
