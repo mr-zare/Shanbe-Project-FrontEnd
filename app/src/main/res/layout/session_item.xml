@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="310dp"
-    android:layout_height="65dp"
+    android:layout_height="wrap_content"
     android:layout_gravity="center_horizontal"
     android:layout_margin="8dp"
     android:layout_marginBottom="0dp"
@@ -13,9 +13,10 @@
     >
 
     <LinearLayout
+        android:id="@+id/sessionItem"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="65dp"
+        app:layout_constraintBottom_toTopOf="@id/members"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -67,15 +68,20 @@
             android:textAllCaps="true"
             app:backgroundTint="#E2C2E8"
             app:icon="@drawable/ic_baseline_delete_24"
-
             app:iconTint="#9C27B0" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.1"></TextView>
-
     </LinearLayout>
+    <ListView
+        android:foregroundGravity="center"
+        android:id="@+id/members"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/sessionItem"
+        app:layout_constraintStart_toStartOf="parent"></ListView>
 
 
 

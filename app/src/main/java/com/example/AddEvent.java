@@ -286,6 +286,14 @@ public class AddEvent  extends AppCompatActivity {
         {
             CustomErrorAlertDialog errorDate = new CustomErrorAlertDialog(AddEvent.this,"Error","Please fill the limit field.");
         }
+        else if(customDatePicker == null)
+        {
+            CustomErrorAlertDialog errorDate = new CustomErrorAlertDialog(AddEvent.this,"Error","you must select a date for the session.");
+        }
+        else if(customTimePicker == null)
+        {
+            CustomErrorAlertDialog errorDate = new CustomErrorAlertDialog(AddEvent.this,"Error","you must select a time for the session.");
+        }
         else{
             yearNum = customDatePicker.getYearNum();
             monthNum = customDatePicker.getMonthNum();

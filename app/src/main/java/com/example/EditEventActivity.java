@@ -1,12 +1,16 @@
 package com.example;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.format.Time;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -83,7 +87,7 @@ public class EditEventActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_event);
+        setContentView(R.layout.activity_edit_event);
         getSupportActionBar().hide();
         init();
         load();
@@ -98,6 +102,7 @@ public class EditEventActivity extends AppCompatActivity {
         description = findViewById(R.id.descript);
         addEvent = findViewById(R.id.addEventButton);
         sessionsList = findViewById(R.id.sessionsListView);
+        justifyListViewHeightBasedOnChildren(sessionsList);
 
         titleSpace = findViewById(R.id.titleSpace);
         categorySpace = findViewById(R.id.categorySpace);
@@ -194,6 +199,7 @@ public class EditEventActivity extends AppCompatActivity {
             }
             Event newEvent = new Event(titleStr, pv, categoryStr, descriptionStr,false, locationStr,sessionsStr, eventToken);
             Call<Event> callBack = eventAPI.event_edit("token "+userToken,newEvent);
+            boolean finalPv = pv;
             callBack.enqueue(new Callback<Event>() {
                 @Override
                 public void onResponse(Call<Event> call, Response<Event> response) {
@@ -205,16 +211,42 @@ public class EditEventActivity extends AppCompatActivity {
                         String code = Integer.toString(response.code());
                         Event addedEvent = response.body();
                   //      Toast.makeText(EditEventActivity.this, code, Toast.LENGTH_SHORT).show();
-                        CustomSuccessAlertDialog saved = new CustomSuccessAlertDialog(EditEventActivity.this,"Successful","event saved");
-                        saved.btnOk.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                saved.alertDialog.dismiss();
-                                Intent event = new Intent(EditEventActivity.this, my_created_events.class);
-                                startActivity(event);
-                                finish();
-                            }
-                        });
+                        if(finalPv == false)
+                        {
+                            CustomSuccessAlertDialog saved = new CustomSuccessAlertDialog(EditEventActivity.this,"Successful","event saved");
+                            saved.btnOk.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    saved.alertDialog.dismiss();
+                                    Intent event = new Intent(EditEventActivity.this, my_created_events.class);
+                                    startActivity(event);
+                                    finish();
+                                }
+                            });
+                        }
+                        else if(finalPv == true){
+                            CustomSuccessAlertDialog saved = new CustomSuccessAlertDialog(EditEventActivity.this,"Alert!","save the token for inviting.", addedEvent.getEvent_token().toString());
+                            saved.btnCopy.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    ClipboardManager manager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+                                    ClipData clipData = ClipData.newPlainText("text", addedEvent.getEvent_token().toString());
+                                    manager.setPrimaryClip(clipData);
+                                    ClipData.Item item = clipData.getItemAt(0);
+                                    CharSequence textToPaste = item.getText();
+                                    Toast.makeText(EditEventActivity.this, "Copied!", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                            saved.btnOk.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    saved.alertDialog.dismiss();
+                                    Intent event = new Intent(EditEventActivity.this, my_created_events.class);
+                                    startActivity(event);
+                                    finish();
+                                }
+                            });
+                        }
                     }
                 }
 
@@ -224,6 +256,27 @@ public class EditEventActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    public static void justifyListViewHeightBasedOnChildren (ListView listView) {
+
+        ListAdapter adapter = listView.getAdapter();
+
+        if (adapter == null) {
+            return;
+        }
+        ViewGroup vg = listView;
+        int totalHeight = 0;
+        for (int i = 0; i < adapter.getCount(); i++) {
+            View listItem = adapter.getView(i, null, vg);
+            listItem.measure(0, 0);
+            totalHeight += listItem.getMeasuredHeight();
+        }
+
+        ViewGroup.LayoutParams par = listView.getLayoutParams();
+        par.height = totalHeight + (listView.getDividerHeight() * (adapter.getCount() - 1));
+        listView.setLayoutParams(par);
+        listView.requestLayout();
     }
 
     public void addSessionBtn(View view) {
@@ -236,6 +289,14 @@ public class EditEventActivity extends AppCompatActivity {
         if(limitStr.equals("")||limitStr.equals("0"))
         {
             CustomErrorAlertDialog errorDate = new CustomErrorAlertDialog(EditEventActivity.this,"Error","Please fill the limit field.");
+        }
+        else if(customDatePicker == null)
+        {
+            CustomErrorAlertDialog errorDate = new CustomErrorAlertDialog(EditEventActivity.this,"Error","you must select a date for the session.");
+        }
+        else if(customTimePicker == null)
+        {
+            CustomErrorAlertDialog errorDate = new CustomErrorAlertDialog(EditEventActivity.this,"Error","you must select a time for the session.");
         }
         else{
             yearNum = customDatePicker.getYearNum();
@@ -275,6 +336,7 @@ public class EditEventActivity extends AppCompatActivity {
                     addedSessions.add(newSession);
                     sessionAdap = new SessionAdapter(EditEventActivity.this,mySessions,addedSessions);
                     sessionsList.setAdapter(sessionAdap);
+                    justifyListViewHeightBasedOnChildren(sessionsList);
                 }
                 else{
                     CustomErrorAlertDialog errorDate = new CustomErrorAlertDialog(EditEventActivity.this,"Error","you can not select a date in past.");
@@ -342,7 +404,6 @@ public class EditEventActivity extends AppCompatActivity {
                 else{
                     String code = Integer.toString(response.code());
                     currentEvent = response.body();
-
                     title.setText(currentEvent.getTitle().toString());
                     loadSpinners();
                     description.setText(currentEvent.getDescription().toString());
@@ -417,6 +478,7 @@ public class EditEventActivity extends AppCompatActivity {
 
         sessionAdap = new SessionAdapter(EditEventActivity.this,mySessions,addedSessions);
         sessionsList.setAdapter(sessionAdap);
+        justifyListViewHeightBasedOnChildren(sessionsList);
     }
 
     public void PickTime(View view) {
