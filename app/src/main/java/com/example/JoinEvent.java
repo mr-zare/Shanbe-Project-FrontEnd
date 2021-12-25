@@ -67,11 +67,13 @@ public class JoinEvent extends AppCompatActivity {
         title = findViewById(R.id.TitleJoinEvnet);
         creator = findViewById(R.id.usernamejoinevent);
         location = findViewById(R.id.LocationJoinEvent);
+        link = findViewById(R.id.linkEvent);
         joinButton = findViewById(R.id.joinJoinEvent);
         eventImage = findViewById(R.id.categoryJoinImageItemEventView);
         listView = findViewById(R.id.sessionsJoinListView);
         title.setText(extras.getString("title"));
         location.setText(extras.getString("location"));
+        link.setText(extras.getString("link"));
         String category = extras.getString("category");
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);

@@ -12,6 +12,7 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.JoinEvent;
 import com.example.entity.Event;
@@ -101,6 +102,8 @@ public class eventAdapter extends BaseAdapter implements Filterable {
                 intent.putExtra("category", currentEvent.getCategory());
                 intent.putExtra("location", currentEvent.getLocation());
                 intent.putExtra("token", currentEvent.getEvent_token());
+                //Toast.makeText(context, currentEvent.getLink(), Toast.LENGTH_SHORT).show();
+                intent.putExtra("link",currentEvent.getLink());
                 context.startActivity(intent);
             }
         });

@@ -12,6 +12,7 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -24,6 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 import com.example.reserverd_session;
 import com.example.day_task_activity;
+import com.google.android.material.tabs.TabLayout;
 
 public class ReservedSessionAdapter extends BaseAdapter implements Filterable {
     private Context context;
@@ -73,12 +75,7 @@ public class ReservedSessionAdapter extends BaseAdapter implements Filterable {
 
         title.setText(currentSession.getEvent().getTitle().toString());
         String [] dateTimeInfo = currentSession.getTime().split("_");
-        String [] dateInfo = dateTimeInfo[0].split("-");
-        String month = dateInfo [1];
-        int monthNum = Integer.parseInt(month);
-        monthNum++;
-        month = Integer.toString(monthNum);
-        dateTimeInfo[0] = dateInfo[0]+month+dateInfo[2];
+
         location.setText(currentSession.getEvent().getLocation());
         desc.setText(currentSession.getEvent().getDescription().toString());
 

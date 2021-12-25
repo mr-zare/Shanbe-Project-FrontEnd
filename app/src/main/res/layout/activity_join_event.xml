@@ -149,7 +149,7 @@
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout8">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/linkEvent"
             android:gravity="center_vertical"
             android:layout_width="295dp"
             android:layout_height="40dp"
