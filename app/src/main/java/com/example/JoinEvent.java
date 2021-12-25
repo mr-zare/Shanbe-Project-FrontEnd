@@ -28,6 +28,7 @@ import com.example.entity.User;
 import com.example.myapplication.R;
 import com.example.webService.EventAPI;
 import com.example.webService.TaskAPI;
+import com.example.webService.UserAPI;
 import com.google.gson.JsonObject;
 
 import java.util.List;
@@ -42,7 +43,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class JoinEvent extends AppCompatActivity {
     Bundle extras;
-    TextView title, location , creator;
+    TextView title, location , creator , link;
     Button joinButton;
     ImageView eventImage;
     EventAPI eventAPI;
@@ -51,7 +52,9 @@ public class JoinEvent extends AppCompatActivity {
     ListView listView;
     Context mContext;
     CustomLoadingDialog loadingDialog;
-    String creatorUsername;
+    String creatorUsername,creatorFirstName,creatorLastName,creatorEmail,creatorPhoneNumber,creatorAvatar;
+    UserAPI userAPI;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +78,15 @@ public class JoinEvent extends AppCompatActivity {
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
         mContext = this;
 
+        creatorFirstName = "";
+        creatorLastName = "";
+        creatorEmail = "";
+        creatorPhoneNumber = "";
+        creatorAvatar = "";
+
+        SharedPreferences shP = getSharedPreferences("userInformation", MODE_PRIVATE);
+        String token = shP.getString("token", "");
+
         Retrofit createTask = new Retrofit.Builder()
                 .baseUrl(TaskAPI.BASE_URL)
                 .client(client)
@@ -82,19 +94,6 @@ public class JoinEvent extends AppCompatActivity {
                 .build();
         eventAPI = createTask.create(EventAPI.class);
 
-        if (category.equals("Sport") || category.equals("sports")) {
-            eventImage.setImageResource(R.drawable.sport4);
-        } else if (category.equals("Study")) {
-            eventImage.setImageResource(R.drawable.study1);
-        } else if (category.equals("Meeting")) {
-            eventImage.setImageResource(R.drawable.meeting1);
-        } else if (category.equals("Work")) {
-            eventImage.setImageResource(R.drawable.work1);
-        } else if (category.equals("hang out")) {
-            eventImage.setImageResource(R.drawable.hang_out2);
-        }
-        SharedPreferences shP = getSharedPreferences("userInformation", MODE_PRIVATE);
-        String token = shP.getString("token", "");
         JsonObject body = new JsonObject();
         body.addProperty("event_token", extras.getString("token"));
         Call<Event> callBack = eventAPI.enter_event_token("token " + token, body);
@@ -102,7 +101,7 @@ public class JoinEvent extends AppCompatActivity {
             @Override
             public void onResponse(Call<Event> call, Response<Event> response) {
                 if (!response.isSuccessful()) {
-                   // Toast.makeText(JoinEvent.this, "Some Field Wrong", Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(JoinEvent.this, "Some Field Wrong", Toast.LENGTH_SHORT).show();
                 } else {
                     String code = Integer.toString(response.code());
                     Event event = response.body();
@@ -117,9 +116,53 @@ public class JoinEvent extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Event> call, Throwable t) {
-               // Toast.makeText(JoinEvent.this, "error is :" + t.getMessage(), Toast.LENGTH_SHORT).show();
+                // Toast.makeText(JoinEvent.this, "error is :" + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+
+        Retrofit LoginRetrofit = new Retrofit.Builder()
+                .baseUrl(UserAPI.BASE_URL)
+                .client(client)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        userAPI =LoginRetrofit.create(UserAPI.class);
+
+        JsonObject username = new JsonObject();
+        username.addProperty("username",creatorUsername);
+        Call<User> callBackUser = userAPI.getProfile("token "+token,username);
+        callBackUser.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if(response.isSuccessful())
+                {
+                    User creator = response.body();
+                    creatorFirstName = creator.getFirst_name();
+                    creatorLastName = creator.getLast_name();
+                    creatorEmail = creator.getEmail();
+                    creatorPhoneNumber = creator.getPhone_number();
+                    creatorAvatar = creator.getAvatar();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+
+            }
+        });
+
+        if (category.equals("Sport") || category.equals("sports")) {
+            eventImage.setImageResource(R.drawable.sport4);
+        } else if (category.equals("Study")) {
+            eventImage.setImageResource(R.drawable.study1);
+        } else if (category.equals("Meeting")) {
+            eventImage.setImageResource(R.drawable.meeting1);
+        } else if (category.equals("Work")) {
+            eventImage.setImageResource(R.drawable.work1);
+        } else if (category.equals("hang out")) {
+            eventImage.setImageResource(R.drawable.hang_out2);
+        }
+
+
         joinButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -172,8 +215,10 @@ public class JoinEvent extends AppCompatActivity {
         openLoadingDialog();
     }
 
-    public void ShowUserProfile(View view) {
-        profileAlertdialog showProfile = new profileAlertdialog(JoinEvent.this,creatorUsername,"");
-     //   CustomErrorAlertDialog errorConnecting = new CustomErrorAlertDialog(AddEvent.this,"Error","there is a problem connecting to server");
+
+
+    public void ViewCreatorProfile(View view) {
+        profileAlertdialog profile_alertdialog = new profileAlertdialog(JoinEvent.this,creatorUsername,creatorFirstName,creatorLastName,creatorEmail,creatorPhoneNumber,creatorAvatar);
+
     }
 }

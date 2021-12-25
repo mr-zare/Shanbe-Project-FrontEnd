@@ -1,6 +1,7 @@
 package com.example.webService;
 
 import com.example.entity.User;
+import com.google.gson.JsonObject;
 
 import org.json.JSONObject;
 
@@ -48,4 +49,7 @@ public interface UserAPI {
                            @Part("last_name")RequestBody lastName,
                            @Part("phone_number")RequestBody phoneNumber,
                            @Part MultipartBody.Part image);
+
+    @POST("get-profile/")
+    Call<User> getProfile (@Header("Authorization") String user_token , @Body JsonObject username);
 }

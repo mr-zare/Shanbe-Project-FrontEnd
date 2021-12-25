@@ -54,6 +54,7 @@
 
         <TextView
             android:id="@+id/LocationJoinEvent"
+            android:gravity="center_vertical"
             android:layout_width="300dp"
             android:layout_height="48dp"
             android:layout_marginTop="3dp"
@@ -102,7 +103,9 @@
             app:layout_constraintTop_toTopOf="parent"></ImageView>
 
         <TextView
+            android:gravity="center_vertical"
             android:id="@+id/usernamejoinevent"
+            android:onClick="ViewCreatorProfile"
             android:layout_width="280dp"
             android:layout_height="45dp"
             android:layout_marginStart="50dp"
@@ -147,6 +150,7 @@
 
         <TextView
             android:id="@+id/textView"
+            android:gravity="center_vertical"
             android:layout_width="295dp"
             android:layout_height="40dp"
             android:layout_margin="4dp"
