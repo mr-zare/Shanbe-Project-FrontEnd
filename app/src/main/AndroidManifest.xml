@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name="com.example.ShanbehApp"
@@ -16,6 +16,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
+        <activity
+            android:name="com.example.profileAlertdialog"
+            android:exported="false" />
         <activity
             android:name="com.example.JoinPrivateEvent"
             android:exported="false" />
@@ -45,7 +48,7 @@
             android:exported="true" />
         <activity
             android:name="com.example.welcome"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -57,9 +60,7 @@
             android:exported="false" />
         <activity
             android:name="com.example.login"
-            android:exported="true">
-
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name="com.example.EditEventActivity"
             android:exported="true" />
@@ -110,9 +111,9 @@
         <activity
             android:name="com.example.MainActivity"
             android:exported="true" />
-        <activity android:name="com.example.googleSginInActivity" android:exported="true">
-
-        </activity>
+        <activity
+            android:name="com.example.googleSginInActivity"
+            android:exported="true"></activity>
 
         <meta-data
             android:name="preloaded_fonts"

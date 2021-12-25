@@ -42,7 +42,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class JoinEvent extends AppCompatActivity {
     Bundle extras;
-    TextView title, location;
+    TextView title, location , creator;
     Button joinButton;
     ImageView eventImage;
     EventAPI eventAPI;
@@ -51,6 +51,7 @@ public class JoinEvent extends AppCompatActivity {
     ListView listView;
     Context mContext;
     CustomLoadingDialog loadingDialog;
+    String creatorUsername;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +62,7 @@ public class JoinEvent extends AppCompatActivity {
         getSupportActionBar().hide();
         extras = getIntent().getExtras();
         title = findViewById(R.id.TitleJoinEvnet);
+        creator = findViewById(R.id.usernamejoinevent);
         location = findViewById(R.id.LocationJoinEvent);
         joinButton = findViewById(R.id.joinJoinEvent);
         eventImage = findViewById(R.id.categoryJoinImageItemEventView);
@@ -106,7 +108,8 @@ public class JoinEvent extends AppCompatActivity {
                     Event event = response.body();
                     sessionList = event.getSessionsArr();
                     sessionAdap = new SessionJoinAdapter(JoinEvent.this, sessionList);
-
+                    creator.setText(event.getUsername());
+                    creatorUsername = event.getUsername();
                     listView.setAdapter(sessionAdap);
                     loadingDialog.dismisDialog();
                 }
@@ -167,5 +170,10 @@ public class JoinEvent extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         openLoadingDialog();
+    }
+
+    public void ShowUserProfile(View view) {
+        profileAlertdialog showProfile = new profileAlertdialog(JoinEvent.this,creatorUsername,"");
+     //   CustomErrorAlertDialog errorConnecting = new CustomErrorAlertDialog(AddEvent.this,"Error","there is a problem connecting to server");
     }
 }
