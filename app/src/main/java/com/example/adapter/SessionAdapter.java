@@ -127,8 +127,8 @@ public class SessionAdapter extends BaseAdapter {
                 else{
                     if(added.contains(currentSession))
                     {
-                        added.remove(i);
-                        list.remove(i);
+                        list.remove(currentSession);
+                        added.remove(currentSession);
                         notifyDataSetChanged();
                     }
                     else{
