@@ -22,34 +22,34 @@ public interface UserAPI {
             "Content-Type: application/json"
     })
 
-    @POST("register/")
+    @POST("accounts/register/")
     Call<UserSession> createUser(@Header("Content-Type") String content_type, @Body User user);
 
-    @POST("login/")
+    @POST("accounts/login/")
     Call<UserSession> UserLogin(@Header("Content-Type") String content_type,@Body User user);
 
-    @POST("password-reset/")
+    @POST("accounts/password-reset/")
     Call<Void> sendEmail(@Header("Content-Type") String content_type,@Body User user);
 
-    @POST("password-reset/confirm/")
+    @POST("accounts/password-reset/confirm/")
     Call<UserSession> resetPassword(@Header("Content-Type") String content_type,@Body User user);
 
-    @POST("logout/")
+    @POST("accounts/logout/")
     Call<UserSession> logOut(@Header("Authorization") String user_token);
 
-    @POST("user/")
+    @POST("accounts/user/")
     Call<User> showProfile(@Header("Authorization") String user_token);
 
-    @PUT("edit-profile/")
+    @PUT("accounts/edit-profile/")
     Call<User> editProfile(@Header("Authorization") String user_token , @Body User user);
     @Multipart
-    @PUT("edit-profile/")
+    @PUT("/accounts/edit-profile/")
     Call<User> editProfile(@Header("Authorization") String user_token , @Part("email")RequestBody email,
                            @Part("first_name")RequestBody firstName,
                            @Part("last_name")RequestBody lastName,
                            @Part("phone_number")RequestBody phoneNumber,
                            @Part MultipartBody.Part image);
 
-    @POST("get-profile/")
+    @POST("accounts/get-profile/")
     Call<User> getProfile (@Header("Authorization") String user_token , @Body JsonObject username);
 }

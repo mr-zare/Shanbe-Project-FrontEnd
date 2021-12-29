@@ -26,19 +26,19 @@ public interface TaskAPI {
     "Content-Type: application/json"
     })
 
-    @POST("task-create/")
+    @POST("tasks/create/")
     Call<TaskSession> createTask(@Header("Authorization") String user_token, @Body Task task);
 
 
-    @POST("task-get-day/")
+    @POST("tasks/get-day/")
     Call<List<Task>> getTasksDay(@Header("Authorization") String user_token, @Body JsonObject jsonObject);
 
-    @PUT("task-edit/")
+    @PUT("tasks/edit/")
     Call<JsonObject> editTask(@Header("Authorization") String user_token,@Body Task task);
 
-    @PUT("task-finish/")
+    @PUT("tasks/finish/")
     Call<JsonObject> finishTask(@Header("Authorization") String user_token, @Body JsonObject jsonObject);
 
-    @HTTP(method = "DELETE", path = "task-delete/", hasBody = true)
+    @HTTP(method = "DELETE", path = "tasks/delete/", hasBody = true)
     Call<JsonObject> deleteTask(@Header("Authorization") String user_token, @Body JsonObject jsonObject);
 }

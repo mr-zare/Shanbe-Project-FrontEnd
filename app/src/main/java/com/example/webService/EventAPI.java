@@ -29,45 +29,45 @@ public interface EventAPI {
     @Headers({"Accept: application/json",
             "Content-Type: application/json"})
 
-    @POST("event-create/")
+    @POST("events/create/")
     Call<Event> event_create(@Header("Authorization") String user_token, @Body Event event);
 
-    @POST("enter-event-token/")
+    @POST("events/enter-event-token/")
     Call<Event> enter_event_token(@Header("Authorization") String event_token, @Body JsonObject body);
 
-    @POST("session-join/")
+    @POST("events/session-join/")
     Call<Session> join_session(@Header("Authorization") String event_token, @Body JsonObject body);
 
-    @GET("event-get/")
+    @GET("events/get/")
     Call<List<Event>> event_get(@Header("Authorization") String user_token);
 
-    @POST("event-search/")
+    @POST("events/search/")
     Call<List<Event>> event_search(@Header("Authorization") String user_token,@Body JsonObject jsonObject);
 
 
-    @POST("event-created-get/")
+    @POST("events/created-get/")
     Call<List<Event>> event_created_get(@Header("Authorization") String user_token);
 
-    @PATCH("event-edit/")
+    @PATCH("events/edit/")
     Call<Event> event_edit(@Header("Authorization") String user_token,@Body Event event);
 
-    @HTTP(method = "DELETE", path = "session-delete/", hasBody = true)
+    @HTTP(method = "DELETE", path = "events/session-delete/", hasBody = true)
     Call<JsonObject> session_delete(@Header("Authorization") String user_token, @Body JsonObject jsonObject);
 
-    @POST("session-get/")
+    @POST("events/session-get/")
     Call<List<Session>> session_get(@Header("Authorization") String user_token);
 
-    @POST("session-cancel/")
+    @POST("events/session-cancel/")
     Call<JsonObject> session_cancel(@Header("Authorization") String user_token,@Body JsonObject sessionToken);
 
 
-    @POST("session-get-day/")
+    @POST("events/session-get-day/")
     Call<List<Session>> session_get_day(@Header("Authorization") String user_token,@Body JsonObject sessionToken);
 
-    @POST("session-users/")
+    @POST("events/session-users/")
     Call<List<User>> session_users(@Header("Authorization") String user_token,@Body JsonObject sessionToken);
 
-    @POST("googlecalendar_login-create/")
+    @POST("calendar/login-create/")
     Call<JsonObject> send_tokens(@Header("Authorization") String user_toekn,@Body JsonObject tokens);
 
 }
