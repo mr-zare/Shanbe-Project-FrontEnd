@@ -99,8 +99,8 @@ public class AddEvent  extends AppCompatActivity {
         yearNum = 0;
         monthNum = 0;
         dayNum = 0;
-        hourNum = 0;
-        minNum = 0;
+        hourNum = -1;
+        minNum = -1;
 
         pv = false;
         title = findViewById(R.id.titleevent);
@@ -314,7 +314,7 @@ public class AddEvent  extends AppCompatActivity {
             {
                 CustomErrorAlertDialog errorDate = new CustomErrorAlertDialog(AddEvent.this,"Error","you must select a date for the session.");
             }
-            if(hourNum==0||minNum==0)
+            if(hourNum==-1||minNum==-1)
             {
                 CustomErrorAlertDialog errorDate = new CustomErrorAlertDialog(AddEvent.this,"Error","you must select a time for the session.");
             }
