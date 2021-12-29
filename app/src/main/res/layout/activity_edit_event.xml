@@ -244,7 +244,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.505"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/sessionsList"></Button>
+                app:layout_constraintTop_toBottomOf="@+id/sessionsListView"></Button>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/locationSpace"
@@ -364,28 +364,18 @@
                     tools:ignore="SpeakableTextPresentCheck" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/sessionsList"
+
+            <ListView
+                android:id="@+id/sessionsListView"
                 android:layout_width="310dp"
+                android:layout_marginTop="30dp"
                 android:layout_height="wrap_content"
-                android:elevation="22dp"
-                android:layout_marginTop="10dp"
+                android:divider="@android:color/transparent"
+                android:dividerHeight="3dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/addSpace"
-                android:orientation="vertical">
-
-                <ListView
-                    android:id="@+id/sessionsListView"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content"
-                    android:divider="@android:color/transparent"
-                    android:dividerHeight="3dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"></ListView>
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                app:layout_constraintTop_toBottomOf="@id/addSpace"
+                app:layout_constraintBottom_toTopOf="@id/addEventButton"></ListView>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

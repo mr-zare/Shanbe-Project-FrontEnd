@@ -15,8 +15,10 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="380dp"
+        android:layout_width="match_parent"
         android:layout_height="250dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/border_shadow"
         android:elevation="12dp"
@@ -45,8 +47,8 @@
 
                 <ImageView
                     android:id="@+id/categoryImageItem"
-                    android:layout_width="160dp"
-                    android:layout_height="160dp" />
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
 
             </androidx.cardview.widget.CardView>
         </androidx.cardview.widget.CardView>
@@ -66,37 +68,46 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <ImageView
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:src="@drawable/date3"
+            app:layout_constraintEnd_toStartOf="@+id/dateTimeTv"
+            app:layout_constraintTop_toBottomOf="@+id/titleTv"></ImageView>
+
         <TextView
             android:id="@+id/dateTimeTv"
-            android:layout_width="170dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="64dp"
-            android:text="2021-05-04_10:30am"
+            android:layout_width="142dp"
+            android:layout_height="30dp"
+            android:text="2021-05-04_10:30"
+            android:gravity="center_vertical"
             android:textColor="@color/colorPrimaryDark"
-            android:textSize="17sp"
-
-            app:layout_constraintStart_toEndOf="@+id/logoid"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textSize="15sp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleTv" />
 
         <TextView
             android:id="@+id/descTv"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_width="170dp"
+            android:layout_height="90dp"
             android:maxLength="60"
-            android:textColor="@color/colorPrimaryDark"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
             android:text="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
-            app:layout_constraintStart_toEndOf="@+id/logoid"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/dateTimeTv" />
 
         <Button
             android:id="@+id/editBtn"
             android:layout_width="79dp"
             android:layout_height="38dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="20dp"
             android:layout_marginBottom="4dp"
             android:backgroundTint="@color/recycler_background"
             android:text="Edit"
@@ -109,7 +120,7 @@
             android:id="@+id/deleteBtn"
             android:layout_width="57dp"
             android:layout_height="38dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="20dp"
             android:layout_marginBottom="4dp"
             android:backgroundTint="@color/recycler_background"
             android:drawableLeft="@drawable/ic_baseline_delete_24"
@@ -118,12 +129,12 @@
             app:layout_constraintEnd_toStartOf="@+id/editBtn" />
 
         <CheckBox
-            android:buttonTint="@color/colorPrimaryDark"
             android:id="@+id/statusCheckBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginTop="0dp"
+            android:buttonTint="@color/colorPrimaryDark"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"></CheckBox>
     </androidx.constraintlayout.widget.ConstraintLayout>

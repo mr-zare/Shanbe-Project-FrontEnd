@@ -27,6 +27,7 @@
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/drawable/add_event_background.xml" value="0.17533783783783785" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/drawable/border.xml" value="0.2703125" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/drawable/border2.xml" value="0.2703125" />
+        <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/drawable/border_background_green_item.xml" value="0.2703125" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/drawable/border_event.xml" value="0.1707236842105263" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/drawable/border_event_error.xml" value="0.1707236842105263" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/drawable/border_event_sessions.xml" value="0.2703125" />
@@ -37,14 +38,17 @@
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/drawable/border_selected.xml" value="0.2703125" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/drawable/border_sessions_list.xml" value="0.22179487179487178" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/drawable/border_shadow.xml" value="0.14375" />
+        <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/drawable/border_shadow_green.xml" value="0.2703125" />
+        <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/drawable/border_shadow_green_background.xml" value="0.2703125" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/drawable/border_task.xml" value="0.2703125" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/drawable/delete_button.xml" value="0.2703125" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/drawable/dummy_background.xml" value="0.1796875" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/drawable/dummy_background_border.xml" value="0.21510416666666668" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/activity_add_event.xml" value="0.2" />
-        <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/activity_add_task.xml" value="0.264" />
+        <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/activity_add_task.xml" value="0.32972972972972975" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/activity_day.xml" value="0.25416666666666665" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/activity_day_task.xml" value="0.16052631578947368" />
+        <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/activity_edit_event.xml" value="0.190625" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/activity_edit_task.xml" value="0.25416666666666665" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/activity_event.xml" value="0.25416666666666665" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/activity_forget_pass_email.xml" value="0.16486486486486487" />
@@ -74,7 +78,7 @@
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/session_item.xml" value="0.264" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/sessionjoin_item.xml" value="0.16052631578947368" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/successfull_alert_dialog.xml" value="0.10743243243243243" />
-        <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/task_view.xml" value="0.2" />
+        <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/task_view.xml" value="0.264" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/menu/navigation_menu.xml" value="0.16052631578947368" />
         <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/drawable-anydpi/ic_action_mail.xml" value="0.2703125" />
         <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/drawable-anydpi/ic_action_name.xml" value="0.2703125" />
