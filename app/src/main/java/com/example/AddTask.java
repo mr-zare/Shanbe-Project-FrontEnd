@@ -122,7 +122,7 @@ public class AddTask extends AppCompatActivity {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if(title.getText().toString()!="")
                 {
-                    titleCons.setBackgroundResource(R.drawable.border_task);
+                    titleCons.setBackgroundResource(R.drawable.border_shadow);
                 }
                 else
                 {
@@ -149,7 +149,7 @@ public class AddTask extends AppCompatActivity {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if(desc.getText().toString()!="")
                 {
-                    descCons.setBackgroundResource(R.drawable.border_task);
+                    descCons.setBackgroundResource(R.drawable.border_shadow);
                 }
                 else{
                     descCons.setBackgroundResource(R.drawable.border_red_task_error);
@@ -281,7 +281,7 @@ public class AddTask extends AppCompatActivity {
             long res = tasksdb.insert(titleStr,date,time,descStr,status,categoryStr);
             if(res >=0)
             {
-                Toast.makeText(this, "saved", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "saved", Toast.LENGTH_SHORT).show();
                 CustomSuccessAlertDialog saved = new CustomSuccessAlertDialog(AddTask.this,"Successful","task saved");
                 saved.btnOk.setOnClickListener(new View.OnClickListener() {
                     @Override

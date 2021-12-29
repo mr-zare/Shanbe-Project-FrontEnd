@@ -127,7 +127,7 @@ public class EditTask extends AppCompatActivity {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if(editTitle.getText().toString()!="")
                 {
-                    editTitleCons.setBackgroundResource(R.drawable.border_task);
+                    editTitleCons.setBackgroundResource(R.drawable.border_shadow);
                 }
                 else
                 {
@@ -154,7 +154,7 @@ public class EditTask extends AppCompatActivity {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if(editdesc.getText().toString()!="")
                 {
-                    editDescCons.setBackgroundResource(R.drawable.border_task);
+                    editDescCons.setBackgroundResource(R.drawable.border_shadow);
                 }
                 else{
                     editDescCons.setBackgroundResource(R.drawable.border_red_task_error);
@@ -320,6 +320,12 @@ public class EditTask extends AppCompatActivity {
             taskdb.updateTask(task_token,titleStr,date,time,descStr,status,categoryStr);
             //Toast.makeText(this, "saved", Toast.LENGTH_SHORT).show();
             CustomSuccessAlertDialog saved = new CustomSuccessAlertDialog(EditTask.this,"Successful","task saved");
+            saved.btnOk.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    finish();
+                }
+            });
         }
     }
 }
