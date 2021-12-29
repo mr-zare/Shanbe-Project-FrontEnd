@@ -363,10 +363,10 @@
                     tools:ignore="SpeakableTextPresentCheck" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <RelativeLayout
                 android:id="@+id/sessionsList"
                 android:layout_width="310dp"
-                android:layout_height="wrap_content"
+                android:layout_height="fill_parent"
                 android:layout_marginTop="10dp"
                 android:elevation="22dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -375,8 +375,8 @@
                 android:orientation="vertical">
                 <ListView
                     android:id="@+id/sessionsListView"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -384,7 +384,7 @@
                     android:divider="@android:color/transparent"
                     android:dividerHeight="3dp">
                 </ListView>
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            </RelativeLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
