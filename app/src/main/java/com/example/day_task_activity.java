@@ -25,6 +25,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.BroadCast.AlarmController;
@@ -73,6 +74,10 @@ public class day_task_activity extends AppCompatActivity implements LocationList
     ReservedSessionAdapter reservedSessionAdapter;
     String weatherMain;
     String weatherDesc;
+    String city;
+    double latitude;
+    double lo;
+    TextView weatherText;
 
     @Override
     protected void onResume() {
@@ -158,10 +163,14 @@ public class day_task_activity extends AppCompatActivity implements LocationList
 
             }
         });
+        WeatherSelected();
     }
 
 
     void init() {
+        latitude =35.6;
+        lo = 51.4;
+        weatherText = findViewById(R.id.weatherKindText);
         searchEditText = findViewById(R.id.searchEditText);
         list = findViewById(R.id.tasksLists);
         SharedPreferences sharedPreferences = getSharedPreferences("authentication", MODE_PRIVATE);
@@ -318,30 +327,20 @@ public class day_task_activity extends AppCompatActivity implements LocationList
         double lat = location.getLatitude();
         double lnt = location.getLongitude();
 
-        Geocoder geoCoder = new Geocoder(this, Locale.getDefault()); //it is Geocoder
-        StringBuilder builder = new StringBuilder();
-        try {
-            List<Address> address = geoCoder.getFromLocation(lat, lnt, 1);
-            int maxLines = address.get(0).getMaxAddressLineIndex();
-            for (int i=0; i<maxLines; i++) {
-                String addressStr = address.get(0).getAddressLine(i);
-                builder.append(addressStr);
-                builder.append(" ");
-            }
-
-            String fnialAddress = builder.toString();
-            Toast.makeText(this, fnialAddress, Toast.LENGTH_SHORT).show();
-        } catch (IOException e) {}
-        catch (NullPointerException e) {}
+        latitude = lat;
+        lo = lnt;
     }
 
 
 
-    public void citySelected(View view) {
-        String city = "Tehran";
+    public void WeatherSelected() {
+
+        String lat = Double.toString(latitude);
+        String lon = Double.toString(lo);
+
         try{
             DownloadTask task = new DownloadTask();
-            task.execute("https://api.openweathermap.org/data/2.5/weather?q="+city+"&appid=f39369dfbb38f8b754777c98a0038a6e");
+            task.execute("https://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+lon+"&appid=f39369dfbb38f8b754777c98a0038a6e");
 
         }
         catch(Exception ex)
@@ -397,6 +396,7 @@ public class day_task_activity extends AppCompatActivity implements LocationList
                     JSONObject jsonObject1 = arr.getJSONObject(i);
                     weatherMain = jsonObject1.getString("main");
                     weatherDesc = jsonObject1.getString("description");
+                    weatherText.setText(weatherMain);
                 }
 
                 JSONObject jsonObject2 = new JSONObject(s);
