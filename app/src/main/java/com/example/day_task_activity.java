@@ -25,6 +25,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +39,7 @@ import com.example.myapplication.R;
 import com.example.webService.EventAPI;
 import com.example.webService.TaskAPI;
 import com.facebook.shimmer.ShimmerFrameLayout;
+import com.google.android.gms.tasks.Tasks;
 import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
@@ -78,6 +80,7 @@ public class day_task_activity extends AppCompatActivity implements LocationList
     double latitude;
     double lo;
     TextView weatherText;
+    ProgressBar progressBarDone;
 
     @Override
     protected void onResume() {
@@ -90,8 +93,27 @@ public class day_task_activity extends AppCompatActivity implements LocationList
         } else {
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10, 1f, this);
         }
+
+        updateTodayProgress();
     }
 
+    public void updateTodayProgress()
+    {
+        tasksDB tasksDB = new tasksDB(day_task_activity.this);
+        List<Task> allTodayTasks = tasksDB.select(FinalDate);
+        int allTasks = allTodayTasks.size();
+
+        int completedTasks = 0;
+        for(int i =0 ;i<allTasks;i++)
+        {
+            if(allTodayTasks.get(i).getStatus() == "done")
+            {
+                completedTasks++;
+            }
+        }
+        progressBarDone.setMax(allTasks);
+        progressBarDone.setProgress(completedTasks);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -168,6 +190,7 @@ public class day_task_activity extends AppCompatActivity implements LocationList
 
 
     void init() {
+        progressBarDone = findViewById(R.id.TodayProgress);
         latitude =35.6;
         lo = 51.4;
         weatherText = findViewById(R.id.weatherKindText);

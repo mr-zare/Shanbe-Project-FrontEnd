@@ -140,6 +140,7 @@ public class tasksDB extends SQLiteOpenHelper {
         return tasks;
     }
 
+
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 
