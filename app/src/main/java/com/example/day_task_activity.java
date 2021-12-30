@@ -106,7 +106,7 @@ public class day_task_activity extends AppCompatActivity implements LocationList
         int completedTasks = 0;
         for(int i =0 ;i<allTasks;i++)
         {
-            if(allTodayTasks.get(i).getStatus() == "done")
+            if(allTodayTasks.get(i).getStatus().equals("done"))
             {
                 completedTasks++;
             }
