@@ -16,9 +16,11 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -37,7 +39,14 @@ import com.example.webService.TaskAPI;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.gson.JsonObject;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.List;
 import java.util.Locale;
 
@@ -62,6 +71,8 @@ public class day_task_activity extends AppCompatActivity implements LocationList
     private ShimmerFrameLayout mFrameLayout;
     LocationManager locationManager;
     ReservedSessionAdapter reservedSessionAdapter;
+    String weatherMain;
+    String weatherDesc;
 
     @Override
     protected void onResume() {
@@ -322,5 +333,86 @@ public class day_task_activity extends AppCompatActivity implements LocationList
             Toast.makeText(this, fnialAddress, Toast.LENGTH_SHORT).show();
         } catch (IOException e) {}
         catch (NullPointerException e) {}
+    }
+
+
+
+    public void citySelected(View view) {
+        String city = "Tehran";
+        try{
+            DownloadTask task = new DownloadTask();
+            task.execute("https://api.openweathermap.org/data/2.5/weather?q="+city+"&appid=f39369dfbb38f8b754777c98a0038a6e");
+
+        }
+        catch(Exception ex)
+        {
+
+        }
+    }
+
+    public class DownloadTask extends AsyncTask<String,Void,String>
+    {
+
+        @Override
+        protected String doInBackground(String... urls) {
+            String result = "";
+            URL url;
+            HttpURLConnection urlConnection = null;
+            try {
+                url = new URL(urls[0]);
+                urlConnection = (HttpURLConnection) url.openConnection();
+                InputStream in = urlConnection.getInputStream();
+                InputStreamReader reader = new InputStreamReader(in);
+                int data = reader.read();
+                while(data!=-1)
+                {
+                    char current = (char) data;
+                    result += current;
+                    data = reader.read();
+                }
+
+                return result;
+            }
+            catch(Exception e){
+                e.printStackTrace();
+                return null;
+            }
+        }
+
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+
+            //Toast.makeText(MainActivity.this, s, Toast.LENGTH_SHORT).show();
+
+            try{
+                JSONObject jsonObject = new JSONObject(s);
+                String weatherInfo = jsonObject.getString("weather");
+                Log.i("weather content",weatherInfo);
+                JSONArray arr = new JSONArray(weatherInfo);
+
+                for(int i=0;i<arr.length();i++)
+                {
+                    JSONObject jsonObject1 = arr.getJSONObject(i);
+                    weatherMain = jsonObject1.getString("main");
+                    weatherDesc = jsonObject1.getString("description");
+                }
+
+                JSONObject jsonObject2 = new JSONObject(s);
+                String weatherInfo2 = jsonObject2.getString("main");
+                Log.i("main",weatherInfo2);
+                String split [] = weatherInfo2.split(",");
+                String splitTemp [] = split[0].split(":");
+                //Toast.makeText(MainActivity.this, splitTemp[1], Toast.LENGTH_SHORT).show();
+                //tempTV.setText((splitTemp[1]));
+                float temp = Float.parseFloat(splitTemp[1]);
+                temp -= 273;
+
+            }catch(Exception ex)
+            {
+                ex.printStackTrace();
+            }
+        }
     }
 }
