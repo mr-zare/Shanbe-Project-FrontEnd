@@ -117,8 +117,9 @@ public class day_task_activity extends AppCompatActivity implements LocationList
         if(allTasks == 0){
             progressBarDone.setProgress(0,true);
         }
-        else
-        progressBarDone.setProgress(((int)((int)(completedTasks/allTasks))*100),true);
+        else{
+            progressBarDone.setProgress(((int)((int)(completedTasks/allTasks))),true);
+        }
     }
 
     @Override
@@ -197,35 +198,30 @@ public class day_task_activity extends AppCompatActivity implements LocationList
 
     void weatherHandle()
     {
-        LocationManager lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
-        //boolean isToday = false;
-        boolean gps_enabled = false;
-        boolean network_enabled = false;
-
-//        int currentYear = Calendar.YEAR;
-//        int currentMonth = Calendar.MONTH;
-//        int currentDay = Calendar.DAY_OF_MONTH;
-//
-//        String currentYearStr = Integer.toString(currentYear);
-//        String currentMonthStr = Integer.toString(currentMonth);
-//        String currentDayStr = Integer.toString(currentDay);
-//
-//        String currentDate = currentYearStr+"-"+currentMonthStr+"-"+currentDayStr;
-//        if()
-
         try {
-            gps_enabled = lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
-        } catch(Exception ex) {}
+            LocationManager lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+            boolean gps_enabled = false;
+            boolean network_enabled = false;
 
-        try {
-            network_enabled = lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-        } catch(Exception ex) {}
+            try {
+                gps_enabled = lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
+            } catch(Exception ex) {}
 
-        if(gps_enabled && network_enabled)
-        {
-            WeatherSelected();
+            try {
+                network_enabled = lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+            } catch(Exception ex) {}
+
+            if(gps_enabled && network_enabled)
+            {
+                WeatherSelected();
+            }
+            else{
+                weatherText.setVisibility(View.INVISIBLE);
+                weatherTextConstant.setVisibility(View.INVISIBLE);
+            }
         }
-        else{
+        catch (Exception ex)
+        {
             weatherText.setVisibility(View.INVISIBLE);
             weatherTextConstant.setVisibility(View.INVISIBLE);
         }

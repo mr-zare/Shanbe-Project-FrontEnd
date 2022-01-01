@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,6 +55,7 @@ public class taskAdapter extends BaseAdapter implements Filterable {
     private TaskAPI taskAPI;
     private String userToken;
     private String username;
+    boolean canChange = false;
 
     public taskAdapter(Context context, List<Task> list) {
         this.context = context;
@@ -129,17 +131,20 @@ public class taskAdapter extends BaseAdapter implements Filterable {
         {
             CompoundButtonCompat.setButtonTintList(statusCB, ColorStateList.valueOf(Color.GREEN));
             statusCB.setChecked(true);
+            canChange = true;
         }
         else if(statusStr.equals("pending"))
         {
             CompoundButtonCompat.setButtonTintList(statusCB, ColorStateList.valueOf(Color.GRAY));
             statusCB.setChecked(false);
+            canChange = true;
         }
         else if(statusStr.equals("overdue"))
         {
             statusCB.setChecked(false);
             CompoundButtonCompat.setButtonTintList(statusCB, ColorStateList.valueOf(Color.RED));
             textViewdateTime.setTextColor(view.getResources().getColor(R.color.warning_task_color));
+            canChange = true;
         }
         SharedPreferences sharedPreferences = context.getSharedPreferences("authentication", Context.MODE_PRIVATE);
         userToken = sharedPreferences.getString("token", "");
@@ -159,8 +164,10 @@ public class taskAdapter extends BaseAdapter implements Filterable {
         statusCB.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(b)
+                if(canChange)
                 {
+                    if(b)
+                    {
 //                    JsonObject jsonObject = new JsonObject();
 //                    jsonObject.addProperty("task_token", currentTask.getTaskToken());
 //                    jsonObject.addProperty("status", "done");
@@ -183,9 +190,8 @@ public class taskAdapter extends BaseAdapter implements Filterable {
 //                            CustomeAlertDialog errorConnecting = new CustomeAlertDialog(context,"error","there is a problem with your internet connection");
 //                        }
 //                    });
-                    //offline part....
-                    if(currentTask.getStatus().equals("pending"))
-                    {
+                        //offline part....
+                        Log.i("status", "true");
                         String status = "done";
                         tasksDB tasksdb = new tasksDB(context);
                         String [] dateTimeInfo = currentTask.getDateTime().split("_");
@@ -193,16 +199,17 @@ public class taskAdapter extends BaseAdapter implements Filterable {
                         String time =dateTimeInfo[1];
                         tasksdb.updateTask(currentTask.getTaskToken(),currentTask.getTitle(),date,time,currentTask.getDesc(),status,currentTask.getCategory());
                         ((day_task_activity)context).updateTodayProgress();
-                    }
 
-                    if(currentTask.getStatus().equals("done"))
-                    {
+                    }
+                    else{
+                        Log.i("status", "false");
                         String status = "pending";
                         tasksDB tasksdb = new tasksDB(context);
                         String [] dateTimeInfo = currentTask.getDateTime().split("_");
                         String date = dateTimeInfo[0];
                         String time =dateTimeInfo[1];
                         tasksdb.updateTask(currentTask.getTaskToken(),currentTask.getTitle(),date,time,currentTask.getDesc(),status,currentTask.getCategory());
+                        ((day_task_activity)context).updateTodayProgress();
                     }
                 }
             }
@@ -244,6 +251,7 @@ public class taskAdapter extends BaseAdapter implements Filterable {
                         //offline part....
                         tasksDB tasksdb = new tasksDB(context);
                         tasksdb.deleteTask(currentTask.getTaskToken());
+                        remove(i);
                     }
                 });
 
