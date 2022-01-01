@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -183,47 +184,26 @@ public class taskAdapter extends BaseAdapter implements Filterable {
 //                        }
 //                    });
                     //offline part....
-                    String status = "done";
-                    tasksDB tasksdb = new tasksDB(context);
-                    String [] dateTimeInfo = currentTask.getDateTime().split("_");
-                    String date = dateTimeInfo[0];
-                    String time =dateTimeInfo[1];
-                    tasksdb.updateTask(currentTask.getTaskToken(),currentTask.getTitle(),date,time,currentTask.getDesc(),status,currentTask.getCategory());
-                    ((day_task_activity)context).updateTodayProgress();
-                }
-                else{
-//                    JsonObject jsonObject = new JsonObject();
-//                    jsonObject.addProperty("task_token", currentTask.getTaskToken());
-//                    jsonObject.addProperty("status", "pending");
-//                    Call<JsonObject> request = taskAPI.finishTask("token "+userToken,jsonObject);
-//                    request.enqueue(new Callback<JsonObject>() {
-//                        @Override
-//                        public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-//                            if(!response.isSuccessful())
-//                            {
-//                                CustomeAlertDialog errorConnecting = new CustomeAlertDialog(context,"error","there is a problem with your internet connection");
-//
-//                            }
-//                            else{
-//                                String code = Integer.toString(response.code());
-//                                //Toast.makeText(context, code, Toast.LENGTH_SHORT).show();
-//                            }
-//                        }
-//
-//                        @Override
-//                        public void onFailure(Call<JsonObject> call, Throwable t) {
-//                            CustomeAlertDialog errorConnecting = new CustomeAlertDialog(context,"error","there is a problem with your internet connection");
-//
-//                        }
-//                    });
+                    if(currentTask.getStatus().equals("pending"))
+                    {
+                        String status = "done";
+                        tasksDB tasksdb = new tasksDB(context);
+                        String [] dateTimeInfo = currentTask.getDateTime().split("_");
+                        String date = dateTimeInfo[0];
+                        String time =dateTimeInfo[1];
+                        tasksdb.updateTask(currentTask.getTaskToken(),currentTask.getTitle(),date,time,currentTask.getDesc(),status,currentTask.getCategory());
+                        ((day_task_activity)context).updateTodayProgress();
+                    }
 
-                    //offline part....
-                    String status = "pending";
-                    tasksDB tasksdb = new tasksDB(context);
-                    String [] dateTimeInfo = currentTask.getDateTime().split("_");
-                    String date = dateTimeInfo[0];
-                    String time =dateTimeInfo[1];
-                    tasksdb.updateTask(currentTask.getTaskToken(),currentTask.getTitle(),date,time,currentTask.getDesc(),status,currentTask.getCategory());
+                    if(currentTask.getStatus().equals("done"))
+                    {
+                        String status = "pending";
+                        tasksDB tasksdb = new tasksDB(context);
+                        String [] dateTimeInfo = currentTask.getDateTime().split("_");
+                        String date = dateTimeInfo[0];
+                        String time =dateTimeInfo[1];
+                        tasksdb.updateTask(currentTask.getTaskToken(),currentTask.getTitle(),date,time,currentTask.getDesc(),status,currentTask.getCategory());
+                    }
                 }
             }
         });
