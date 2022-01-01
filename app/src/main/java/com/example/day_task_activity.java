@@ -116,7 +116,7 @@ public class day_task_activity extends AppCompatActivity implements LocationList
             progressBarDone.setProgress(0,true);
         }
         else
-        progressBarDone.setProgress(completedTasks/allTasks*100,true);
+        progressBarDone.setProgress(((int)((int)(completedTasks/allTasks))*100),true);
     }
 
     @Override
