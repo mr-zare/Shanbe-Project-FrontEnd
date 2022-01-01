@@ -89,15 +89,15 @@ public class SessionJoinAdapter extends BaseAdapter {
             public void onClick(View view) {
                 if(!flag){
                     selected = currentSession;
-                    view.setBackgroundTintList(context.getResources().getColorStateList(R.color.recycler_background));
+                    view.setBackgroundTintList(context.getResources().getColorStateList(R.color.green_back_darkk));
                     selected_view = view;
                     flag = true;
                 }
                 else{
                     selected = currentSession;
-                    selected_view.setBackgroundTintList(context.getResources().getColorStateList(R.color.session_join_item));
+                    selected_view.setBackgroundTintList(context.getResources().getColorStateList(R.color.green_back_light));
                     selected_view = view;
-                    view.setBackgroundTintList(context.getResources().getColorStateList(R.color.recycler_background));
+                    view.setBackgroundTintList(context.getResources().getColorStateList(R.color.green_back_darkk));
                 }
             }
         });
