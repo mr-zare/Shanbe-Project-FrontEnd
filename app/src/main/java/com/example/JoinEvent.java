@@ -109,8 +109,8 @@ public class JoinEvent extends AppCompatActivity {
                     Event event = response.body();
                     sessionList = event.getSessionsArr();
                     sessionAdap = new SessionJoinAdapter(JoinEvent.this, sessionList);
-                    location.setText(event.getAddress().toString());
-                    link.setText(event.getLink().toString());
+                    location.setText("Address :       " +event.getAddress().toString());
+                    link.setText("Link :       " +event.getLink().toString());
                     creator.setText(event.getUsername());
                     creatorUsername = event.getUsername();
                     listView.setAdapter(sessionAdap);
@@ -197,4 +197,6 @@ public class JoinEvent extends AppCompatActivity {
         profileAlertdialog profile_alertdialog = new profileAlertdialog(JoinEvent.this,creatorUsername);
 
     }
+
+
 }

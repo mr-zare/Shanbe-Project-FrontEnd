@@ -76,11 +76,22 @@
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/successfull_alert_dialog.xml" value="0.10743243243243243" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/task_view.xml" value="0.2" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/menu/navigation_menu.xml" value="0.16052631578947368" />
+        <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/drawable-anydpi/border_white.xml" value="0.2703125" />
+        <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/drawable-anydpi/border_white_light.xml" value="0.2703125" />
+        <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/drawable-anydpi/green_dark_background_without_border.xml" value="0.2703125" />
         <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/drawable-anydpi/ic_action_mail.xml" value="0.2703125" />
         <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/drawable-anydpi/ic_action_name.xml" value="0.2703125" />
         <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/drawable-anydpi/ic_action_pass.xml" value="0.2703125" />
         <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2703125" />
+        <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/drawable/border_event.xml" value="0.2703125" />
+        <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/drawable/border_event_error.xml" value="0.2703125" />
+        <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/drawable/border_event_sessions.xml" value="0.2703125" />
+        <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/drawable/border_item_task.xml" value="0.2703125" />
+        <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/drawable/border_red.xml" value="0.2703125" />
+        <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/drawable/border_shadow.xml" value="0.2703125" />
+        <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/drawable/border_today.xml" value="0.2703125" />
         <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/drawable/gradientbackground.xml" value="0.2703125" />
+        <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/drawable/green_background_with_white_border.xml" value="0.2703125" />
         <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/drawable/ic_about_background.xml" value="0.14537037037037037" />
         <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/drawable/ic_baseline_calendar_today_24.xml" value="0.2703125" />
         <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.2703125" />
@@ -109,7 +120,7 @@
         <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/layout/activity_edit_profile.xml" value="0.14356884057971014" />
         <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/layout/activity_edit_task.xml" value="0.13854166666666667" />
         <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/layout/activity_event.xml" value="0.264" />
-        <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/layout/activity_join_event.xml" value="0.2028985507246377" />
+        <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/layout/activity_join_event.xml" value="0.2" />
         <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/layout/activity_join_private_event.xml" value="0.24003623188405798" />
         <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/layout/activity_main.xml" value="0.1" />
@@ -127,6 +138,7 @@
         <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/layout/list_item.xml" value="0.13854166666666667" />
         <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/layout/movie_row.xml" value="0.1" />
         <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/layout/recycler_view_item.xml" value="0.25416666666666665" />
+        <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/layout/sessionjoin_item.xml" value="0.4" />
         <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/layout/single_cell_layout.xml" value="0.25416666666666665" />
         <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/layout/task_view.xml" value="0.223731884057971" />
         <entry key="..\:/Repos/MainProject/FrontEnd/app/src/main/res/menu/navigation_menu.xml" value="0.264" />
