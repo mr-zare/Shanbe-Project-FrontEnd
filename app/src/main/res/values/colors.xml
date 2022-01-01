@@ -36,5 +36,9 @@
     <color name="SuccessfullGreen">#3dd654</color>
     <color name="shimmer_placeholder">#dddddd</color>
     <color name="green_background_melo">#9DDFC8</color>
+    <color name="green_back">#7cc0d8</color>
+    <color name="green_back_light">#bee0ec</color>
+    <color name="green_back_dark">#51abcb</color>
+    <color name="green_back_darkk">#3ba1c5</color>
     //salam 
 </resources>

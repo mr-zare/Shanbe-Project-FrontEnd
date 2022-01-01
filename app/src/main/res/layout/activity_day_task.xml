@@ -66,17 +66,22 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/weather"></TextView>
 
-                <ProgressBar
+                <com.ramijemli.percentagechartview.PercentageChartView
                     android:id="@+id/TodayProgress"
-                    android:indeterminate="false"
+                    android:layout_marginTop="10dp"
                     android:layout_width="180dp"
                     android:layout_height="180dp"
-                    android:layout_marginTop="10dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/weatherKindText"></ProgressBar>
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    app:layout_constraintTop_toBottomOf="@+id/weatherKindText"
+                    app:pcv_animDuration="800"
+                    app:pcv_animInterpolator="anticipate_overshoot"
+                    app:pcv_mode="fill"
+                    app:pcv_orientation="counter_clockwise"
+                    app:pcv_startAngle="90"
+                    app:pcv_progressColor="@color/green_back_dark"
+                    app:pcv_backgroundColor="@color/green_back_light"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/tasksContainer"
                 android:layout_width="match_parent"

@@ -41,6 +41,7 @@ import com.example.webService.TaskAPI;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.gms.tasks.Tasks;
 import com.google.gson.JsonObject;
+import com.ramijemli.percentagechartview.PercentageChartView;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -80,7 +81,7 @@ public class day_task_activity extends AppCompatActivity implements LocationList
     double latitude;
     double lo;
     TextView weatherText;
-    ProgressBar progressBarDone;
+    PercentageChartView progressBarDone;
 
     @Override
     protected void onResume() {
@@ -111,8 +112,11 @@ public class day_task_activity extends AppCompatActivity implements LocationList
                 completedTasks++;
             }
         }
-        progressBarDone.setMax(allTasks);
-        progressBarDone.setProgress(completedTasks);
+        if(allTasks == 0){
+            progressBarDone.setProgress(0,true);
+        }
+        else
+        progressBarDone.setProgress(completedTasks/allTasks*100,true);
     }
 
     @Override
@@ -271,6 +275,7 @@ public class day_task_activity extends AppCompatActivity implements LocationList
 
 
         tasksDB tasksdb = new tasksDB(day_task_activity.this);
+        Log.i("FinalDate",FinalDate);
         List<Task> listOfTasks = tasksdb.select(FinalDate);
         tasksAdap = new taskAdapter(day_task_activity.this, listOfTasks);
         list.setAdapter(tasksAdap);

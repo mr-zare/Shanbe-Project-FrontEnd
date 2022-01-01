@@ -24,6 +24,7 @@ import com.example.ConfirmationAlertDialog;
 import com.example.CustomeAlertDialog;
 import com.example.DataBase.tasksDB;
 import com.example.EditTask;
+import com.example.day_task_activity;
 import com.example.entity.Task;
 import com.example.myapplication.R;
 import com.example.myapplication.databinding.ConfirmationAlertDialogBinding;
@@ -188,6 +189,7 @@ public class taskAdapter extends BaseAdapter implements Filterable {
                     String date = dateTimeInfo[0];
                     String time =dateTimeInfo[1];
                     tasksdb.updateTask(currentTask.getTaskToken(),currentTask.getTitle(),date,time,currentTask.getDesc(),status,currentTask.getCategory());
+                    ((day_task_activity)context).updateTodayProgress();
                 }
                 else{
 //                    JsonObject jsonObject = new JsonObject();
