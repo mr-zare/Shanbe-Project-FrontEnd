@@ -51,6 +51,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
@@ -64,6 +65,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class day_task_activity extends AppCompatActivity implements LocationListener {
 
+    ConstraintLayout taskInfoPart;
     String userToken;
     String username;
     EditText searchEditText;
@@ -80,7 +82,7 @@ public class day_task_activity extends AppCompatActivity implements LocationList
     String city;
     double latitude;
     double lo;
-    TextView weatherText;
+    TextView weatherText,weatherTextConstant;
     PercentageChartView progressBarDone;
 
     @Override
@@ -189,15 +191,53 @@ public class day_task_activity extends AppCompatActivity implements LocationList
 
             }
         });
-        WeatherSelected();
+
+        weatherHandle();
     }
 
+    void weatherHandle()
+    {
+        LocationManager lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+        //boolean isToday = false;
+        boolean gps_enabled = false;
+        boolean network_enabled = false;
+
+//        int currentYear = Calendar.YEAR;
+//        int currentMonth = Calendar.MONTH;
+//        int currentDay = Calendar.DAY_OF_MONTH;
+//
+//        String currentYearStr = Integer.toString(currentYear);
+//        String currentMonthStr = Integer.toString(currentMonth);
+//        String currentDayStr = Integer.toString(currentDay);
+//
+//        String currentDate = currentYearStr+"-"+currentMonthStr+"-"+currentDayStr;
+//        if()
+
+        try {
+            gps_enabled = lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        } catch(Exception ex) {}
+
+        try {
+            network_enabled = lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+        } catch(Exception ex) {}
+
+        if(gps_enabled && network_enabled)
+        {
+            WeatherSelected();
+        }
+        else{
+            weatherText.setVisibility(View.INVISIBLE);
+            weatherTextConstant.setVisibility(View.INVISIBLE);
+        }
+    }
 
     void init() {
+        taskInfoPart = findViewById(R.id.taskInfoPart);
         progressBarDone = findViewById(R.id.TodayProgress);
         latitude =35.6;
         lo = 51.4;
         weatherText = findViewById(R.id.weatherKindText);
+        weatherTextConstant = findViewById(R.id.weather);
         searchEditText = findViewById(R.id.searchEditText);
         list = findViewById(R.id.tasksLists);
         SharedPreferences sharedPreferences = getSharedPreferences("authentication", MODE_PRIVATE);
@@ -319,21 +359,27 @@ public class day_task_activity extends AppCompatActivity implements LocationList
     public void toggle(View view) {
         ConstraintLayout tasks = findViewById(R.id.tasksContainer);
         ConstraintLayout events = findViewById(R.id.eventsContainer);
+        LinearLayout.LayoutParams tasksInfoParams = (LinearLayout.LayoutParams) taskInfoPart.getLayoutParams();
         LinearLayout.LayoutParams tasksParams = (LinearLayout.LayoutParams) tasks.getLayoutParams();
         LinearLayout.LayoutParams eventParams = (LinearLayout.LayoutParams) events.getLayoutParams();
         if (tasks.getVisibility() == View.VISIBLE) {
             events.setVisibility(View.VISIBLE);
             tasks.setVisibility(View.INVISIBLE);
+            taskInfoPart.setVisibility(View.INVISIBLE);
             tasksParams.height = 1;
+            tasksInfoParams.height = 1;
             eventParams.height = LinearLayout.LayoutParams.WRAP_CONTENT;
         } else {
             events.setVisibility(View.INVISIBLE);
             tasks.setVisibility(View.VISIBLE);
+            taskInfoPart.setVisibility(View.VISIBLE);
             eventParams.height = 1;
             tasksParams.height = LinearLayout.LayoutParams.WRAP_CONTENT;
+            tasksInfoParams.height = LinearLayout.LayoutParams.WRAP_CONTENT;
         }
         tasks.setLayoutParams(tasksParams);
         events.setLayoutParams((eventParams));
+        taskInfoPart.setLayoutParams(tasksInfoParams);
     }
 
     @Override

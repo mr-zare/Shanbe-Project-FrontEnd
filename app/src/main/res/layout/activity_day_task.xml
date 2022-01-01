@@ -40,6 +40,7 @@
                 android:textColorHint="@color/white"></EditText>
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/taskInfoPart"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="40dp">
