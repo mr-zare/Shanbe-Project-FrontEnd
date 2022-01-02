@@ -101,12 +101,20 @@ public class CustomCalendarView extends LinearLayout {
     private void InitializeData() {
         tasksDB tasksdb = new tasksDB(context);
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date date = new Date();
         Calendar c = Calendar.getInstance();
-        c.setTime(date);
-        c.add(Calendar.MONTH, -1);
-        Date currentDateMinusOne = c.getTime();
-        String dates = dateFormat.format(currentDateMinusOne);
+        int currentDay = c.get(Calendar.DAY_OF_MONTH);
+        int currentMonth = c.get(Calendar.MONTH);
+        int currentYear = c.get(Calendar.YEAR);
+        String CM = String.valueOf(currentMonth);
+        String CY = String.valueOf(currentYear);
+        String CD = String.valueOf(currentDay);
+        if(CM.length() == 1){
+            CM = "0"+CM;
+        }
+        if(CD.length() == 1){
+            CD = "0"+CD;
+        }
+        String dates = CY +"-"+CM+"-"+ CD;
         ArrayList<Task> tasksRecycler = tasksdb.select(dates);
         recyclerEventList = new ArrayList<>();
         for(int i = 0 ; i < tasksRecycler.size();i++){
