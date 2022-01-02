@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.format.Time;
+import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -277,8 +278,18 @@ public class AddTask extends AppCompatActivity {
             tasksDB tasksdb = new tasksDB(AddTask.this);
             String [] dateTimeInfo = datetime.split("_");
             String date = dateTimeInfo[0];
+            String [] dateArray = date.split("-");
+            if(dateArray[1].length() == 1){
+                dateArray[1] = "0"+dateArray[1];
+            }
+            if(dateArray[2].length() == 1){
+                dateArray[2] = "0"+dateArray[2];
+            }
+            date = dateArray[0]+"-"+dateArray[1]+"-"+dateArray[2];
             String time = dateTimeInfo[1];
             long res = tasksdb.insert(titleStr,date,time,descStr,status,categoryStr);
+            Log.i("DATE",date);
+            Log.i("Time",time);
             if(res >=0)
             {
                 //Toast.makeText(this, "saved", Toast.LENGTH_SHORT).show();
