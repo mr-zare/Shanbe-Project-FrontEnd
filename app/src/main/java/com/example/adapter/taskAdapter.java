@@ -73,6 +73,9 @@ public class taskAdapter extends BaseAdapter implements Filterable {
     public Object getItem(int i) {
         return list.get(i);
     }
+    public void CheckBoxClicked (View view){
+
+    }
 
     @Override
     public long getItemId(int i) {
@@ -157,6 +160,9 @@ public class taskAdapter extends BaseAdapter implements Filterable {
         statusCB.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(!compoundButton.isPressed()) {
+                    return;
+                }
                 if(canChange)
                 {
                     if(b)
@@ -186,22 +192,24 @@ public class taskAdapter extends BaseAdapter implements Filterable {
                         //offline part....
                         Log.i("status", "true");
                         String status = "done";
+                        currentTask.setStatus(status);
                         tasksDB tasksdb = new tasksDB(context);
                         String [] dateTimeInfo = currentTask.getDateTime().split("_");
                         String date = dateTimeInfo[0];
                         String time =dateTimeInfo[1];
-                        tasksdb.updateTask(currentTask.getTaskToken(),currentTask.getTitle(),date,time,currentTask.getDesc(),status,currentTask.getCategory());
+                        tasksdb.updateTask(currentTask.getTaskToken(),currentTask.getTitle(),date,time,currentTask.getDesc(), currentTask.getStatus(), currentTask.getCategory());
                         ((day_task_activity)context).updateTodayProgress();
 
                     }
                     else{
                         Log.i("status", "false");
                         String status = "pending";
+                        currentTask.setStatus(status);
                         tasksDB tasksdb = new tasksDB(context);
                         String [] dateTimeInfo = currentTask.getDateTime().split("_");
                         String date = dateTimeInfo[0];
                         String time =dateTimeInfo[1];
-                        tasksdb.updateTask(currentTask.getTaskToken(),currentTask.getTitle(),date,time,currentTask.getDesc(),status,currentTask.getCategory());
+                        tasksdb.updateTask(currentTask.getTaskToken(),currentTask.getTitle(),date,time,currentTask.getDesc(), currentTask.getStatus(), currentTask.getCategory());
                         ((day_task_activity)context).updateTodayProgress();
                     }
                 }

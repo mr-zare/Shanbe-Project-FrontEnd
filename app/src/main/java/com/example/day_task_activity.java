@@ -358,7 +358,6 @@ public class day_task_activity extends AppCompatActivity implements LocationList
     protected void onPause() {
         mFrameLayout.stopShimmer();
         locationManager.removeUpdates(this);
-        finish();
         Log.i("TAG","pause.............");
         super.onPause();
 
