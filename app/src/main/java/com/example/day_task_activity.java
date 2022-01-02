@@ -95,6 +95,7 @@ public class day_task_activity extends AppCompatActivity implements LocationList
     protected void onResume() {
         super.onResume();
         mFrameLayout.startShimmer();
+
         fillList();
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -181,7 +182,7 @@ public class day_task_activity extends AppCompatActivity implements LocationList
 
         FinalDate = year + "-" + monthNum + "-" + day;
         //Toast.makeText(this, FinalDate, Toast.LENGTH_SHORT).show();
-        fillList();
+
 
 
         searchEditText.addTextChangedListener(new TextWatcher() {
@@ -356,11 +357,15 @@ public class day_task_activity extends AppCompatActivity implements LocationList
     @Override
     protected void onPause() {
         mFrameLayout.stopShimmer();
-        super.onPause();
         locationManager.removeUpdates(this);
+        finish();
+        Log.i("TAG","pause.............");
+        super.onPause();
+
     }
 
     public void toggle(View view) {
+        com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton btn = findViewById(R.id.toggle);
         ConstraintLayout tasks = findViewById(R.id.tasksContainer);
         ConstraintLayout events = findViewById(R.id.eventsContainer);
         LinearLayout.LayoutParams tasksInfoParams = (LinearLayout.LayoutParams) taskInfoPart.getLayoutParams();
@@ -370,6 +375,7 @@ public class day_task_activity extends AppCompatActivity implements LocationList
             events.setVisibility(View.VISIBLE);
             tasks.setVisibility(View.INVISIBLE);
             taskInfoPart.setVisibility(View.INVISIBLE);
+            btn.setText("Tasks");
             tasksParams.height = 1;
             tasksInfoParams.height = 1;
             eventParams.height = LinearLayout.LayoutParams.WRAP_CONTENT;
@@ -377,6 +383,7 @@ public class day_task_activity extends AppCompatActivity implements LocationList
             events.setVisibility(View.INVISIBLE);
             tasks.setVisibility(View.VISIBLE);
             taskInfoPart.setVisibility(View.VISIBLE);
+            btn.setText("events");
             eventParams.height = 1;
             tasksParams.height = LinearLayout.LayoutParams.WRAP_CONTENT;
             tasksInfoParams.height = LinearLayout.LayoutParams.WRAP_CONTENT;

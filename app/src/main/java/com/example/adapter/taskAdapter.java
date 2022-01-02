@@ -127,6 +127,7 @@ public class taskAdapter extends BaseAdapter implements Filterable {
         }
 
         String statusStr = currentTask.getStatus();
+        statusCB.setChecked(false);
         if(statusStr.equals("done"))
         {
             CompoundButtonCompat.setButtonTintList(statusCB, ColorStateList.valueOf(Color.GREEN));
@@ -136,14 +137,6 @@ public class taskAdapter extends BaseAdapter implements Filterable {
         else if(statusStr.equals("pending"))
         {
             CompoundButtonCompat.setButtonTintList(statusCB, ColorStateList.valueOf(Color.GRAY));
-            statusCB.setChecked(false);
-            canChange = true;
-        }
-        else if(statusStr.equals("overdue"))
-        {
-            statusCB.setChecked(false);
-            CompoundButtonCompat.setButtonTintList(statusCB, ColorStateList.valueOf(Color.RED));
-            textViewdateTime.setTextColor(view.getResources().getColor(R.color.warning_task_color));
             canChange = true;
         }
         SharedPreferences sharedPreferences = context.getSharedPreferences("authentication", Context.MODE_PRIVATE);
