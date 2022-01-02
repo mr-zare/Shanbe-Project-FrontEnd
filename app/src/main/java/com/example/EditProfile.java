@@ -56,7 +56,7 @@ public class EditProfile extends AppCompatActivity {
             public void onResponse(Call<User> call, Response<User> response) {
                 if(!response.isSuccessful())
                 {
-                   // Toast.makeText(EditProfile.this, "Some Field Wrong", Toast.LENGTH_SHORT).show();
+                    CustomErrorAlertDialog customErrorAlertDialog = new CustomErrorAlertDialog(EditProfile.this,"Error","Please check your internet connection");
                     Log.i("MOSHKEL",response.message());
                 }
                 else{
@@ -77,7 +77,7 @@ public class EditProfile extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-               // Toast.makeText(EditProfile.this, "error is :"+t.getMessage(), Toast.LENGTH_SHORT).show();
+               CustomErrorAlertDialog customErrorAlertDialog = new CustomErrorAlertDialog(EditProfile.this,"Error","Please check your internet connection");
             }
         });
 

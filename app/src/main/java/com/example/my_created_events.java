@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -38,6 +40,7 @@ public class my_created_events extends AppCompatActivity {
         ListView myEventsList;
         myEventsAdapter myEventsAdap;
         private ShimmerFrameLayout mFrameLayout;
+        NetworkInfo mWifi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +57,15 @@ public class my_created_events extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         mFrameLayout.startShimmer();
-        fillList();
+        ConnectivityManager connManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+        mWifi = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+
+        if (mWifi.isConnected()) {
+            fillList();
+        }
+        else{
+            Toast.makeText(this, "Please check your internet connection", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void init()

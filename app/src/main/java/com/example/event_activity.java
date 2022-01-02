@@ -12,6 +12,8 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
@@ -62,6 +64,7 @@ public class event_activity extends AppCompatActivity implements LocationListene
     int i = 0;
     double lo;
     double latitude;
+    NetworkInfo mWifi;
 
     Handler hdlr = new Handler();
     @Override
@@ -72,6 +75,8 @@ public class event_activity extends AppCompatActivity implements LocationListene
         getSupportActionBar().hide();
         setContentView(R.layout.activity_event);
        // Toast.makeText(this, "create", Toast.LENGTH_SHORT).show();
+        ConnectivityManager connManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+        mWifi = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
         init();
         mFrameLayout = findViewById(R.id.shimmerLayout);
     }
@@ -116,48 +121,53 @@ public class event_activity extends AppCompatActivity implements LocationListene
         filter.addProperty("privacy",false);
         filter.addProperty("isVirtual",false);
 
-        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
+        if (mWifi.isConnected()) {
+            HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+            interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+            OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
 
-        Retrofit searchEvent = new Retrofit.Builder()
-                .baseUrl(TaskAPI.BASE_URL)
-                .client(client)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        eventAPI = searchEvent.create(EventAPI.class);
+            Retrofit searchEvent = new Retrofit.Builder()
+                    .baseUrl(TaskAPI.BASE_URL)
+                    .client(client)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+            eventAPI = searchEvent.create(EventAPI.class);
 
-        Call<List<Event>> callBack = eventAPI.event_search("token "+userToken,filter);
-        callBack.enqueue(new Callback<List<Event>>() {
-            @Override
-            public void onResponse(Call<List<Event>> call, Response<List<Event>> response) {
-                if(!response.isSuccessful())
-                {
+            Call<List<Event>> callBack = eventAPI.event_search("token "+userToken,filter);
+            callBack.enqueue(new Callback<List<Event>>() {
+                @Override
+                public void onResponse(Call<List<Event>> call, Response<List<Event>> response) {
+                    if(!response.isSuccessful())
+                    {
+                        CustomErrorAlertDialog errorConnecting = new CustomErrorAlertDialog(event_activity.this,"Error","there is a problem connecting to server");
+                    }
+                    else{
+                        String code = Integer.toString(response.code());
+                        List<Event> filteredEventList = response.body();
+                        //   Toast.makeText(event_activity.this, code, Toast.LENGTH_SHORT).show();
+
+                        eventAdap = new eventAdapter(event_activity.this,filteredEventList);
+
+                        eventsListView.setAdapter(eventAdap);
+                        mFrameLayout.startShimmer();
+                        mFrameLayout.setVisibility(View.GONE);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<List<Event>> call, Throwable t) {
                     CustomErrorAlertDialog errorConnecting = new CustomErrorAlertDialog(event_activity.this,"Error","there is a problem connecting to server");
                 }
-                else{
-                    String code = Integer.toString(response.code());
-                    List<Event> filteredEventList = response.body();
-                    //   Toast.makeText(event_activity.this, code, Toast.LENGTH_SHORT).show();
+            });
 
-                    eventAdap = new eventAdapter(event_activity.this,filteredEventList);
-
-                    eventsListView.setAdapter(eventAdap);
-                    mFrameLayout.startShimmer();
-                    mFrameLayout.setVisibility(View.GONE);
-                }
+            if(locationStr.length()==0 && categoryStr.length()==0&& date.length()==0)
+            {
+                filtered = false;
+                suggestedHandler();
             }
-
-            @Override
-            public void onFailure(Call<List<Event>> call, Throwable t) {
-                CustomErrorAlertDialog errorConnecting = new CustomErrorAlertDialog(event_activity.this,"Error","there is a problem connecting to server");
-            }
-        });
-
-        if(locationStr.length()==0 && categoryStr.length()==0&& date.length()==0)
-        {
-            filtered = false;
-            suggestedHandler();
+        }
+        else{
+            Toast.makeText(this, "Please check your internet connection", Toast.LENGTH_SHORT).show();
         }
     }
     @Override

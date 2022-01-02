@@ -156,11 +156,20 @@ public class JoinEvent extends AppCompatActivity {
                                 @Override
                                 public void onResponse(Call<Session> call, Response<Session> response) {
                                     if (!response.isSuccessful()) {
+                                        CustomErrorAlertDialog customErrorAlertDialog = new CustomErrorAlertDialog(JoinEvent.this,"Error",response.message());
+
                                         // Toast.makeText(JoinEvent.this, "Some Field Wrong", Toast.LENGTH_SHORT).show();
                                     } else {
                                         String code = Integer.toString(response.code());
                                         Session session = response.body();
                                         CustomSuccessAlertDialog saved = new CustomSuccessAlertDialog(JoinEvent.this,"Alert!","Successfully joined");
+                                        saved.btnOk.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View view) {
+                                                saved.alertDialog.dismiss();
+                                                finish();
+                                            }
+                                        });
                                         //  Toast.makeText(JoinEvent.this, response.message(), Toast.LENGTH_LONG).show();
                                     }
                                 }
@@ -168,6 +177,7 @@ public class JoinEvent extends AppCompatActivity {
                                 @Override
                                 public void onFailure(Call<Session> call, Throwable t) {
                                     // Toast.makeText(JoinEvent.this, "error is :" + t.getMessage(), Toast.LENGTH_SHORT).show();
+                                    CustomErrorAlertDialog customErrorAlertDialog = new CustomErrorAlertDialog(JoinEvent.this,"Error",t.getMessage());
                                 }
                             });
                         }

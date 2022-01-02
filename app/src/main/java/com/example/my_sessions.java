@@ -3,6 +3,8 @@ package com.example;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -12,6 +14,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.adapter.ReservedSessionAdapter;
 import com.example.adapter.eventAdapter;
@@ -40,7 +43,7 @@ public class my_sessions extends AppCompatActivity {
     ReservedSessionAdapter reservedSessionAdapter;
     ListView sessionsListView;
     private ShimmerFrameLayout mFrameLayout;
-
+    NetworkInfo mWifi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +60,15 @@ public class my_sessions extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         mFrameLayout.startShimmer();
-        fillList();
+        ConnectivityManager connManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+        mWifi = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+
+        if (mWifi.isConnected()) {
+            fillList();
+        }
+        else{
+            Toast.makeText(this, "Please check your internet connection", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void init()
