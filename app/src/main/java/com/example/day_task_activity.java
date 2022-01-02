@@ -110,9 +110,9 @@ public class day_task_activity extends AppCompatActivity implements LocationList
     {
         tasksDB tasksDB = new tasksDB(day_task_activity.this);
         List<Task> allTodayTasks = tasksDB.select(FinalDate);
-        int allTasks = allTodayTasks.size();
+        float allTasks = allTodayTasks.size();
 
-        int completedTasks = 0;
+        float completedTasks = 0;
         for(int i =0 ;i<allTasks;i++)
         {
             if(allTodayTasks.get(i).getStatus().equals("done"))
@@ -124,8 +124,7 @@ public class day_task_activity extends AppCompatActivity implements LocationList
             progressBarDone.setProgress(0,true);
         }
         else{
-            progressBarDone.setProgress(((int)((int)(completedTasks/allTasks))),true);
-            float progress = ((float)((float)(completedTasks/allTasks)));
+            float progress = (float)((float)((float)((float)completedTasks/allTasks))*100);
             Log.i("Progresssssss:",Float.toString(progress));
             progressBarDone.setProgress(progress,true);
         }
