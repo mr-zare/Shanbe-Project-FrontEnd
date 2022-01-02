@@ -86,6 +86,12 @@ public class day_task_activity extends AppCompatActivity implements LocationList
     PercentageChartView progressBarDone;
 
     @Override
+    public void onProviderDisabled(@NonNull String provider) {
+        weatherText.setVisibility(View.INVISIBLE);
+        weatherTextConstant.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
         mFrameLayout.startShimmer();
@@ -119,6 +125,9 @@ public class day_task_activity extends AppCompatActivity implements LocationList
         }
         else{
             progressBarDone.setProgress(((int)((int)(completedTasks/allTasks))),true);
+            float progress = ((float)((float)(completedTasks/allTasks)));
+            Log.i("Progresssssss:",Float.toString(progress));
+            progressBarDone.setProgress(progress,true);
         }
     }
 
@@ -129,7 +138,7 @@ public class day_task_activity extends AppCompatActivity implements LocationList
         getSupportActionBar().hide();
 
         init();
-        locationManager = (LocationManager) getSystemService(Service.LOCATION_SERVICE);
+
 
         mFrameLayout = findViewById(R.id.shimmerLayout);
 
@@ -199,16 +208,16 @@ public class day_task_activity extends AppCompatActivity implements LocationList
     void weatherHandle()
     {
         try {
-            LocationManager lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+            locationManager = (LocationManager) getSystemService(Service.LOCATION_SERVICE);
             boolean gps_enabled = false;
             boolean network_enabled = false;
 
             try {
-                gps_enabled = lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
+                gps_enabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
             } catch(Exception ex) {}
 
             try {
-                network_enabled = lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+                network_enabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
             } catch(Exception ex) {}
 
             if(gps_enabled && network_enabled)
