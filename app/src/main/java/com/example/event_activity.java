@@ -1,9 +1,17 @@
 package com.example;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
+import android.app.Service;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
@@ -39,17 +47,22 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class event_activity extends AppCompatActivity {
+public class event_activity extends AppCompatActivity implements LocationListener {
 
+    boolean filtered;
     EventAPI eventAPI;
     EditText search;
     String userToken;
     Button filterBtn;
     eventAdapter eventAdap;
     ListView eventsListView;
+    LocationManager locationManager;
     private ShimmerFrameLayout mFrameLayout;
     boolean isFiltered;
     int i = 0;
+    double lo;
+    double latitude;
+
     Handler hdlr = new Handler();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,8 +80,14 @@ public class event_activity extends AppCompatActivity {
     protected void onResume() {
         mFrameLayout.startShimmer();
         super.onResume();
+        locationManager = (LocationManager) getSystemService(Service.LOCATION_SERVICE);
 
-       // Toast.makeText(this, "resume", Toast.LENGTH_SHORT).show();
+        // Toast.makeText(this, "resume", Toast.LENGTH_SHORT).show();
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 0);
+        } else {
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10, 1f, this);
+        }
 
         String locationStr= "";
         String categoryStr = "";
@@ -91,6 +110,9 @@ public class event_activity extends AppCompatActivity {
         {
             filter.addProperty("s_time",date);
         }
+
+
+
         filter.addProperty("privacy",false);
         filter.addProperty("isVirtual",false);
 
@@ -116,7 +138,7 @@ public class event_activity extends AppCompatActivity {
                 else{
                     String code = Integer.toString(response.code());
                     List<Event> filteredEventList = response.body();
-                 //   Toast.makeText(event_activity.this, code, Toast.LENGTH_SHORT).show();
+                    //   Toast.makeText(event_activity.this, code, Toast.LENGTH_SHORT).show();
 
                     eventAdap = new eventAdapter(event_activity.this,filteredEventList);
 
@@ -132,6 +154,11 @@ public class event_activity extends AppCompatActivity {
             }
         });
 
+        if(locationStr.length()==0 && categoryStr.length()==0&& date.length()==0)
+        {
+            filtered = false;
+            suggestedHandler();
+        }
     }
     @Override
     protected void onPause() {
@@ -143,6 +170,7 @@ public class event_activity extends AppCompatActivity {
 
     public void init()
     {
+        filtered = false;
         search = findViewById(R.id.searchEventEditText);
         SharedPreferences sharedPreferences = getSharedPreferences("authentication", MODE_PRIVATE);
         userToken = sharedPreferences.getString("token", "");
@@ -212,7 +240,82 @@ public class event_activity extends AppCompatActivity {
     public void goTofilterPage(View view) {
         Intent intent = new Intent(event_activity.this,FilterEvents.class);
         startActivity(intent);
+        filtered = true;
     }
 
 
+    @Override
+    public void onLocationChanged(@NonNull Location location) {
+        double lat = location.getLatitude();
+        double lnt = location.getLongitude();
+
+        latitude = lat;
+        lo = lnt;
+
+        Log.i("long",Double.toString(lo));
+        Log.i("latitude",Double.toString(latitude));
+    }
+
+    @Override
+    public void onProviderDisabled(@NonNull String provider) {
+        latitude =35.6;
+        lo = 51.4;
+        Log.i("long",Double.toString(lo));
+        Log.i("latitude",Double.toString(latitude));
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 0 && grantResults.length > 0) {
+            if (grantResults[0] == PackageManager.GET_RECEIVERS) {
+                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    return;
+                }
+                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10, 1f, this);
+            }
+        }
+    }
+
+    public void suggestedHandler()
+    {
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
+
+        Retrofit suggestedEvents = new Retrofit.Builder()
+                .baseUrl(TaskAPI.BASE_URL)
+                .client(client)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        eventAPI = suggestedEvents.create(EventAPI.class);
+
+        JsonObject geo = new JsonObject();
+        Call<List<Event>> request = eventAPI.event_getSuggestions("token "+userToken,geo);
+        request.enqueue(new Callback<List<Event>>() {
+            @Override
+            public void onResponse(Call<List<Event>> call, Response<List<Event>> response) {
+                if(!response.isSuccessful())
+                {
+                    CustomErrorAlertDialog customErrorAlertDialog = new CustomErrorAlertDialog(event_activity.this,"Error","there is a problem connecting to server");
+                }
+                else{
+                    String code = Integer.toString(response.code());
+                    List<Event> suggestedEvents = response.body();
+                    //   Toast.makeText(event_activity.this, code, Toast.LENGTH_SHORT).show();
+
+                    eventAdap = new eventAdapter(event_activity.this,suggestedEvents);
+
+                    eventsListView.setAdapter(eventAdap);
+                    mFrameLayout.startShimmer();
+                    mFrameLayout.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Event>> call, Throwable t) {
+                CustomErrorAlertDialog customErrorAlertDialog = new CustomErrorAlertDialog(event_activity.this,"Error","there is a problem connecting to server");
+            }
+        });
+    }
 }

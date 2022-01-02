@@ -70,4 +70,6 @@ public interface EventAPI {
     @POST("calendar/login-create/")
     Call<JsonObject> send_tokens(@Header("Authorization") String user_toekn,@Body JsonObject tokens);
 
+    @POST("events/suggestions/")
+    Call<List<Event>> event_getSuggestions(@Header("Authorization") String user_token,@Body JsonObject geo);
 }
