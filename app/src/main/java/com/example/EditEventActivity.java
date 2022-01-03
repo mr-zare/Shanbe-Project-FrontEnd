@@ -101,7 +101,7 @@ public class EditEventActivity extends AppCompatActivity {
         minNum = -1;
         hourNum = -1;
         yearNum = 0;
-        monthNum = 0;
+        monthNum = -1;
         dayNum = 0;
 
         title = findViewById(R.id.titleevent);
@@ -320,7 +320,7 @@ public class EditEventActivity extends AppCompatActivity {
             hourNum = customTimePicker.getHourNum();
             minNum = customTimePicker.getMinNum();
 
-            if(yearNum==0||monthNum==0||dayNum==0)
+            if(yearNum==0||monthNum==-1||dayNum==0)
             {
                 CustomErrorAlertDialog errorDate = new CustomErrorAlertDialog(EditEventActivity.this,"Error","you must select a date for the session.");
             }

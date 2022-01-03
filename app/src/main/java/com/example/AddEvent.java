@@ -97,7 +97,7 @@ public class AddEvent  extends AppCompatActivity {
     public void init()
     {
         yearNum = 0;
-        monthNum = 0;
+        monthNum = -1;
         dayNum = 0;
         hourNum = -1;
         minNum = -1;
@@ -310,7 +310,7 @@ public class AddEvent  extends AppCompatActivity {
             hourNum = customTimePicker.getHourNum();
             minNum = customTimePicker.getMinNum();
 
-            if(yearNum==0||monthNum==0||dayNum==0)
+            if(yearNum==0||monthNum==-1||dayNum==0)
             {
                 CustomErrorAlertDialog errorDate = new CustomErrorAlertDialog(AddEvent.this,"Error","you must select a date for the session.");
             }
