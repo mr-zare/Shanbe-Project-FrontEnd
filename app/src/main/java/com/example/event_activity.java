@@ -267,6 +267,17 @@ public class event_activity extends AppCompatActivity implements LocationListene
         Log.i("long",Double.toString(lo));
         Log.i("latitude",Double.toString(latitude));
 
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
+
+        Retrofit suggestedEvents = new Retrofit.Builder()
+                .baseUrl(TaskAPI.BASE_URL)
+                .client(client)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        eventAPI = suggestedEvents.create(EventAPI.class);
+
         JsonObject geo = new JsonObject();
         geo.addProperty("latitude",Double.toString(latitude));
         geo.addProperty("longitude",Double.toString(lo));
