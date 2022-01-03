@@ -7,8 +7,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fillViewport="true">
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="375dp"
-        android:layout_height="400dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_margin="15dp"
         android:background="@drawable/border_task"
         app:layout_constraintEnd_toEndOf="parent"
@@ -18,24 +18,26 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout3"
-            android:layout_width="336dp"
+            android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:layout_marginStart="22dp"
+            android:layout_marginStart="15dp"
             android:layout_marginTop="15dp"
-            android:layout_marginEnd="22dp"
-            android:background="@drawable/border_event"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/border_shadow"
+            android:elevation="12dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <Spinner
                 android:id="@+id/categoryfilter"
-                android:layout_width="249dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="55dp"
                 android:autofillHints="category"
                 android:entries="@array/category"
                 android:gravity="center"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.678"
                 app:layout_constraintStart_toStartOf="parent"
@@ -55,12 +57,13 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout2"
-            android:layout_width="336dp"
+            android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:layout_marginStart="22dp"
+            android:layout_marginStart="15dp"
             android:layout_marginTop="15dp"
-            android:layout_marginEnd="22dp"
-            android:background="@drawable/border_event"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/border_shadow"
+            android:elevation="12dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.6"
             app:layout_constraintStart_toStartOf="parent"
@@ -68,8 +71,9 @@
 
             <Spinner
                 android:id="@+id/locationfilter"
-                android:layout_width="249dp"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:layout_marginStart="55dp"
                 android:layout_marginEnd="10dp"
                 android:entries="@array/location"
                 android:gravity="center"
@@ -90,8 +94,12 @@
 
         <DatePicker
             android:id="@+id/datefilter"
-            android:layout_width="326dp"
-            android:layout_height="400dp"
+            android:layout_width="match_parent"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:background="@drawable/border_shadow"
+            android:elevation="12dp"
+            android:layout_height="410dp"
             android:layout_marginBottom="4dp"
             android:calendarViewShown="true"
             android:spinnersShown="false"

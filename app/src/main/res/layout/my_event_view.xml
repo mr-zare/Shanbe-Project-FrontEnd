@@ -13,7 +13,7 @@
         app:layout_constraintTop_toTopOf="parent">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="380dp"
-            android:layout_height="250dp"
+            android:layout_height="260dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/border_shadow"
             android:elevation="10dp"
@@ -139,7 +139,7 @@
             <ImageView
                 android:layout_marginStart="20dp"
                 android:id="@+id/imageView3"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="20dp"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 app:layout_constraintStart_toEndOf="@+id/logoid"

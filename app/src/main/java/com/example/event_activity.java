@@ -51,6 +51,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class event_activity extends AppCompatActivity implements LocationListener {
 
+    boolean IsLocationFound;
     boolean filtered;
     EventAPI eventAPI;
     EditText search;
@@ -60,7 +61,6 @@ public class event_activity extends AppCompatActivity implements LocationListene
     ListView eventsListView;
     LocationManager locationManager;
     private ShimmerFrameLayout mFrameLayout;
-    boolean isFiltered;
     int i = 0;
     double lo;
     double latitude;
@@ -83,6 +83,7 @@ public class event_activity extends AppCompatActivity implements LocationListene
 
     @Override
     protected void onResume() {
+        IsLocationFound = false;
         mFrameLayout.startShimmer();
         super.onResume();
         locationManager = (LocationManager) getSystemService(Service.LOCATION_SERVICE);
@@ -133,6 +134,8 @@ public class event_activity extends AppCompatActivity implements LocationListene
                     .build();
             eventAPI = searchEvent.create(EventAPI.class);
 
+
+            filtered = true;
             Call<List<Event>> callBack = eventAPI.event_search("token "+userToken,filter);
             callBack.enqueue(new Callback<List<Event>>() {
                 @Override
@@ -159,7 +162,6 @@ public class event_activity extends AppCompatActivity implements LocationListene
                     CustomErrorAlertDialog errorConnecting = new CustomErrorAlertDialog(event_activity.this,"Error","there is a problem connecting to server");
                 }
             });
-
             if(locationStr.length()==0 && categoryStr.length()==0&& date.length()==0)
             {
                 filtered = false;
@@ -180,7 +182,7 @@ public class event_activity extends AppCompatActivity implements LocationListene
 
     public void init()
     {
-        filtered = false;
+
         search = findViewById(R.id.searchEventEditText);
         SharedPreferences sharedPreferences = getSharedPreferences("authentication", MODE_PRIVATE);
         userToken = sharedPreferences.getString("token", "");
@@ -264,14 +266,39 @@ public class event_activity extends AppCompatActivity implements LocationListene
 
         Log.i("long",Double.toString(lo));
         Log.i("latitude",Double.toString(latitude));
+
+        JsonObject geo = new JsonObject();
+        geo.addProperty("latitude",Double.toString(latitude));
+        geo.addProperty("longitude",Double.toString(lo));
+        Call<JsonObject> coordinateRequest = eventAPI.calendar_get_suggestions("token "+userToken,geo);
+        coordinateRequest.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                if(!response.isSuccessful())
+                {
+                    CustomErrorAlertDialog customErrorAlertDialog = new CustomErrorAlertDialog(event_activity.this,"Error","there is a problem connecting to server");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                CustomErrorAlertDialog customErrorAlertDialog = new CustomErrorAlertDialog(event_activity.this,"Error","there is a problem connecting to server");
+            }
+        });
+        locationManager.removeUpdates(event_activity.this);
     }
 
     @Override
     public void onProviderDisabled(@NonNull String provider) {
-        latitude =35.6;
-        lo = 51.4;
-        Log.i("long",Double.toString(lo));
-        Log.i("latitude",Double.toString(latitude));
+        if(!filtered)
+        {
+            //latitude =35.6;
+            //lo = 51.4;
+            //IsLocationFound = true;
+            //Log.i("long",Double.toString(lo));
+            //Log.i("latitude",Double.toString(latitude));
+            suggestedHandler();
+        }
     }
 
     @Override
@@ -289,6 +316,7 @@ public class event_activity extends AppCompatActivity implements LocationListene
 
     public void suggestedHandler()
     {
+
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
@@ -300,8 +328,8 @@ public class event_activity extends AppCompatActivity implements LocationListene
                 .build();
         eventAPI = suggestedEvents.create(EventAPI.class);
 
-        JsonObject geo = new JsonObject();
-        Call<List<Event>> request = eventAPI.event_getSuggestions("token "+userToken,geo);
+        JsonObject empty = new JsonObject();
+        Call<List<Event>> request = eventAPI.event_getSuggestions("token "+userToken,empty);
         request.enqueue(new Callback<List<Event>>() {
             @Override
             public void onResponse(Call<List<Event>> call, Response<List<Event>> response) {

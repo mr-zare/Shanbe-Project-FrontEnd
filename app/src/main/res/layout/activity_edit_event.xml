@@ -104,7 +104,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/addresslayoutaddevent"
                 android:layout_width="310dp"
-                android:layout_height="100dp"
+                android:layout_height="70dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/border_shadow"
                 android:elevation="12dp"
@@ -115,15 +115,15 @@
                 <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:layout_marginTop="18dp"
                     android:background="@drawable/icon_address_event"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"></ImageView>
 
                 <EditText
                     android:id="@+id/addressaddevent"
                     android:layout_width="229dp"
-                    android:layout_height="74dp"
+                    android:layout_height="match_parent"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="7dp"
@@ -367,7 +367,7 @@
 
             <ListView
                 android:id="@+id/sessionsListView"
-                android:layout_width="310dp"
+                android:layout_width="300dp"
                 android:layout_marginTop="30dp"
                 android:layout_height="wrap_content"
                 android:divider="@android:color/transparent"

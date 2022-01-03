@@ -72,4 +72,7 @@ public interface EventAPI {
 
     @POST("events/suggestions/")
     Call<List<Event>> event_getSuggestions(@Header("Authorization") String user_token,@Body JsonObject geo);
+
+    @POST("calendar/coordinates/")
+    Call<JsonObject> calendar_get_suggestions(@Header("Authorization") String user_token,@Body JsonObject geo);
 }

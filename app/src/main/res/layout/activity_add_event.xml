@@ -54,7 +54,8 @@
 
                 <EditText
                     android:id="@+id/titleevent"
-                    android:layout_width="220dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginStart="55dp"
                     android:layout_height="50dp"
                     android:layout_marginEnd="10dp"
                     android:backgroundTint="@color/white"
@@ -81,9 +82,9 @@
 
                 <Spinner
                     android:id="@+id/privacyevent"
-                    android:layout_width="239dp"
+                    android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:layout_marginStart="7dp"
+                    android:layout_marginStart="55dp"
                     android:layout_marginEnd="10dp"
                     android:entries="@array/privacy"
                     android:gravity="center"
@@ -104,7 +105,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/addresslayoutaddevent"
                 android:layout_width="310dp"
-                android:layout_height="100dp"
+                android:layout_height="70dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/border_shadow"
                 android:elevation="12dp"
@@ -113,18 +114,20 @@
                 app:layout_constraintTop_toBottomOf="@+id/locationSpace">
 
                 <ImageView
+                    android:id="@+id/imageView5"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:layout_marginTop="18dp"
                     android:background="@drawable/icon_address_event"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"></ImageView>
 
                 <EditText
                     android:id="@+id/addressaddevent"
-                    android:layout_width="229dp"
-                    android:layout_height="74dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_marginTop="5dp"
+                    android:layout_marginStart="50dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="7dp"
                     android:textSize="14dp"
@@ -148,7 +151,8 @@
 
                 <EditText
                     android:id="@+id/linkEvent"
-                    android:layout_width="235dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginStart="55dp"
                     android:layout_height="50dp"
                     android:layout_marginEnd="4dp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -206,17 +210,18 @@
                 <Spinner
                     android:id="@+id/categoryevent"
                     style="@style/Widget.AppCompat.Spinner.DropDown"
-                    android:layout_width="240dp"
+                    android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:layout_marginStart="48dp"
-                    android:layout_marginTop="2dp"
+                    android:layout_marginStart="55dp"
                     android:layout_marginEnd="9dp"
                     android:autofillHints="category"
                     android:entries="@array/category"
                     android:gravity="center"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
+                    app:layout_goneMarginStart="55dp"
                     tools:ignore="DuplicateClickableBoundsCheck"></Spinner>
 
                 <ImageView
@@ -260,12 +265,13 @@
 
                 <Spinner
                     android:id="@+id/locationevent"
-                    android:layout_width="240dp"
+                    android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:layout_marginTop="2dp"
+                    android:layout_marginStart="55dp"
                     android:layout_marginEnd="5dp"
                     android:entries="@array/location"
                     android:gravity="center"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/locimageevent"
                     app:layout_constraintTop_toTopOf="parent"></Spinner>
