@@ -26,7 +26,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class profileAlertdialog {
+public class profileAlertdialog extends android.app.Activity{
 
         AlertDialog alertDialog;
         TextView titleTV;
@@ -34,7 +34,10 @@ public class profileAlertdialog {
         Button btnOk;
         UserAPI userAPI;
 
-        String username,  firstName, lastName, email, phoneNumber, avatar;
+    public profileAlertdialog() {
+    }
+
+    String username,  firstName, lastName, email, phoneNumber, avatar;
         public profileAlertdialog(Context context, String username)
         {
             this.username = username;
