@@ -6,6 +6,8 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -51,6 +53,7 @@ public class AddTask extends AppCompatActivity {
     TaskAPI taskAPI;
     ConstraintLayout titleCons;
     ConstraintLayout descCons;
+    NetworkInfo mWifi;
 
     @Override
     protected void onStop() {
@@ -228,51 +231,47 @@ public class AddTask extends AppCompatActivity {
             //Toast.makeText(this, datetime, Toast.LENGTH_SHORT).show();
             Task newTask = new Task(titleStr,descStr, datetime, categoryStr, "time for "+categoryStr,userToken,status);
 
+            ConnectivityManager connManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+            mWifi = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
 
-//            Call<TaskSession> callBack =taskAPI.createTask("token "+userToken,newTask);
-//            callBack.enqueue(new Callback<TaskSession>() {
-//                @Override
-//                public void onResponse(Call<TaskSession> call, Response<TaskSession> response) {
-//                    if(!response.isSuccessful())
-//                    {
-//                        CustomeAlertDialog errorConnecting = new CustomeAlertDialog(AddTask.this,"error","there is a problem connecting to server");
-//                    }
-//                    else{
-//                        String code = Integer.toString(response.code());
-//                        TaskSession savedTaskSession = response.body();
-//                        Task savedTask = savedTaskSession.getTask();
-//                        String task_token = savedTask.getTaskToken();
-//                        String title = savedTask.getTitle();
-//                        String dateTime = savedTask.getDateTime();
-//                        String [] infos = dateTime.split("_");
-//                        String date = infos[0];
-//                        String time = infos[1];
-//                        //Toast.makeText(AddTask.this, code, Toast.LENGTH_SHORT).show();
-//
-//                        tasksDB tasksdb = new tasksDB(AddTask.this);
-//                        long res = tasksdb.insert(task_token,title,date,time);
-//                        //Toast.makeText(AddTask.this,task_token, Toast.LENGTH_SHORT).show();
-//
-//                        CustomeAlertDialog saved = new CustomeAlertDialog(AddTask.this,"Successful","task saved");
-//                        saved.btnOk.setOnClickListener(new View.OnClickListener() {
-//                            @Override
-//                            public void onClick(View view) {
-//                                finish();
-//                            }
-//                        });
-//                    }
-//                }
-//
-//                @Override
-//                public void onFailure(Call<TaskSession> call, Throwable t) {
-//                    CustomeAlertDialog errorConnecting = new CustomeAlertDialog(AddTask.this,"error","there is a problem connecting to server");
-//
-//                }
-//            });
+            if(mWifi.isConnected())
+            {
+                Call<TaskSession> callBack =taskAPI.createTask("token "+userToken,newTask);
+                callBack.enqueue(new Callback<TaskSession>() {
+                    @Override
+                    public void onResponse(Call<TaskSession> call, Response<TaskSession> response) {
+                        if(!response.isSuccessful())
+                        {
+                            CustomeAlertDialog errorConnecting = new CustomeAlertDialog(AddTask.this,"error","there is a problem connecting to server");
+                        }
+                        else{
+                            String code = Integer.toString(response.code());
+                            TaskSession savedTaskSession = response.body();
+                            Task savedTask = savedTaskSession.getTask();
+                            String task_token = savedTask.getTaskToken();
+                            String title = savedTask.getTitle();
+                            String dateTime = savedTask.getDateTime();
+                            String [] infos = dateTime.split("_");
+                            String date = infos[0];
+                            String time = infos[1];
 
+//                            CustomeAlertDialog saved = new CustomeAlertDialog(AddTask.this,"Successful","task saved");
+//                            saved.btnOk.setOnClickListener(new View.OnClickListener() {
+//                                @Override
+//                                public void onClick(View view) {
+//                                    finish();
+//                                }
+//                            });
+                        }
+                    }
 
+                    @Override
+                    public void onFailure(Call<TaskSession> call, Throwable t) {
+                        CustomeAlertDialog errorConnecting = new CustomeAlertDialog(AddTask.this,"error","there is a problem connecting to server");
 
-
+                    }
+                });
+            }
 
             //for offline part....
             tasksDB tasksdb = new tasksDB(AddTask.this);
