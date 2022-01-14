@@ -252,6 +252,7 @@ public class event_activity extends AppCompatActivity implements LocationListene
     public void goTofilterPage(View view) {
         Intent intent = new Intent(event_activity.this,FilterEvents.class);
         startActivity(intent);
+        finish();
         filtered = true;
     }
 
