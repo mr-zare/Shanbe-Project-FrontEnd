@@ -271,7 +271,20 @@ public class EditTask extends AppCompatActivity {
             {
                 mins = "0"+mins;
             }
-            String datetime = Integer.toString(year)+"-"+Integer.toString(month)+"-"+Integer.toString(day)+"_"+hours+":"+mins;
+
+            String monthStr = Integer.toString(month);
+            if(monthStr.length()==1)
+            {
+                monthStr = "0"+monthStr;
+            }
+
+            String dayStr = Integer.toString(day);
+            if(dayStr.length() == 1)
+            {
+                dayStr = "0"+dayStr;
+            }
+
+            String datetime = Integer.toString(year)+"-"+monthStr+"-"+dayStr+"_"+hours+":"+mins;
             //Toast.makeText(this, datetime, Toast.LENGTH_SHORT).show();
             Task newTask = new Task(titleStr,descStr, datetime, categoryStr, "time for "+categoryStr,task_token);
 //
