@@ -10,39 +10,42 @@
 
     <TextView
         android:id="@+id/username_m"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="65dp"
+        android:layout_height="56dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/border_recycler_background"
         android:backgroundTint="#948bff"
         android:padding="10dp"
         android:text="Username"
+        android:gravity="center"
         app:layout_constraintEnd_toStartOf="@id/firstName_m"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/firstName_m"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="65dp"
+        android:layout_height="56dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/border_recycler_background"
         android:padding="10dp"
         android:backgroundTint="#948bff"
         android:text="First Name"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="@id/lastName_m"
         app:layout_constraintStart_toEndOf="@+id/username_m"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/lastName_m"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="65dp"
+        android:layout_height="56dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/border_recycler_background"
         android:padding="10dp"
         android:backgroundTint="#948bff"
         android:text="LastName"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/firstName_m"
         app:layout_constraintTop_toTopOf="parent" />

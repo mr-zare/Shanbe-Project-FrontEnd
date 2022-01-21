@@ -63,7 +63,7 @@
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/activity_my_created_events.xml" value="0.25416666666666665" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/activity_my_sessions.xml" value="0.16052631578947368" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/activity_profile_alertdialog.xml" value="0.16486486486486487" />
-        <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/activity_reserverd_session.xml" value="0.2" />
+        <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/activity_reserverd_session.xml" value="0.176" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/alert_dialog_layout.xml" value="0.264" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/confirmation_alert_dialog.xml" value="0.264" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/content_day_task.xml" value="0.16052631578947368" />
@@ -80,6 +80,7 @@
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/my_event_view.xml" value="0.25416666666666665" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/reserved_session_item.xml" value="0.176" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/session_item.xml" value="0.264" />
+        <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/session_members_layout.xml" value="0.1484375" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/sessionjoin_item.xml" value="0.16052631578947368" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/successfull_alert_dialog.xml" value="0.10743243243243243" />
         <entry key="..\:/AndroidProjects/shanbe_talil_app/FrontEnd/app/src/main/res/layout/task_view.xml" value="0.2" />

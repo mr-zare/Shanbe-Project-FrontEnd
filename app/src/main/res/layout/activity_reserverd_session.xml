@@ -216,15 +216,12 @@
                 android:id="@+id/categorySpace"
                 android:layout_width="310dp"
                 android:layout_height="70dp"
-                android:layout_marginStart="22dp"
-                android:layout_marginTop="96dp"
-                android:layout_marginEnd="22dp"
+                android:layout_marginTop="12dp"
                 android:background="@drawable/border_shadow"
                 android:elevation="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.333"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toBottomOf="@+id/titleSpace">
 
 
                 <TextView
@@ -294,8 +291,9 @@
                 android:id="@+id/sessionsList"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:layout_margin="22dp"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="22dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
                 android:background="@drawable/dummy_background"
                 android:elevation="22dp"
                 app:layout_constraintEnd_toEndOf="parent"

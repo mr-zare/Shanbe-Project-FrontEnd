@@ -68,12 +68,12 @@ public class reserverd_session extends AppCompatActivity {
         addressStr = getIntent().getStringExtra("address");
         linkStr = getIntent().getStringExtra("link");
         session_users = findViewById(R.id.sessionsMembers);
-        String [] dateInfo = dateTimeStr.split("-");
-        String month = dateInfo [1];
-        int monthNum = Integer.parseInt(month);
-        monthNum++;
-        month = Integer.toString(monthNum);
-        dateTimeStr = dateInfo[0]+"-"+month+"-"+dateInfo[2];
+//        String [] dateInfo = dateTimeStr.split("-");
+//        String month = dateInfo [1];
+//        int monthNum = Integer.parseInt(month);
+//        monthNum++;
+//        month = Integer.toString(monthNum);
+//        dateTimeStr = dateInfo[0]+"-"+month+"-"+dateInfo[2];
         sessionTokenStr= getIntent().getStringExtra("session_token");
         limitStr = getIntent().getStringExtra("limit");
 
@@ -148,7 +148,7 @@ public class reserverd_session extends AppCompatActivity {
             return;
         }
         ViewGroup vg = listView;
-        int totalHeight = 0;
+        int totalHeight = 60;
         for (int i = 0; i < adapter.getCount(); i++) {
             View listItem = adapter.getView(i, null, vg);
             listItem.measure(0, 0);
