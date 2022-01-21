@@ -1,6 +1,7 @@
 package com.example;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
@@ -13,6 +14,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -44,6 +46,7 @@ public class my_sessions extends AppCompatActivity {
     ListView sessionsListView;
     private ShimmerFrameLayout mFrameLayout;
     NetworkInfo mWifi;
+    ConstraintLayout noItemFound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +76,11 @@ public class my_sessions extends AppCompatActivity {
 
     public void init()
     {
+        noItemFound = findViewById(R.id.notFoundContainer);
+        LinearLayout.LayoutParams noItemParams = (LinearLayout.LayoutParams) noItemFound.getLayoutParams();
+        noItemParams.height = 1;
+        noItemFound.setVisibility(View.INVISIBLE);
+
         search = findViewById(R.id.searchEventEditText);
         SharedPreferences sharedPreferences = getSharedPreferences("authentication", MODE_PRIVATE);
         userToken = sharedPreferences.getString("token", "");
@@ -128,6 +136,14 @@ public class my_sessions extends AppCompatActivity {
                     reservedSessionAdapter = new ReservedSessionAdapter(my_sessions.this,listOfSessions);
 
                     sessionsListView.setAdapter(reservedSessionAdapter);
+
+                    if(reservedSessionAdapter.getCount() == 0)
+                    {
+                        LinearLayout.LayoutParams noItemParams = (LinearLayout.LayoutParams) noItemFound.getLayoutParams();
+                        noItemParams.height = LinearLayout.LayoutParams.MATCH_PARENT;
+                        noItemFound.setVisibility(View.VISIBLE);
+                    }
+
                     mFrameLayout.startShimmer();
                     mFrameLayout.setVisibility(View.GONE);
 
@@ -139,6 +155,7 @@ public class my_sessions extends AppCompatActivity {
                 CustomErrorAlertDialog getTasksDayError = new CustomErrorAlertDialog(my_sessions.this,"Error","there is a problem with your internet connection");
             }
         });
+
     }
     @Override
     protected void onPause() {

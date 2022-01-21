@@ -40,6 +40,7 @@
                 android:textColor="@color/white"
                 android:textColorHint="@color/white"></EditText>
 
+
             <androidx.constraintlayout.widget.ConstraintLayout
 
                 android:id="@+id/taskInfoPart"
@@ -91,6 +92,22 @@
                     app:pcv_startAngle="90" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/notFoundContainer"
+
+                >
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/no_item"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"></ImageView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/tasksContainer"
                 android:layout_width="match_parent"

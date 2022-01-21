@@ -2,6 +2,7 @@ package com.example;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
@@ -19,12 +20,14 @@ import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -51,6 +54,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class event_activity extends AppCompatActivity implements LocationListener {
 
+    ConstraintLayout noItemFound;
     boolean IsLocationFound;
     boolean filtered;
     EventAPI eventAPI;
@@ -151,6 +155,13 @@ public class event_activity extends AppCompatActivity implements LocationListene
 
                         eventAdap = new eventAdapter(event_activity.this,filteredEventList);
 
+                        if(eventAdap.getCount() == 0)
+                        {
+                            LinearLayout.LayoutParams noItemParams = (LinearLayout.LayoutParams) noItemFound.getLayoutParams();
+                            noItemParams.height = LinearLayout.LayoutParams.MATCH_PARENT;
+                            noItemFound.setVisibility(View.VISIBLE);
+                        }
+
                         eventsListView.setAdapter(eventAdap);
                         mFrameLayout.startShimmer();
                         mFrameLayout.setVisibility(View.GONE);
@@ -182,6 +193,10 @@ public class event_activity extends AppCompatActivity implements LocationListene
 
     public void init()
     {
+        noItemFound = findViewById(R.id.notFoundContainer);
+        LinearLayout.LayoutParams noItemParams = (LinearLayout.LayoutParams) noItemFound.getLayoutParams();
+        noItemParams.height = 1;
+        noItemFound.setVisibility(View.INVISIBLE);
 
         search = findViewById(R.id.searchEventEditText);
         SharedPreferences sharedPreferences = getSharedPreferences("authentication", MODE_PRIVATE);

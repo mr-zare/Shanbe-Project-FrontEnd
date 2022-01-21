@@ -64,7 +64,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class day_task_activity extends AppCompatActivity implements LocationListener {
-
+    ConstraintLayout noItemFound;
     ConstraintLayout taskInfoPart;
     String userToken;
     String username;
@@ -85,6 +85,9 @@ public class day_task_activity extends AppCompatActivity implements LocationList
     TextView weatherText,weatherTextConstant;
     PercentageChartView progressBarDone;
 
+
+    boolean noTask = false;
+    boolean noEvent = false ;
     @Override
     public void onProviderDisabled(@NonNull String provider) {
         weatherText.setVisibility(View.INVISIBLE);
@@ -237,6 +240,11 @@ public class day_task_activity extends AppCompatActivity implements LocationList
     }
 
     void init() {
+        noItemFound = findViewById(R.id.notFoundContainer);
+        LinearLayout.LayoutParams noItemParams = (LinearLayout.LayoutParams) noItemFound.getLayoutParams();
+        noItemParams.height = 1;
+        noItemFound.setVisibility(View.INVISIBLE);
+
         taskInfoPart = findViewById(R.id.taskInfoPart);
         progressBarDone = findViewById(R.id.TodayProgress);
         latitude =35.6;
@@ -259,6 +267,10 @@ public class day_task_activity extends AppCompatActivity implements LocationList
         Intent intent = new Intent(day_task_activity.this, AddTask.class);
         intent.putExtra("date", FinalDate);
         startActivity(intent);
+
+        LinearLayout.LayoutParams noItemParams = (LinearLayout.LayoutParams) noItemFound.getLayoutParams();
+        noItemParams.height = 1;
+        noItemFound.setVisibility(View.INVISIBLE);
     }
 
 
@@ -324,6 +336,13 @@ public class day_task_activity extends AppCompatActivity implements LocationList
         List<Task> listOfTasks = tasksdb.select(FinalDate);
         tasksAdap = new taskAdapter(day_task_activity.this, listOfTasks);
         list.setAdapter(tasksAdap);
+
+        if(tasksAdap.getCount() == 0)
+        {
+            noTask = true;
+        }
+
+
         mFrameLayout.startShimmer();
         mFrameLayout.setVisibility(View.GONE);
 
@@ -342,6 +361,12 @@ public class day_task_activity extends AppCompatActivity implements LocationList
                 reservedSessionAdapter = new ReservedSessionAdapter(day_task_activity.this, listOfSessions);
 
                 sessionsListView.setAdapter(reservedSessionAdapter);
+
+                if(reservedSessionAdapter.getCount() == 0)
+                {
+                    noEvent = true;
+                }
+
                 mFrameLayout.startShimmer();
                 mFrameLayout.setVisibility(View.GONE);
             }
@@ -351,7 +376,6 @@ public class day_task_activity extends AppCompatActivity implements LocationList
                 CustomErrorAlertDialog internetConnection = new CustomErrorAlertDialog(day_task_activity.this, "Error", "We could'nt get your events , please check your connection and try again");
             }
         });
-
     }
 
     @Override
@@ -364,6 +388,12 @@ public class day_task_activity extends AppCompatActivity implements LocationList
     }
 
     public void toggle(View view) {
+        ConstraintLayout noItemFound = findViewById(R.id.notFoundContainer);
+        LinearLayout.LayoutParams noItemParams = (LinearLayout.LayoutParams) noItemFound.getLayoutParams();
+        noItemParams.height = 1;
+        noItemFound.setVisibility(View.INVISIBLE);
+
+
         com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton btn = findViewById(R.id.toggle);
         ConstraintLayout tasks = findViewById(R.id.tasksContainer);
         ConstraintLayout events = findViewById(R.id.eventsContainer);
@@ -378,6 +408,13 @@ public class day_task_activity extends AppCompatActivity implements LocationList
             tasksParams.height = 1;
             tasksInfoParams.height = 1;
             eventParams.height = LinearLayout.LayoutParams.WRAP_CONTENT;
+
+            if(noEvent == true)
+            {
+                noItemParams.height = LinearLayout.LayoutParams.MATCH_PARENT;
+                noItemFound.setVisibility(View.VISIBLE);
+            }
+
         } else {
             events.setVisibility(View.INVISIBLE);
             tasks.setVisibility(View.VISIBLE);
@@ -386,6 +423,13 @@ public class day_task_activity extends AppCompatActivity implements LocationList
             eventParams.height = 1;
             tasksParams.height = LinearLayout.LayoutParams.WRAP_CONTENT;
             tasksInfoParams.height = LinearLayout.LayoutParams.WRAP_CONTENT;
+
+            if(noTask == true)
+            {
+                noItemParams.height = LinearLayout.LayoutParams.MATCH_PARENT;
+                noItemFound.setVisibility(View.VISIBLE);
+            }
+
         }
         tasks.setLayoutParams(tasksParams);
         events.setLayoutParams((eventParams));

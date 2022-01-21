@@ -177,7 +177,7 @@ public class JoinEvent extends AppCompatActivity {
                                 @Override
                                 public void onFailure(Call<Session> call, Throwable t) {
                                     // Toast.makeText(JoinEvent.this, "error is :" + t.getMessage(), Toast.LENGTH_SHORT).show();
-                                    CustomErrorAlertDialog customErrorAlertDialog = new CustomErrorAlertDialog(JoinEvent.this,"Error",t.getMessage());
+                                    //CustomErrorAlertDialog customErrorAlertDialog = new CustomErrorAlertDialog(JoinEvent.this,"Error",t.getMessage());
                                 }
                             });
                         }
