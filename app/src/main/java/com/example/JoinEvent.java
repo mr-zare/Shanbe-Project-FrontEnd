@@ -156,7 +156,15 @@ public class JoinEvent extends AppCompatActivity {
                                 @Override
                                 public void onResponse(Call<Session> call, Response<Session> response) {
                                     if (!response.isSuccessful()) {
-                                        CustomErrorAlertDialog customErrorAlertDialog = new CustomErrorAlertDialog(JoinEvent.this,"Error",response.message());
+                                        if(response.code() == 400)
+                                        {
+                                            CustomErrorAlertDialog customErrorAlertDialog = new CustomErrorAlertDialog(JoinEvent.this,"Error","user already in session.");
+
+                                        }
+                                        else{
+                                            CustomErrorAlertDialog customErrorAlertDialog = new CustomErrorAlertDialog(JoinEvent.this,"Error","there is a problem with your connection");
+
+                                        }
 
                                         // Toast.makeText(JoinEvent.this, "Some Field Wrong", Toast.LENGTH_SHORT).show();
                                     } else {
@@ -177,7 +185,7 @@ public class JoinEvent extends AppCompatActivity {
                                 @Override
                                 public void onFailure(Call<Session> call, Throwable t) {
                                     // Toast.makeText(JoinEvent.this, "error is :" + t.getMessage(), Toast.LENGTH_SHORT).show();
-                                    //CustomErrorAlertDialog customErrorAlertDialog = new CustomErrorAlertDialog(JoinEvent.this,"Error",t.getMessage());
+                                    CustomErrorAlertDialog customErrorAlertDialog = new CustomErrorAlertDialog(JoinEvent.this,"Error",t.getMessage());
                                 }
                             });
                         }
