@@ -109,8 +109,16 @@ public class JoinEvent extends AppCompatActivity {
                     Event event = response.body();
                     sessionList = event.getSessionsArr();
                     sessionAdap = new SessionJoinAdapter(JoinEvent.this, sessionList);
-                    location.setText("Address :       " +event.getAddress().toString());
-                    link.setText("Link :       " +event.getLink().toString());
+                    if(!event.getAddress().equals(""))
+                    {
+                        location.setText("Address :       " +event.getAddress().toString());
+                    }
+
+                    if(!event.getAddress().equals(""))
+                    {
+                        link.setText("Link :       " +event.getLink().toString());
+                    }
+
                     creator.setText(event.getUsername());
                     creatorUsername = event.getUsername();
                     listView.setAdapter(sessionAdap);

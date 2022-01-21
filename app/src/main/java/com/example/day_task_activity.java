@@ -73,6 +73,7 @@ public class day_task_activity extends AppCompatActivity implements LocationList
     taskAdapter tasksAdap;
     TaskAPI taskAPI;
     String FinalDate;
+    String FinalEventDate;
     ListView sessionsListView;
     private ShimmerFrameLayout mFrameLayout;
     LocationManager locationManager;
@@ -156,34 +157,48 @@ public class day_task_activity extends AppCompatActivity implements LocationList
         String year = dateInfo[5];
 
         String monthNum = "00";
+        String monthNumEvent = "";
 
         if (month.equals("Jan")) {
             monthNum = "00";
+            monthNumEvent = "01";
         } else if (month.equals("Feb")) {
             monthNum = "01";
+            monthNumEvent = "02";
         } else if (month.equals("Mar")) {
             monthNum = "02";
+            monthNumEvent = "03";
         } else if (month.equals("Apr")) {
             monthNum = "03";
+            monthNumEvent = "04";
         } else if (month.equals("May")) {
             monthNum = "04";
+            monthNumEvent = "05";
         } else if (month.equals("June")) {
             monthNum = "05";
+            monthNumEvent = "06";
         } else if (month.equals("July")) {
             monthNum = "06";
+            monthNumEvent = "07";
         } else if (month.equals("Aug")) {
             monthNum = "07";
+            monthNumEvent = "08";
         } else if (month.equals("Sept")) {
             monthNum = "08";
+            monthNumEvent = "09";
         } else if (month.equals("Oct")) {
             monthNum = "09";
+            monthNumEvent = "10";
         } else if (month.equals("Nov")) {
             monthNum = "10";
+            monthNumEvent = "11";
         } else if (month.equals("Dec")) {
             monthNum = "11";
+            monthNumEvent = "12";
         }
 
         FinalDate = year + "-" + monthNum + "-" + day;
+        FinalEventDate = year + "-" + monthNumEvent + "-" + day;
         //Toast.makeText(this, FinalDate, Toast.LENGTH_SHORT).show();
 
 
@@ -240,6 +255,8 @@ public class day_task_activity extends AppCompatActivity implements LocationList
     }
 
     void init() {
+        noTask = false;
+        noEvent = false;
         noItemFound = findViewById(R.id.notFoundContainer);
         LinearLayout.LayoutParams noItemParams = (LinearLayout.LayoutParams) noItemFound.getLayoutParams();
         noItemParams.height = 1;
@@ -271,6 +288,7 @@ public class day_task_activity extends AppCompatActivity implements LocationList
         LinearLayout.LayoutParams noItemParams = (LinearLayout.LayoutParams) noItemFound.getLayoutParams();
         noItemParams.height = 1;
         noItemFound.setVisibility(View.INVISIBLE);
+        noTask = false;
     }
 
 
@@ -348,7 +366,7 @@ public class day_task_activity extends AppCompatActivity implements LocationList
 
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("user_token", userToken);
-        jsonObject.addProperty("time", FinalDate);
+        jsonObject.addProperty("time", FinalEventDate);
 
         Call<List<Session>> request = eventAPI.session_get_day("token " + userToken, jsonObject);
         request.enqueue(new Callback<List<Session>>() {

@@ -239,12 +239,12 @@ public class EditEventActivity extends AppCompatActivity {
                             });
                         }
                         else if(finalPv == true){
-                            CustomSuccessAlertDialog saved = new CustomSuccessAlertDialog(EditEventActivity.this,"Alert!","save the token for inviting.", addedEvent.getEvent_token().toString());
+                            CustomSuccessAlertDialog saved = new CustomSuccessAlertDialog(EditEventActivity.this,"Alert!","save the token for inviting.", newEvent.getEvent_token().toString());
                             saved.btnCopy.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
                                     ClipboardManager manager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-                                    ClipData clipData = ClipData.newPlainText("text", addedEvent.getEvent_token().toString());
+                                    ClipData clipData = ClipData.newPlainText("text", newEvent.getEvent_token().toString());
                                     manager.setPrimaryClip(clipData);
                                     ClipData.Item item = clipData.getItemAt(0);
                                     CharSequence textToPaste = item.getText();

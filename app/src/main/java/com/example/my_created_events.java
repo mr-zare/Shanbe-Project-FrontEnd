@@ -1,6 +1,7 @@
 package com.example;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,6 +15,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -33,7 +35,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class my_created_events extends AppCompatActivity {
-
+        ConstraintLayout noItemFound;
         EventAPI eventAPI;
         EditText searchEt;
         String userToken;
@@ -70,6 +72,11 @@ public class my_created_events extends AppCompatActivity {
 
     public void init()
     {
+        noItemFound = findViewById(R.id.notFoundContainer);
+        LinearLayout.LayoutParams noItemParams = (LinearLayout.LayoutParams) noItemFound.getLayoutParams();
+        noItemParams.height = 1;
+        noItemFound.setVisibility(View.INVISIBLE);
+
         searchEt = findViewById(R.id.searchEventEditText);
         myEventsList = findViewById(R.id.eventsList);
 
@@ -118,6 +125,12 @@ public class my_created_events extends AppCompatActivity {
                     List<Event> myEvents = response.body();
                     myEventsAdap = new myEventsAdapter(my_created_events.this,myEvents);
                     myEventsList.setAdapter(myEventsAdap);
+                    if(myEventsAdap.getCount() == 0)
+                    {
+                        LinearLayout.LayoutParams noItemParams = (LinearLayout.LayoutParams) noItemFound.getLayoutParams();
+                        noItemParams.height = LinearLayout.LayoutParams.MATCH_PARENT;
+                        noItemFound.setVisibility(View.VISIBLE);
+                    }
                     mFrameLayout.startShimmer();
                     mFrameLayout.setVisibility(View.GONE);
                 }
