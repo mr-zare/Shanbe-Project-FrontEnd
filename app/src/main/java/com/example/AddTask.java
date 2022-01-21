@@ -12,10 +12,12 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.format.Time;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Scroller;
 import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -172,6 +174,7 @@ public class AddTask extends AppCompatActivity {
 
     public void init()
     {
+
         datePicker = findViewById(R.id.DateTimeDatePicker);
         timePicker = findViewById(R.id.time_picker);
         title = findViewById(R.id.titleEt);
@@ -179,6 +182,13 @@ public class AddTask extends AppCompatActivity {
         desc = findViewById(R.id.descriptionEt);
         descCons = findViewById(R.id.descCons);
         titleCons = findViewById(R.id.titleCons);
+
+        desc.setScroller(new Scroller(AddTask.this));
+        desc.setMaxLines(1);
+        desc.setVerticalScrollBarEnabled(true);
+        desc.setMovementMethod(new ScrollingMovementMethod());
+
+
         SharedPreferences sharedPreferences = getSharedPreferences("authentication", MODE_PRIVATE);
         userToken = sharedPreferences.getString("token", "");
         username = sharedPreferences.getString("username","");

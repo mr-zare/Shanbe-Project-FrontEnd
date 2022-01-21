@@ -175,6 +175,8 @@
                 app:layout_constraintTop_toBottomOf="@+id/privacylayout">
 
                 <EditText
+                    android:scrollbars = "vertical"
+                    android:inputType="textMultiLine"
                     android:id="@+id/descript"
                     android:layout_width="206dp"
                     android:layout_height="151dp"

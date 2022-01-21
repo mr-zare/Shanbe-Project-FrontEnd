@@ -9,9 +9,11 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.format.Time;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Scroller;
 import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -184,6 +186,11 @@ public class EditTask extends AppCompatActivity {
         username = sharedPreferences.getString("username","");
         editTitleCons = findViewById(R.id.editTitleCons);
         editDescCons = findViewById(R.id.editDescCons);
+
+        editdesc.setScroller(new Scroller(EditTask.this));
+        editdesc.setMaxLines(10);
+        editdesc.setVerticalScrollBarEnabled(true);
+        editdesc.setMovementMethod(new ScrollingMovementMethod());
     }
 
 

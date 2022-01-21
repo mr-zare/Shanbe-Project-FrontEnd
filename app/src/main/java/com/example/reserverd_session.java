@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -13,6 +14,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Scroller;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -91,6 +93,11 @@ public class reserverd_session extends AppCompatActivity {
         delete = findViewById(R.id.delete);
         address = findViewById(R.id.addressEvent);
         link = findViewById(R.id.linkEvent);
+
+        desc.setScroller(new Scroller(reserverd_session.this));
+        desc.setMaxLines(1);
+        desc.setVerticalScrollBarEnabled(true);
+        desc.setMovementMethod(new ScrollingMovementMethod());
 
         SharedPreferences sharedPreferences = getSharedPreferences("authentication", Context.MODE_PRIVATE);
         userToken = sharedPreferences.getString("token", "");

@@ -158,6 +158,8 @@
                 </TextView>
 
                 <EditText
+                    android:scrollbars = "vertical"
+                    android:inputType="textMultiLine"
                     android:id="@+id/editDescriptionEt"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

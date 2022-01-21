@@ -6,12 +6,14 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.format.Time;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Scroller;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -111,6 +113,12 @@ public class EditEventActivity extends AppCompatActivity {
         description = findViewById(R.id.descript);
         addEvent = findViewById(R.id.addEventButton);
         sessionsList = findViewById(R.id.sessionsListView);
+
+        description.setScroller(new Scroller(EditEventActivity.this));
+        description.setMaxLines(1);
+        description.setVerticalScrollBarEnabled(true);
+        description.setMovementMethod(new ScrollingMovementMethod());
+
         justifyListViewHeightBasedOnChildren(sessionsList);
 
         address = findViewById(R.id.addressaddevent);

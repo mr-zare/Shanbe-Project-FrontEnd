@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.format.Time;
+import android.text.method.ScrollingMovementMethod;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Scroller;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -119,6 +121,11 @@ public class AddEvent  extends AppCompatActivity {
         address = findViewById(R.id.addressaddevent);
         link = findViewById(R.id.linkEvent);
 
+        description.setScroller(new Scroller(AddEvent.this));
+        description.setMaxLines(1);
+        description.setVerticalScrollBarEnabled(true);
+        description.setMovementMethod(new ScrollingMovementMethod());
+
         sessions = new ArrayList<Session>();
 
 
@@ -139,6 +146,7 @@ public class AddEvent  extends AppCompatActivity {
     }
 
     public void AddEvent(View view) {
+
         titleStr = title.getText().toString();
         categoryStr = category.getSelectedItem().toString();
         locationStr = location.getSelectedItem().toString();
