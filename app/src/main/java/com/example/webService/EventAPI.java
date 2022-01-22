@@ -67,7 +67,7 @@ public interface EventAPI {
     @POST("events/session-users/")
     Call<List<User>> session_users(@Header("Authorization") String user_token,@Body JsonObject sessionToken);
 
-    @POST("calendar/login_create/")
+    @POST("calendar/login-create/")
     Call<JsonObject> send_tokens(@Header("Authorization") String user_toekn,@Body JsonObject tokens);
 
     @POST("events/suggestions/")

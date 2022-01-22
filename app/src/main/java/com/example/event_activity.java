@@ -139,39 +139,44 @@ public class event_activity extends AppCompatActivity implements LocationListene
             eventAPI = searchEvent.create(EventAPI.class);
 
 
-            filtered = false;
-            if(!(locationStr.length()==0 && categoryStr.length()==0 && date.length()==0)) {
-                filtered=true;
-                Call<List<Event>> callBack = eventAPI.event_search("token " + userToken, filter);
-                callBack.enqueue(new Callback<List<Event>>() {
-                    @Override
-                    public void onResponse(Call<List<Event>> call, Response<List<Event>> response) {
-                        if (!response.isSuccessful()) {
-                            CustomErrorAlertDialog errorConnecting = new CustomErrorAlertDialog(event_activity.this, "Error", "there is a problem connecting to server");
-                        } else {
-                            String code = Integer.toString(response.code());
-                            List<Event> filteredEventList = response.body();
-                            //   Toast.makeText(event_activity.this, code, Toast.LENGTH_SHORT).show();
+            filtered = true;
+            Call<List<Event>> callBack = eventAPI.event_search("token "+userToken,filter);
+            callBack.enqueue(new Callback<List<Event>>() {
+                @Override
+                public void onResponse(Call<List<Event>> call, Response<List<Event>> response) {
+                    if(!response.isSuccessful())
+                    {
+                        CustomErrorAlertDialog errorConnecting = new CustomErrorAlertDialog(event_activity.this,"Error","there is a problem connecting to server");
+                    }
+                    else{
+                        String code = Integer.toString(response.code());
+                        List<Event> filteredEventList = response.body();
+                        //   Toast.makeText(event_activity.this, code, Toast.LENGTH_SHORT).show();
 
-                            eventAdap = new eventAdapter(event_activity.this, filteredEventList);
+                        eventAdap = new eventAdapter(event_activity.this,filteredEventList);
 
-                            if (eventAdap.getCount() == 0) {
-                                LinearLayout.LayoutParams noItemParams = (LinearLayout.LayoutParams) noItemFound.getLayoutParams();
-                                noItemParams.height = LinearLayout.LayoutParams.MATCH_PARENT;
-                                noItemFound.setVisibility(View.VISIBLE);
-                            }
-
-                            eventsListView.setAdapter(eventAdap);
-                            mFrameLayout.startShimmer();
-                            mFrameLayout.setVisibility(View.GONE);
+                        if(eventAdap.getCount() == 0)
+                        {
+                            LinearLayout.LayoutParams noItemParams = (LinearLayout.LayoutParams) noItemFound.getLayoutParams();
+                            noItemParams.height = LinearLayout.LayoutParams.MATCH_PARENT;
+                            noItemFound.setVisibility(View.VISIBLE);
                         }
-                    }
 
-                    @Override
-                    public void onFailure(Call<List<Event>> call, Throwable t) {
-                        CustomErrorAlertDialog errorConnecting = new CustomErrorAlertDialog(event_activity.this, "Error", "there is a problem connecting to server");
+                        eventsListView.setAdapter(eventAdap);
+                        mFrameLayout.startShimmer();
+                        mFrameLayout.setVisibility(View.GONE);
                     }
-                });
+                }
+
+                @Override
+                public void onFailure(Call<List<Event>> call, Throwable t) {
+                    CustomErrorAlertDialog errorConnecting = new CustomErrorAlertDialog(event_activity.this,"Error","there is a problem connecting to server");
+                }
+            });
+            if(locationStr.length()==0 && categoryStr.length()==0&& date.length()==0)
+            {
+                filtered = false;
+                suggestedHandler();
             }
         }
         else{
@@ -246,6 +251,7 @@ public class event_activity extends AppCompatActivity implements LocationListene
                     //Toast.makeText(day_task_activity.this, Integer.toString(responseCode), Toast.LENGTH_SHORT).show();
                     List<Event> ListOfEvents = response.body();
                     eventAdap = new eventAdapter(event_activity.this,ListOfEvents);
+
                     eventsListView.setAdapter(eventAdap);
 
                 }
@@ -295,7 +301,6 @@ public class event_activity extends AppCompatActivity implements LocationListene
         coordinateRequest.enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                suggestedHandler();
                 if(!response.isSuccessful())
                 {
                     CustomErrorAlertDialog customErrorAlertDialog = new CustomErrorAlertDialog(event_activity.this,"Error","there is a problem connecting to server");
@@ -308,7 +313,6 @@ public class event_activity extends AppCompatActivity implements LocationListene
             }
         });
         locationManager.removeUpdates(event_activity.this);
-
     }
 
     @Override

@@ -6,16 +6,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fillViewport="true"
     >
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-<<<<<<< Updated upstream
         android:background="@color/pinkBackGround"
         >
-=======
-        android:background="#C8A0CA">
->>>>>>> Stashed changes
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/titleborder"
@@ -60,8 +55,8 @@
                 <EditText
                     android:id="@+id/titleevent"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
                     android:layout_marginStart="55dp"
+                    android:layout_height="50dp"
                     android:layout_marginEnd="10dp"
                     android:backgroundTint="@color/white"
                     android:hint="title"
@@ -131,8 +126,8 @@
                     android:id="@+id/addressaddevent"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="50dp"
                     android:layout_marginTop="5dp"
+                    android:layout_marginStart="50dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="7dp"
                     android:textSize="14dp"
@@ -157,8 +152,8 @@
                 <EditText
                     android:id="@+id/linkEvent"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
                     android:layout_marginStart="55dp"
+                    android:layout_height="50dp"
                     android:layout_marginEnd="4dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"></EditText>
@@ -179,11 +174,13 @@
                 android:background="@drawable/dummy_background_border"
                 android:elevation="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.508"
+                app:layout_constraintHorizontal_bias="0.567"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/privacylayout">
 
                 <EditText
+                    android:scrollbars = "vertical"
+                    android:inputType="textMultiLine"
                     android:id="@+id/descript"
                     android:layout_width="206dp"
                     android:layout_height="151dp"
@@ -191,9 +188,7 @@
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/indie_flower"
                     android:hint="description"
-                    android:inputType="textMultiLine"
                     android:maxLength="240"
-                    android:scrollbars="vertical"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -297,9 +292,9 @@
                 android:id="@+id/addSpace"
                 android:layout_width="414dp"
                 android:layout_height="130dp"
-                android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.565"
                 app:layout_constraintStart_toStartOf="parent"
@@ -311,13 +306,14 @@
                     android:layout_height="65dp"
                     android:layout_marginStart="60dp"
                     android:layout_marginTop="70dp"
-                    android:backgroundTint="#DFAAE8"
                     android:onClick="PickTime"
                     android:text="time"
+                    android:backgroundTint="#DFAAE8"
                     app:layout_constraintBottom_toBottomOf="@id/addSpace"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.676"></Button>
+                    app:layout_constraintVertical_bias="0.676">
+                </Button>
 
                 <Button
                     android:id="@+id/pickDate"
@@ -325,9 +321,9 @@
                     android:layout_height="65dp"
                     android:layout_marginStart="60dp"
                     android:layout_marginBottom="30dp"
-                    android:backgroundTint="#DFAAE8"
                     android:onClick="PickDate"
                     android:text="date"
+                    android:backgroundTint="#DFAAE8"
                     app:layout_constraintBottom_toBottomOf="@id/addSpace"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@id/pickDate"></Button>
@@ -342,8 +338,8 @@
                     android:background="@drawable/dummy_background_border"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
-                    app:layout_constraintBottom_toTopOf="@+id/addSession"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/addSession"
                     app:layout_constraintVertical_bias="1.0">
 
                     <EditText
@@ -379,14 +375,14 @@
             <ListView
                 android:id="@+id/sessionsListView"
                 android:layout_width="310dp"
-                android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
+                android:layout_height="wrap_content"
                 android:divider="@android:color/transparent"
                 android:dividerHeight="3dp"
-                app:layout_constraintBottom_toTopOf="@id/addEventButton"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/addSpace"></ListView>
+                app:layout_constraintTop_toBottomOf="@id/addSpace"
+                app:layout_constraintBottom_toTopOf="@id/addEventButton"></ListView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
