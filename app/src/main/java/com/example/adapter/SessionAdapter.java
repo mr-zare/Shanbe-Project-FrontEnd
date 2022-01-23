@@ -82,38 +82,38 @@ public class SessionAdapter extends BaseAdapter {
         TextView date = view.findViewById(R.id.date);
         TextView time = view.findViewById(R.id.time);
         ListView members = view.findViewById(R.id.members);
-        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
-        Retrofit createTask = new Retrofit.Builder()
-                .baseUrl(EventAPI.BASE_URL)
-                .client(client)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        eventAPI = createTask.create(EventAPI.class);
-        SharedPreferences shP = context.getSharedPreferences("userInformation", context.MODE_PRIVATE);
-        String token2 = shP.getString("token", "");
-        JsonObject body2 = new JsonObject();
-        body2.addProperty("session_token", currentSession.getSession_token());
-        Call<List<User>> callBack2 = eventAPI.session_users("token " + token2, body2);
-        callBack2.enqueue(new Callback<List<User>>() {
-            @Override
-            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
-                if (!response.isSuccessful()) {
-                    // Toast.makeText(JoinEvent.this, "Some Field Wrong", Toast.LENGTH_SHORT).show();
-                } else {
-                    String code = Integer.toString(response.code());
-                    List<User> sessionusers = response.body();
-                    sessionAdap = new SessionMembersAdapter(context, sessionusers, sessionusers);
-                    members.setAdapter(sessionAdap);
-                    justifyListViewHeightBasedOnChildren(members);
-                }
-            }
-            @Override
-            public void onFailure(Call<List<User>> call, Throwable t) {
-                // Toast.makeText(JoinEvent.this, "error is :" + t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+//        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+//        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+//        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
+//        Retrofit createTask = new Retrofit.Builder()
+//                .baseUrl(EventAPI.BASE_URL)
+//                .client(client)
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .build();
+//        eventAPI = createTask.create(EventAPI.class);
+//        SharedPreferences shP = context.getSharedPreferences("userInformation", context.MODE_PRIVATE);
+//        String token2 = shP.getString("token", "");
+//        JsonObject body2 = new JsonObject();
+//        body2.addProperty("session_token", currentSession.getSession_token());
+//        Call<List<User>> callBack2 = eventAPI.session_users("token " + token2, body2);
+//        callBack2.enqueue(new Callback<List<User>>() {
+//            @Override
+//            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+//                if (!response.isSuccessful()) {
+//                    // Toast.makeText(JoinEvent.this, "Some Field Wrong", Toast.LENGTH_SHORT).show();
+//                } else {
+//                    String code = Integer.toString(response.code());
+//                    List<User> sessionusers = response.body();
+//                    sessionAdap = new SessionMembersAdapter(context, sessionusers, sessionusers);
+//                    members.setAdapter(sessionAdap);
+//                    justifyListViewHeightBasedOnChildren(members);
+//                }
+//            }
+//            @Override
+//            public void onFailure(Call<List<User>> call, Throwable t) {
+//                // Toast.makeText(JoinEvent.this, "error is :" + t.getMessage(), Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
         Button delete=view.findViewById(R.id.deletese);
         delete.setOnClickListener(new View.OnClickListener() {
