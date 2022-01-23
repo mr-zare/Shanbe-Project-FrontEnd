@@ -56,7 +56,7 @@ public class FilterEvents extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("authentication", MODE_PRIVATE);
         userToken = sharedPreferences.getString("token", "");
 
-        datefilter.init(2000,1,1,null);
+        datefilter.init(2018,1,1,null);
     }
 
     public void filter(View view) {
@@ -91,7 +91,7 @@ public class FilterEvents extends AppCompatActivity {
         }
 
         String date = yearStr+"-"+monthStr+"-"+dayStr;
-        if(date.equals("2000-01-01"))
+        if(date.equals("2018-01-01"))
         {
             date = "";
         }
