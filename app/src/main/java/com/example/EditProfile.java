@@ -106,13 +106,13 @@ public class EditProfile extends AppCompatActivity {
             firstNameEditText.setText(firstName);
         }
         else{
-            firstNameEditText.setHint(R.string.empty);
+            firstNameEditText.setHint("First Name (Empty)");
         }
         if(!lastName.equals("")){
             lastNameEditText.setText(lastName);
         }
         else{
-            lastNameEditText.setHint(" " +R.string.empty);
+            lastNameEditText.setHint("Last Name (Empty)");
         }
         if(!email.equals("")){
             emailEditText.setText(email);
@@ -124,7 +124,7 @@ public class EditProfile extends AppCompatActivity {
             phoneNumberEditText.setText(phoneNumber);
         }
         else{
-            phoneNumberEditText.setHint(R.string.empty);
+            phoneNumberEditText.setHint("Phone Number (Empty)");
         }
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
