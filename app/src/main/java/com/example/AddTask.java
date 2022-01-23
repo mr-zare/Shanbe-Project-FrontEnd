@@ -184,7 +184,7 @@ public class AddTask extends AppCompatActivity {
         titleCons = findViewById(R.id.titleCons);
 
         desc.setScroller(new Scroller(AddTask.this));
-        desc.setMaxLines(1);
+        desc.setMaxLines(4);
         desc.setVerticalScrollBarEnabled(true);
         desc.setMovementMethod(new ScrollingMovementMethod());
 
@@ -265,33 +265,7 @@ public class AddTask extends AppCompatActivity {
                             String date = infos[0];
                             String time = infos[1];
 
-                            //for offline part....
-                            tasksDB tasksdb = new tasksDB(AddTask.this);
-                            String [] dateTimeInfo = datetime.split("_");
-                            String Date = dateTimeInfo[0];
-                            String [] dateArray = Date.split("-");
-                            if(dateArray[1].length() == 1){
-                                dateArray[1] = "0"+dateArray[1];
-                            }
-                            if(dateArray[2].length() == 1){
-                                dateArray[2] = "0"+dateArray[2];
-                            }
-                            Date = dateArray[0]+"-"+dateArray[1]+"-"+dateArray[2];
-                            String Time = dateTimeInfo[1];
-                            long res = tasksdb.insert(titleStr,Date,Time,descStr,status,categoryStr);
-                            Log.i("DATE",Date);
-                            Log.i("Time",Time);
-                            if(res >=0)
-                            {
-                                //Toast.makeText(this, "saved", Toast.LENGTH_SHORT).show();
-                                CustomSuccessAlertDialog saved = new CustomSuccessAlertDialog(AddTask.this,"Successful","task saved");
-                                saved.btnOk.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View view) {
-                                        finish();
-                                    }
-                                });
-                            }
+
 
 //                            CustomeAlertDialog saved = new CustomeAlertDialog(AddTask.this,"Successful","task saved");
 //                            saved.btnOk.setOnClickListener(new View.OnClickListener() {
@@ -300,6 +274,33 @@ public class AddTask extends AppCompatActivity {
 //                                    finish();
 //                                }
 //                            });
+                        }
+                        //for offline part....
+                        tasksDB tasksdb = new tasksDB(AddTask.this);
+                        String [] dateTimeInfo = datetime.split("_");
+                        String Date = dateTimeInfo[0];
+                        String [] dateArray = Date.split("-");
+                        if(dateArray[1].length() == 1){
+                            dateArray[1] = "0"+dateArray[1];
+                        }
+                        if(dateArray[2].length() == 1){
+                            dateArray[2] = "0"+dateArray[2];
+                        }
+                        Date = dateArray[0]+"-"+dateArray[1]+"-"+dateArray[2];
+                        String Time = dateTimeInfo[1];
+                        long res = tasksdb.insert(titleStr,Date,Time,descStr,status,categoryStr);
+                        Log.i("DATE",Date);
+                        Log.i("Time",Time);
+                        if(res >=0)
+                        {
+                            //Toast.makeText(this, "saved", Toast.LENGTH_SHORT).show();
+                            CustomSuccessAlertDialog saved = new CustomSuccessAlertDialog(AddTask.this,"Successful","task saved");
+                            saved.btnOk.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    finish();
+                                }
+                            });
                         }
                     }
 

@@ -188,7 +188,7 @@ public class EditTask extends AppCompatActivity {
         editDescCons = findViewById(R.id.editDescCons);
 
         editdesc.setScroller(new Scroller(EditTask.this));
-        editdesc.setMaxLines(10);
+        editdesc.setMaxLines(4);
         editdesc.setVerticalScrollBarEnabled(true);
         editdesc.setMovementMethod(new ScrollingMovementMethod());
     }

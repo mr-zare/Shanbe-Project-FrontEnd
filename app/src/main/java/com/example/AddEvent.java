@@ -122,7 +122,7 @@ public class AddEvent  extends AppCompatActivity {
         link = findViewById(R.id.linkEvent);
 
         description.setScroller(new Scroller(AddEvent.this));
-        description.setMaxLines(1);
+        description.setMaxLines(4);
         description.setVerticalScrollBarEnabled(true);
         description.setMovementMethod(new ScrollingMovementMethod());
 

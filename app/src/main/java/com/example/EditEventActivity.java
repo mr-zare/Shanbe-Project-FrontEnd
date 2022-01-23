@@ -115,7 +115,7 @@ public class EditEventActivity extends AppCompatActivity {
         sessionsList = findViewById(R.id.sessionsListView);
 
         description.setScroller(new Scroller(EditEventActivity.this));
-        description.setMaxLines(1);
+        description.setMaxLines(4);
         description.setVerticalScrollBarEnabled(true);
         description.setMovementMethod(new ScrollingMovementMethod());
 
@@ -451,12 +451,12 @@ public class EditEventActivity extends AppCompatActivity {
         category.setSelection(categoryPos);
 
         String[] locationArr = getResources().getStringArray(R.array.location);
-        int locationPos = searchIndex(currentEvent.getCategory().toString(),locationArr);
+        int locationPos = searchIndex(currentEvent.getLocation().toString(),locationArr);
         location.setSelection(locationPos);
 
         String[] privacyArr = getResources().getStringArray(R.array.privacy);
-        int privacyPos = searchIndex(currentEvent.getCategory().toString(),privacyArr);
-        privacy.setSelection(privacyPos);
+        //int privacyPos = searchIndex(currentEvent.get .toString(),privacyArr);
+        //privacy.setSelection(privacyPos);
     }
 
     public int searchIndex(String x,String [] array)
