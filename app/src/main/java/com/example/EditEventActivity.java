@@ -450,7 +450,7 @@ public class EditEventActivity extends AppCompatActivity {
         int categoryPos = searchIndex(currentEvent.getCategory().toString(),categoryArr);
         category.setSelection(categoryPos);
 
-        String[] locationArr = getResources().getStringArray(R.array.category);
+        String[] locationArr = getResources().getStringArray(R.array.location);
         int locationPos = searchIndex(currentEvent.getCategory().toString(),locationArr);
         location.setSelection(locationPos);
 
