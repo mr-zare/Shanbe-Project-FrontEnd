@@ -7,5 +7,5 @@ Shanbe  can suggest you to participate on public events based on your location a
 # Technologies 
 Android (Java ) 
 # Shanbe Android Team 
-Saman Mohammadi Raouf , Barbod Amirmazlaghani , Erfan Zare, Mahdieh Naderi
+Saman Mohammadi Raouf , Erfan Zare , Barbod Amirmazlaghani , Mahdieh Naderi
 
